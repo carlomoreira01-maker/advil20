@@ -1,0 +1,3 @@
+# Versões presentes na validação deste pacote. Python 3.12 ou 3.13 recomendado.
+PyMuPDF==1.26.6
+Pillow==13.0.0

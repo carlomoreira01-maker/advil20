@@ -1,0 +1,9 @@
+DEMONSTRAÇÃO
+Paciente: Paciente Ficticio Clara
+Nascimento: 15/05/1995
+Convenio: Convenio Ficticio
+Guia: DEMO-GUIA-03
+Medico: Medico Ficticio
+Exames:
+Hemograma | 1 | DEMO-HEM
+Glicose | 1 | DEMO-GLI

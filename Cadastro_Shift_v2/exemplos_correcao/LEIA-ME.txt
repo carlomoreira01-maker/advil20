@@ -1,0 +1,4 @@
+Dados inteiramente fictícios.
+Importe 01_pedido_digital.pdf e 02_guia_escaneada.png (ou JPG/PDF).
+Os campos devem aparecer após a leitura. Compare com 03_guia_divergente.pdf para verificar o bloqueio de quantidade divergente.
+Nenhuma preparação dispensa conferência humana.

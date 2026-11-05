@@ -1,0 +1,9 @@
+DEMONSTRAÇÃO
+Paciente: Paciente Ficticio Bento
+Nascimento: 15/05/1995
+Convenio: Convenio Ficticio
+Guia: DEMO-GUIA-02
+Medico: Medico Ficticio
+Exames:
+Hemograma | 1 | DEMO-HEM
+Glicose | 1 | DEMO-GLI

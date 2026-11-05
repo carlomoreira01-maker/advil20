@@ -1,0 +1,11 @@
+por.traineddata — modelo portugues do Tesseract, projeto tessdata_fast.
+Origem: https://github.com/tesseract-ocr/tessdata_fast/blob/main/por.traineddata
+Download: 2026-11-05
+Licenca Apache 2.0: LICENSE.txt nesta pasta.
+A licenca do mecanismo Tesseract e das bibliotecas e independente.
+
+eng.traineddata — modelo inglês oficial tessdata_fast, licença Apache 2.0.
+Origem fixada: https://raw.githubusercontent.com/tesseract-ocr/tessdata_fast/87416418657359cb625c412a48b6e1d6d41c29bd/eng.traineddata
+Download com TLS verificado: 2026-11-05
+SHA256 eng: 7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2
+SHA256 por: c4932b937207a9514b7514d518b931a99938c02a28a5a5a553f8599ed58b7deb

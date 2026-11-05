@@ -1,0 +1,30 @@
+[
+  {
+    "nome": "Hemograma",
+    "codigo_shift": "DEMO-HEM",
+    "tuss": null,
+    "sinonimos": [
+      "Hemograma completo"
+    ],
+    "material": "Sangue total EDTA (exemplo)"
+  },
+  {
+    "nome": "Glicose",
+    "codigo_shift": "DEMO-GLI",
+    "tuss": null,
+    "sinonimos": [
+      "Glicemia",
+      "Glicemia em jejum"
+    ],
+    "material": "Plasma (exemplo)"
+  },
+  {
+    "nome": "TSH",
+    "codigo_shift": "DEMO-TSH",
+    "tuss": null,
+    "sinonimos": [
+      "Hormonio tireoestimulante"
+    ],
+    "material": "Soro (exemplo)"
+  }
+]

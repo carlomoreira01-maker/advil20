@@ -1,0 +1,5 @@
+.venv/
+__pycache__/
+*.pyc
+dados_v2/
+dados_demo/

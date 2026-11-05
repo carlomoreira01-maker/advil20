@@ -1,0 +1,55 @@
+test_ambiguous_catalog (test_core.Workflow.test_ambiguous_catalog) ... ok
+test_authorization_checks (test_core.Workflow.test_authorization_checks) ... ok
+test_business_duplicate_different_document_bytes (test_core.Workflow.test_business_duplicate_different_document_bytes) ... ok
+test_catalog_changed (test_core.Workflow.test_catalog_changed) ... ok
+test_catalog_real_code_rejected (test_core.Workflow.test_catalog_real_code_rejected) ... ok
+test_data_survives_restart (test_core.Workflow.test_data_survives_restart) ... ok
+test_happy_path_and_labels (test_core.Workflow.test_happy_path_and_labels) ... ok
+test_html_escaped (test_core.Workflow.test_html_escaped) ... ok
+test_identity_and_optional_birth (test_core.Workflow.test_identity_and_optional_birth) ... ok
+test_import_and_simulation_offline (test_core.Workflow.test_import_and_simulation_offline) ... ok
+test_import_duplicate (test_core.Workflow.test_import_duplicate) ... ok
+test_missing_marker_and_prose (test_core.Workflow.test_missing_marker_and_prose) ... ok
+test_mixed_pdf_ocr_per_page (test_core.Workflow.test_mixed_pdf_ocr_per_page) ... ok
+test_pdf_and_text (test_core.Workflow.test_pdf_and_text) ... ok
+test_repeat_simulate (test_core.Workflow.test_repeat_simulate) ... ok
+test_review_required (test_core.Workflow.test_review_required) ... ok
+test_stale_revision_and_audit (test_core.Workflow.test_stale_revision_and_audit) ... ok
+test_unknown_code_negation_and_duplicate (test_core.Workflow.test_unknown_code_negation_and_duplicate) ... ok
+test_import_review_prepare_and_export (test_gui_v2.Interface.test_import_review_prepare_and_export) ... ok
+test_paging_zoom_source_and_field_invalidation (test_gui_v2.Interface.test_paging_zoom_source_and_field_invalidation) ... invalid command name "140120398506368poll"
+    while executing
+"140120398506368poll"
+    ("after" script)
+ok
+test_label_above_value (test_layout_v2.Layout.test_label_above_value) ... ok
+test_parallel_tables (test_layout_v2.Layout.test_parallel_tables) ... ok
+test_wrapped_description (test_layout_v2.Layout.test_wrapped_description) ... ok
+test_alerts_block_even_with_reviewed_fields (test_v2.V2.test_alerts_block_even_with_reviewed_fields) ... ok
+test_batch_pair_safety (test_v2.V2.test_batch_pair_safety) ... ok
+test_catalog_conflict_ambiguous_material (test_v2.V2.test_catalog_conflict_ambiguous_material) ... ok
+test_catalog_real_codes_and_equivalence (test_v2.V2.test_catalog_real_codes_and_equivalence) ... ok
+test_digital_pdf_avoids_ocr (test_v2.V2.test_digital_pdf_avoids_ocr) ... ok
+test_encrypted_unsupported (test_v2.V2.test_encrypted_unsupported) ... ok
+test_fields_aliases_multiple_on_line (test_v2.V2.test_fields_aliases_multiple_on_line) ... ok
+test_hybrid_page_not_silently_skipped (test_v2.V2.test_hybrid_page_not_silently_skipped) ... ok
+test_illegible_blank_and_missing_ocr (test_v2.V2.test_illegible_blank_and_missing_ocr) ... ok
+test_lists_and_no_invented_quantity (test_v2.V2.test_lists_and_no_invented_quantity) ... ok
+test_low_confidence_requires_row_review (test_v2.V2.test_low_confidence_requires_row_review) ... ok
+test_missing_exam_quantity_and_codes (test_v2.V2.test_missing_exam_quantity_and_codes) ... ok
+test_multipage_mixed_only_needed_ocr (test_v2.V2.test_multipage_mixed_only_needed_ocr) ... ok
+test_patient_mismatch_and_absence (test_v2.V2.test_patient_mismatch_and_absence) ... ok
+test_pdf_table_columns_association (test_v2.V2.test_pdf_table_columns_association) ... ok
+test_real_illegible_blurred_document_blocks (test_v2.V2.test_real_illegible_blurred_document_blocks) ... ok
+test_real_portuguese_image_ocr_png_and_jpg (test_v2.V2.test_real_portuguese_image_ocr_png_and_jpg) ... ok
+test_repeated_fields_duplicate_exams (test_v2.V2.test_repeated_fields_duplicate_exams) ... ok
+test_restart_stale_catalog_duplicate (test_v2.V2.test_restart_stale_catalog_duplicate) ... ok
+test_review_gate_and_success_offline (test_v2.V2.test_review_gate_and_success_offline) ... ok
+test_same_file_cannot_be_pedido_and_guia (test_v2.V2.test_same_file_cannot_be_pedido_and_guia) ... ok
+test_scanned_pdf_real_ocr (test_v2.V2.test_scanned_pdf_real_ocr) ... ok
+test_table_reordered_columns (test_v2.V2.test_table_reordered_columns) ... ok
+
+----------------------------------------------------------------------
+Ran 46 tests in 9.849s
+
+OK

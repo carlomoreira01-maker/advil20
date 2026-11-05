@@ -1,0 +1,9 @@
+DEMONSTRAÇÃO
+Paciente: Paciente Ficticio Aurora
+Nascimento: 15/05/1995
+Convenio: Convenio Ficticio
+Guia: DEMO-GUIA-01
+Medico: Medico Ficticio
+Exames:
+Hemograma | 1 | DEMO-HEM
+Glicose | 1 | DEMO-GLI
