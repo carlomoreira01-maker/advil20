@@ -11,7 +11,8 @@ import tkinter as tk
 from tkinter import ttk, filedialog, messagebox, simpledialog
 from engine_v2 import (FIELDS, CaseStore, catalog_load, read_document, parse_document,
                        compare_models, review_errors, digest, document_diagnostics)
-from ocr_runtime import safe_failure
+from ocr_runtime import (safe_failure, settings_file, load_settings, save_settings,
+                         tesseract_exe, check_ocr_health)
 from reader import preview
 
 ROOT=Path(__file__).resolve().parent
@@ -72,16 +73,21 @@ class App:
         self.catalog_path=self.data/'catalogo.json'
         self.catalog=catalog_load(self.catalog_path if self.catalog_path.exists() else ROOT/'catalogo_demo.json')
         self.cid=None;self.models=None;self.busy=False;self.events=queue.Queue();self.loading=False
+        self.ocr_settings_path=settings_file() if self.data.resolve()==DATA.resolve() else self.data/'configuracao_ocr.json'
+        self.ocr_request=0;self.ocr_dialog=None;self.ocr_health=None
         self.import_sequence=0
         root.report_callback_exception=self.callback_failure
-        root.title('Cadastro Assistido Shift · versão 2.1 · Local');root.geometry('1450x950');root.minsize(1100,760)
+        root.title('Cadastro Assistido Shift · versão 2.2 · Local');root.geometry('1450x950');root.minsize(1100,760)
         st=ttk.Style();st.theme_use('clam');st.configure('TButton',padding=6);st.configure('Treeview',rowheight=28)
-        tk.Label(root,text='CADASTRO ASSISTIDO SHIFT  |  2.1',font=('Segoe UI',19,'bold'),bg='#173d52',fg='white',anchor='w',padx=18,pady=12).pack(fill='x')
+        tk.Label(root,text='CADASTRO ASSISTIDO SHIFT  |  2.2',font=('Segoe UI',19,'bold'),bg='#173d52',fg='white',anchor='w',padx=18,pady=12).pack(fill='x')
         ttk.Label(root,text='Importar > Ler > Comparar > Conferir > Preparar pré-cadastro',font=('Segoe UI',12,'bold'),padding=8).pack(fill='x')
         ttk.Label(root,text='Processamento local | Revisão humana obrigatória | Pré-cadastro não enviado ao Shift',padding=(10,0)).pack(anchor='w')
         bar=ttk.Frame(root,padding=8);bar.pack(fill='x')
         ttk.Label(bar,text='Revisor:').pack(side='left');self.actor=tk.StringVar(value='');ttk.Entry(bar,textvariable=self.actor,width=20).pack(side='left',padx=5)
-        for title,fn in [('Importar e ler par',self.import_pair),('Importar lote CSV',self.import_csv),('3 exemplos',self.examples),('Catálogo',self.catalog_window),('DEMO v1',self.legacy)]:ttk.Button(bar,text=title,command=lambda f=fn:self.guard(f)).pack(side='left',padx=3)
+        for title,fn in [('Importar e ler par',self.import_pair),('Importar lote CSV',self.import_csv),('3 exemplos',self.examples),('Catálogo',self.catalog_window),('Configurações OCR',self.ocr_settings_window),('DEMO v1',self.legacy)]:ttk.Button(bar,text=title,command=lambda f=fn:self.guard(f)).pack(side='left',padx=3)
+        self.ocr_status=tk.StringVar(value='OCR: verificando mecanismo e idiomas…')
+        self.ocr_status_label=tk.Label(root,textvariable=self.ocr_status,anchor='w',fg='#865400',padx=10,wraplength=1100)
+        self.ocr_status_label.pack(fill='x')
         panes=ttk.Panedwindow(root,orient='horizontal');panes.pack(fill='both',expand=True,padx=8)
         sidebar=ttk.Frame(panes,width=210);main=ttk.Frame(panes);panes.add(sidebar,weight=1);panes.add(main,weight=7)
         ttk.Label(sidebar,text='PACIENTES NA FILA',padding=6).pack()
@@ -89,6 +95,7 @@ class App:
         for c,t,w in [('nome','Paciente',145),('etapa','Etapa',90)]:self.cases.heading(c,text=t);self.cases.column(c,width=w)
         self.cases.pack(fill='both',expand=True);self.cases.bind('<<TreeviewSelect>>',self.select)
         ttk.Button(sidebar,text='Auditoria local',command=lambda:self.guard(self.audit_window)).pack(fill='x',pady=6)
+        ttk.Button(sidebar,text='Reanalisar documentos',command=lambda:self.guard(self.reanalyze_case)).pack(fill='x',pady=3)
         self.tabs=ttk.Notebook(main);self.tabs.pack(fill='both',expand=True)
         self.doc_tab=ttk.Frame(self.tabs);self.review_container=ttk.Frame(self.tabs);self.out_tab=ttk.Frame(self.tabs,padding=8)
         self.tabs.add(self.doc_tab,text='1 · Originais lado a lado');self.tabs.add(self.review_container,text='2 · Comparar e conferir');self.tabs.add(self.out_tab,text='3 · Pré-cadastro')
@@ -159,6 +166,68 @@ class App:
         self.refresh();self.poll_id=root.after(150,self.poll)
         root.bind('<Destroy>',self.cancel_poll,add='+')
         root.protocol('WM_DELETE_WINDOW',self.close)
+        self.check_ocr()
+    def check_ocr(self,exe=None,save=False):
+        self.ocr_request+=1;request=self.ocr_request;self.ocr_health=None
+        self.ocr_status.set('OCR: testando leitura local em português e inglês…')
+        self.ocr_status_label.configure(fg='#865400')
+        dialog=self.ocr_dialog
+        if dialog and dialog['window'].winfo_exists():
+            dialog['result'].set('Testando o executável, os idiomas e a leitura de uma imagem fictícia…')
+            dialog['button'].configure(state='disabled')
+        def run():
+            result=check_ocr_health(exe=exe,settings_path=self.ocr_settings_path)
+            # A gravação ocorre na thread principal, após conferir que esta é a
+            # solicitação mais recente e que a janela continua aberta.
+            self.events.put(('ocr_health',request,result,save,dialog))
+        threading.Thread(target=run,daemon=True).start()
+    def finish_ocr_check(self,request,result,save,dialog):
+        if request!=self.ocr_request:return
+        active=bool(dialog and dialog['window'].winfo_exists())
+        if save and not active:
+            self.check_ocr();return
+        if save and result['ok'] and active:
+            try:save_settings(result['exe'],self.ocr_settings_path)
+            except Exception as exc:result={'ok':False,'message':safe_failure(exc),'languages':[]}
+        self.ocr_health=result
+        self.ocr_status.set(result['message'])
+        self.ocr_status_label.configure(fg='#24633d' if result['ok'] else '#a43224')
+        if active:
+            dialog['button'].configure(state='normal')
+            dialog['result'].set(result['message']+(' · Caminho salvo para os próximos usos.' if save and result['ok'] else ''))
+            if result['ok']:dialog['path'].set(result['exe'])
+    def ocr_settings_window(self):
+        if self.ocr_dialog and self.ocr_dialog['window'].winfo_exists():
+            self.ocr_dialog['window'].lift();return
+        window=tk.Toplevel(self.root);window.title('Configurações OCR · somente neste computador')
+        window.transient(self.root);window.grab_set()
+        ttk.Label(window,text='Selecione o tesseract.exe instalado neste computador.\n'
+                  'Os idiomas português e inglês já acompanham o programa na pasta tessdata.',padding=12).pack(anchor='w')
+        try:selected=load_settings(self.ocr_settings_path).get('tesseract_path','')
+        except ValueError:selected=''
+        path=tk.StringVar(value=tesseract_exe(self.ocr_settings_path) or selected or '')
+        ttk.Entry(window,textvariable=path,width=85).pack(fill='x',padx=12)
+        result=tk.StringVar(value='O caminho só será salvo após um teste real de OCR aprovado.')
+        ttk.Label(window,textvariable=result,wraplength=650,padding=12).pack(fill='x')
+        bar=ttk.Frame(window,padding=12);bar.pack(fill='x')
+        def choose():
+            filename=filedialog.askopenfilename(parent=window,title='Selecione tesseract.exe',
+                filetypes=[('Executável Tesseract','tesseract.exe'),('Executáveis','*.exe'),('Todos os arquivos','*')])
+            if filename:path.set(filename);result.set('Caminho escolhido. Clique em Testar e salvar.')
+        def auto():
+            found=tesseract_exe(self.ocr_settings_path,include_saved=False)
+            path.set(found or '')
+            result.set('Executável localizado. Clique em Testar e salvar.' if found else
+                       'Não localizado. Clique em Selecionar tesseract.exe e procure na sua pasta Downloads.')
+        ttk.Button(bar,text='Selecionar tesseract.exe…',command=choose).pack(side='left',padx=3)
+        ttk.Button(bar,text='Localizar automaticamente',command=auto).pack(side='left',padx=3)
+        def test():
+            value=path.get().strip().strip('"')
+            if not value:result.set('Selecione primeiro o arquivo tesseract.exe.');return
+            self.check_ocr(exe=value,save=True)
+        button=ttk.Button(bar,text='Testar e salvar',command=test);button.pack(side='left',padx=3)
+        ttk.Button(bar,text='Fechar',command=window.destroy).pack(side='left',padx=3)
+        self.ocr_dialog={'window':window,'path':path,'result':result,'button':button,'choose':choose,'test':test,'auto':auto}
     def resize_review(self,event=None):
         self.review_canvas.itemconfigure(self.review_window,width=max(self.review_canvas.winfo_width(),self.review_tab.winfo_reqwidth()),height=max(self.review_canvas.winfo_height(),self.review_tab.winfo_reqheight()))
         self.review_canvas.configure(scrollregion=self.review_canvas.bbox('all'))
@@ -316,7 +385,26 @@ class App:
     def examples(self):
         if self.cid and self.dirty():raise ValueError('Salve a conferência antes de carregar exemplos.')
         self.import_pairs([(ROOT/'exemplos'/f'{i}_pedido.txt',ROOT/'exemplos'/f'{i}_guia.txt') for i in ['01','02','03']])
-    def import_pairs(self,pairs):
+    def reanalyze_case(self):
+        if not self.cid:raise ValueError('Selecione um atendimento na fila.')
+        if self.dirty():raise ValueError('Salve a conferência atual antes de reanalisar.')
+        if not self.actor.get().strip():raise ValueError('Informe o revisor antes de reanalisar.')
+        obj,revision,status,_=self.store.get(self.cid)
+        if status=='PREPARADO':raise ValueError('Pré-cadastro já preparado; reanálise bloqueada para preservar a conferência.')
+        paths=[]
+        for k in ['pedido','guia']:
+            d=obj['docs'][k]
+            local=self.data/'documentos'/(d['sha256']+Path(d['file']).suffix.lower())
+            if not local.is_file():local=Path(d.get('local_path',''))
+            if not local.is_file():raise ValueError('Original local ausente. Restaure a pasta dados_v2/documentos do backup.')
+            paths.append(local)
+        if not messagebox.askyesno('Reanalisar documentos',
+            'Ler novamente os mesmos documentos após ajustar o OCR?\n'
+            'A nova leitura substituirá os campos atuais e exigirá nova conferência. O histórico anterior será preservado.'):
+            return
+        self.import_pairs([paths],reanalysis={'cid':self.cid,'revision':revision,
+            'files':{d['sha256']:d['file'] for d in obj['docs'].values()}})
+    def import_pairs(self,pairs,reanalysis=None):
         if self.busy:raise ValueError('Aguarde a leitura terminar.')
         pairs=[(Path(p),Path(g)) for p,g in pairs]
         if not 1<=len(pairs)<=100:raise ValueError('Selecione entre 1 e 100 pares.')
@@ -333,7 +421,8 @@ class App:
                         label=f'Lote {sequence} · Par {number} · {k}'
                         self.events.put(('diagnostic',label,[],'Lendo…'))
                         try:
-                            d=read_document(path)
+                            d=read_document(path,settings_path=self.ocr_settings_path)
+                            if reanalysis:d['file']=reanalysis['files'].get(d['sha256'],d['file'])
                             self.events.put(('diagnostic',label,document_diagnostics(d),d['document_type']))
                             raw=path.read_bytes()
                             if hashlib.sha256(raw).hexdigest()!=d['sha256']:raise ValueError('Arquivo mudou durante a leitura.')
@@ -352,7 +441,7 @@ class App:
                         if d['document_type']!=k:
                             models[k]['issues'].append({'message':'Tipo do documento não confirmado como '+k+'. Confira o original.',
                                                        'reviewed':False,'reason':''})
-                    self.events.put(('case',docs,models))
+                    self.events.put(('reanalyzed',reanalysis,docs,models) if reanalysis else ('case',docs,models))
             except Exception as exc:self.events.put(('error',safe_failure(exc)))
             finally:self.events.put(('done',))
         threading.Thread(target=run,daemon=True).start()
@@ -376,7 +465,14 @@ class App:
                     try:
                         cid=self.store.add(item[1],item[2],self.actor.get());self.refresh();self.cases.selection_set(cid);self.open_case(cid,restore_diagnostics=False);self.tabs.select(self.review_container)
                     except Exception as exc:messagebox.showwarning('Importação',str(exc))
+                elif item[0]=='reanalyzed':
+                    info,docs,models=item[1:]
+                    self.store.save(info['cid'],models,self.actor.get(),'Reanálise local após configuração OCR',
+                                    info['revision'],documents=docs)
+                    self.refresh();self.cases.selection_set(info['cid']);self.open_case(info['cid'],restore_diagnostics=False)
+                    self.tabs.select(self.review_container)
                 elif item[0]=='diagnostic':self.update_diagnostic(*item[1:])
+                elif item[0]=='ocr_health':self.finish_ocr_check(*item[1:])
                 elif item[0]=='error':messagebox.showwarning('Documento não importado',item[1])
                 else:
                     self.busy=False;self.progress.grab_release();self.progress.destroy()

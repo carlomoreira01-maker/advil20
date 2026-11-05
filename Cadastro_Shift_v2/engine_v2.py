@@ -39,9 +39,9 @@ ALIASES = {norm(k): v for k, v in ALIASES.items()}
 MAX_BYTES = 30 * 1024 * 1024
 
 
-def ocr_words(image, language='por+eng'):
+def ocr_words(image, language='por+eng', settings_path=None):
     from PIL import ImageOps
-    exe = tesseract_exe()
+    exe = tesseract_exe(settings_path) if settings_path is not None else tesseract_exe()
     if not exe:
         raise LocalReadError('Tesseract ausente ou SHIFT_TESSERACT inválido. Execute INSTALAR_WINDOWS.bat.')
     config = ocr_configuration(language, exe)
@@ -113,7 +113,7 @@ def document_diagnostics(document):
              'languages': p.get('languages', '')} for p in document['pages']]
 
 
-def read_document(path, language='por+eng'):
+def read_document(path, language='por+eng', settings_path=None):
     import pymupdf
     from PIL import Image, ImageOps
     path=Path(path)
@@ -145,7 +145,7 @@ def read_document(path, language='por+eng'):
                 if not usable(words) or hybrid:
                     pix=p.get_pixmap(matrix=pymupdf.Matrix(2.5,2.5))
                     try:
-                        ws=ocr_words(Image.open(io.BytesIO(pix.tobytes('png'))),language)
+                        ws=ocr_words(Image.open(io.BytesIO(pix.tobytes('png'))),language,settings_path=settings_path)
                         # Coordenadas sempre normalizadas para pontos PDF.
                         for w in ws: w['box']=[v/2.5 for v in w['box']]
                         if hybrid and usable(words):
@@ -162,7 +162,7 @@ def read_document(path, language='por+eng'):
         with Image.open(io.BytesIO(raw)) as im:
             if im.width*im.height>25_000_000: raise LocalReadError('Imagem excede 25 megapixels.')
             im=ImageOps.exif_transpose(im).convert('RGB'); warnings=[]
-            try: words=ocr_words(im,language)
+            try: words=ocr_words(im,language,settings_path=settings_path)
             except (ValueError, OSError, subprocess.TimeoutExpired) as exc: words=[];warnings=[safe_failure(exc)]
             pages.append(page_data(words,'OCR falhou / revisão manual' if warnings else 'OCR local',1,im.size,warnings))
     elif ext=='.txt':
@@ -442,18 +442,22 @@ class CaseStore:
         r=self.db.execute('SELECT current,revision,status,output FROM casos_v2 WHERE id=?',(cid,)).fetchone()
         if not r:raise ValueError('Caso inexistente.')
         return json.loads(r[0]),r[1],r[2],json.loads(r[3]) if r[3] else None
-    def save(self,cid,models,actor,reason,revision):
+    def save(self,cid,models,actor,reason,revision,documents=None):
         if not actor.strip() or not reason.strip():raise ValueError('Informe revisor e motivo da conferência.')
         with self.db:
             self.db.execute('BEGIN IMMEDIATE')
             obj,rev,status,_=self.get(cid)
             if rev!=revision or status=='PREPARADO':raise ValueError('Caso mudou ou já foi preparado. Reabra para conferir.')
-            before=copy.deepcopy(obj['models']);obj['models']=models
+            before=copy.deepcopy(obj['models']);before_docs=copy.deepcopy(obj['docs']);obj['models']=models
+            if documents is not None:
+                if sorted(d['sha256'] for d in documents.values())!=sorted(d['sha256'] for d in obj['docs'].values()):
+                    raise ValueError('Reanálise deve usar os mesmos documentos do atendimento.')
+                obj['docs']=documents
             # Revisões clínicas são dados locais do caso, nunca registros técnicos.
             self.db.execute('INSERT OR IGNORE INTO revisoes_v2 VALUES(?,?,?)',
-                            (cid,rev,json.dumps({'models':before},ensure_ascii=False)))
+                            (cid,rev,json.dumps({'models':before,'docs':before_docs},ensure_ascii=False)))
             self.db.execute('INSERT INTO revisoes_v2 VALUES(?,?,?)',
-                            (cid,rev+1,json.dumps({'models':models,'revisor':actor,'motivo':reason},ensure_ascii=False)))
+                            (cid,rev+1,json.dumps({'models':models,'docs':obj['docs'],'revisor':actor,'motivo':reason},ensure_ascii=False)))
             self.db.execute('UPDATE casos_v2 SET current=?,revision=revision+1 WHERE id=?',(json.dumps(obj,ensure_ascii=False),cid))
             self.audit(cid,'CONFERIR',{'revisor':actor,'motivo':reason,'antes':before,'depois':models})
     def prepare(self,cid,catalog,actor,revision,cat_hash,confirmed):

@@ -1,0 +1,31 @@
+CADASTRO ASSISTIDO SHIFT 2.2 — ATUALIZAÇÃO NO WINDOWS
+
+1. Feche o programa 2.1. Faça uma cópia da pasta antiga e guarde como backup.
+2. Baixe o ZIP da versão 2.2. Clique nele com o botão direito e escolha Extrair Tudo. Use uma pasta nova; não execute dentro do ZIP.
+3. Na pasta Cadastro_Shift_v2 extraída, abra INSTALAR_WINDOWS.bat. O instalador não contém mais os comandos Python embutidos com aspas que causavam o SyntaxError.
+4. Depois abra INICIAR_WINDOWS.bat. O título deve mostrar 2.2.
+5. Clique em Configurações OCR. A busca automática já inclui sua pasta Downloads\TESSERACT.
+6. Se o caminho não aparecer, clique em Selecionar tesseract.exe. Abra Downloads, depois TESSERACT, e escolha tesseract.exe.
+7. Clique em Testar e salvar e aguarde. O programa só mostra OCR funcionando após testar português, inglês e uma imagem fictícia. O caminho é salvo e reutilizado ao reabrir.
+8. Teste com exemplos_correcao/01_pedido_digital.pdf e exemplos_correcao/02_guia_escaneada.png (também há JPG e PDF escaneado).
+
+HISTÓRICO DA VERSÃO 2.1
+
+Com os dois programas FECHADOS, copie a pasta dados_v2 inteira da versão 2.1 para a pasta Cadastro_Shift_v2 da versão 2.2. Faça isso antes de criar atendimentos novos na 2.2. Não sobrescreva uma pasta dados_v2 que já contenha trabalho novo: guarde ambas e peça orientação para reunir os históricos.
+Não copie a pasta .venv antiga.
+
+Se um atendimento antigo ficou com campos vazios por falta de OCR, selecione-o na fila depois de configurar o Tesseract. Informe um revisor e clique em Reanalisar documentos. A nova leitura exige confirmação, preserva o histórico e não cria atendimento duplicado. Casos já preparados não são reanalisados.
+
+IDIOMAS E CONFIGURAÇÃO
+
+Os arquivos por.traineddata e eng.traineddata já acompanham o pacote na pasta tessdata. Se aparecer idioma ausente, extraia novamente TODO o pacote, incluindo tessdata. Uma variável SHIFT_TESSDATA personalizada pode apontar para uma pasta incompleta; nesse caso, confira essa configuração local. Não baixe nem envie documentos clínicos para testar.
+
+No Windows, o caminho escolhido fica em %APPDATA%\CadastroAssistidoShift\ocr.json. Esse arquivo não altera o Shift e não precisa ser editado manualmente. Em outros sistemas sem APPDATA, fica em dados_v2/configuracao_ocr.json. O diálogo só salva um caminho depois de um teste aprovado; uma escolha inválida preserva a configuração anterior.
+
+Se o teste falhar, a tela mostra a falha e o botão permite tentar novamente. Confira se selecionou o tesseract.exe completo, com os arquivos que vieram com a instalação do Tesseract. Não basta um arquivo renomeado ou somente um atalho.
+
+VALIDAÇÃO NO SEU COMPUTADOR
+
+Execute TESTAR_WINDOWS.bat para o diagnóstico e os testes com documentos fictícios. A validação desta entrega foi feita em Linux com interface real; os scripts PowerShell/winget, permissões e execução nativa do Tesseract no seu Windows ainda precisam deste teste.
+
+O aplicativo continua sem conexão ao Shift real, sem envio de documentos a APIs e sem impressão oficial.

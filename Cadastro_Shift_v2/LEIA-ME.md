@@ -1,4 +1,6 @@
-# Cadastro Assistido Shift — versão 2.1
+# Cadastro Assistido Shift — versão 2.2
+
+Veja primeiro [ATUALIZAR_PARA_2_2.txt](ATUALIZAR_PARA_2_2.txt) para atualizar a instalação e preservar seu histórico.
 
 ## Instalar no Windows 10/11 (64 bits)
 
@@ -8,11 +10,17 @@
 
 O instalador procura seu Python existente, cria um ambiente próprio e instala as bibliotecas e o Tesseract quando necessário. Os idiomas português e inglês já acompanham este pacote. A primeira instalação precisa de internet; a leitura de documentos e o uso diário funcionam sem internet. O aplicativo não tem chamadas a serviços externos.
 
-Se não existir `winget`, instale Python 3.12 em https://www.python.org/downloads/windows/ (marque **Add Python to PATH**) e Tesseract em https://github.com/UB-Mannheim/tesseract/wiki . Execute novamente INSTALAR_WINDOWS.bat. Se o Tesseract estiver fora da pasta padrão, configure a variável de ambiente `SHIFT_TESSERACT` com o caminho completo de `tesseract.exe`.
+Se não existir `winget`, instale Python 3.12 em https://www.python.org/downloads/windows/ (marque **Add Python to PATH**) e Tesseract em https://github.com/UB-Mannheim/tesseract/wiki . Execute novamente INSTALAR_WINDOWS.bat. Se o Tesseract estiver fora da pasta padrão, abra **Configurações OCR → Selecionar tesseract.exe → Testar e salvar**. A busca automática inclui `Downloads\TESSERACT`. O indicador só fica verde após verificar português, inglês e leitura real de uma imagem fictícia.
 
 **Mantenha o programa anterior em sua própria pasta.** Não há migração automática do histórico antigo. O botão **DEMO v1** abre a interface anterior; para manter seu histórico v1, copie a pasta `dados_demo` da instalação antiga para a pasta desta versão, com os dois programas fechados. A v2 usa um histórico separado.
 
-## O que foi corrigido
+## Correção 2.2 — instalação e localização do OCR
+
+Detecção ampliada no Windows, seleção manual de executável, caminho salvo entre usos, validação dos idiomas e indicador de saúde com teste real. O instalador chama `instalacao_aux.py`, sem código Python embutido nas aspas do PowerShell. **Reanalisar documentos** recupera atendimentos cuja leitura falhou, preserva o histórico e não cria outro atendimento.
+
+Detalhes e testes em [CORRECAO_2_2.md](docs/CORRECAO_2_2.md).
+
+## Correções anteriores preservadas
 
 A leitura já era chamada ao importar, mas rótulos sem dois pontos e alguns campos em colunas não eram reconhecidos. Falhas de OCR podiam resultar em documentos visíveis com campos vazios, sem diagnóstico destacado. A versão 2.1 amplia os rótulos, trata caminhos configurados no Windows e idiomas explicitamente, mostra as falhas por página e abre o formulário preenchido. Ausências e conflitos aparecem como **Não identificado**, sempre para conferência.
 
@@ -73,7 +81,7 @@ Limites: 30 MB por arquivo, 30 páginas por PDF, 25 megapixels por imagem e 100 
 ## Testar e solucionar problemas
 
 - **TESTAR_WINDOWS.bat:** executa os testes automatizados com documentos sintéticos. Os testes de OCR precisam do Tesseract instalado.
-- Erro de OCR: execute INSTALAR_WINDOWS.bat novamente. A leitura incompleta gera alerta e permite preenchimento estruturado manual.
+- Erro de OCR: abra **Configurações OCR**, selecione o executável e clique em **Testar e salvar**. Selecione o atendimento e use **Reanalisar documentos** para atualizar uma leitura antiga que falhou. A leitura incompleta gera alerta e permite preenchimento estruturado manual.
 - Códigos desconhecidos: configure o catálogo ou corrija a leitura conforme o original. Não crie equivalências apenas para eliminar uma pendência.
 - Pré-cadastro duplicado: consulte a fila; o mesmo paciente/nascimento/guia já pode estar preparado. Casos preparados não são editados para preservar a conferência.
 - Os documentos importados, o catálogo e as conferências ficam na pasta `dados_v2`. Para fazer backup, feche o programa e copie a pasta inteira. Esses arquivos não são criptografados pelo aplicativo; mantenha-os em computador e pasta com acesso restrito conforme a rotina do laboratório.

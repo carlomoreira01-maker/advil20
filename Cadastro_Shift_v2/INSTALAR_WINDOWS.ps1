@@ -1,6 +1,9 @@
 ﻿$ErrorActionPreference = 'Stop'
+$env:PYTHONUTF8 = '1'
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 Set-Location $PSScriptRoot
-Write-Host 'Cadastro Assistido Shift v2 - instalacao local' -ForegroundColor Cyan
+$probe = Join-Path $PSScriptRoot 'instalacao_aux.py'
+Write-Host 'Cadastro Assistido Shift 2.2 - instalacao local' -ForegroundColor Cyan
 Write-Host 'A internet sera usada somente para instalar Python, bibliotecas e o mecanismo OCR. Nenhum documento e enviado.'
 function Find-Python {
     foreach ($candidate in @(
@@ -10,12 +13,12 @@ function Find-Python {
         'python.exe'
     )) {
         try {
-            $result = & $candidate -c 'import sys; print(sys.executable) if (3,12)<=sys.version_info[:2]<(3,15) else None' 2>$null
+            $result = & $candidate $probe python 2>$null
             if ($LASTEXITCODE -eq 0 -and $result -and (Test-Path ([string]$result))) { return [string]$result }
         } catch {}
     }
     try {
-        $result = & py -3.12 -c 'import sys;print(sys.executable)' 2>$null
+        $result = & py -3.12 $probe python 2>$null
         if ($LASTEXITCODE -eq 0 -and $result) { return [string]$result }
     } catch {}
     return $null
@@ -39,13 +42,17 @@ try {
     $venv = Join-Path $PSScriptRoot '.venv\Scripts\python.exe'
     & $venv -m pip install --disable-pip-version-check -r requirements.txt
     if ($LASTEXITCODE -ne 0) { throw 'Falha ao instalar bibliotecas. Confira a conexao e execute este instalador novamente.' }
-    $ocr = & $venv -c 'from engine_v2 import tesseract_exe;print(tesseract_exe() or "")'
+    $ocr = & $venv $probe localizar-ocr
+    if (-not $ocr) {
+        Write-Host 'Tesseract nao localizado. Se ja estiver instalado, selecione tesseract.exe (por exemplo, em Downloads\TESSERACT). Cancele para tentar instalar pelo winget.'
+        $ocr = & $venv $probe selecionar-ocr
+    }
     if (-not $ocr) {
         if (Get-Command winget -ErrorAction SilentlyContinue) {
             Write-Host 'Instalando Tesseract OCR (o Windows pode pedir autorizacao de administrador)...'
             & winget install --exact --id UB-Mannheim.TesseractOCR --source winget --accept-package-agreements --accept-source-agreements
         }
-        $ocr = & $venv -c 'from engine_v2 import tesseract_exe;print(tesseract_exe() or "")'
+        $ocr = & $venv $probe localizar-ocr
         if (-not $ocr) { throw 'Instale Tesseract pela pagina https://github.com/UB-Mannheim/tesseract/wiki e execute este instalador novamente. Os idiomas portugues e ingles ja acompanham este pacote.' }
     }
     & $venv diagnostico.py

@@ -1,8 +1,8 @@
 {
-  "versao": "2.1",
+  "versao": "2.2",
   "data": "2026-11-05",
-  "testes_aprovados": 67,
-  "testes_interface": 8,
+  "testes_aprovados": 89,
+  "testes_interface": 16,
   "falhas": 0,
   "ignorados": 0,
   "ambiente_testes": "Linux Debian 13 / Python 3.12.14 / PyMuPDF 1.26.6 / Pillow 13.0.0 / Tesseract 5.5.0 / Xorg dummy",

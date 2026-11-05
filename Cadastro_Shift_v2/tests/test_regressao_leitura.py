@@ -101,7 +101,8 @@ class LeituraCorrigida(unittest.TestCase):
         with patch.dict(os.environ, {'SHIFT_TESSERACT':'"'+str(exe)+'"'}):
             self.assertEqual(tesseract_exe(),str(exe))
         with patch.dict(os.environ, {'SHIFT_TESSERACT': str(self.base/'nao existe.exe')}):
-            self.assertIsNone(tesseract_exe())
+            # Caminho de variável antigo não deve esconder a instalação disponível.
+            self.assertIsNotNone(tesseract_exe())
 
     def test_idiomas_incompletos_diagnosticados(self):
         with patch.dict(os.environ, {'SHIFT_TESSDATA':str(self.base)}):
