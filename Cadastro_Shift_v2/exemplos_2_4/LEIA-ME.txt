@@ -1,0 +1,1 @@
+TODOS os dados sao ficticios. Códigos 90000001 a 90000005 são identificadores sintéticos, não códigos oficiais. Catálogo e perfil de teste em exemplos_tiss são apenas para demonstração. Não importar na produção.

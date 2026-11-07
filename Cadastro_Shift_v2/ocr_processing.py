@@ -41,7 +41,10 @@ def recognize_page(image, recognize):
     for angle in [0,90,180,270]:
         words=recognize(probe.rotate(angle,expand=True),6)
         tokens=[norm(w['text']).strip(':.') for w in words]
-        score=sum(len(w['text'])*max(0,w['confidence']-35) for w in words)
+        # Ruling lines sometimes become a single thousands-character TSV token.
+        # Its length is not evidence that the page is upright.
+        score=sum(min(16,len(w['text']))*max(0,w['confidence']-45) for w in words
+                  if 1<=len(w['text'])<=40 and sum(c.isalnum() for c in w['text'])>=len(w['text'])*.65)
         score+=sum(600 for t in tokens if t in anchors)
         candidates.append((score,angle))
         if angle==0 and sum(t in anchors for t in tokens)>=3 and words and sum(w['confidence'] for w in words)/len(words)>85:

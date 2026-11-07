@@ -121,7 +121,7 @@ def document_diagnostics(document):
              'languages': p.get('languages', '')} for p in document['pages']]
 
 
-def read_document(path, language='por+eng', settings_path=None):
+def read_document(path, language='por+eng', settings_path=None, progress=None):
     import pymupdf
     from PIL import Image, ImageOps
     path=Path(path)
@@ -141,6 +141,7 @@ def read_document(path, language='por+eng', settings_path=None):
         with pymupdf.open(stream=raw,filetype='pdf') as pdf:
             if pdf.is_encrypted or len(pdf)>30: raise LocalReadError('PDF protegido ou com mais de 30 páginas.')
             for i,p in enumerate(pdf):
+                if progress:progress(i+1,len(pdf))
                 if p.rect.width*p.rect.height>2_000_000: raise LocalReadError('Página muito grande.')
                 words=[{'text':w[4],'box':list(w[:4]),'confidence':100.0} for w in p.get_text('words')]
                 # Página com grande área raster e texto parcial também exige OCR.
@@ -171,6 +172,7 @@ def read_document(path, language='por+eng', settings_path=None):
                 else: method='Texto digital'
                 pages.append(page_data(words,method,i+1,(p.rect.width,p.rect.height),warnings))
     elif ext in ('.png','.jpg','.jpeg'):
+        if progress:progress(1,1)
         with Image.open(io.BytesIO(raw)) as im:
             if im.width*im.height>25_000_000: raise LocalReadError('Imagem excede 25 megapixels.')
             im=ImageOps.exif_transpose(im).convert('RGB'); warnings=[]
@@ -427,6 +429,10 @@ def compare_models(p,g,catalog):
         for e in model['exams']:
             row,err=resolve_exam(e,catalog)
             if err:errors.append(title+': '+err+' '+e['descricao'])
+            if not row:
+                rows.append({'nome':e.get('descricao') or 'Não identificado','codigo_shift':'','codigo_lido':e.get('codigo',''),
+                  'pedido':e.get('quantidade','') if title=='Pedido' else '', 'guia':e.get('quantidade','') if title=='Guia' else '',
+                  'situacao':'Catálogo: correspondência não validada','pagina_pedido':e.get('page') if title=='Pedido' else None,'pagina_guia':e.get('page') if title=='Guia' else None})
             if not str(e['quantidade']).isdigit() or not 1<=int(e['quantidade'])<=999:errors.append(title+': quantidade inválida '+e['descricao']);continue
             if row:
                 code=row['codigo_shift']
@@ -449,6 +455,9 @@ def compare_models(p,g,catalog):
 def review_errors(models):
     errors=[]
     for kind,m in models.items():
+        if m.get('identity_conflict'):errors.append(kind+': identificadores incompatíveis nas páginas agrupadas. Separe os pacientes em Identificar documentos.')
+        if m.get('classification_pending'):errors.append(kind+': classificação de página pendente. Abra Identificar documentos.')
+        if m.get('association_pending'):errors.append(kind+': associação das páginas não confirmada. Confira identificadores em Identificar documentos.')
         if not m['pages_reviewed']:errors.append(kind+': originais ainda não conferidos.')
         if any(not v['reviewed'] for v in m['fields'].values()):errors.append(kind+': confira todos os campos, inclusive ausências.')
         if any(not e['reviewed'] for e in m['exams']):errors.append(kind+': confira cada exame.')

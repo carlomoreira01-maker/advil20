@@ -1,0 +1,14 @@
+CADASTRO ASSISTIDO SHIFT 2.4 — ENTREGA PELO GITHUB
+
+Download direto:
+https://github.com/carlomoreira01-maker/advil20/raw/refs/heads/entrega/shift-v2.4/entrega/Cadastro_Shift_v2_4_corrigido.zip
+
+Alternativa:
+1. Entre na sua conta do GitHub e abra:
+https://github.com/carlomoreira01-maker/advil20/tree/entrega/shift-v2.4
+2. Clique em Code → Download ZIP.
+3. Extraia tudo e entre em Cadastro_Shift_v2.
+4. Leia ATUALIZAR_PARA_2_4.txt. Faça backup da versão antiga antes de copiar dados_v2.
+5. Abra INSTALAR_WINDOWS.bat e, depois, INICIAR_WINDOWS.bat.
+
+O pacote foi verificado por CRC e SHA256. A suíte completa passou em Linux, incluindo interface real e simulação de navegador. Windows nativo e alguns campos dos layouts reais ainda precisam de validação. Nenhum PDF clínico enviado pelo usuário está nesta entrega. Não há conexão com o Shift real.

@@ -28,7 +28,13 @@ def compare_tiss(p,g,catalog):
    cat,err=resolve_exam(e,catalog)
    if err:errors.append(title+': '+err)
    if cat and e.get('material') and cat.get('material') and norm(e['material'])!=norm(cat['material']):errors.append(title+': material divergente do catálogo.')
-   if not cat:continue
+   if not cat:
+    rows.append({'nome':e.get('descricao') or 'Não identificado','codigo_shift':'',
+       'codigo_lido':e.get('codigo',''),'pedido':e.get('quantidade_solicitada',e.get('quantidade','')) if title=='Pedido' else '',
+       'guia':e.get('quantidade_autorizada',e.get('quantidade','')) if title=='Guia' else '',
+       'situacao':'Catálogo: correspondência não validada',
+       'pagina_pedido':e.get('page') if title=='Pedido' else None,'pagina_guia':e.get('page') if title=='Guia' else None})
+    continue
    identity=cat.get('tuss') or cat.get('codigo_shift') or norm(cat['nome'])
    if identity in found:errors.append(title+': procedimento repetido na mesma seção; conferir.')
    found[identity]=(e,cat)

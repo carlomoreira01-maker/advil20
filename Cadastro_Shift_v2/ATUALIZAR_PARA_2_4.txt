@@ -1,0 +1,47 @@
+CADASTRO ASSISTIDO SHIFT 2.4 — COMECE AQUI
+
+ATUALIZAR NO WINDOWS, SEM PROGRAMAR
+1. Feche a versão antiga. Faça uma cópia de segurança da pasta inteira.
+2. Baixe Cadastro_Shift_v2_4_corrigido.zip do GitHub. Clique com o botão direito no ZIP → Extrair tudo. Escolha uma pasta nova, por exemplo Documentos\Cadastro_Shift_2_4. Não abra o programa dentro do ZIP.
+3. Entre na pasta extraída Cadastro_Shift_v2.
+4. Para manter o histórico, copie a pasta dados_v2 da instalação antiga para esta pasta, ANTES de começar novos atendimentos. Os dois programas devem estar fechados. Não sobrescreva dados novos. Não copie a pasta .venv antiga.
+5. Abra INSTALAR_WINDOWS.bat. Ele instala as mesmas bibliotecas Python fixadas; precisa de internet nesta etapa. Use Python 3.12 a 3.14 já instalado. O instalador não muda configurações do Shift ou políticas de segurança.
+6. Depois abra INICIAR_WINDOWS.bat. Confira o título: versão 2.4.
+7. Em Configurações e ferramentas → Diagnóstico e configuração OCR, confira o Tesseract. Se necessário, selecione C:\Users\recepcao\Downloads\TESSERACT\tesseract.exe e clique em Testar e salvar. O teste precisa reconhecer por e eng.
+
+USAR A NOVA IMPORTAÇÃO
+1. Informe seu nome no campo Revisor.
+2. Clique em IMPORTAR ESCANEAMENTO. Selecione um PDF com pedido e guia juntos. Também pode selecionar vários PDFs, JPG ou PNG com Ctrl + clique.
+3. Aguarde a indicação de arquivo/página. A leitura é automática e local.
+4. A fila mostra os atendimentos, exames e quantidade de pendências. Clique em cada atendimento para conferir.
+5. Abra Identificar documentos. Veja cada página e seu atendimento. Não é obrigatório que pedido venha antes da guia.
+6. Se uma página estiver incerta, selecione o tipo e o atendimento corretos. Use o mesmo atendimento apenas depois de conferir identificadores suficientes. Informe o motivo, marque a confirmação e clique em Aplicar à página selecionada. Depois clique em Salvar classificação e extrair dados. Isso exige conferir novamente os campos; as revisões anteriores ficam preservadas.
+7. Guias SP/SADT podem conter somente solicitação, sem autorização preenchida. O título da guia, sozinho, não confirma autorização. Se o laboratório usa a guia como pedido médico, confira o original e ajuste o tipo da página. Quantidades de solicitação/execução nunca substituem a quantidade autorizada.
+8. Quando não houver identificadores suficientes, as páginas ficam em atendimentos separados. Isso é uma pendência para conferência, não autorização para associar por nome ou ordem dos arquivos.
+
+COMPARAR E CONFERIR
+1. A aba Comparar e conferir abre mesmo com erro de OCR ou dados faltantes.
+2. Os campos reconhecidos e os exames aparecem automaticamente. Sem catálogo, os exames continuam visíveis com pendência de correspondência.
+3. Clique em Origem para ver arquivo, página original, região e trecho. Confira TODAS as páginas na aba de originais, usando < e >.
+4. Clique em Corrigir manualmente e edite os campos necessários. Não identificado significa que o valor não foi confirmado; não preencha valores arbitrários.
+5. Na tabela inferior, dê duplo clique no exame para corrigir código/descrição/quantidades e conferir no documento. Quantidade vazia ou zero não autoriza. Exame ausente da autorização deve permanecer pendente até ser resolvido com documentação válida.
+6. Marque a conferência visual das páginas. Para evitar marcar cada campo individualmente, use Conferir campos vistos depois de conferir todos os valores e ausências do documento selecionado. Isso não resolve campos essenciais ausentes.
+7. Dê duplo clique em cada alerta e registre a conferência/resolução. Clique em Salvar correções e comparar.
+8. O botão Preparar pré-cadastro fica disponível somente depois de resolver pendências obrigatórias, salvar e marcar a confirmação final. O resultado é um registro LOCAL; nada é gravado no Shift real.
+9. Reprocessar leitura lê novamente os originais do escaneamento inteiro, mantendo as classificações manuais e o histórico, mas exige nova conferência dos campos. Casos preparados são protegidos.
+
+CATÁLOGO E REGRAS DO LABORATÓRIO
+Em Configurações e ferramentas, configure Catálogo do laboratório e Fontes pagadoras pela própria tela. Nomes, sinônimos aprovados, TUSS, códigos internos e mapeamentos precisam ser fornecidos e homologados pela equipe. O programa não inventa códigos do Shift, autorização ou valores técnicos.
+O fluxo Interno sem guia externa continua disponível, somente com perfil explicitamente homologado para aquela fonte/tipo/procedimentos. Não existe dispensa geral de autorização.
+Importação de pares separados e lote CSV continuam em Configurações e ferramentas para compatibilidade.
+
+TESTAR SEM DADOS REAIS
+Importe exemplos_2_4\01_pedido_e_guia.pdf. Deve aparecer um atendimento fictício com cinco exames. Experimente também 02_guia_antes_pedido.pdf, 03_quatro_paginas_misturadas.pdf e 04_guia_girada_e_pedido.pdf.
+Para comparar os códigos fictícios, importe exemplos_tiss\catalogo_ficticio.json em uma instalação de teste separada. Não coloque esse catálogo em produção. A falta de códigos internos e perfil real deve continuar bloqueando o preparo. Os testes automatizados fornecem códigos e perfis apenas fictícios para demonstrar o fluxo até o fim.
+TESTAR_WINDOWS.bat executa os testes sintéticos com interface no seu Windows. Não precisa importar documentos de pacientes para testar.
+
+O QUE AINDA PRECISA DE CONFERÊNCIA
+A extração não é infalível. Nos layouts enviados, ainda há nome/carteira ou outros campos com leitura incerta, rótulos danificados e campos de autorização ausentes/não confirmados. Conselho e UF impressos como códigos numéricos não são convertidos por suposição. Corrija a partir do original; a equipe precisa validar os códigos, perfis e correspondências.
+Os testes completos foram executados em Linux com interface gráfica, Tesseract e navegador local. A instalação, o OCR e o antivírus no Windows ainda dependem de teste no computador do laboratório. Não houve acesso ao Shift real, criação de O.S. real ou impressão oficial.
+Os PDFs enviados para investigação não estão neste pacote nem no GitHub.
+Se o antivírus detectar ameaça, mantenha o bloqueio e registre o nome da ameaça e o arquivo afetado. Não desative a proteção. Os testes e hashes desta entrega não certificam ausência de vírus.

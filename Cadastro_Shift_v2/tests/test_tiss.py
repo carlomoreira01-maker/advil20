@@ -67,7 +67,9 @@ class TISS(unittest.TestCase):
   model=self.model();order=self.dir/'pedido.pdf';make_order(order)
   p=parse_document(read_document(order),[])
   result=compare_models(p,model,[])
-  self.assertTrue(result['pendencias']);self.assertEqual(result['exames'],[])
+  self.assertTrue(result['pendencias']);self.assertTrue(result['exames'])
+  self.assertTrue(all(not row['codigo_shift'] for row in result['exames']))
+  self.assertTrue(all('não validada' in row['situacao'] for row in result['exames']))
  def test_imagem_e_pdf_escaneado_reais(self):
   for filename in ['01_completa.png','01_escaneada.pdf']:
    model=parse_document(read_document(ROOT/'exemplos_tiss'/filename),self.cat)

@@ -1,0 +1,3333 @@
+{
+  "somente_sinteticos": true,
+  "verificacoes": 175,
+  "passaram": 175,
+  "falharam": 0,
+  "campos": [
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "2 Guia prestador",
+      "esperado": "00000111",
+      "obtido": "00000111",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          636.2550048828125,
+          22.474998474121094,
+          667.3912353515625,
+          32.09299850463867
+        ],
+        "trecho": "2 Numero da guia no prestador / 00000111"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "3 Guia principal",
+      "esperado": "00000222",
+      "obtido": "00000222",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          44.474998474121094,
+          66.13601684570312,
+          54.09299850463867
+        ],
+        "trecho": "3 Numero da guia principal / 00000222"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "4 Data autorização",
+      "esperado": "07/11/2026",
+      "obtido": "07/11/2026",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          66.4749984741211,
+          70.02800750732422,
+          76.09300231933594
+        ],
+        "trecho": "4 Data da autorizacao / 07/11/2026"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "5 Senha autorização",
+      "esperado": "00000555",
+      "obtido": "00000555",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          145.0,
+          66.4749984741211,
+          176.135986328125,
+          76.09300231933594
+        ],
+        "trecho": "5 Senha de autorizacao / 00000555"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "6 Validade senha",
+      "esperado": "31/12/2099",
+      "obtido": "31/12/2099",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          300.0,
+          66.4749984741211,
+          335.02801513671875,
+          76.09300231933594
+        ],
+        "trecho": "6 Validade da senha / 31/12/2099"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "7 Guia operadora",
+      "esperado": "00000777",
+      "obtido": "00000777",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          430.0,
+          66.4749984741211,
+          461.135986328125,
+          76.09300231933594
+        ],
+        "trecho": "7 Numero da guia atribuido pela operadora / 00000777"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "8 Carteira",
+      "esperado": "0000087654",
+      "obtido": "0000087654",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          99.4749984741211,
+          73.92001342773438,
+          109.09300231933594
+        ],
+        "trecho": "8 Numero da carteira / 0000087654"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "9 Validade carteira",
+      "esperado": "31/12/2099",
+      "obtido": "31/12/2099",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          230.0,
+          99.4749984741211,
+          265.0279846191406,
+          109.09300231933594
+        ],
+        "trecho": "9 Validade da carteira / 31/12/2099"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "10 Paciente",
+      "esperado": "PESSOA FICTICIA ALFA",
+      "obtido": "PESSOA FICTICIA ALFA",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          325.0,
+          99.4749984741211,
+          404.359130859375,
+          109.09300231933594
+        ],
+        "trecho": "10 Nome do beneficiario / PESSOA FICTICIA ALFA"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "13 Código solicitante",
+      "esperado": "000001313",
+      "obtido": "000001313",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          131.47500610351562,
+          70.02801513671875,
+          141.09300231933594
+        ],
+        "trecho": "13 Codigo do contratado solicitante / 000001313"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "15 Medico",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "obtido": "DRA EXEMPLO SINTETICA",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          156.47500610351562,
+          124.07498931884766,
+          166.09300231933594
+        ],
+        "trecho": "15 Nome do profissional solicitante / DRA EXEMPLO SINTETICA"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "16 Conselho",
+      "esperado": "CRM",
+      "obtido": "CRM",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          310.0,
+          156.47500610351562,
+          325.93896484375,
+          166.09300231933594
+        ],
+        "trecho": "16 Conselho profissional / CRM"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "17 Número conselho",
+      "esperado": "0012345",
+      "obtido": "0012345",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          415.0,
+          156.47500610351562,
+          442.2439880371094,
+          166.09300231933594
+        ],
+        "trecho": "17 Numero do conselho / 0012345"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "18 UF conselho",
+      "esperado": "GO",
+      "obtido": "GO",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          545.0,
+          156.47500610351562,
+          555.8919677734375,
+          166.09300231933594
+        ],
+        "trecho": "18 UF / GO"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "22 Data solicitação",
+      "esperado": "07/11/2026",
+      "obtido": "07/11/2026",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          145.0,
+          186.47500610351562,
+          180.02798461914062,
+          196.09300231933594
+        ],
+        "trecho": "22 Data da solicitacao / 07/11/2026"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 1 codigo",
+      "esperado": "90000001",
+      "obtido": "90000001",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          80.0,
+          230.47500610351562,
+          111.135986328125,
+          240.09300231933594
+        ],
+        "trecho": "90000001"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 1 descricao",
+      "esperado": "Hemograma",
+      "obtido": "Hemograma",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          190.0,
+          230.47500610351562,
+          228.50697326660156,
+          240.09300231933594
+        ],
+        "trecho": "Hemograma"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 1 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          725.0,
+          230.47500610351562,
+          728.8920288085938,
+          240.09300231933594
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 1 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          785.0,
+          230.47500610351562,
+          788.8920288085938,
+          240.09300231933594
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 2 codigo",
+      "esperado": "90000002",
+      "obtido": "90000002",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          80.0,
+          243.47500610351562,
+          111.135986328125,
+          253.09300231933594
+        ],
+        "trecho": "90000002"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 2 descricao",
+      "esperado": "Glicose",
+      "obtido": "Glicose",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          190.0,
+          243.47500610351562,
+          213.33799743652344,
+          253.09300231933594
+        ],
+        "trecho": "Glicose"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 2 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          725.0,
+          243.47500610351562,
+          728.8920288085938,
+          253.09300231933594
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 2 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          785.0,
+          243.47500610351562,
+          788.8920288085938,
+          253.09300231933594
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 3 codigo",
+      "esperado": "90000003",
+      "obtido": "90000003",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          80.0,
+          256.4750061035156,
+          111.135986328125,
+          266.0929870605469
+        ],
+        "trecho": "90000003"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 3 descricao",
+      "esperado": "TSH",
+      "obtido": "TSH",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          190.0,
+          256.4750061035156,
+          204.0,
+          266.0929870605469
+        ],
+        "trecho": "TSH"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 3 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          725.0,
+          256.4750061035156,
+          728.8920288085938,
+          266.0929870605469
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 3 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          785.0,
+          256.4750061035156,
+          788.8920288085938,
+          266.0929870605469
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 4 codigo",
+      "esperado": "90000004",
+      "obtido": "90000004",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          80.0,
+          269.4750061035156,
+          111.135986328125,
+          279.0929870605469
+        ],
+        "trecho": "90000004"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 4 descricao",
+      "esperado": "Creatinina",
+      "obtido": "Creatinina",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          190.0,
+          269.4750061035156,
+          221.89898681640625,
+          279.0929870605469
+        ],
+        "trecho": "Creatinina"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 4 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          725.0,
+          269.4750061035156,
+          728.8920288085938,
+          279.0929870605469
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 4 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          785.0,
+          269.4750061035156,
+          788.8920288085938,
+          279.0929870605469
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 5 codigo",
+      "esperado": "90000005",
+      "obtido": "90000005",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          80.0,
+          282.4750061035156,
+          111.135986328125,
+          292.0929870605469
+        ],
+        "trecho": "90000005"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 5 descricao",
+      "esperado": "Colesterol total",
+      "obtido": "Colesterol total",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          190.0,
+          282.4750061035156,
+          236.6829833984375,
+          292.0929870605469
+        ],
+        "trecho": "Colesterol total"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 5 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          725.0,
+          282.4750061035156,
+          728.8920288085938,
+          292.0929870605469
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "01_pedido_e_guia.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 5 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_pedido_e_guia.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          785.0,
+          282.4750061035156,
+          788.8920288085938,
+          292.0929870605469
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "2 Guia prestador",
+      "esperado": "00000111",
+      "obtido": "00000111",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          636.2550048828125,
+          22.474998474121094,
+          667.3912353515625,
+          32.09299850463867
+        ],
+        "trecho": "2 Numero da guia no prestador / 00000111"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "3 Guia principal",
+      "esperado": "00000222",
+      "obtido": "00000222",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          35.0,
+          44.474998474121094,
+          66.13601684570312,
+          54.09299850463867
+        ],
+        "trecho": "3 Numero da guia principal / 00000222"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "4 Data autorização",
+      "esperado": "07/11/2026",
+      "obtido": "07/11/2026",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          35.0,
+          66.4749984741211,
+          70.02800750732422,
+          76.09300231933594
+        ],
+        "trecho": "4 Data da autorizacao / 07/11/2026"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "5 Senha autorização",
+      "esperado": "00000555",
+      "obtido": "00000555",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          145.0,
+          66.4749984741211,
+          176.135986328125,
+          76.09300231933594
+        ],
+        "trecho": "5 Senha de autorizacao / 00000555"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "6 Validade senha",
+      "esperado": "31/12/2099",
+      "obtido": "31/12/2099",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          300.0,
+          66.4749984741211,
+          335.02801513671875,
+          76.09300231933594
+        ],
+        "trecho": "6 Validade da senha / 31/12/2099"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "7 Guia operadora",
+      "esperado": "00000777",
+      "obtido": "00000777",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          430.0,
+          66.4749984741211,
+          461.135986328125,
+          76.09300231933594
+        ],
+        "trecho": "7 Numero da guia atribuido pela operadora / 00000777"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "8 Carteira",
+      "esperado": "0000087654",
+      "obtido": "0000087654",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          35.0,
+          99.4749984741211,
+          73.92001342773438,
+          109.09300231933594
+        ],
+        "trecho": "8 Numero da carteira / 0000087654"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "9 Validade carteira",
+      "esperado": "31/12/2099",
+      "obtido": "31/12/2099",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          230.0,
+          99.4749984741211,
+          265.0279846191406,
+          109.09300231933594
+        ],
+        "trecho": "9 Validade da carteira / 31/12/2099"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "10 Paciente",
+      "esperado": "PESSOA FICTICIA ALFA",
+      "obtido": "PESSOA FICTICIA ALFA",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          325.0,
+          99.4749984741211,
+          404.359130859375,
+          109.09300231933594
+        ],
+        "trecho": "10 Nome do beneficiario / PESSOA FICTICIA ALFA"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "13 Código solicitante",
+      "esperado": "000001313",
+      "obtido": "000001313",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          35.0,
+          131.47500610351562,
+          70.02801513671875,
+          141.09300231933594
+        ],
+        "trecho": "13 Codigo do contratado solicitante / 000001313"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "15 Medico",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "obtido": "DRA EXEMPLO SINTETICA",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          35.0,
+          156.47500610351562,
+          124.07498931884766,
+          166.09300231933594
+        ],
+        "trecho": "15 Nome do profissional solicitante / DRA EXEMPLO SINTETICA"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "16 Conselho",
+      "esperado": "CRM",
+      "obtido": "CRM",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          310.0,
+          156.47500610351562,
+          325.93896484375,
+          166.09300231933594
+        ],
+        "trecho": "16 Conselho profissional / CRM"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "17 Número conselho",
+      "esperado": "0012345",
+      "obtido": "0012345",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          415.0,
+          156.47500610351562,
+          442.2439880371094,
+          166.09300231933594
+        ],
+        "trecho": "17 Numero do conselho / 0012345"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "18 UF conselho",
+      "esperado": "GO",
+      "obtido": "GO",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          545.0,
+          156.47500610351562,
+          555.8919677734375,
+          166.09300231933594
+        ],
+        "trecho": "18 UF / GO"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "22 Data solicitação",
+      "esperado": "07/11/2026",
+      "obtido": "07/11/2026",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          145.0,
+          186.47500610351562,
+          180.02798461914062,
+          196.09300231933594
+        ],
+        "trecho": "22 Data da solicitacao / 07/11/2026"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 1 codigo",
+      "esperado": "90000001",
+      "obtido": "90000001",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          80.0,
+          230.47500610351562,
+          111.135986328125,
+          240.09300231933594
+        ],
+        "trecho": "90000001"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 1 descricao",
+      "esperado": "Hemograma",
+      "obtido": "Hemograma",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          190.0,
+          230.47500610351562,
+          228.50697326660156,
+          240.09300231933594
+        ],
+        "trecho": "Hemograma"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 1 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          725.0,
+          230.47500610351562,
+          728.8920288085938,
+          240.09300231933594
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 1 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          785.0,
+          230.47500610351562,
+          788.8920288085938,
+          240.09300231933594
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 2 codigo",
+      "esperado": "90000002",
+      "obtido": "90000002",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          80.0,
+          243.47500610351562,
+          111.135986328125,
+          253.09300231933594
+        ],
+        "trecho": "90000002"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 2 descricao",
+      "esperado": "Glicose",
+      "obtido": "Glicose",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          190.0,
+          243.47500610351562,
+          213.33799743652344,
+          253.09300231933594
+        ],
+        "trecho": "Glicose"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 2 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          725.0,
+          243.47500610351562,
+          728.8920288085938,
+          253.09300231933594
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 2 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          785.0,
+          243.47500610351562,
+          788.8920288085938,
+          253.09300231933594
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 3 codigo",
+      "esperado": "90000003",
+      "obtido": "90000003",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          80.0,
+          256.4750061035156,
+          111.135986328125,
+          266.0929870605469
+        ],
+        "trecho": "90000003"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 3 descricao",
+      "esperado": "TSH",
+      "obtido": "TSH",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          190.0,
+          256.4750061035156,
+          204.0,
+          266.0929870605469
+        ],
+        "trecho": "TSH"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 3 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          725.0,
+          256.4750061035156,
+          728.8920288085938,
+          266.0929870605469
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 3 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          785.0,
+          256.4750061035156,
+          788.8920288085938,
+          266.0929870605469
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 4 codigo",
+      "esperado": "90000004",
+      "obtido": "90000004",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          80.0,
+          269.4750061035156,
+          111.135986328125,
+          279.0929870605469
+        ],
+        "trecho": "90000004"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 4 descricao",
+      "esperado": "Creatinina",
+      "obtido": "Creatinina",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          190.0,
+          269.4750061035156,
+          221.89898681640625,
+          279.0929870605469
+        ],
+        "trecho": "Creatinina"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 4 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          725.0,
+          269.4750061035156,
+          728.8920288085938,
+          279.0929870605469
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 4 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          785.0,
+          269.4750061035156,
+          788.8920288085938,
+          279.0929870605469
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 5 codigo",
+      "esperado": "90000005",
+      "obtido": "90000005",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          80.0,
+          282.4750061035156,
+          111.135986328125,
+          292.0929870605469
+        ],
+        "trecho": "90000005"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 5 descricao",
+      "esperado": "Colesterol total",
+      "obtido": "Colesterol total",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          190.0,
+          282.4750061035156,
+          236.6829833984375,
+          292.0929870605469
+        ],
+        "trecho": "Colesterol total"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 5 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          725.0,
+          282.4750061035156,
+          728.8920288085938,
+          292.0929870605469
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "02_guia_antes_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 5 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_guia_antes_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          785.0,
+          282.4750061035156,
+          788.8920288085938,
+          292.0929870605469
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "2 Guia prestador",
+      "esperado": "00000111",
+      "obtido": "00000111",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          35.0,
+          112.94999694824219,
+          97.27201843261719,
+          132.18600463867188
+        ],
+        "trecho": "2 Numero da guia no prestador / 00000111"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "3 Guia principal",
+      "esperado": "00000222",
+      "obtido": "00000222",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          390.0,
+          112.94999694824219,
+          452.27197265625,
+          132.18600463867188
+        ],
+        "trecho": "3 Numero da guia principal / 00000222"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "4 Data autorização",
+      "esperado": "07/11/2026",
+      "obtido": "07/11/2026",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          745.0,
+          112.94999694824219,
+          815.0560302734375,
+          132.18600463867188
+        ],
+        "trecho": "4 Data da autorizacao / 07/11/2026"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "5 Senha autorização",
+      "esperado": "00000555",
+      "obtido": "00000555",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          35.0,
+          170.9499969482422,
+          97.27201843261719,
+          190.18600463867188
+        ],
+        "trecho": "5 Senha de autorizacao / 00000555"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "6 Validade senha",
+      "esperado": "31/12/2099",
+      "obtido": "31/12/2099",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          390.0,
+          170.9499969482422,
+          460.05596923828125,
+          190.18600463867188
+        ],
+        "trecho": "6 Validade da senha / 31/12/2099"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "7 Guia operadora",
+      "esperado": "00000777",
+      "obtido": "00000777",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          745.0,
+          170.9499969482422,
+          807.27197265625,
+          190.18600463867188
+        ],
+        "trecho": "7 Numero da guia atribuido pela operadora / 00000777"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "8 Carteira",
+      "esperado": "0000099999",
+      "obtido": "0000099999",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          35.0,
+          228.9499969482422,
+          112.84002685546875,
+          248.18600463867188
+        ],
+        "trecho": "8 Numero da carteira / 0000099999"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "9 Validade carteira",
+      "esperado": "31/12/2099",
+      "obtido": "31/12/2099",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          390.0,
+          228.9499969482422,
+          460.05596923828125,
+          248.18600463867188
+        ],
+        "trecho": "9 Validade da carteira / 31/12/2099"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "10 Paciente",
+      "esperado": "PESSOA FICTICIA BETA",
+      "obtido": "PESSOA FICTICIA BETA",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          745.0,
+          228.9499969482422,
+          905.2722778320312,
+          248.18600463867188
+        ],
+        "trecho": "10 Nome do beneficiario / PESSOA FICTICIA BETA"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "13 Código solicitante",
+      "esperado": "000001313",
+      "obtido": "000001313",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          35.0,
+          286.95001220703125,
+          105.05602264404297,
+          306.1860046386719
+        ],
+        "trecho": "13 Codigo do contratado solicitante / 000001313"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "15 Medico",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "obtido": "DRA EXEMPLO SINTETICA",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          390.0,
+          286.95001220703125,
+          568.1500854492188,
+          306.1860046386719
+        ],
+        "trecho": "15 Nome do profissional solicitante / DRA EXEMPLO SINTETICA"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "16 Conselho",
+      "esperado": "CRM",
+      "obtido": "CRM",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          745.0,
+          286.95001220703125,
+          776.8779296875,
+          306.1860046386719
+        ],
+        "trecho": "16 Conselho profissional / CRM"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "17 Número conselho",
+      "esperado": "0012345",
+      "obtido": "0012345",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          35.0,
+          344.95001220703125,
+          89.4880142211914,
+          364.1860046386719
+        ],
+        "trecho": "17 Numero do conselho / 0012345"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "18 UF conselho",
+      "esperado": "GO",
+      "obtido": "GO",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          390.0,
+          344.95001220703125,
+          411.78399658203125,
+          364.1860046386719
+        ],
+        "trecho": "18 UF / GO"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "22 Data solicitação",
+      "esperado": "07/11/2026",
+      "obtido": "07/11/2026",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          745.0,
+          344.95001220703125,
+          815.0560302734375,
+          364.1860046386719
+        ],
+        "trecho": "22 Data da solicitacao / 07/11/2026"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "Procedimento 1 codigo",
+      "esperado": "90000001",
+      "obtido": "90000001",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          35.0,
+          491.0249938964844,
+          92.82398986816406,
+          508.8869934082031
+        ],
+        "trecho": "90000001"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "Procedimento 1 descricao",
+      "esperado": "Hemograma",
+      "obtido": "Hemograma",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          225.0,
+          491.0249938964844,
+          296.51300048828125,
+          508.8869934082031
+        ],
+        "trecho": "Hemograma"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "Procedimento 1 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          680.0,
+          491.0249938964844,
+          687.22802734375,
+          508.8869934082031
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "Procedimento 1 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          855.0,
+          491.0249938964844,
+          862.22802734375,
+          508.8869934082031
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "Procedimento 2 codigo",
+      "esperado": "90000002",
+      "obtido": "90000002",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          35.0,
+          520.0250244140625,
+          92.82398986816406,
+          537.8870239257812
+        ],
+        "trecho": "90000002"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "Procedimento 2 descricao",
+      "esperado": "Glicose",
+      "obtido": "Glicose",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          225.0,
+          520.0250244140625,
+          268.3420104980469,
+          537.8870239257812
+        ],
+        "trecho": "Glicose"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "Procedimento 2 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          680.0,
+          520.0250244140625,
+          687.22802734375,
+          537.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "Procedimento 2 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          855.0,
+          520.0250244140625,
+          862.22802734375,
+          537.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "Procedimento 3 codigo",
+      "esperado": "90000003",
+      "obtido": "90000003",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          35.0,
+          549.0250244140625,
+          92.82398986816406,
+          566.8870239257812
+        ],
+        "trecho": "90000003"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "Procedimento 3 descricao",
+      "esperado": "TSH",
+      "obtido": "TSH",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          225.0,
+          549.0250244140625,
+          251.0,
+          566.8870239257812
+        ],
+        "trecho": "TSH"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "Procedimento 3 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          680.0,
+          549.0250244140625,
+          687.22802734375,
+          566.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "Procedimento 3 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          855.0,
+          549.0250244140625,
+          862.22802734375,
+          566.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "Procedimento 4 codigo",
+      "esperado": "90000004",
+      "obtido": "90000004",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          35.0,
+          578.0250244140625,
+          92.82398986816406,
+          595.8870239257812
+        ],
+        "trecho": "90000004"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "Procedimento 4 descricao",
+      "esperado": "Creatinina",
+      "obtido": "Creatinina",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          225.0,
+          578.0250244140625,
+          284.240966796875,
+          595.8870239257812
+        ],
+        "trecho": "Creatinina"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "Procedimento 4 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          680.0,
+          578.0250244140625,
+          687.22802734375,
+          595.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "Procedimento 4 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          855.0,
+          578.0250244140625,
+          862.22802734375,
+          595.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "Procedimento 5 codigo",
+      "esperado": "90000005",
+      "obtido": "90000005",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          35.0,
+          607.0250244140625,
+          92.82398986816406,
+          624.8870239257812
+        ],
+        "trecho": "90000005"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "Procedimento 5 descricao",
+      "esperado": "Colesterol total",
+      "obtido": "Colesterol total",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          225.0,
+          607.0250244140625,
+          311.697021484375,
+          624.8870239257812
+        ],
+        "trecho": "Colesterol total"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "Procedimento 5 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          680.0,
+          607.0250244140625,
+          687.22802734375,
+          624.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA BETA",
+      "campo": "Procedimento 5 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          855.0,
+          607.0250244140625,
+          862.22802734375,
+          624.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "2 Guia prestador",
+      "esperado": "00000111",
+      "obtido": "00000111",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          35.0,
+          112.94999694824219,
+          97.27201843261719,
+          132.18600463867188
+        ],
+        "trecho": "2 Numero da guia no prestador / 00000111"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "3 Guia principal",
+      "esperado": "00000222",
+      "obtido": "00000222",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          390.0,
+          112.94999694824219,
+          452.27197265625,
+          132.18600463867188
+        ],
+        "trecho": "3 Numero da guia principal / 00000222"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "4 Data autorização",
+      "esperado": "07/11/2026",
+      "obtido": "07/11/2026",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          745.0,
+          112.94999694824219,
+          815.0560302734375,
+          132.18600463867188
+        ],
+        "trecho": "4 Data da autorizacao / 07/11/2026"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "5 Senha autorização",
+      "esperado": "00000555",
+      "obtido": "00000555",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          35.0,
+          170.9499969482422,
+          97.27201843261719,
+          190.18600463867188
+        ],
+        "trecho": "5 Senha de autorizacao / 00000555"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "6 Validade senha",
+      "esperado": "31/12/2099",
+      "obtido": "31/12/2099",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          390.0,
+          170.9499969482422,
+          460.05596923828125,
+          190.18600463867188
+        ],
+        "trecho": "6 Validade da senha / 31/12/2099"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "7 Guia operadora",
+      "esperado": "00000777",
+      "obtido": "00000777",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          745.0,
+          170.9499969482422,
+          807.27197265625,
+          190.18600463867188
+        ],
+        "trecho": "7 Numero da guia atribuido pela operadora / 00000777"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "8 Carteira",
+      "esperado": "0000087654",
+      "obtido": "0000087654",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          35.0,
+          228.9499969482422,
+          112.84002685546875,
+          248.18600463867188
+        ],
+        "trecho": "8 Numero da carteira / 0000087654"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "9 Validade carteira",
+      "esperado": "31/12/2099",
+      "obtido": "31/12/2099",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          390.0,
+          228.9499969482422,
+          460.05596923828125,
+          248.18600463867188
+        ],
+        "trecho": "9 Validade da carteira / 31/12/2099"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "10 Paciente",
+      "esperado": "PESSOA FICTICIA ALFA",
+      "obtido": "PESSOA FICTICIA ALFA",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          745.0,
+          228.9499969482422,
+          903.71826171875,
+          248.18600463867188
+        ],
+        "trecho": "10 Nome do beneficiario / PESSOA FICTICIA ALFA"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "13 Código solicitante",
+      "esperado": "000001313",
+      "obtido": "000001313",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          35.0,
+          286.95001220703125,
+          105.05602264404297,
+          306.1860046386719
+        ],
+        "trecho": "13 Codigo do contratado solicitante / 000001313"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "15 Medico",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "obtido": "DRA EXEMPLO SINTETICA",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          390.0,
+          286.95001220703125,
+          568.1500854492188,
+          306.1860046386719
+        ],
+        "trecho": "15 Nome do profissional solicitante / DRA EXEMPLO SINTETICA"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "16 Conselho",
+      "esperado": "CRM",
+      "obtido": "CRM",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          745.0,
+          286.95001220703125,
+          776.8779296875,
+          306.1860046386719
+        ],
+        "trecho": "16 Conselho profissional / CRM"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "17 Número conselho",
+      "esperado": "0012345",
+      "obtido": "0012345",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          35.0,
+          344.95001220703125,
+          89.4880142211914,
+          364.1860046386719
+        ],
+        "trecho": "17 Numero do conselho / 0012345"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "18 UF conselho",
+      "esperado": "GO",
+      "obtido": "GO",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          390.0,
+          344.95001220703125,
+          411.78399658203125,
+          364.1860046386719
+        ],
+        "trecho": "18 UF / GO"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "22 Data solicitação",
+      "esperado": "07/11/2026",
+      "obtido": "07/11/2026",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          745.0,
+          344.95001220703125,
+          815.0560302734375,
+          364.1860046386719
+        ],
+        "trecho": "22 Data da solicitacao / 07/11/2026"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 1 codigo",
+      "esperado": "90000001",
+      "obtido": "90000001",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          35.0,
+          491.0249938964844,
+          92.82398986816406,
+          508.8869934082031
+        ],
+        "trecho": "90000001"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 1 descricao",
+      "esperado": "Hemograma",
+      "obtido": "Hemograma",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          225.0,
+          491.0249938964844,
+          296.51300048828125,
+          508.8869934082031
+        ],
+        "trecho": "Hemograma"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 1 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          680.0,
+          491.0249938964844,
+          687.22802734375,
+          508.8869934082031
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 1 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          855.0,
+          491.0249938964844,
+          862.22802734375,
+          508.8869934082031
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 2 codigo",
+      "esperado": "90000002",
+      "obtido": "90000002",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          35.0,
+          520.0250244140625,
+          92.82398986816406,
+          537.8870239257812
+        ],
+        "trecho": "90000002"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 2 descricao",
+      "esperado": "Glicose",
+      "obtido": "Glicose",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          225.0,
+          520.0250244140625,
+          268.3420104980469,
+          537.8870239257812
+        ],
+        "trecho": "Glicose"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 2 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          680.0,
+          520.0250244140625,
+          687.22802734375,
+          537.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 2 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          855.0,
+          520.0250244140625,
+          862.22802734375,
+          537.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 3 codigo",
+      "esperado": "90000003",
+      "obtido": "90000003",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          35.0,
+          549.0250244140625,
+          92.82398986816406,
+          566.8870239257812
+        ],
+        "trecho": "90000003"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 3 descricao",
+      "esperado": "TSH",
+      "obtido": "TSH",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          225.0,
+          549.0250244140625,
+          251.0,
+          566.8870239257812
+        ],
+        "trecho": "TSH"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 3 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          680.0,
+          549.0250244140625,
+          687.22802734375,
+          566.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 3 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          855.0,
+          549.0250244140625,
+          862.22802734375,
+          566.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 4 codigo",
+      "esperado": "90000004",
+      "obtido": "90000004",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          35.0,
+          578.0250244140625,
+          92.82398986816406,
+          595.8870239257812
+        ],
+        "trecho": "90000004"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 4 descricao",
+      "esperado": "Creatinina",
+      "obtido": "Creatinina",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          225.0,
+          578.0250244140625,
+          284.240966796875,
+          595.8870239257812
+        ],
+        "trecho": "Creatinina"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 4 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          680.0,
+          578.0250244140625,
+          687.22802734375,
+          595.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 4 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          855.0,
+          578.0250244140625,
+          862.22802734375,
+          595.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 5 codigo",
+      "esperado": "90000005",
+      "obtido": "90000005",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          35.0,
+          607.0250244140625,
+          92.82398986816406,
+          624.8870239257812
+        ],
+        "trecho": "90000005"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 5 descricao",
+      "esperado": "Colesterol total",
+      "obtido": "Colesterol total",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          225.0,
+          607.0250244140625,
+          311.697021484375,
+          624.8870239257812
+        ],
+        "trecho": "Colesterol total"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 5 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          680.0,
+          607.0250244140625,
+          687.22802734375,
+          624.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "03_quatro_paginas_misturadas.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 5 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_misturadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          855.0,
+          607.0250244140625,
+          862.22802734375,
+          624.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "2 Guia prestador",
+      "esperado": "00000111",
+      "obtido": "00000111",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          24.8,
+          158.8,
+          30.4,
+          188.8
+        ],
+        "trecho": "2 Numero da guia no prestador / 00000111"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "3 Guia principal",
+      "esperado": "00000222",
+      "obtido": "00000222",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          46.8,
+          759.2,
+          52.4,
+          790.0
+        ],
+        "trecho": "Numero da guia principal / 00000222"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "4 Data autorização",
+      "esperado": "07/11/2026",
+      "obtido": "07/11/2026",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          68.8,
+          755.2,
+          74.4,
+          790.0
+        ],
+        "trecho": "4- Data da autorização / 07/11/2026"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "5 Senha autorização",
+      "esperado": "00000555",
+      "obtido": "00000555",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          68.8,
+          649.2,
+          74.4,
+          680.0
+        ],
+        "trecho": "5- Senha de autorização / 00000555"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "6 Validade senha",
+      "esperado": "31/12/2099",
+      "obtido": "31/12/2099",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          68.8,
+          490.4,
+          74.4,
+          524.8
+        ],
+        "trecho": "6- Validade da senha / 31/12/2099"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "7 Guia operadora",
+      "esperado": "00000777",
+      "obtido": "00000777",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          68.8,
+          364.0,
+          74.4,
+          394.8
+        ],
+        "trecho": "7 Numero da guia atribuído pela operadora / 00000777"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "8 Carteira",
+      "esperado": "0000087654",
+      "obtido": "0000087654",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          100.0,
+          751.6,
+          110.8,
+          790.0
+        ],
+        "trecho": "8 Numero da carteira / 0000087654"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "9 Validade carteira",
+      "esperado": "31/12/2099",
+      "obtido": "31/12/2099",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          102.0,
+          560.4,
+          107.2,
+          595.2
+        ],
+        "trecho": "9- Validade da carteira / 31/12/2099"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "10 Paciente",
+      "esperado": "PESSOA FICTICIA ALFA",
+      "obtido": "PESSOA FICTICIA ALFA",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          101.6,
+          420.8,
+          107.2,
+          499.6
+        ],
+        "trecho": "10 Nome do beneficiario / PESSOA FICTICIA ALFA"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "13 Código solicitante",
+      "esperado": "000001313",
+      "obtido": "000001313",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          134.0,
+          755.2,
+          139.2,
+          790.0
+        ],
+        "trecho": "13 Codigo do contratado solicitante / 000001313"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "15 Medico",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "obtido": "DRA EXEMPLO SINTETICA",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          158.8,
+          701.2,
+          164.4,
+          789.6
+        ],
+        "trecho": "15 Nome do profissional solicitante / DRA EXEMPLO SINTETICA"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "16 Conselho",
+      "esperado": "CRM",
+      "obtido": "CRM",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          158.8,
+          499.6,
+          164.4,
+          514.8
+        ],
+        "trecho": "16- Conselho profissional / CRM"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "17 Número conselho",
+      "esperado": "0012345",
+      "obtido": "0012345",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          158.8,
+          383.2,
+          164.4,
+          410.0
+        ],
+        "trecho": "17 Numero do conselho / 0012345"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "18 UF conselho",
+      "esperado": "GO",
+      "obtido": "GO",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          158.8,
+          269.2,
+          164.4,
+          280.0
+        ],
+        "trecho": "18-UF / Go"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "22 Data solicitação",
+      "esperado": "07/11/2026",
+      "obtido": "07/11/2026",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          188.8,
+          645.2,
+          194.4,
+          680.0
+        ],
+        "trecho": "22 Data da solicitacao / 07/11/2026"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 1 codigo",
+      "esperado": "90000001",
+      "obtido": "90000001",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          232.8,
+          715.2,
+          238.4,
+          744.8
+        ],
+        "trecho": "90000001"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 1 descricao",
+      "esperado": "Hemograma",
+      "obtido": "Hemograma",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          231.2,
+          596.8,
+          241.2,
+          634.8
+        ],
+        "trecho": "Hemograma"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 1 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          232.8,
+          97.6,
+          238.0,
+          99.6
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 1 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          232.8,
+          37.2,
+          238.0,
+          39.6
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 2 codigo",
+      "esperado": "90000002",
+      "obtido": "90000002",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          246.0,
+          714.0,
+          251.2,
+          744.8
+        ],
+        "trecho": "90000002"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 2 descricao",
+      "esperado": "Glicose",
+      "obtido": "Glicose",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          245.6,
+          612.0,
+          251.2,
+          634.8
+        ],
+        "trecho": "Glicose"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 2 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          246.0,
+          97.6,
+          251.2,
+          99.6
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 2 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          246.0,
+          37.6,
+          251.2,
+          39.6
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 3 codigo",
+      "esperado": "90000003",
+      "obtido": "90000003",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          258.8,
+          714.4,
+          264.4,
+          744.8
+        ],
+        "trecho": "90000003"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 3 descricao",
+      "esperado": "TSH",
+      "obtido": "TSH",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          258.8,
+          621.6,
+          264.4,
+          635.2
+        ],
+        "trecho": "TSH"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 3 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          258.8,
+          97.6,
+          264.0,
+          99.6
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 3 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          258.8,
+          37.2,
+          264.0,
+          39.6
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 4 codigo",
+      "esperado": "90000004",
+      "obtido": "90000004",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          270.0,
+          714.0,
+          280.8,
+          744.8
+        ],
+        "trecho": "90000004"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 4 descricao",
+      "esperado": "Creatinina",
+      "obtido": "Creatinina",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          270.0,
+          603.2,
+          280.8,
+          634.8
+        ],
+        "trecho": "Creatinina"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 4 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          272.0,
+          97.6,
+          277.2,
+          99.6
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 4 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          272.0,
+          37.6,
+          277.2,
+          39.6
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 5 codigo",
+      "esperado": "90000005",
+      "obtido": "90000005",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          284.8,
+          714.0,
+          290.4,
+          744.8
+        ],
+        "trecho": "90000005"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 5 descricao",
+      "esperado": "Colesterol total",
+      "obtido": "Colesterol total",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          284.8,
+          588.8,
+          290.4,
+          634.8
+        ],
+        "trecho": "Colesterol total"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 5 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          284.8,
+          97.6,
+          290.0,
+          99.6
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "arquivo_ficticio": "04_guia_girada_e_pedido.pdf",
+      "paciente_ficticio": "PESSOA FICTICIA ALFA",
+      "campo": "Procedimento 5 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada_e_pedido.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          284.8,
+          37.2,
+          290.0,
+          39.6
+        ],
+        "trecho": "1"
+      }
+    }
+  ]
+}
