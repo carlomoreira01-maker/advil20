@@ -116,7 +116,7 @@ def tesseract_exe(settings_path=None, include_saved=True):
 
 def run_local(args, timeout=120):
     return subprocess.run(args, capture_output=True, encoding='utf-8', errors='replace',
-                          timeout=timeout, creationflags=0x08000000 if os.name == 'nt' else 0)
+                          timeout=timeout, env={**os.environ,'OMP_THREAD_LIMIT':os.environ.get('OMP_THREAD_LIMIT','2')}, creationflags=0x08000000 if os.name == 'nt' else 0)
 
 
 def ocr_configuration(language='por+eng', exe=None, settings_path=None):

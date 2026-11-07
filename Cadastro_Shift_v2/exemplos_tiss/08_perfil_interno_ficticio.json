@@ -1,0 +1,22 @@
+[
+  {
+    "id": "INTERNO-FICTICIO-NAO-USAR-EM-PRODUCAO",
+    "nome": "Somente fixture de atendimento interno",
+    "fonte_pagadora": "FONTE FICTICIA INTERNA",
+    "tipo_atendimento": "AMBULATORIAL",
+    "procedimentos": [
+      "90000001",
+      "90000002",
+      "90000003",
+      "90000004",
+      "90000005"
+    ],
+    "homologado": true,
+    "aprovado_por": "RESPONSAVEL FICTICIO",
+    "aprovado_em": "2026-11-07",
+    "exige_autorizacao": false,
+    "mapeamento": {},
+    "obrigatorios": [],
+    "valores_tecnicos": {}
+  }
+]

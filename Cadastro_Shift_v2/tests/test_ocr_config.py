@@ -21,16 +21,17 @@ class OCRConfiguravel(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory(prefix='OCR configuração ')
         self.base=Path(self.tmp.name);self.config=self.base/'config.json'
-        self.real=shutil.which('tesseract')
+        self.real=tesseract_exe()
 
     def tearDown(self):self.tmp.cleanup()
 
     def portable(self):
+        if os.name=='nt':return Path(self.real)
         p=self.base/'Downloads'/'TESSERACT'/'tesseract.exe'
         p.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(self.real,p);return p
 
     def test_autodetecta_downloads_sem_path_nem_nome_de_usuario_fixo(self):
-        exe=self.portable()
+        exe=self.base/'Downloads'/'TESSERACT'/'tesseract.exe';exe.parent.mkdir(parents=True);exe.touch()
         with patch.dict(os.environ,{'USERPROFILE':str(self.base),'SHIFT_TESSERACT':''}), \
              patch('ocr_runtime.shutil.which',return_value=None),patch('ocr_runtime.registry_candidates',return_value=[]):
             self.assertEqual(tesseract_exe(self.config),str(exe))
@@ -76,7 +77,7 @@ class OCRConfiguravel(unittest.TestCase):
             self.assertEqual(settings_file(),self.base/'CadastroAssistidoShift'/'ocr.json')
 
     def test_executavel_movido_faz_fallback_para_instalacao_disponivel(self):
-        exe=self.portable();save_settings(exe,self.config);exe.unlink()
+        exe=self.base/'removido.exe';exe.touch();save_settings(exe,self.config);exe.unlink()
         self.assertEqual(tesseract_exe(self.config),self.real)
 
     def test_idioma_ingles_ausente_nao_fica_verde(self):

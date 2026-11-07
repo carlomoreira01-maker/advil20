@@ -113,7 +113,7 @@ class LeituraCorrigida(unittest.TestCase):
         result = subprocess.CompletedProcess([],0,stdout='texto sem TSV',stderr='')
         with patch('engine_v2.run_local',return_value=result):
             with self.assertRaisesRegex(ValueError,'TSV'):
-                ocr_words(Image.new('RGB',(300,200),'white'))
+                ocr_words(scan_image('Paciente Sintetico Hemograma'))
 
     def test_timeout_e_erro_com_dados_nao_vazam(self):
         p = self.base/'pessoa-ficticia.png';scan_image().save(p)

@@ -9,7 +9,7 @@ from engine_v2 import read_document,parse_document
 @unittest.skipUnless(os.getenv('SHIFT_GUI_TESTS')=='1','Teste visual opcional: SHIFT_GUI_TESTS=1')
 class Interface(unittest.TestCase):
     def setUp(self):
-        self.tmp=tempfile.TemporaryDirectory();self.root=tk.Tk();self.app=App(self.root,Path(self.tmp.name));self.app.actor.set('Revisor sintetico');self.root.update()
+        self.tmp=tempfile.TemporaryDirectory();self.root=tk.Tk();self.app=App(self.root,Path(self.tmp.name),demo=True);self.app.actor.set('Revisor sintetico');self.root.update()
     def tearDown(self):
         self.app.store.db.close();self.root.destroy();self.tmp.cleanup()
     def test_import_review_prepare_and_export(self):

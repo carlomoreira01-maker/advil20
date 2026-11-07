@@ -66,25 +66,30 @@ class DocumentView(ttk.Frame):
 
 
 class App:
-    def __init__(self,root,data=DATA):
+    def __init__(self,root,data=DATA,demo=False):
         self.root=root;self.data=Path(data);self.data.mkdir(parents=True,exist_ok=True)
         (self.data/'documentos').mkdir(exist_ok=True)
         self.store=CaseStore(self.data/'cadastro_local.sqlite3')
         self.catalog_path=self.data/'catalogo.json'
-        self.catalog=catalog_load(self.catalog_path if self.catalog_path.exists() else ROOT/'catalogo_demo.json')
+        self.catalog=catalog_load(self.catalog_path) if self.catalog_path.exists() else catalog_load(ROOT/'catalogo_demo.json') if demo else []
+        self.selected_profile=None;self.pending_imports={};self.demo=demo;self.stage_diagnostics={}
         self.cid=None;self.models=None;self.busy=False;self.events=queue.Queue();self.loading=False
         self.ocr_settings_path=settings_file() if self.data.resolve()==DATA.resolve() else self.data/'configuracao_ocr.json'
         self.ocr_request=0;self.ocr_dialog=None;self.ocr_health=None
         self.import_sequence=0
         root.report_callback_exception=self.callback_failure
-        root.title('Cadastro Assistido Shift · versão 2.2 · Local');root.geometry('1450x950');root.minsize(1100,760)
+        root.title('Cadastro Assistido Shift · versão 2.3 · Local');root.geometry('1450x950');root.minsize(1100,760)
         st=ttk.Style();st.theme_use('clam');st.configure('TButton',padding=6);st.configure('Treeview',rowheight=28)
-        tk.Label(root,text='CADASTRO ASSISTIDO SHIFT  |  2.2',font=('Segoe UI',19,'bold'),bg='#173d52',fg='white',anchor='w',padx=18,pady=12).pack(fill='x')
+        tk.Label(root,text='CADASTRO ASSISTIDO SHIFT  |  2.3',font=('Segoe UI',19,'bold'),bg='#173d52',fg='white',anchor='w',padx=18,pady=12).pack(fill='x')
         ttk.Label(root,text='Importar > Ler > Comparar > Conferir > Preparar pré-cadastro',font=('Segoe UI',12,'bold'),padding=8).pack(fill='x')
         ttk.Label(root,text='Processamento local | Revisão humana obrigatória | Pré-cadastro não enviado ao Shift',padding=(10,0)).pack(anchor='w')
         bar=ttk.Frame(root,padding=8);bar.pack(fill='x')
         ttk.Label(bar,text='Revisor:').pack(side='left');self.actor=tk.StringVar(value='');ttk.Entry(bar,textvariable=self.actor,width=20).pack(side='left',padx=5)
-        for title,fn in [('Importar e ler par',self.import_pair),('Importar lote CSV',self.import_csv),('3 exemplos',self.examples),('Catálogo',self.catalog_window),('Configurações OCR',self.ocr_settings_window),('DEMO v1',self.legacy)]:ttk.Button(bar,text=title,command=lambda f=fn:self.guard(f)).pack(side='left',padx=3)
+        st.configure('Accent.TButton',font=('Segoe UI',11,'bold'),padding=(12,10))
+        for title,fn in [('Importar pedido e guia',self.import_pair),('Importar lote CSV',self.import_csv),('Exemplos fictícios',self.examples)]:ttk.Button(bar,text=title,style='Accent.TButton',command=lambda f=fn:self.guard(f)).pack(side='left',padx=3)
+        config_button=ttk.Menubutton(bar,text='Configurações e ferramentas');config_button.pack(side='right',padx=5)
+        menu=tk.Menu(config_button,tearoff=False);config_button.configure(menu=menu)
+        for title,fn in [('Catálogo do laboratório',self.catalog_window),('Fontes pagadoras',self.payer_window),('Diagnóstico e configuração OCR',self.ocr_settings_window),('Simulação local fictícia',self.simulation_window),('DEMO v1',self.legacy)]:menu.add_command(label=title,command=lambda f=fn:self.guard(f))
         self.ocr_status=tk.StringVar(value='OCR: verificando mecanismo e idiomas…')
         self.ocr_status_label=tk.Label(root,textvariable=self.ocr_status,anchor='w',fg='#865400',padx=10,wraplength=1100)
         self.ocr_status_label.pack(fill='x')
@@ -95,6 +100,7 @@ class App:
         for c,t,w in [('nome','Paciente',145),('etapa','Etapa',90)]:self.cases.heading(c,text=t);self.cases.column(c,width=w)
         self.cases.pack(fill='both',expand=True);self.cases.bind('<<TreeviewSelect>>',self.select)
         ttk.Button(sidebar,text='Auditoria local',command=lambda:self.guard(self.audit_window)).pack(fill='x',pady=6)
+        ttk.Button(sidebar,text='Interno sem guia externa',command=lambda:self.guard(self.import_internal)).pack(fill='x',pady=3)
         ttk.Button(sidebar,text='Reanalisar documentos',command=lambda:self.guard(self.reanalyze_case)).pack(fill='x',pady=3)
         self.tabs=ttk.Notebook(main);self.tabs.pack(fill='both',expand=True)
         self.doc_tab=ttk.Frame(self.tabs);self.review_container=ttk.Frame(self.tabs);self.out_tab=ttk.Frame(self.tabs,padding=8)
@@ -105,9 +111,9 @@ class App:
                   'Campos “Não identificado” precisam de conferência. Use Origem para ver página e trecho.',
                   wraplength=850).pack(anchor='w',pady=8)
         self.diagnostic_table=ttk.Treeview(self.diagnostic_tab,
-            columns=('doc','page','executed','method','chars','failure'),show='headings')
+            columns=('doc','page','executed','method','chars','failure','parse','ui'),show='headings')
         for c,t,w in [('doc','Documento / tipo',180),('page','Página',60),('executed','Leitura executada',120),
-                      ('method','Método / idiomas',260),('chars','Caracteres',90),('failure','Resultado',220)]:
+                      ('method','Método / idiomas',260),('chars','Caracteres',90),('failure','Leitura',220),('parse','Interpretação',170),('ui','Interface',140)]:
             self.diagnostic_table.heading(c,text=t);self.diagnostic_table.column(c,width=w)
         scroll=ttk.Scrollbar(self.diagnostic_tab,orient='vertical',command=self.diagnostic_table.yview)
         self.diagnostic_table.configure(yscrollcommand=scroll.set)
@@ -134,21 +140,26 @@ class App:
         self.compare_table.pack(fill='x')
         self.blockers=tk.Text(self.review_tab,height=3,wrap='word',fg='#a43224',state='disabled');self.blockers.pack(fill='x',pady=5)
         self.forms=ttk.Notebook(self.review_tab);self.forms.pack(fill='both',expand=True)
-        self.field_vars={};self.field_checks={};self.exam_tables={};self.page_checks={};self.alert_tables={}
+        self.field_vars={};self.field_checks={};self.exam_tables={};self.page_checks={};self.alert_tables={};self.field_tabs={};self.field_entries={}
         for kind,title in [('pedido','Pedido'),('guia','Guia')]:
             frame=ttk.Frame(self.forms,padding=5);self.forms.add(frame,text=title)
-            fields=ttk.Frame(frame);fields.pack(fill='x');self.field_vars[kind]={};self.field_checks[kind]={}
-            for i,key in enumerate(FIELDS):
+            field_tabs=ttk.Notebook(frame);field_tabs.pack(fill='x');self.field_tabs[kind]=field_tabs
+            groups={name:ttk.Frame(field_tabs,padding=5) for name in ['Paciente','Guia TISS','Médico e atendimento']}
+            for name,group in groups.items():field_tabs.add(group,text=name)
+            counts={name:0 for name in groups};self.field_entries[kind]={};self.field_vars[kind]={};self.field_checks[kind]={}
+            for key in FIELDS:
+                category='Paciente' if key in ['Paciente','Nascimento','Fonte pagadora','Operadora','Carteira','Validade carteira'] else 'Médico e atendimento' if key in ['Medico','Conselho','Número conselho','UF conselho','Código solicitante','Data solicitação','Indicação clínica','Regime atendimento','Data execução'] else 'Guia TISS'
+                fields=groups[category];i=counts[category];counts[category]+=1
                 col=(i%2)*4;r=i//2
-                ttk.Label(fields,text=key).grid(row=r,column=col,sticky='w',padx=3)
+                ttk.Label(fields,text=key+' (legado)' if key in ['Guia','Validade'] else key).grid(row=r,column=col,sticky='w',padx=3)
                 var=tk.StringVar();check=tk.BooleanVar();self.field_vars[kind][key]=var;self.field_checks[kind][key]=check
-                ent=ttk.Entry(fields,textvariable=var,width=28);ent.grid(row=r,column=col+1,sticky='ew',padx=3,pady=2)
+                ent=ttk.Entry(fields,textvariable=var,width=28);self.field_entries[kind][key]=ent;ent.grid(row=r,column=col+1,sticky='ew',padx=3,pady=2)
                 ttk.Checkbutton(fields,text='Conferido',variable=check).grid(row=r,column=col+2)
                 ttk.Button(fields,text='Origem',command=lambda k=kind,f=key:self.locate_field(k,f)).grid(row=r,column=col+3)
                 var.trace_add('write',lambda *_,k=kind,f=key:self.changed_field(k,f))
             ttk.Label(frame,text='Exames: selecione uma linha para editar ou conferir. Quantidade nunca é presumida.').pack(anchor='w',pady=5)
-            table=ttk.Treeview(frame,columns=('desc','code','q','mat','src','ok'),show='headings',height=4)
-            for c,t,w in [('desc','Descrição',190),('code','Código lido',100),('q','Qtd.',45),('mat','Material lido',120),('src','Origem / leitura',170),('ok','Conferido',70)]:table.heading(c,text=t);table.column(c,width=w)
+            table=ttk.Treeview(frame,columns=('desc','code','sol','q','mat','src','ok'),show='headings',height=4)
+            for c,t,w in [('desc','Descrição',190),('code','Código lido',100),('sol','Solicitada',65),('q','Aut./Qtd.',65),('mat','Material lido',120),('src','Origem / leitura',170),('ok','Conferido',70)]:table.heading(c,text=t);table.column(c,width=w)
             table.pack(fill='both',expand=True);table.bind('<Double-1>',lambda e,k=kind:self.guard(lambda:self.edit_exam(k)))
             self.exam_tables[kind]=table
             actions=ttk.Frame(frame);actions.pack(fill='x')
@@ -228,6 +239,89 @@ class App:
         button=ttk.Button(bar,text='Testar e salvar',command=test);button.pack(side='left',padx=3)
         ttk.Button(bar,text='Fechar',command=window.destroy).pack(side='left',padx=3)
         self.ocr_dialog={'window':window,'path':path,'result':result,'button':button,'choose':choose,'test':test,'auto':auto}
+    def case_stage(self,models,status):
+        if status=='PREPARADO':return 'Pronto para pré-cadastro'
+        errors=compare_models(models['pedido'],models['guia'],self.catalog)['pendencias']
+        if any('diverg' in e.lower() or 'Não autorizado' in e for e in errors):return 'Divergência de autorização'
+        if errors:return 'Informações incompletas'
+        return 'Aguardando conferência' if review_errors(models) else 'Pronto para pré-cadastro'
+    def payer_window(self):
+        from payer_mapping import load_profiles,map_payer,validate_profile,DESTINATIONS,SOURCES
+        path=self.data/'perfis_pagadores.json'
+        try:profiles=load_profiles(path) if path.exists() else []
+        except ValueError:profiles=[]
+        window=tk.Toplevel(self.root);window.title('Fontes pagadoras · configuração local')
+        ttk.Label(window,text='Regras precisam de aprovação da equipe. Interno, IPASGO e outros têm escopos separados.\nNunca reutilize senha, matrícula e números de guia como se fossem o mesmo campo.',padding=12).pack()
+        picker=ttk.Combobox(window,state='readonly',width=75);picker.pack(fill='x',padx=12)
+        result=tk.Text(window,height=12,width=90);result.pack(fill='both',expand=True,padx=12)
+        def refresh():picker['values']=[p['nome'] for p in profiles]
+        def persist():path.write_text(json.dumps(profiles,ensure_ascii=False,indent=2),encoding='utf-8');refresh()
+        def load():
+            file=filedialog.askopenfilename(parent=window,title='Perfis homologados JSON',filetypes=[('Perfis','*.json')])
+            if not file:return
+            try:profiles[:]=load_profiles(file);persist()
+            except Exception as exc:messagebox.showerror('Perfil inválido',str(exc),parent=window)
+        def choose():
+            if picker.current()<0:return
+            self.selected_profile=copy.deepcopy(profiles[picker.current()]);self.confirm.set(False)
+            if self.models:
+                mapping=map_payer(self.collect()['guia'],self.selected_profile)
+                result.delete('1.0','end');result.insert('1.0',json.dumps(mapping,ensure_ascii=False,indent=2));self.show_comparison()
+        def edit():
+            old=profiles[picker.current()] if picker.current()>=0 else {}
+            editor=tk.Toplevel(window);editor.title('Definir perfil de atendimento')
+            variables={}
+            for i,(key,label) in enumerate([('id','Identificador do perfil'),('nome','Nome do perfil'),('fonte_pagadora','Fonte pagadora (como no documento)'),('tipo_atendimento','Tipo/regime de atendimento'),('procedimentos','Códigos abrangidos separados por ; (* só se aprovado)'),('aprovado_por','Responsável pela aprovação'),('aprovado_em','Data da aprovação AAAA-MM-DD')]):
+                value=';'.join(old.get(key,[])) if key=='procedimentos' else old.get(key,'')
+                var=tk.StringVar(value=value);variables[key]=var
+                ttk.Label(editor,text=label).grid(row=i,column=0,sticky='w',padx=8,pady=3);ttk.Entry(editor,textvariable=var,width=55).grid(row=i,column=1,columnspan=2,sticky='ew',padx=8)
+            authorization=tk.BooleanVar(value=old.get('exige_autorizacao',True));approved=tk.BooleanVar(value=old.get('homologado',False))
+            ttk.Checkbutton(editor,text='Este escopo exige autorização',variable=authorization).grid(row=7,column=0,columnspan=2,sticky='w')
+            ttk.Checkbutton(editor,text='Equipe responsável homologou este escopo e mapeamento',variable=approved).grid(row=8,column=0,columnspan=3,sticky='w')
+            mapping={};required={};defaults={};default_checks={}
+            ttk.Label(editor,text='Campo no Shift').grid(row=9,column=0);ttk.Label(editor,text='Origem no documento').grid(row=9,column=1);ttk.Label(editor,text='Padrão técnico / aprovação individual').grid(row=9,column=3)
+            for i,dest in enumerate(sorted(DESTINATIONS),10):
+                ttk.Label(editor,text=dest).grid(row=i,column=0,sticky='w',padx=8)
+                var=tk.StringVar(value=old.get('mapeamento',{}).get(dest,''));mapping[dest]=var
+                ttk.Combobox(editor,textvariable=var,state='readonly',values=['',*sorted(SOURCES)],width=25).grid(row=i,column=1,padx=4)
+                required[dest]=tk.BooleanVar(value=dest in old.get('obrigatorios',[]));ttk.Checkbutton(editor,text='Obrigatório',variable=required[dest]).grid(row=i,column=2)
+                defaults[dest]=tk.StringVar(value=old.get('valores_tecnicos',{}).get(dest,{}).get('valor',''))
+                ttk.Entry(editor,textvariable=defaults[dest],width=18).grid(row=i,column=3)
+                default_checks[dest]=tk.BooleanVar(value=dest in old.get('valores_tecnicos',{}));ttk.Checkbutton(editor,text='Padrão aprovado',variable=default_checks[dest]).grid(row=i,column=4)
+            def save_profile():
+                try:
+                    item={key:var.get().strip() for key,var in variables.items()};item['procedimentos']=[x.strip() for x in item['procedimentos'].split(';') if x.strip()]
+                    item.update(homologado=approved.get(),exige_autorizacao=authorization.get(),mapeamento={d:v.get() for d,v in mapping.items() if v.get()},obrigatorios=[d for d,v in required.items() if v.get()],valores_tecnicos={})
+                    for dest,var in defaults.items():
+                        if var.get().strip():
+                            if not default_checks[dest].get():raise ValueError('Padrão técnico só pode ser salvo com aprovação explícita.')
+                            item['valores_tecnicos'][dest]={'valor':var.get().strip(),'aprovado_por':item['aprovado_por'],'aprovado_em':item['aprovado_em']}
+                    item=validate_profile(item)
+                    index=next((i for i,p in enumerate(profiles) if p['id']==item['id']),None)
+                    if index is None:profiles.append(item);index=len(profiles)-1
+                    else:profiles[index]=item
+                    persist();picker.current(index);editor.destroy()
+                except Exception as exc:messagebox.showerror('Configuração não salva',str(exc),parent=editor)
+            ttk.Button(editor,text='Salvar perfil local',command=save_profile).grid(row=19,column=0,columnspan=5,pady=10)
+            self.profile_editor={'window':editor,'variables':variables,'mapping':mapping,'required':required,'authorization':authorization,'approved':approved,'save':save_profile}
+        bar=ttk.Frame(window,padding=10);bar.pack(fill='x')
+        for title,fn in [('Novo / editar perfil',edit),('Importar perfis JSON',load),('Aplicar ao atendimento',choose)]:ttk.Button(bar,text=title,command=fn).pack(side='left',padx=5)
+        self.payer_manager={'window':window,'edit':edit,'choose':choose,'picker':picker};refresh()
+    def import_internal(self):
+        from internal_workflow import build_internal
+        if not self.selected_profile:raise ValueError('Selecione primeiro um perfil interno homologado em Fontes pagadoras.')
+        file=filedialog.askopenfilename(title='Pedido do atendimento interno',filetypes=[('Documento','*.pdf *.png *.jpg *.txt')])
+        if not file:return
+        document=read_document(file,settings_path=self.ocr_settings_path);model=parse_document(document,self.catalog)
+        raw=Path(file).read_bytes();dest=self.data/'documentos'/(document['sha256']+Path(file).suffix.lower());dest.write_bytes(raw);document['local_path']=str(dest.resolve())
+        doc,guide=build_internal(document,model,self.selected_profile)
+        cid=self.store.add({'pedido':document,'guia':doc},{'pedido':model,'guia':guide},self.actor.get())
+        self.refresh();self.cases.selection_set(cid);self.open_case(cid);self.tabs.select(self.review_container)
+    def simulation_window(self):
+        from simulador import start_simulator
+        import webbrowser
+        if not getattr(self,'simulator',None):self.simulator=start_simulator()
+        webbrowser.open(self.simulator.url)
     def resize_review(self,event=None):
         self.review_canvas.itemconfigure(self.review_window,width=max(self.review_canvas.winfo_width(),self.review_tab.winfo_reqwidth()),height=max(self.review_canvas.winfo_height(),self.review_tab.winfo_reqheight()))
         self.review_canvas.configure(scrollregion=self.review_canvas.bbox('all'))
@@ -249,6 +343,7 @@ class App:
     def collect(self):
         if not self.models:raise ValueError('Selecione um paciente.')
         m=copy.deepcopy(self.models)
+        if self.selected_profile:m['guia']['payer_profile']=copy.deepcopy(self.selected_profile)
         for k in m:
             for f in FIELDS:
                 value=self.field_vars[k][f].get().strip()
@@ -262,16 +357,18 @@ class App:
         self.cases.delete(*self.cases.get_children())
         for cid,cur,status in self.store.db.execute('SELECT id,current,status FROM casos_v2 ORDER BY rowid'):
             name=json.loads(cur)['models']['pedido']['fields']['Paciente']['value'] or 'Identidade pendente'
-            self.cases.insert('','end',iid=cid,values=(name,status))
+            self.cases.insert('','end',iid=cid,values=(name,self.case_stage(json.loads(cur)['models'],status)))
+        for token,state in self.pending_imports.items():
+            if not self.cases.exists(token):self.cases.insert('','end',iid=token,values=('Atendimento em leitura',state))
     def select(self,event=None):
         s=self.cases.selection()
-        if not s or s[0]==self.cid:return
+        if not s or s[0] in self.pending_imports or s[0]==self.cid:return
         if self.cid and self.dirty():
             if not messagebox.askyesno('Conferência não salva','Descartar as alterações não salvas e abrir o outro paciente?'):
                 self.cases.selection_set(self.cid);return
         self.open_case(s[0])
     def open_case(self,cid,restore_diagnostics=True):
-        self.cid=cid;obj,self.rev,status,out=self.store.get(cid);self.models=copy.deepcopy(obj['models']);self.loading=True
+        self.cid=cid;obj,self.rev,status,out=self.store.get(cid);self.models=copy.deepcopy(obj['models']);self.selected_profile=self.models['guia'].get('payer_profile');self.loading=True
         self.set_text(self.origin_text,'Selecione Origem em um campo ou exame para localizar sua fonte.')
         try:
             for k in self.models:
@@ -288,7 +385,7 @@ class App:
         self.status.set(f'Revisão {self.rev} · {status}')
     def render_rows(self,k):
         t=self.exam_tables[k];t.delete(*t.get_children())
-        for i,e in enumerate(self.models[k]['exams']):t.insert('','end',iid=str(i),values=(e['descricao'],e['codigo'],e['quantidade'],e['material'],f'Pág. {e["page"] or "manual"} · '+('INCERTO' if e['confidence'] is not None and e['confidence']<80 else 'Conferir original'), 'Sim' if e['reviewed'] else 'Não'))
+        for i,e in enumerate(self.models[k]['exams']):t.insert('','end',iid=str(i),values=(e['descricao'],e['codigo'],e.get('quantidade_solicitada',''),e['quantidade'],e['material'],f'Pág. {e["page"] or "manual"} · '+('INCERTO' if e['confidence'] is not None and e['confidence']<80 else 'Conferir original'), 'Sim' if e['reviewed'] else 'Não'))
         t=self.alert_tables[k];t.delete(*t.get_children())
         for i,a in enumerate(self.models[k]['issues']):t.insert('','end',iid=str(i),values=(a['message'],'Sim' if a['reviewed'] else 'Não'))
     def show_comparison(self):
@@ -302,10 +399,13 @@ class App:
         if not self.models:return
         src=self.models[k]['fields'][f]
         conf=src['confidence'];self.status.set(f'{f}: página {src["page"] or "não localizada"}; confiança OCR {conf if conf is not None else "não disponível"}. Texto digital também exige revisão.')
-        self.views[k].locate(src['page'],src['box']);self.tabs.select(self.doc_tab)
+        target=k
+        if src.get('document') and self.views[k].doc.get('file')!=src['document']:
+            target=next((name for name,view in self.views.items() if view.doc and view.doc.get('file')==src['document']),k)
+        self.views[target].locate(src['page'],src['box']);self.tabs.select(self.doc_tab)
         if src.get('snippet'):
             self.set_text(self.origin_text,
-                f'Origem de {f}: {k} · Página: {src["page"]}\nTrecho: {src["snippet"]}')
+                f'Origem de {f}: {target} · Página: {src["page"]}\nTrecho: {src["snippet"]}')
     def locate_exam(self,k):
         s=self.exam_tables[k].selection()
         if s:
@@ -318,25 +418,26 @@ class App:
         idx=len(self.models[k]['exams']) if new else int(s[0])
         old={'descricao':'','codigo':'','quantidade':'','material':'','page':None,'box':None,'confidence':None,'reviewed':False,'raw':'','notes':['Inclusão manual']} if new else self.models[k]['exams'][idx]
         w=tk.Toplevel(self.root);w.title('Conferir exame · '+k);w.transient(self.root);w.grab_set();variables={}
-        for i,(key,label) in enumerate([('descricao','Descrição'),('codigo','Código lido (interno ou TUSS)'),('quantidade','Quantidade'),('material','Material lido'),('page','Página de origem')]):
-            ttk.Label(w,text=label).grid(row=i,column=0,padx=10,pady=6,sticky='w');v=tk.StringVar(value=str(old[key] or ''));variables[key]=v;ttk.Entry(w,textvariable=v,width=48).grid(row=i,column=1,padx=10)
-        ttk.Label(w,text='\n'.join(old.get('notes',[])) or 'Compare a linha com o original.',wraplength=500).grid(row=5,column=0,columnspan=2,padx=10,pady=8)
+        for i,(key,label) in enumerate([('descricao','Descrição'),('codigo','Código lido (interno ou TUSS)'),('quantidade_solicitada','Quantidade solicitada (TISS)'),('quantidade','Quantidade autorizada / quantidade do pedido'),('material','Material lido'),('page','Página de origem')]):
+            ttk.Label(w,text=label).grid(row=i,column=0,padx=10,pady=6,sticky='w');v=tk.StringVar(value=str(old.get(key) or ''));variables[key]=v;ttk.Entry(w,textvariable=v,width=48).grid(row=i,column=1,padx=10)
+        ttk.Label(w,text='\n'.join(old.get('notes',[])) or 'Compare a linha com o original.',wraplength=500).grid(row=6,column=0,columnspan=2,padx=10,pady=8)
         checked=tk.BooleanVar(value=old['reviewed'])
         for v in variables.values():v.trace_add('write',lambda *_:checked.set(False))
-        ttk.Checkbutton(w,text='Conferi este exame no documento original',variable=checked).grid(row=6,column=0,columnspan=2)
+        ttk.Checkbutton(w,text='Conferi este exame no documento original',variable=checked).grid(row=7,column=0,columnspan=2)
         def commit():
             try:
                 e={**old,**{key:v.get().strip() for key,v in variables.items()},'reviewed':checked.get()}
                 if not e['descricao']:raise ValueError('Informe a descrição.')
-                if not e['quantidade'].isdigit() or not 1<=int(e['quantidade'])<=999:raise ValueError('Quantidade deve ser de 1 a 999.')
+                if not e['quantidade'].isdigit() or not 0<=int(e['quantidade'])<=999:raise ValueError('Quantidade deve ser de 0 a 999; zero não autoriza.')
                 if not e['page'].isdigit() or not 1<=int(e['page'])<=len(self.views[k].doc['pages']):raise ValueError('Indique uma página válida do documento.')
                 e['page']=int(e['page'])
+                if self.models[k].get('tiss'):e['quantidade_autorizada']=e['quantidade']
                 if e['page']!=old['page']:e['box']=None
                 if new:self.models[k]['exams'].append(e)
                 else:self.models[k]['exams'][idx]=e
                 self.confirm.set(False);self.render_rows(k);self.show_comparison();w.destroy()
             except Exception as exc:messagebox.showerror('Conferir exame',str(exc),parent=w)
-        ttk.Button(w,text='Aplicar à conferência',command=commit).grid(row=7,column=0,columnspan=2,pady=12)
+        ttk.Button(w,text='Aplicar à conferência',command=commit).grid(row=8,column=0,columnspan=2,pady=12)
     def delete_exam(self,k):
         s=self.exam_tables[k].selection()
         if s:
@@ -384,6 +485,8 @@ class App:
         self.import_pairs(load_manifest(f))
     def examples(self):
         if self.cid and self.dirty():raise ValueError('Salve a conferência antes de carregar exemplos.')
+        if not self.catalog:
+            self.catalog=catalog_load(ROOT/'catalogo_demo.json');self.status.set('Modo de exemplos: catálogo fictício carregado somente nesta sessão.')
         self.import_pairs([(ROOT/'exemplos'/f'{i}_pedido.txt',ROOT/'exemplos'/f'{i}_guia.txt') for i in ['01','02','03']])
     def reanalyze_case(self):
         if not self.cid:raise ValueError('Selecione um atendimento na fila.')
@@ -409,10 +512,12 @@ class App:
         pairs=[(Path(p),Path(g)) for p,g in pairs]
         if not 1<=len(pairs)<=100:raise ValueError('Selecione entre 1 e 100 pares.')
         self.import_sequence+=1;sequence=self.import_sequence
+        for number in range(1,len(pairs)+1):self.pending_imports[f'pendente-{sequence}-{number}']='Aguardando leitura'
+        self.refresh()
         self.busy=True;self.status.set('Lendo localmente. OCR pode levar alguns minutos…');cat=copy.deepcopy(self.catalog)
         self.progress=tk.Toplevel(self.root);self.progress.title('Leitura local em andamento');self.progress.transient(self.root);self.progress.grab_set();self.progress.protocol('WM_DELETE_WINDOW',lambda:None)
         ttk.Label(self.progress,text='Lendo os documentos neste computador…\nAguarde a conclusão do lote.',padding=25).pack()
-        indicator=ttk.Progressbar(self.progress,mode='indeterminate',length=330);indicator.pack(padx=25,pady=15);indicator.start()
+        indicator=ttk.Progressbar(self.progress,mode='indeterminate',length=330);self.progress_indicator=indicator;indicator.pack(padx=25,pady=15);indicator.start()
         def run():
             try:
                 for number,(p,g) in enumerate(pairs,1):
@@ -438,10 +543,12 @@ class App:
                         docs={'pedido':docs['guia'],'guia':docs['pedido']}
                     for k,d in docs.items():
                         models[k]=parse_document(d,cat)
+                        self.events.put(('interpretation',f'Lote {sequence} · Par {number} · {k}',models[k]['interpretation']))
                         if d['document_type']!=k:
                             models[k]['issues'].append({'message':'Tipo do documento não confirmado como '+k+'. Confira o original.',
                                                        'reviewed':False,'reason':''})
-                    self.events.put(('reanalyzed',reanalysis,docs,models) if reanalysis else ('case',docs,models))
+                    self.events.put(('progress',f'pendente-{sequence}-{number}','Leitura concluída'))
+                    self.events.put(('reanalyzed',reanalysis,docs,models) if reanalysis else ('case',docs,models,f'pendente-{sequence}-{number}'))
             except Exception as exc:self.events.put(('error',safe_failure(exc)))
             finally:self.events.put(('done',))
         threading.Thread(target=run,daemon=True).start()
@@ -451,20 +558,42 @@ class App:
             if table.item(item,'values')[0]==label:table.delete(item)
         if not rows:
             table.insert('','end',values=(label,'—','Em andamento' if result=='Lendo…' else 'Falhou',
-                                        '—',0,result));return
+                                        '—',0,result,'Aguardando','Aguardando'));return
         for row in rows:
             method=row['method']+(' · '+row['languages'] if row['languages'] else '')
             table.insert('','end',values=(label,row['page'],'Sim' if row['executed'] else 'Não',
                 method,row['characters'],
-                'FALHA: '+row['detail'] if row['failed'] else 'Lido · tipo: '+result))
+                'FALHA: '+row['detail'] if row['failed'] else 'Lido · tipo: '+result,'Aguardando','Aguardando'))
+    def record_interpretation(self,label,result):
+        self.stage_diagnostics[label]={'ocr':True,'interpretation':copy.deepcopy(result),'ui':None}
+        for item in self.diagnostic_table.get_children():
+            values=list(self.diagnostic_table.item(item,'values'))
+            if values[0]==label:
+                values[6]=f"{result['fields_found']} campos / {result['exams_found']} exames" if result['fields_found'] or result['exams_found'] else 'FALHA: nenhum campo/exame'
+                self.diagnostic_table.item(item,values=values)
+    def record_ui_stage(self,success):
+        # Only counts/status in technical records; field contents remain in the case.
+        if success:
+            success=all(self.field_vars[k][f].get()==(v['value'] or UNIDENTIFIED)
+                        for k,m in self.models.items() for f,v in m['fields'].items())
+        for label,result in self.stage_diagnostics.items():
+            if result['ui'] is None:
+                result['ui']=success
+                for item in self.diagnostic_table.get_children():
+                    values=list(self.diagnostic_table.item(item,'values'))
+                    if values[0]==label:values[7]='Preenchida' if success else 'FALHA na atualização';self.diagnostic_table.item(item,values=values)
     def poll(self):
         try:
             while True:
                 item=self.events.get_nowait()
                 if item[0]=='case':
                     try:
-                        cid=self.store.add(item[1],item[2],self.actor.get());self.refresh();self.cases.selection_set(cid);self.open_case(cid,restore_diagnostics=False);self.tabs.select(self.review_container)
-                    except Exception as exc:messagebox.showwarning('Importação',str(exc))
+                        cid=self.store.add(item[1],item[2],self.actor.get());
+                        if len(item)>3:self.pending_imports.pop(item[3],None)
+                        self.refresh();self.cases.selection_set(cid);self.open_case(cid,restore_diagnostics=False);self.tabs.select(self.review_container)
+                        self.record_ui_stage(True)
+                    except Exception as exc:
+                        self.record_ui_stage(False);messagebox.showwarning('Importação',safe_failure(exc))
                 elif item[0]=='reanalyzed':
                     info,docs,models=item[1:]
                     self.store.save(info['cid'],models,self.actor.get(),'Reanálise local após configuração OCR',
@@ -472,10 +601,12 @@ class App:
                     self.refresh();self.cases.selection_set(info['cid']);self.open_case(info['cid'],restore_diagnostics=False)
                     self.tabs.select(self.review_container)
                 elif item[0]=='diagnostic':self.update_diagnostic(*item[1:])
+                elif item[0]=='interpretation':self.record_interpretation(*item[1:])
+                elif item[0]=='progress':self.pending_imports[item[1]]=item[2];self.refresh()
                 elif item[0]=='ocr_health':self.finish_ocr_check(*item[1:])
                 elif item[0]=='error':messagebox.showwarning('Documento não importado',item[1])
                 else:
-                    self.busy=False;self.progress.grab_release();self.progress.destroy()
+                    self.busy=False;self.pending_imports.clear();self.progress_indicator.stop();self.progress.grab_release();self.progress.destroy()
                     self.status.set('Leitura encerrada. Confira os campos e as falhas na aba Diagnóstico de leitura.');self.refresh()
         except queue.Empty:pass
         except Exception as exc:
@@ -545,6 +676,7 @@ class App:
         if self.busy:
             messagebox.showinfo('Leitura em andamento','Aguarde terminar antes de fechar.');return
         if self.cid and self.dirty() and not messagebox.askyesno('Alterações não salvas','Descartar a conferência não salva e fechar?'):return
+        if getattr(self,'simulator',None):self.simulator.close()
         self.store.db.close();self.root.destroy()
 
 

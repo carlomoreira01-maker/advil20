@@ -1,0 +1,42 @@
+[
+  {
+    "nome": "Hemograma",
+    "codigo_shift": "",
+    "tuss": "90000001",
+    "sinonimos": [],
+    "material": "",
+    "fixture": true
+  },
+  {
+    "nome": "Glicose",
+    "codigo_shift": "",
+    "tuss": "90000002",
+    "sinonimos": [],
+    "material": "",
+    "fixture": true
+  },
+  {
+    "nome": "TSH",
+    "codigo_shift": "",
+    "tuss": "90000003",
+    "sinonimos": [],
+    "material": "",
+    "fixture": true
+  },
+  {
+    "nome": "Creatinina",
+    "codigo_shift": "",
+    "tuss": "90000004",
+    "sinonimos": [],
+    "material": "",
+    "fixture": true
+  },
+  {
+    "nome": "Colesterol total",
+    "codigo_shift": "",
+    "tuss": "90000005",
+    "sinonimos": [],
+    "material": "",
+    "fixture": true
+  }
+]

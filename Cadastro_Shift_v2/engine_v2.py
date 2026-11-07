@@ -14,9 +14,11 @@ import tempfile
 import uuid
 from datetime import datetime, date
 from core import norm, digest
+from ocr_processing import source_box
 from ocr_runtime import tesseract_exe, ocr_configuration, run_local, safe_failure, LocalReadError
 
-FIELDS = ['Paciente', 'Nascimento', 'Fonte pagadora', 'Operadora', 'Guia', 'Medico', 'Validade', 'Status']
+from tiss import EXTRA_FIELDS, empty_field
+FIELDS = ['Paciente', 'Nascimento', 'Fonte pagadora', 'Operadora', 'Guia', 'Medico', 'Validade', 'Status'] + EXTRA_FIELDS
 ALIASES = {
     'NOME DO PACIENTE':'Paciente', 'NOME DO BENEFICIARIO':'Paciente', 'BENEFICIARIO':'Paciente', 'PACIENTE':'Paciente',
     'DATA DE NASCIMENTO':'Nascimento', 'NASCIMENTO':'Nascimento', 'DATA NASC.':'Nascimento', 'DN':'Nascimento',
@@ -35,21 +37,27 @@ ALIASES.update({
     'NOME DO PROFISSIONAL SOLICITANTE':'Medico', 'NOME DO CONTRATADO SOLICITANTE':'Medico',
     'SITUACAO DA GUIA':'Status', 'STATUS DA GUIA':'Status', 'SITUACAO':'Status'
 })
+ALIASES.update({k.upper():k for k in EXTRA_FIELDS})
+ALIASES.update({'REGIME DE ATENDIMENTO':'Regime atendimento','INDICACAO CLINICA':'Indicação clínica','MATRICULA':'Carteira','CARTEIRINHA':'Carteira','CRM':'Número conselho','UF DO CONSELHO':'UF conselho'})
 ALIASES = {norm(k): v for k, v in ALIASES.items()}
 MAX_BYTES = 30 * 1024 * 1024
 
 
 def ocr_words(image, language='por+eng', settings_path=None):
+    exe=tesseract_exe(settings_path) if settings_path is not None else tesseract_exe()
+    if not exe:raise LocalReadError('Tesseract ausente. Abra Configurações OCR.')
+    config=ocr_configuration(language,exe)
+    from ocr_processing import recognize_page
+    return recognize_page(image,lambda im,psm:_ocr_once(im,config,language,psm))
+
+
+def _ocr_once(image, config, language, psm=3):
     from PIL import ImageOps
-    exe = tesseract_exe(settings_path) if settings_path is not None else tesseract_exe()
-    if not exe:
-        raise LocalReadError('Tesseract ausente ou SHIFT_TESSERACT inválido. Execute INSTALAR_WINDOWS.bat.')
-    config = ocr_configuration(language, exe)
     with tempfile.TemporaryDirectory(prefix='shift_ocr_') as tmp:
         path = Path(tmp) / 'pagina.png'
         ImageOps.autocontrast(ImageOps.exif_transpose(image).convert('L')).save(path, dpi=(300, 300))
         result = run_local([config['exe'], str(path), 'stdout', *config['args'],
-                            '-l', language, '--psm', '3', '-c', 'tessedit_create_tsv=1'])
+                            '-l', language, '--psm', str(psm), '-c', 'tessedit_create_tsv=1'])
         if result.returncode:
             raise LocalReadError('Falha no OCR local. Execute diagnostico.py para verificar mecanismo e idiomas.')
         words = []
@@ -126,6 +134,8 @@ def read_document(path, language='por+eng', settings_path=None):
         return {'number':number,'method':method,'size':list(size),'lines':lines,'warnings':warnings,
                 'text':'\n'.join(l['text'] for l in lines), 'executed':True,
                 'characters':sum(len(l['text']) for l in lines),
+                'orientation':words[0].get('orientation',0) if words else 0,
+                'deskew':words[0].get('deskew',0) if words else 0,
                 'failed':bool(warnings), 'languages':language if 'OCR' in method else ''}
     if ext=='.pdf':
         with pymupdf.open(stream=raw,filetype='pdf') as pdf:
@@ -147,7 +157,9 @@ def read_document(path, language='por+eng', settings_path=None):
                     try:
                         ws=ocr_words(Image.open(io.BytesIO(pix.tobytes('png'))),language,settings_path=settings_path)
                         # Coordenadas sempre normalizadas para pontos PDF.
-                        for w in ws: w['box']=[v/2.5 for v in w['box']]
+                        for w in ws:
+                            w['box']=[v/2.5 for v in w['box']]
+                            if 'original_box' in w:w['original_box']=[v/2.5 for v in w['original_box']]
                         if hybrid and usable(words):
                             # Mantém texto digital fora da imagem; suprime duplicação espacial.
                             for w in words:
@@ -179,12 +191,16 @@ def read_document(path, language='por+eng', settings_path=None):
 def catalog_load(path):
     rows=json.loads(Path(path).read_text(encoding='utf-8'))
     seen=set()
-    if not isinstance(rows,list) or not rows: raise ValueError('Catálogo deve ser uma lista não vazia.')
+    if not isinstance(rows,list): raise ValueError('Catálogo deve ser uma lista.')
     for row in rows:
-        if not all(isinstance(row.get(k),str) and row[k].strip() for k in ['nome','codigo_shift','material']): raise ValueError('Nome, código interno e material são obrigatórios.')
+        if not isinstance(row.get('nome'),str) or not row['nome'].strip():raise ValueError('Nome padronizado obrigatório.')
+        for key in ['codigo_shift','material']:
+            if not isinstance(row.get(key,''),str):raise ValueError('Código interno e material devem ser texto.')
+            row.setdefault(key,'')
+        if not row['codigo_shift'] and not row.get('tuss'):raise ValueError('Informe TUSS ou código interno validado; não invente códigos.')
         code=norm(row['codigo_shift'])
-        if code in seen: raise ValueError('Código interno duplicado.')
-        seen.add(code)
+        if code and code in seen: raise ValueError('Código interno duplicado.')
+        if code:seen.add(code)
         if row.get('tuss') and not re.fullmatch(r'\d{8}',str(row['tuss'])): raise ValueError('TUSS deve ter 8 dígitos ou ficar vazio.')
         if not isinstance(row.get('sinonimos'),list) or not all(isinstance(v,str) for v in row['sinonimos']): raise ValueError('Sinônimos inválidos.')
         for rule in row.get('equivalencias',[]):
@@ -272,7 +288,7 @@ def parse_document(document, catalog):
         for warning in page['warnings']: issues.append({'message':f'Página {page["number"]}: {warning}','reviewed':False,'reason':''})
         for line in labeled_lines(layout_lines(page['lines'])):
             text=line['text']; n=norm(text)
-            src={'page':page['number'],'box':line['box'],'confidence':line['confidence'],'reviewed':False,
+            src={'page':page['number'],'box':source_box(line),'confidence':line['confidence'],'reviewed':False,
                  'document':document.get('file'), 'snippet':text}
             if n.strip(' :') in ('DEMONSTRACAO','PEDIDO MEDICO','GUIA AUTORIZADA','GUIA DE AUTORIZACAO',
                                 'SOLICITACAO DE EXAMES','REQUISICAO DE EXAMES','GUIA SP/SADT','GUIA DE SP/SADT'):
@@ -351,11 +367,35 @@ def parse_document(document, catalog):
     if not exams:issues.append({'message':'Nenhum exame identificado. Confira todas as páginas e adicione os exames manualmente.','reviewed':False,'reason':''})
     # A heurística não garante cobertura: revisão visual de todas as páginas é sempre explícita.
     issues.append({'message':'Conferir todas as páginas, inclusive linhas/colunas não reconhecidas, rasuras e autorização.','reviewed':False,'reason':''})
+    if not fields['Operadora']['value']:
+        branded=[]
+        for page in document['pages']:
+            for line in page['lines'][:3]:
+                names=re.findall(r'\b(?:IPASGO|UNIMED)\b',norm(line['text']))
+                for name in names:branded.append((name,page,line))
+        if len({name for name,_,_ in branded})==1:
+            name,page,line=branded[0]
+            fields['Operadora']={'value':name,'page':page['number'],'box':source_box(line),'confidence':line['confidence'],'reviewed':False,'document':document.get('file'),'snippet':line['text'],'candidates':[],'origin_type':'marca_literal_no_cabecalho'}
+    from tiss import extract
+    structured=extract(document)
+    if structured['detected']:
+        for key,value in structured['fields'].items():fields[key]=value
+        fields['Guia']=empty_field(document.get('file'))
+        fields['Validade']=empty_field(document.get('file'))
+        exams=structured['exams']
+        issues=[i for i in issues if not i['message'].startswith('Nenhum exame')]
+        for msg in structured['issues']:issues.append({'message':msg,'reviewed':False,'reason':''})
+        if not exams:issues.append({'message':'Interpretação TISS: nenhum procedimento identificado. Conferir tabela.','reviewed':False,'reason':''})
     return {'fields':fields,'exams':exams,'issues':issues,'pages_reviewed':False,
-            'document_type':document.get('document_type', detect_document_type(document))}
+            'document_type':'guia' if structured['detected'] else document.get('document_type', detect_document_type(document)),
+            'tiss':structured['detected'],'tiss_detail':structured if structured['detected'] else None,
+            'interpretation':{'executed':True,'fields_found':sum(bool(v['value']) for v in fields.values()),'exams_found':len(exams)}}
 
 
 def compare_models(p,g,catalog):
+    if g.get('tiss'):
+        from tiss_comparison import compare_tiss
+        return compare_tiss(p,g,catalog)
     errors=[]; rows=[]
     for key in ['Paciente','Nascimento']:
         a=p['fields'][key]['value'];b=g['fields'][key]['value']
@@ -441,7 +481,10 @@ class CaseStore:
     def get(self,cid):
         r=self.db.execute('SELECT current,revision,status,output FROM casos_v2 WHERE id=?',(cid,)).fetchone()
         if not r:raise ValueError('Caso inexistente.')
-        return json.loads(r[0]),r[1],r[2],json.loads(r[3]) if r[3] else None
+        obj=json.loads(r[0])
+        for model in obj['models'].values():
+            for key in FIELDS:model['fields'].setdefault(key,empty_field())
+        return obj,r[1],r[2],json.loads(r[3]) if r[3] else None
     def save(self,cid,models,actor,reason,revision,documents=None):
         if not actor.strip() or not reason.strip():raise ValueError('Informe revisor e motivo da conferência.')
         with self.db:
@@ -468,9 +511,12 @@ class CaseStore:
             models=obj['models'];result=compare_models(models['pedido'],models['guia'],catalog)
             errors=result['pendencias']+review_errors(models)
             if errors:raise ValueError('\n'.join(errors))
-            identity=digest([norm(models['pedido']['fields']['Paciente']['value']),models['pedido']['fields']['Nascimento']['value'],norm(models['guia']['fields']['Guia']['value'])])
+            identity=digest([norm(models['pedido']['fields']['Paciente']['value']),models['pedido']['fields']['Nascimento']['value'],
+                             {k:models['guia']['fields'].get(k,{}).get('value','') for k in ['Guia','Guia prestador','Guia principal','Guia operadora','Senha autorização','Carteira']},
+                             models['guia'].get('payer_profile',{}).get('id','')])
+            legacy_identity=digest([norm(models['pedido']['fields']['Paciente']['value']),models['pedido']['fields']['Nascimento']['value'],norm(models['guia']['fields']['Guia']['value'])])
             for (s,) in self.db.execute('SELECT output FROM casos_v2 WHERE output IS NOT NULL'):
-                if json.loads(s)['identidade_hash']==identity:raise ValueError('Possível pré-cadastro duplicado: paciente, nascimento e guia já preparados.')
+                if json.loads(s)['identidade_hash'] in [identity,legacy_identity]:raise ValueError('Possível pré-cadastro duplicado: paciente, nascimento e guia já preparados.')
             output={'versao':2,'tipo':'PRE_CADASTRO_LOCAL_NAO_ENVIADO','os_real':None,'revisor':actor,'caso':cid,'revisao':rev,'identidade_hash':identity,'catalogo':copy.deepcopy(catalog),'documentos':{k:{'arquivo':d['file'],'sha256':d['sha256']} for k,d in obj['docs'].items()},'conferencia':models,**result}
             self.db.execute('UPDATE casos_v2 SET status=?,output=? WHERE id=?',('PREPARADO',json.dumps(output,ensure_ascii=False),cid));self.audit(cid,'PREPARAR',{'revisor':actor,'revisao':rev})
             return output

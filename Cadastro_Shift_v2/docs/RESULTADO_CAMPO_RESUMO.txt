@@ -1,0 +1,4 @@
+Somente dados fictícios.
+350 comparações esperadas/obtidas: 350 aprovadas, zero falhas.
+Inclui códigos, descrições e quantidades solicitadas/autorizadas das cinco linhas, inclusive última linha escaneada.
+Detalhamento completo: RELATORIO_CAMPOS_2_3.json

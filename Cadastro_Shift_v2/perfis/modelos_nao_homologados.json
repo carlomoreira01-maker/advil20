@@ -1,0 +1,44 @@
+[
+  {
+    "id": "interno",
+    "nome": "Paciente interno — MODELO NÃO HOMOLOGADO",
+    "fonte_pagadora": "DEFINIR FONTE INTERNA",
+    "tipo_atendimento": "DEFINIR TIPO INTERNO",
+    "procedimentos": [],
+    "homologado": false,
+    "exige_autorizacao": true,
+    "mapeamento": {},
+    "obrigatorios": [],
+    "valores_tecnicos": {},
+    "aprovado_por": "",
+    "aprovado_em": ""
+  },
+  {
+    "id": "ipasgo",
+    "nome": "IPASGO — MODELO NÃO HOMOLOGADO",
+    "fonte_pagadora": "IPASGO",
+    "tipo_atendimento": "AMBULATORIAL",
+    "procedimentos": [],
+    "homologado": false,
+    "exige_autorizacao": true,
+    "mapeamento": {},
+    "obrigatorios": [],
+    "valores_tecnicos": {},
+    "aprovado_por": "",
+    "aprovado_em": ""
+  },
+  {
+    "id": "outros",
+    "nome": "Outros convênios — MODELO NÃO HOMOLOGADO",
+    "fonte_pagadora": "DEFINIR OPERADORA",
+    "tipo_atendimento": "AMBULATORIAL",
+    "procedimentos": [],
+    "homologado": false,
+    "exige_autorizacao": true,
+    "mapeamento": {},
+    "obrigatorios": [],
+    "valores_tecnicos": {},
+    "aprovado_por": "",
+    "aprovado_em": ""
+  }
+]

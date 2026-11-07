@@ -10,7 +10,7 @@ import unittest
 from unittest.mock import patch
 
 from app import App
-from ocr_runtime import save_settings
+from ocr_runtime import save_settings,tesseract_exe
 from test_v2 import TEXT, scan_image, pdf_text
 
 
@@ -18,10 +18,12 @@ from test_v2 import TEXT, scan_image, pdf_text
 class ConfiguracaoNaInterface(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory(prefix='Interface OCR ação ')
-        self.base=Path(self.tmp.name);self.root=tk.Tk();self.app=App(self.root,self.base/'dados')
-        self.real=shutil.which('tesseract')
+        self.base=Path(self.tmp.name);self.root=tk.Tk();self.app=App(self.root,self.base/'dados',demo=True)
+        self.real=tesseract_exe()
         self.exe=self.base/'Downloads'/'TESSERACT'/'tesseract.exe'
-        self.exe.parent.mkdir(parents=True);shutil.copy2(self.real,self.exe)
+        self.exe.parent.mkdir(parents=True)
+        if os.name=='nt':self.exe=Path(self.real)
+        else:shutil.copy2(self.real,self.exe)
         self.app.actor.set('Revisor ficticio')
 
     def tearDown(self):
@@ -81,7 +83,7 @@ class ConfiguracaoNaInterface(unittest.TestCase):
         self.wait(lambda:self.app.ocr_health is not None)
         self.select_and_test(self.exe)
         self.app.store.db.close();self.root.destroy()
-        self.root=tk.Tk();self.app=App(self.root,self.base/'dados')
+        self.root=tk.Tk();self.app=App(self.root,self.base/'dados',demo=True)
         self.wait(lambda:self.app.ocr_health is not None)
         self.assertTrue(self.app.ocr_health['ok'])
         self.assertEqual(self.app.ocr_health['exe'],str(self.exe))
@@ -103,10 +105,12 @@ class ConfiguracaoNaInterface(unittest.TestCase):
 
     def test_localizar_automaticamente_preenche_downloads(self):
         self.app.ocr_settings_window();dialog=self.app.ocr_dialog
-        with patch('ocr_runtime.shutil.which',return_value=None), \
+        fake=self.base/'Downloads'/'TESSERACT'/'tesseract.exe'
+        if not fake.exists():fake.touch()
+        with patch('ocr_runtime.registry_candidates',return_value=[]),patch('ocr_runtime.shutil.which',return_value=None), \
              patch.dict(os.environ,{'USERPROFILE':str(self.base),'SHIFT_TESSERACT':''}):
             dialog['auto']()
-        self.assertEqual(dialog['path'].get(),str(self.exe))
+        self.assertEqual(dialog['path'].get(),str(fake))
         self.assertFalse(self.app.ocr_settings_path.exists())
 
     def test_reanalisa_atendimento_com_ocr_antes_ausente_sem_duplicar(self):

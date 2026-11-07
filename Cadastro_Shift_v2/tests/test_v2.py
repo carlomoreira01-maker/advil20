@@ -141,4 +141,12 @@ class V2(unittest.TestCase):
         s.db.close()
     def test_repeated_fields_duplicate_exams(self):
         m=self.model(TEXT.replace('Exames:','Paciente: Outra Pessoa Sintetica\nExames:')+'Hemograma | 1 | DEMO-HEM\n');self.assertTrue(any('repetido' in i['message'] for i in m['issues']));self.assertIn('repetido',' '.join(compare_models(m,m,self.cat)['pendencias']))
+    def test_duplicate_with_legacy_identity_hash(self):
+        store=CaseStore(self.dir/'legacy.sqlite');cid,models=self.store_case(store)
+        out=store.prepare(cid,self.cat,'Teste',1,digest(self.cat),True)
+        out['identidade_hash']=digest([norm(models['pedido']['fields']['Paciente']['value']),models['pedido']['fields']['Nascimento']['value'],norm(models['guia']['fields']['Guia']['value'])])
+        with store.db:store.db.execute('UPDATE casos_v2 SET output=? WHERE id=?',(json.dumps(out),cid))
+        other,_=self.store_case(store,TEXT+'\n')
+        with self.assertRaisesRegex(ValueError,'duplicado'):store.prepare(other,self.cat,'Teste',1,digest(self.cat),True)
+        store.db.close()
 if __name__=='__main__':unittest.main()

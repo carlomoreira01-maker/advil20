@@ -1,0 +1,451 @@
+{
+  "somente_fixture": true,
+  "doc": {
+    "file": "Registro interno local (sem guia externa)",
+    "sha256": "c78dc099afb259bd2203adbd496ab3797a81b14c3cd76b8fff14a12bc6be8328",
+    "document_type": "registro_interno",
+    "pages": [
+      {
+        "number": 1,
+        "method": "Configuração homologada",
+        "text": "Sem guia externa. Conferir pedido original e perfil interno.",
+        "lines": [],
+        "size": [
+          600,
+          800
+        ],
+        "warnings": []
+      }
+    ],
+    "local_path": null
+  },
+  "model": {
+    "fields": {
+      "Paciente": {
+        "value": "PESSOA FICTICIA ALFA",
+        "page": 1,
+        "box": [
+          40.0,
+          54.78400802612305,
+          292.5439758300781,
+          76.76800537109375
+        ],
+        "confidence": 100.0,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "Paciente: PESSOA FICTICIA ALFA",
+        "candidates": []
+      },
+      "Nascimento": {
+        "value": "01/02/1995",
+        "page": 1,
+        "box": [
+          40.0,
+          76.76802062988281,
+          213.42398071289062,
+          98.75201416015625
+        ],
+        "confidence": 100.0,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "Nascimento: 01/02/1995",
+        "candidates": []
+      },
+      "Fonte pagadora": {
+        "value": "FONTE FICTICIA INTERNA",
+        "page": null,
+        "box": null,
+        "confidence": null,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "",
+        "candidates": []
+      },
+      "Operadora": {
+        "value": "",
+        "page": null,
+        "box": null,
+        "confidence": null,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "",
+        "candidates": []
+      },
+      "Guia": {
+        "value": "",
+        "page": null,
+        "box": null,
+        "confidence": null,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "",
+        "candidates": []
+      },
+      "Medico": {
+        "value": "DRA EXEMPLO SINTETICA",
+        "page": 1,
+        "box": [
+          40.0,
+          120.73603820800781,
+          304.06396484375,
+          142.72003173828125
+        ],
+        "confidence": 100.0,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "Medico: DRA EXEMPLO SINTETICA",
+        "candidates": []
+      },
+      "Validade": {
+        "value": "",
+        "page": null,
+        "box": null,
+        "confidence": null,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "",
+        "candidates": []
+      },
+      "Status": {
+        "value": "",
+        "page": null,
+        "box": null,
+        "confidence": null,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "",
+        "candidates": []
+      },
+      "Guia prestador": {
+        "value": "",
+        "page": null,
+        "box": null,
+        "confidence": null,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "",
+        "candidates": []
+      },
+      "Guia principal": {
+        "value": "",
+        "page": null,
+        "box": null,
+        "confidence": null,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "",
+        "candidates": []
+      },
+      "Data autorização": {
+        "value": "",
+        "page": null,
+        "box": null,
+        "confidence": null,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "",
+        "candidates": []
+      },
+      "Senha autorização": {
+        "value": "",
+        "page": null,
+        "box": null,
+        "confidence": null,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "",
+        "candidates": []
+      },
+      "Validade senha": {
+        "value": "",
+        "page": null,
+        "box": null,
+        "confidence": null,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "",
+        "candidates": []
+      },
+      "Guia operadora": {
+        "value": "",
+        "page": null,
+        "box": null,
+        "confidence": null,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "",
+        "candidates": []
+      },
+      "Carteira": {
+        "value": "0000087654",
+        "page": 1,
+        "box": [
+          40.0,
+          98.75202941894531,
+          194.75198364257812,
+          120.73602294921875
+        ],
+        "confidence": 100.0,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "Carteira: 0000087654",
+        "candidates": []
+      },
+      "Validade carteira": {
+        "value": "",
+        "page": null,
+        "box": null,
+        "confidence": null,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "",
+        "candidates": []
+      },
+      "Código solicitante": {
+        "value": "",
+        "page": null,
+        "box": null,
+        "confidence": null,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "",
+        "candidates": []
+      },
+      "Conselho": {
+        "value": "CRM",
+        "page": 1,
+        "box": [
+          40.0,
+          142.7200469970703,
+          152.91201782226562,
+          164.70404052734375
+        ],
+        "confidence": 100.0,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "Conselho: CRM",
+        "candidates": []
+      },
+      "Número conselho": {
+        "value": "0012345",
+        "page": 1,
+        "box": [
+          40.0,
+          164.7040557861328,
+          236.54397583007812,
+          186.68804931640625
+        ],
+        "confidence": 100.0,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "Numero conselho: 0012345",
+        "candidates": []
+      },
+      "UF conselho": {
+        "value": "GO",
+        "page": 1,
+        "box": [
+          40.0,
+          186.6880645751953,
+          163.60000610351562,
+          208.67205810546875
+        ],
+        "confidence": 100.0,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "UF conselho: GO",
+        "candidates": []
+      },
+      "Data solicitação": {
+        "value": "",
+        "page": null,
+        "box": null,
+        "confidence": null,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "",
+        "candidates": []
+      },
+      "Indicação clínica": {
+        "value": "",
+        "page": null,
+        "box": null,
+        "confidence": null,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "",
+        "candidates": []
+      },
+      "Regime atendimento": {
+        "value": "AMBULATORIAL",
+        "page": null,
+        "box": null,
+        "confidence": null,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "",
+        "candidates": [],
+        "origin_type": "perfil_aprovado"
+      },
+      "Data execução": {
+        "value": "",
+        "page": null,
+        "box": null,
+        "confidence": null,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "",
+        "candidates": []
+      }
+    },
+    "exams": [
+      {
+        "descricao": "Hemograma",
+        "codigo": "90000001",
+        "quantidade": "1",
+        "material": "",
+        "page": 1,
+        "box": [
+          40.0,
+          230.6560821533203,
+          234.19198608398438,
+          252.64007568359375
+        ],
+        "confidence": 100.0,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "Hemograma | 1 | 90000001",
+        "raw": "Hemograma | 1 | 90000001",
+        "notes": [],
+        "quantidade_solicitada": "1",
+        "quantidade_autorizada": ""
+      },
+      {
+        "descricao": "Glicose",
+        "codigo": "90000002",
+        "quantidade": "1",
+        "material": "",
+        "page": 1,
+        "box": [
+          40.0,
+          252.6400909423828,
+          199.51998901367188,
+          274.62408447265625
+        ],
+        "confidence": 100.0,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "Glicose | 1 | 90000002",
+        "raw": "Glicose | 1 | 90000002",
+        "notes": [],
+        "quantidade_solicitada": "1",
+        "quantidade_autorizada": ""
+      },
+      {
+        "descricao": "TSH",
+        "codigo": "90000003",
+        "quantidade": "1",
+        "material": "",
+        "page": 1,
+        "box": [
+          40.0,
+          274.62408447265625,
+          178.17599487304688,
+          296.60809326171875
+        ],
+        "confidence": 100.0,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "TSH | 1 | 90000003",
+        "raw": "TSH | 1 | 90000003",
+        "notes": [],
+        "quantidade_solicitada": "1",
+        "quantidade_autorizada": ""
+      },
+      {
+        "descricao": "Creatinina",
+        "codigo": "90000004",
+        "quantidade": "1",
+        "material": "",
+        "page": 1,
+        "box": [
+          40.0,
+          296.60809326171875,
+          219.08798217773438,
+          318.59210205078125
+        ],
+        "confidence": 100.0,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "Creatinina | 1 | 90000004",
+        "raw": "Creatinina | 1 | 90000004",
+        "notes": [],
+        "quantidade_solicitada": "1",
+        "quantidade_autorizada": ""
+      },
+      {
+        "descricao": "Colesterol total",
+        "codigo": "90000005",
+        "quantidade": "1",
+        "material": "",
+        "page": 1,
+        "box": [
+          40.0,
+          318.59210205078125,
+          252.87997436523438,
+          340.57611083984375
+        ],
+        "confidence": 100.0,
+        "reviewed": false,
+        "document": "05_pedido.pdf",
+        "snippet": "Colesterol total | 1 | 90000005",
+        "raw": "Colesterol total | 1 | 90000005",
+        "notes": [],
+        "quantidade_solicitada": "1",
+        "quantidade_autorizada": ""
+      }
+    ],
+    "issues": [
+      {
+        "message": "Conferir todas as páginas, inclusive linhas/colunas não reconhecidas, rasuras e autorização.",
+        "reviewed": false,
+        "reason": ""
+      },
+      {
+        "message": "Atendimento interno: conferir escopo do perfil e ausência de guia externa.",
+        "reviewed": false,
+        "reason": ""
+      }
+    ],
+    "pages_reviewed": false,
+    "document_type": "pedido",
+    "tiss": true,
+    "tiss_detail": null,
+    "interpretation": {
+      "executed": true,
+      "fields_found": 7,
+      "exams_found": 5
+    },
+    "internal": true,
+    "payer_profile": {
+      "id": "INTERNO-FICTICIO-NAO-USAR-EM-PRODUCAO",
+      "nome": "Somente fixture de atendimento interno",
+      "fonte_pagadora": "FONTE FICTICIA INTERNA",
+      "tipo_atendimento": "AMBULATORIAL",
+      "procedimentos": [
+        "90000001",
+        "90000002",
+        "90000003",
+        "90000004",
+        "90000005"
+      ],
+      "homologado": true,
+      "aprovado_por": "RESPONSAVEL FICTICIO",
+      "aprovado_em": "2026-11-07",
+      "exige_autorizacao": false,
+      "mapeamento": {},
+      "obrigatorios": [],
+      "valores_tecnicos": {}
+    }
+  }
+}

@@ -16,7 +16,7 @@ from test_v2 import TEXT, pdf_text, scan_image
 class FluxoCompleto(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory(prefix='Interface ação ')
-        self.base=Path(self.tmp.name);self.root=tk.Tk();self.app=App(self.root,self.base/'dados')
+        self.base=Path(self.tmp.name);self.root=tk.Tk();self.app=App(self.root,self.base/'dados',demo=True)
         self.app.actor.set('Revisor Ficticio');self.root.update()
 
     def tearDown(self):

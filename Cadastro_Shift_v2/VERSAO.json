@@ -1,14 +1,16 @@
 {
-  "versao": "2.2",
-  "data": "2026-11-05",
-  "testes_aprovados": 89,
-  "testes_interface": 16,
+  "versao": "2.3",
+  "data": "2026-11-07",
+  "testes_aprovados": 133,
+  "testes_interface": 25,
   "falhas": 0,
   "ignorados": 0,
   "ambiente_testes": "Linux Debian 13 / Python 3.12.14 / PyMuPDF 1.26.6 / Pillow 13.0.0 / Tesseract 5.5.0 / Xorg dummy",
-  "windows": "Execução nativa não validada. Use TESTAR_WINDOWS.bat.",
+  "windows": "Execução nativa pendente; testar instalação e OCR no computador Windows. Regras e layouts reais dependem de homologação local.",
   "modelos": {
     "por.traineddata": "c4932b937207a9514b7514d518b931a99938c02a28a5a5a553f8599ed58b7deb",
     "eng.traineddata": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2"
-  }
+  },
+  "testes_navegador": 3,
+  "verificacoes_campos": 350
 }

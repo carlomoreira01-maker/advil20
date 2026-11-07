@@ -1,0 +1,65 @@
+"""Comparação TISS separa solicitação, autorização e execução; nenhuma aprovação automática."""
+from core import norm,digest
+from payer_mapping import map_payer
+
+
+def compare_tiss(p,g,catalog):
+ from engine_v2 import resolve_exam
+ errors=[];rows=[]
+ status=norm(g['fields'].get('Status',{}).get('value',''))
+ if status and status not in ['AUTORIZADO','AUTORIZADA']:errors.append('Status explícito da guia incompatível com autorização; conferir.')
+ mapping=map_payer(g,g.get('payer_profile'))
+ internal=bool(g.get('internal') and not mapping['errors'] and (g.get('payer_profile') or {}).get('exige_autorizacao') is False)
+ a=p['fields']['Paciente']['value'];b=g['fields']['Paciente']['value']
+ if not a or not b or norm(a)!=norm(b):errors.append('Identidade: nomes ausentes ou divergentes; bloqueado.')
+ identifiers=['Nascimento','Carteira']
+ common=[k for k in identifiers if p['fields'].get(k,{}).get('value') and g['fields'].get(k,{}).get('value')]
+ if not common:errors.append('Identidade: falta segundo identificador comum; nome isolado não confirma paciente.')
+ if any(norm(p['fields'][k]['value'])!=norm(g['fields'][k]['value']) for k in common):errors.append('Identidade: identificadores divergentes; bloqueado.')
+ if not p['fields']['Medico']['value']:errors.append('Médico solicitante não identificado no pedido.')
+ for key in ['Medico','Conselho','Número conselho','UF conselho']:
+  if not g['fields'].get(key,{}).get('value'):errors.append('Solicitante: '+key+' não identificado; conferir cadastro.')
+  a=p['fields'].get(key,{}).get('value','');b=g['fields'].get(key,{}).get('value','')
+  if a and b and norm(a)!=norm(b):errors.append('Solicitante divergente entre pedido e guia: '+key+'.')
+ maps=[]
+ for title,model in [('Pedido',p),('Guia',g)]:
+  found={}
+  for e in model['exams']:
+   cat,err=resolve_exam(e,catalog)
+   if err:errors.append(title+': '+err)
+   if cat and e.get('material') and cat.get('material') and norm(e['material'])!=norm(cat['material']):errors.append(title+': material divergente do catálogo.')
+   if not cat:continue
+   identity=cat.get('tuss') or cat.get('codigo_shift') or norm(cat['nome'])
+   if identity in found:errors.append(title+': procedimento repetido na mesma seção; conferir.')
+   found[identity]=(e,cat)
+  maps.append(found)
+ if not p['exams'] or not g['exams']:errors.append('Pedido ou guia sem procedimentos identificados.')
+ for code in sorted(set(maps[0])|set(maps[1])):
+  pedido=maps[0].get(code);guia=maps[1].get(code);item=(pedido or guia)[1]
+  requested=pedido[0].get('quantidade_solicitada',pedido[0].get('quantidade','')) if pedido else ''
+  authorized=guia[0].get('quantidade_autorizada','') if guia else ''
+  qs=guia[0].get('quantidade_solicitada','') if guia else ''
+  state='Conferir'
+  if not pedido or not guia:state='Ausente no pedido' if not pedido else 'Ausente na guia'
+  elif internal:state='Conferir'
+  elif not authorized:state='Autorização não identificada'
+  elif authorized.isdigit() and int(authorized)==0:state='Não autorizado'
+  elif not requested.isdigit() or not authorized.isdigit() or int(requested)!=int(authorized):state='Quantidade divergente'
+  elif qs and (not qs.isdigit() or int(qs)!=int(requested)):state='Quantidade solicitada divergente'
+  if state!='Conferir':errors.append(code+': '+state)
+  if not item.get('codigo_shift'):errors.append('Código interno Shift não fornecido pelo laboratório.')
+  rows.append({**item,'pedido':requested,'guia':'Não se aplica' if internal else authorized,'situacao':state,'pagina_pedido':pedido[0]['page'] if pedido else None,'pagina_guia':guia[0]['page'] if guia else None})
+ mapping=map_payer(g,g.get('payer_profile'))
+ errors.extend(mapping['errors'])
+ # A profile must explicitly permit an internal workflow; no global internal exemption.
+ profile=g.get('payer_profile') or {}
+ if profile.get('exige_autorizacao',True):
+  for key in ['Senha autorização','Validade senha']:
+   if not g['fields'].get(key,{}).get('value'):errors.append(key+' não identificada.')
+  from datetime import datetime,date
+  val=g['fields'].get('Validade senha',{}).get('value','')
+  if val:
+   try:
+    if datetime.strptime(val,'%d/%m/%Y').date()<date.today():errors.append('Senha de autorização vencida.')
+   except ValueError:errors.append('Validade da senha inválida.')
+ return {'exames':rows,'pendencias':list(dict.fromkeys(errors)),'catalogo_hash':digest(catalog),'payer_mapping':mapping}

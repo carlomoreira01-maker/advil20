@@ -1,0 +1,38 @@
+CADASTRO ASSISTIDO SHIFT 2.3 — COMECE AQUI
+
+ATUALIZAR SEM PERDER HISTÓRICO
+1. Feche o programa antigo e faça backup de toda a pasta.
+2. Extraia TODO o ZIP novo em outra pasta, por exemplo Documentos\Cadastro_Shift_2_3. Não execute dentro do ZIP.
+3. Se deseja manter o histórico, copie dados_v2 da versão antiga para a nova pasta Cadastro_Shift_v2, com ambos os programas fechados e ANTES de criar atendimentos na nova versão. Não sobrescreva dados novos. Não copie a .venv antiga.
+4. Com Python 3.12 a 3.14 já instalado, abra INSTALAR_WINDOWS.bat. A instalação usa Python para instalar as bibliotecas fixadas; não utiliza PowerShell, winget ou alteração de política de segurança.
+5. Abra INICIAR_WINDOWS.bat. O título deve mostrar 2.3.
+6. Em Configurações e ferramentas, abra Diagnóstico e configuração OCR. Escolha tesseract.exe e clique em Testar e salvar. O caminho já salvo na 2.2 é reutilizado quando disponível.
+
+PRIMEIRO TESTE TISS — SOMENTE DOCUMENTOS FICTÍCIOS
+1. Informe um revisor de teste.
+2. Configurações e ferramentas → Catálogo do laboratório → Importar JSON: escolha exemplos_tiss/catalogo_ficticio.json.
+3. Clique em Importar pedido e guia. Selecione exemplos_tiss/05_pedido.pdf e exemplos_tiss/01_escaneada.pdf (ou 01_completa.pdf / 01_completa.png).
+4. Aguarde. Na aba Comparar e conferir, escolha Guia e depois Guia TISS. Confira que os números de guia, senha e carteira aparecem SEPARADAMENTE e mantêm os zeros iniciais.
+5. Na área Médico e atendimento, confira CRM, número e UF. A tabela deve conter cinco procedimentos, com quantidade solicitada e autorizada separadas.
+6. O botão Origem mostra o trecho e a região no original. Diagnóstico de leitura separa leitura/OCR, interpretação e atualização da interface.
+7. Repita com 02_sem_autorizacao.pdf ou 03_autorizada_zero.pdf. A preparação DEVE ficar bloqueada. Não preencha 1 ou zero para eliminar pendências.
+8. Os exemplos usam códigos fictícios de teste e não têm códigos internos reais do Shift. O bloqueio por falta de código interno/perfil homologado é esperado. Os testes completos demonstram a preparação com códigos explicitamente fornecidos pela fixture de teste.
+
+PARA CONFIGURAR O USO DO LABORATÓRIO
+- Catálogo do laboratório: importe/adapte nomes padronizados, TUSS, código interno REAL quando fornecido, sinônimos aprovados e material. O programa nunca gera código interno automaticamente. Catálogo vazio permite leitura, mas bloqueia preparação.
+- Fontes pagadoras: use Novo / editar perfil, sem editar código. A equipe deve informar fonte pagadora, tipo de atendimento, procedimentos abrangidos, responsável/data e correspondência de CADA campo. Matrícula, senha e os vários números de guia não são intercambiáveis.
+- Só marque homologação quando a equipe realmente aprovar. Os modelos em perfis são NÃO homologados. Perfis IPASGO e internos precisam de validação local; não existem regras universais embutidas para essas marcas.
+- Valores técnicos só são aceitos com aprovação explícita. Não há preenchimento automático arbitrário com zero.
+- Interno sem guia externa: selecione perfil interno homologado para aquele escopo, depois clique em Interno sem guia externa e escolha o pedido. O registro local informa que não existe guia externa; não fabrica autorização. Este fluxo é individual; o lote CSV continua usando pares explícitos.
+- Lote CSV: mantenha um pedido e uma guia por linha. Confira a identidade de cada atendimento. Nunca associe por ordem de nomes dos arquivos.
+- Reanalise documentos de pares antigos que ficaram sem campos após atualizar o OCR. A leitura anterior e as revisões ficam preservadas. Casos já preparados permanecem protegidos.
+
+SIMULAÇÃO DA INTEGRAÇÃO
+Configurações e ferramentas → Simulação local fictícia abre uma página SOMENTE no próprio computador. Pesquise a pessoa fictícia, confirme nome + nascimento/carteira, selecione o médico fictício, anexe dois arquivos fictícios, confira e prepare uma O.S. SIMULADA. Não usa credenciais, não acessa o Shift e não imprime etiqueta oficial.
+
+VALIDAÇÃO NO WINDOWS E ANTIVÍRUS
+A entrega foi testada em Linux com Tesseract real, Tkinter e Chromium/Playwright. O instalador e os binários no seu Windows ainda precisam de validação local. Execute TESTAR_WINDOWS.bat; os testes de navegador são opcionais e separados.
+Se o antivírus detectar ameaça, mantenha o bloqueio/quarentena. Não desative proteção, não crie exceção nem altere política de execução. Copie o nome da ameaça e o arquivo afetado para investigação. Esta entrega NÃO é um certificado antivírus e não estabelece que o alerta anterior era falso positivo.
+
+LIMITES
+As guias de exemplo são sintéticas. Layouts reais diferentes, campos apagados, números deformados, manuscritos e carimbos podem continuar como Não identificado. Não finalize atendimento sem conferir o original. As regras do convênio, códigos e materiais precisam ser homologados pela equipe. Nenhum cadastro real ou configuração do Shift é alterado por este aplicativo.
