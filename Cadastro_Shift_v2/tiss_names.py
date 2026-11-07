@@ -21,7 +21,11 @@ def name_words(region):
         first=plausible[0];height=median(w['box'][3]-w['box'][1] for w in first)
         # Administrative text in a neighboring unrecognized column is usually
         # a smaller font. A horizontal gap alone must never delete a first name.
-        selected=[w for c in plausible if abs(median(x['box'][3]-x['box'][1] for x in c)-height)<=max(1,height*.18) for w in c]
+        selected=[]
+        for c in plausible:
+            if abs(median(x['box'][3]-x['box'][1] for x in c)-height)>max(1,height*.18):continue
+            if selected and len(c)==1 and len(c[0]['text'])==1 and c[0]['box'][0]-selected[-1]['box'][2]>max(18,height*6):continue
+            selected.extend(c)
         if selected:lines.append(selected)
     starts=[ws for ws in lines if len(norm(' '.join(w['text'] for w in ws)).split())>=2]
     if not starts:return []
@@ -29,5 +33,6 @@ def name_words(region):
     height=max(w['box'][3]-w['box'][1] for w in first)
     for ws in lines:
         if ws is first:continue
-        if abs(ws[0]['box'][0]-first[0]['box'][0])<height*2 and 2<ws[0]['box'][1]-first[0]['box'][1]<height*2.5:result.extend(ws)
+        same_font=abs(median(w['box'][3]-w['box'][1] for w in ws)-median(w['box'][3]-w['box'][1] for w in first))<=max(.75,height*.18)
+        if same_font and abs(ws[0]['box'][0]-first[0]['box'][0])<height*2 and 2<ws[0]['box'][1]-first[0]['box'][1]<height*2.5:result.extend(ws)
     return result

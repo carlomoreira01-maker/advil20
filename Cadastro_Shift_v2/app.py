@@ -25,11 +25,12 @@ class DocumentView(ttk.Frame):
     def __init__(self,parent,title):
         super().__init__(parent)
         self.path=None;self.doc=None;self.index=0;self.zoom=1.;self.box=None
-        self.seen=set()
+        self.seen=set();self.rotation_offset=0
         self.on_page=None
         bar=ttk.Frame(self);bar.pack(fill='x')
         ttk.Label(bar,text=title,font=('Segoe UI',11,'bold')).pack(side='left')
         for text,fn in [('<',lambda:self.move(-1)),('>',lambda:self.move(1)),('-',lambda:self.scale(.8)),('+',lambda:self.scale(1.25))]:ttk.Button(bar,text=text,width=3,command=fn).pack(side='left',padx=1)
+        ttk.Button(bar,text='Girar',width=5,command=self.rotate).pack(side='left',padx=2)
         self.info=tk.StringVar();ttk.Label(self,textvariable=self.info).pack(anchor='w')
         frame=ttk.Frame(self);frame.pack(fill='both',expand=True)
         self.canvas=tk.Canvas(frame,bg='#dfe6eb',highlightthickness=0)
@@ -38,9 +39,11 @@ class DocumentView(ttk.Frame):
         self.canvas.grid(row=0,column=0,sticky='nsew');vy.grid(row=0,column=1,sticky='ns');hx.grid(row=1,column=0,sticky='ew')
         frame.rowconfigure(0,weight=1);frame.columnconfigure(0,weight=1)
     def load(self,doc):
-        self.doc=doc;self.path=doc.get('local_path');self.index=0;self.zoom=1.;self.box=None;self.seen=set();self.render()
+        self.doc=doc;self.path=doc.get('local_path');self.index=0;self.zoom=1.;self.box=None;self.seen=set();self.rotation_offset=0;self.render()
     def move(self,delta):
         if self.doc:self.index=max(0,min(len(self.doc['pages'])-1,self.index+delta));self.box=None;self.render()
+    def rotate(self):
+        self.rotation_offset=(self.rotation_offset+90)%360;self.render()
     def scale(self,factor):
         self.zoom=max(.3,min(4,self.zoom*factor));self.render()
     def locate(self,page,box):
@@ -54,18 +57,22 @@ class DocumentView(ttk.Frame):
             self.canvas.create_text(15,15,text='Abra Identificar documentos para corrigir a classificação.',anchor='nw');return
         p=self.doc['pages'][self.index];self.seen.add(self.index+1)
         source=p.get('source',{});path=source.get('path',self.path);source_index=source.get('page',self.index+1)-1
-        self.info.set(f'Página {self.index+1}/{len(self.doc["pages"])} · original {source_index+1} · {p["method"]} · Zoom {round(self.zoom*100)}%')
+        angle=(int(p.get('orientation',0))+self.rotation_offset)%360
+        self.info.set(f'Página {self.index+1}/{len(self.doc["pages"])} · original {source_index+1} · {p["method"]} · Rotação {angle}° · Zoom {round(self.zoom*100)}%')
         try:
             if not path or Path(path).suffix.lower()=='.txt':
                 self.canvas.create_text(15,15,text=p['text'],anchor='nw',font=('Consolas',11),width=700)
             else:
                 from PIL import ImageTk
                 im,_=preview(path,source_index)
+                if angle:im=im.rotate(angle,expand=True)
                 base=min(1,540/max(1,im.width));factor=base*self.zoom
                 im=im.resize((max(1,int(im.width*factor)),max(1,int(im.height*factor))))
                 self.photo=ImageTk.PhotoImage(im);self.canvas.create_image(0,0,image=self.photo,anchor='nw')
                 if self.box:
-                    sx=im.width/p['size'][0];sy=im.height/p['size'][1];b=self.box
+                    from document_geometry import rotated_box
+                    size=list(reversed(p['size'])) if angle in [90,270] else p['size']
+                    sx=im.width/size[0];sy=im.height/size[1];b=rotated_box(self.box,p['size'],angle)
                     self.canvas.create_rectangle(b[0]*sx,b[1]*sy,b[2]*sx,b[3]*sy,outline='#dc5b12',width=3)
                     self.canvas.yview_moveto(max(0,b[1]*sy-40)/max(1,im.height))
             self.canvas.configure(scrollregion=self.canvas.bbox('all'))
@@ -86,9 +93,9 @@ class App:
         self.ocr_request=0;self.ocr_dialog=None;self.ocr_health=None
         self.import_sequence=0
         root.report_callback_exception=self.callback_failure
-        root.title('Cadastro Assistido Shift · versão 2.4.2 · Local');root.geometry('1450x950');root.minsize(1100,760)
+        root.title('Cadastro Assistido Shift · versão 2.4.3 · Local');root.geometry('1450x950');root.minsize(1100,760)
         st=ttk.Style();st.theme_use('clam');st.configure('TButton',padding=6);st.configure('Treeview',rowheight=28)
-        tk.Label(root,text='CADASTRO ASSISTIDO SHIFT  |  2.4.2',font=('Segoe UI',19,'bold'),bg='#173d52',fg='white',anchor='w',padx=18,pady=12).pack(fill='x')
+        tk.Label(root,text='CADASTRO ASSISTIDO SHIFT  |  2.4.3',font=('Segoe UI',19,'bold'),bg='#173d52',fg='white',anchor='w',padx=18,pady=12).pack(fill='x')
         ttk.Label(root,text='Importar escaneamento → Identificar documentos → Extrair dados → Comparar exames → Conferir → Preparar cadastro',font=('Segoe UI',11,'bold'),padding=8).pack(fill='x')
         ttk.Label(root,text='Processamento local | Revisão humana obrigatória | Pré-cadastro não enviado ao Shift',padding=(10,0)).pack(anchor='w')
         bar=ttk.Frame(root,padding=8);bar.pack(fill='x')
@@ -476,7 +483,36 @@ class App:
     def locate_field(self,k,f):
         if not self.models:return
         src=self.models[k]['fields'][f]
-        conf=src['confidence'];self.status.set(f'{f}: página {src["page"] or "não localizada"}; confiança OCR {conf if conf is not None else "não disponível"}. '+src.get('diagnostic','Conferir o valor no original.'))
+        if not src['value'] and src.get('candidates'):return self.candidate_window(k,f)
+        self.locate_source(k,f,src)
+    def candidate_window(self,k,f):
+        source=self.models[k]['fields'][f]
+        candidates=[{**{key:copy.deepcopy(source.get(key)) for key in ['page','box','snippet','document','confidence']},**copy.deepcopy(c)} for c in source.get('candidates',[]) if c.get('value')]
+        if not candidates:return self.locate_source(k,f,source)
+        window=tk.Toplevel(self.root);window.title('Conferir leituras · '+f);window.geometry('900x340')
+        ttk.Label(window,text='Leituras locais diferentes não são aprovação. Compare cada origem e escolha somente o valor conferido no documento.',wraplength=850,padding=8).pack(fill='x')
+        table=ttk.Treeview(window,columns=('valor','pagina','confianca','metodo'),show='headings',height=7)
+        for key,title,width in [('valor','Valor lido',370),('pagina','Página original',110),('confianca','Confiança OCR',110),('metodo','Leitura',230)]:table.heading(key,text=title);table.column(key,width=width)
+        table.pack(fill='both',expand=True,padx=8)
+        for i,c in enumerate(candidates):table.insert('','end',iid=str(i),values=(c['value'],c.get('source_document',{}).get('page',c.get('page')),c.get('confidence',''),c.get('origin_type','Leitura local')))
+        table.selection_set('0')
+        def selected():
+            if not table.selection():raise ValueError('Selecione uma leitura para conferir.')
+            return candidates[int(table.selection()[0])]
+        def show():self.locate_source(k,f,selected())
+        def choose():
+            c=copy.deepcopy(selected())
+            if f in ['Conselho','UF conselho'] and c.get('origin_type')=='codigo_impresso_nao_mapeado':
+                raise ValueError('Código numérico sem correspondência homologada. Informe o conselho/UF confirmado na conferência.')
+            c.update(reviewed=False,origin_type='escolha_humana_de_leitura',confidence=None,candidates=[])
+            self.models[k]['fields'][f]=c;self.field_vars[k][f].set(c['value']);self.field_checks[k][f].set(False)
+            self.confirm.set(False);self.show_comparison();window.destroy()
+        buttons=ttk.Frame(window,padding=7);buttons.pack(fill='x')
+        ttk.Button(buttons,text='Ver página da leitura',command=lambda:self.guard(show)).pack(side='left',padx=4)
+        ttk.Button(buttons,text='Usar valor para conferir',command=lambda:self.guard(choose)).pack(side='left',padx=4)
+        self.candidate_editor={'window':window,'table':table,'show':show,'choose':choose}
+    def locate_source(self,k,f,src):
+        conf=src.get('confidence');self.status.set(f'{f}: página {src.get("page") or "não localizada"}; confiança OCR {conf if conf is not None else "não disponível"}. '+src.get('diagnostic','Conferir o valor no original.'))
         target=k
         if src.get('document') and self.views[k].doc.get('file')!=src['document']:
             target=next((name for name,view in self.views.items() if view.doc and view.doc.get('file')==src['document']),k)

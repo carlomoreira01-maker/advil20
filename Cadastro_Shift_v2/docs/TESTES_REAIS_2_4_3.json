@@ -1,0 +1,76 @@
+{
+  "documentos_reais_incluidos_no_pacote": false,
+  "textos_nomes_codigos_ou_identificadores_reais_incluidos": false,
+  "metodo": "OCR local com releituras regionais concordantes, interpretação e verificação dos widgets. Não substitui conferência humana independente de cada valor.",
+  "arquivos_reais": 2,
+  "paginas_reais": 7,
+  "gui_checks": 118,
+  "gui_checks_passed": 118,
+  "ui_errors": 0,
+  "ui_warnings": 0,
+  "cases": [
+    {
+      "document": "A",
+      "pages": 3,
+      "gui_checks": 59,
+      "gui_checks_passed": 59,
+      "case_identity_errors": [],
+      "case_patient_identified": true,
+      "case_card_identified": true,
+      "case_crm_identified": true,
+      "rows_visible": 15,
+      "prepared": false,
+      "originals_preserved": true,
+      "before": {
+        "requested_known": 11,
+        "authorized_known": 0,
+        "crm_pages": 1,
+        "provider_guide_pages": 2
+      },
+      "after": {
+        "requested_known": 11,
+        "authorized_known": 0,
+        "crm_pages": 3,
+        "provider_guide_pages": 3
+      },
+      "pending": [
+        "Quantidades sem consenso suficiente precisam de conferência.",
+        "Conselho/UF numéricos dependem de correspondência homologada; não foram convertidos por suposição.",
+        "Campos ausentes ou leituras divergentes não foram preenchidos arbitrariamente."
+      ],
+      "rows_visible_note": "Linhas por página/documento, sem afirmar que todos os procedimentos são únicos ou autorizados."
+    },
+    {
+      "document": "B",
+      "pages": 4,
+      "gui_checks": 59,
+      "gui_checks_passed": 59,
+      "case_identity_errors": [],
+      "case_patient_identified": true,
+      "case_card_identified": true,
+      "case_crm_identified": false,
+      "rows_visible": 20,
+      "prepared": false,
+      "originals_preserved": true,
+      "before": {
+        "requested_known": 5,
+        "authorized_known": 7,
+        "crm_pages": 2,
+        "provider_guide_pages": 4
+      },
+      "after": {
+        "requested_known": 10,
+        "authorized_known": 16,
+        "crm_pages": 4,
+        "provider_guide_pages": 4
+      },
+      "pending": [
+        "Quantidades sem consenso suficiente precisam de conferência.",
+        "Conselho/UF numéricos dependem de correspondência homologada; não foram convertidos por suposição.",
+        "Campos ausentes ou leituras divergentes não foram preenchidos arbitrariamente.",
+        "Há leituras de CRM diferentes entre páginas; a ficha não escolheu um registro automaticamente."
+      ],
+      "rows_visible_note": "Linhas por página/documento, sem afirmar que todos os procedimentos são únicos ou autorizados."
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+CADASTRO ASSISTIDO SHIFT 2.4.3 — VERIFICAÇÃO DO PACOTE
+
+ZIP: Cadastro_Shift_v2_4_3_corrigido.zip
+Arquivos: 180; todos os 170 arquivos da entrega 2.4.2 preservados.
+CRC do ZIP: aprovado. SHA-256 de cada membro: corresponde ao manifesto.
+SHA-256 do ZIP: 9132b483a495d7e1a4f3242e950727f8a30ff288641e316ab7b83c8e1b941d58
+
+O pacote foi extraído em diretório novo. Quatro testes gráficos foram executados a partir desses arquivos, usando somente documentos fictícios. Incluem escolha humana entre leituras, bloqueio de conselho numérico sem mapeamento, rotação sem alterar o original e atendimento de quatro páginas até preparo local após conferência. Nenhum acesso ao Shift real.
+
+Instalação/execução nativas no Windows continuam pendentes.
+
+SAÍDA
+
+test_candidatos_exigem_escolha_humana_e_nao_aprovam_cadastro (tests.test_regions_gui_243.RegionGUI243.test_candidatos_exigem_escolha_humana_e_nao_aprovam_cadastro) ... ok
+test_codigo_numerico_nao_mapeado_nao_pode_ser_usado_como_conselho (tests.test_regions_gui_243.RegionGUI243.test_codigo_numerico_nao_mapeado_nao_pode_ser_usado_como_conselho) ... ok
+test_visualizacao_gira_sem_mudar_arquivo_e_preserva_origem (tests.test_regions_gui_243.RegionGUI243.test_visualizacao_gira_sem_mudar_arquivo_e_preserva_origem) ... ok
+test_quatro_paginas_mesma_ficha_campos_visiveis_ate_preparo (tests.test_grouping_gui_242.GroupingGUI242.test_quatro_paginas_mesma_ficha_campos_visiveis_ate_preparo) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 5.504s
+
+OK

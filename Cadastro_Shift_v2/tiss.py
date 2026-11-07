@@ -26,7 +26,9 @@ def empty_field(document=None):
 def valid(value,kind):
  if not value:return False
  if kind=='text':return bool(re.search(r'[A-Z]',value)) and len(value)<=1000
- if kind=='id':return bool(re.fullmatch(r'[A-Z0-9][A-Z0-9./-]*',value)) and bool(re.search(r'\d',value))
+ if kind=='id':
+  if re.fullmatch(r'\d{1,2}/\d{1,2}/\d{4}',value):return False
+  return bool(re.fullmatch(r'[A-Z0-9][A-Z0-9./-]*',value)) and bool(re.search(r'\d',value))
  if kind=='number':return bool(re.fullmatch(r'\d+',value))
  if kind=='date':
   try:datetime.strptime(value,'%d/%m/%Y');return True
@@ -43,7 +45,8 @@ def extract(document):
  fields={key:empty_field(document.get('file')) for key,_ in SCHEMA.values()}
  found_any=False;exams=[];executed=[];extra=[];issues=[]
  for page in document['pages']:
-  aa=anchors(page)
+  from tiss_refinement import merge_anchor_fallbacks
+  aa=merge_anchor_fallbacks(page,anchors(page))
   detected=len(aa)>=2 and (any(a['num'] in [2,5,7,8,10,15] for a in aa) or 'SP/SADT' in norm(page.get('text','')) or {25,26}.issubset({a['num'] for a in aa}))
   if not detected:continue
   found_any=True
@@ -83,7 +86,13 @@ def extract(document):
     src['value']='';issues.append('Campo '+key+' incerto ou conflitante; conferir origem.')
     src['diagnostic']='Confiança insuficiente ou valores conflitantes; conferir origem.'
    fields[key]=src
-  requested,done=table_rows(page,aa,document);exams.extend(requested);executed.extend(done)
+  requested,done=table_rows(page,aa,document)
+  if page.get('regional_readings'):
+   from tiss_refinement import alternatives,reconcile_fields,reconcile_exams
+   variants=alternatives(document,page,extract)
+   reconcile_fields(fields,page,variants,issues)
+   reconcile_exams(requested,page,variants,issues)
+  exams.extend(requested);executed.extend(done)
   for line in page['lines']:
    n=norm(line['text'])
    if re.search(r'\b(ETIQUETA|PROTOCOLO|CONTROLE|ATENDIMENTO)\b',n) or (aa and line['box'][1]<min(a['y'] for a in aa) and re.search(r'\b\d{5,}\b',n)):

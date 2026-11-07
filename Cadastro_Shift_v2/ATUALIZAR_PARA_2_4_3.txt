@@ -1,0 +1,34 @@
+CADASTRO ASSISTIDO SHIFT 2.4.3 — ATUALIZAÇÃO DA LEITURA DE GUIAS
+
+ATUALIZAR SEM PRECISAR PROGRAMAR
+1. Feche o programa antigo. Faça uma cópia de segurança da pasta inteira, principalmente dados_v2.
+2. Extraia TODO o ZIP 2.4.3 em uma pasta NOVA. Não abra o programa dentro do ZIP.
+3. Entre em Cadastro_Shift_v2. Com os dois programas fechados, copie a pasta dados_v2 da instalação antiga para a nova. Não sobrescreva atendimentos novos. Não copie a pasta .venv.
+4. Abra INSTALAR_WINDOWS.bat e aguarde terminar. Depois abra INICIAR_WINDOWS.bat. O título deve mostrar 2.4.3. São necessários Python 3.12 a 3.14 e Tesseract instalados.
+5. Em Configurações e ferramentas → Diagnóstico e configuração OCR, teste o Tesseract. Se necessário, selecione o tesseract.exe instalado e salve. Português (por) e inglês (eng) devem estar disponíveis.
+
+ATENDIMENTOS JÁ IMPORTADOS
+1. Selecione a ficha antiga e entre em Comparar e conferir.
+2. Clique em Reprocessar leitura e confirme. A leitura detalhada de guias pequenas/densas pode levar alguns minutos; acompanhe o progresso por arquivo/página.
+3. Confira novamente o agrupamento, os campos e os exames com os originais. Reprocessar revoga a confirmação anterior; não aprova o atendimento automaticamente.
+4. Selecione Origem ao lado de um campo não identificado. Quando existirem leituras alternativas, aparecerá uma janela para ver cada página e escolher o valor que você conferiu. Usar valor para conferir ainda exige revisão e salvamento.
+5. Use Corrigir manualmente e Salvar correções e comparar para registrar ajustes. Quantidades ausentes, zero ou divergentes não são autorização.
+6. Confirme o agrupamento somente depois de ver todas as páginas e verificar os identificadores. Para corrigir página ou separar pacientes, use Identificar documentos → Corrigir página / agrupamento.
+
+NOVA IMPORTAÇÃO
+Escolha Um atendimento — várias páginas para um PDF de uma única pessoa e clique em IMPORTAR ESCANEAMENTO. Todas as páginas ficam em uma ficha provisória. Para arquivos contendo pessoas diferentes, escolha Vários pacientes — verificar identificação. Conflitos bloqueiam a confirmação.
+O programa corrige a orientação de leitura e apresenta o documento na orientação reconhecida. O botão Girar altera somente a visualização: o arquivo original e as referências das informações são preservados.
+
+TESTE SEGURO ANTES DE USAR NA ROTINA
+Use uma instalação de TESTE separada e importe exemplos_2_4_2\01_um_atendimento_quatro_paginas.pdf. Deve aparecer uma ficha com quatro páginas e cinco exames. Confira campos, miniaturas e a aba Comparar e conferir. O exemplo 02_identificadores_incompativeis.pdf deve bloquear a confirmação do agrupamento.
+TESTAR_WINDOWS.bat executa os testes com documentos fictícios. O catálogo fictício serve somente para testes e não deve substituir o catálogo real do laboratório.
+
+O QUE FOI VALIDADO
+200 testes automatizados passaram em Linux, incluindo 46 de interface Tkinter e 3 de navegador simulado. As matrizes sintéticas tiveram 270 verificações aprovadas. Os dois PDFs reais fornecidos foram lidos localmente: sete páginas, 118 verificações da interface aprovadas, com originais preservados e pré-cadastro bloqueado. Nenhum documento real acompanha esta entrega.
+
+O QUE AINDA PRECISA DE CONFERÊNCIA
+Não foi certificada a exatidão clínica de cada valor. Nos documentos testados, algumas quantidades continuam incertas; uma ficha tem leituras de CRM diferentes entre páginas. Conselho/UF impressos como códigos numéricos precisam de tabela homologada. Não foram convertidos por adivinhação. A classificação do papel de cada guia também exige conferência.
+A instalação e execução nativas no Windows ainda precisam ser validadas no seu computador. Os testes completos foram executados em Linux. Catálogo, códigos internos do Shift, perfis e regras por fonte pagadora dependem da equipe do laboratório.
+O programa continua em simulação local: não acessa o Shift real, não cria O.S. real e não imprime etiquetas oficiais. Não desative o antivírus para instalar.
+
+Detalhes: LEIA-ME.md, docs\CORRECAO_2_4_3.md, docs\RESULTADO_TESTES_2_4_3.txt e docs\TESTES_REAIS_2_4_3.json.

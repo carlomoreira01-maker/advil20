@@ -71,6 +71,8 @@ def recognize_page(image, recognize):
                 area=min((b[2]-b[0])*(b[3]-b[1]),(e[2]-e[0])*(e[3]-e[1]))
                 if area and intersection/area>.4:overlap=True;break
             if not overlap:words.append(word)
+    from ocr_regions import collect_regions
+    words.extend(collect_regions(corrected,words,recognize))
     width,height=original_size;cx,cy=upright.width/2,upright.height/2
     rad=math.radians(skew);c,s=math.cos(rad),math.sin(rad)
     def inverse(x,y):
@@ -81,6 +83,7 @@ def recognize_page(image, recognize):
         return max(0,min(width,x)),max(0,min(height,y))
     for w in words:
         w['box']=[v/factor for v in w['box']]
+        if w.get('regional_bounds'):w['regional_bounds']=[v/factor for v in w['regional_bounds']]
         x0,y0,x1,y1=w['box'];points=[inverse(x,y) for x in [x0,x1] for y in [y0,y1]]
         w['original_box']=[min(p[0] for p in points),min(p[1] for p in points),max(p[0] for p in points),max(p[1] for p in points)]
         w['orientation']=angle;w['deskew']=skew

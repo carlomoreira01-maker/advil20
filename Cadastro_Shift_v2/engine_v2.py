@@ -129,14 +129,20 @@ def read_document(path, language='por+eng', settings_path=None, progress=None):
     if path.stat().st_size>MAX_BYTES: raise LocalReadError('Limite: 30 MB por documento.')
     raw=path.read_bytes(); pages=[]; ext=path.suffix.lower()
     def page_data(words, method, number, size, warnings=None):
+        readings={}
+        for word in words:
+            if word.get('regional_reading'):
+                rid=word['regional_reading'];reading=readings.setdefault(rid,{'id':rid,'family':word['regional_family'],'targets':word['regional_targets'],'bounds':word['regional_bounds'],'words':[]});reading['words'].append(word)
+        words=[w for w in words if not w.get('regional_reading')]
         lines=group_lines(words)
         warnings=list(warnings or [])
+        for word in words:warnings.extend(word.get('regional_warnings',[]))
         if not usable(words): warnings.append('Página sem texto utilizável; verificar original e preencher manualmente.')
         return {'number':number,'method':method,'size':list(size),'lines':lines,'warnings':warnings,
                 'text':'\n'.join(l['text'] for l in lines), 'executed':True,
                 'characters':sum(len(l['text']) for l in lines),
                 'orientation':words[0].get('orientation',0) if words else 0,
-                'deskew':words[0].get('deskew',0) if words else 0,
+                'deskew':words[0].get('deskew',0) if words else 0,'regional_readings':list(readings.values()),
                 'failed':bool(warnings), 'languages':language if 'OCR' in method else ''}
     if ext=='.pdf':
         with pymupdf.open(stream=raw,filetype='pdf') as pdf:
@@ -162,12 +168,14 @@ def read_document(path, language='por+eng', settings_path=None, progress=None):
                         for w in ws:
                             w['box']=[v/2.5 for v in w['box']]
                             if 'original_box' in w:w['original_box']=[v/2.5 for v in w['original_box']]
+                            if 'regional_bounds' in w:w['regional_bounds']=[v/2.5 for v in w['regional_bounds']]
                         if hybrid and usable(words):
                             # Mantém texto digital fora da imagem; suprime duplicação espacial.
                             for w in words:
                                 b=w['box']; cx=(b[0]+b[2])/2;cy=(b[1]+b[3])/2
                                 if not any(o['box'][0]-3<=cx<=o['box'][2]+3 and o['box'][1]-3<=cy<=o['box'][3]+3 for o in ws): ws.append(w)
-                        words=ws;method='OCR local / página mista' if hybrid else 'OCR local'
+                        digital_present=usable(words)
+                        words=ws;method='OCR local / página mista' if hybrid and digital_present else 'OCR local'
                     except (ValueError, OSError, subprocess.TimeoutExpired) as exc:
                         warnings.append(safe_failure(exc));method='OCR falhou / revisão manual'
                 else: method='Texto digital'
@@ -309,15 +317,30 @@ def parse_document(document, catalog):
                 for j,m in enumerate(matches):
                     value=n[m.end():matches[j+1].start() if j+1<len(matches) else len(n)].strip(' |;')
                     key=ALIASES[m.group(1)]
+                    field_src=src
+                    if key=='Nascimento':
+                        # A surname/clinical sentence containing NASCIMENTO is
+                        # not a date. Footer rows can also contain sex/age after
+                        # the actual date; preserve only the printed date token.
+                        birth=re.match(r'^(\d{1,2}/\d{1,2}/\d{4})(?=$|\s|[|;])',value)
+                        if not birth:continue
+                        value=birth[1]
+                        from tiss import valid
+                        if not valid(value,'date'):
+                            issues.append({'message':'Nascimento com data inválida; conferir o original.','reviewed':False,'reason':''});continue
+                        date_words=[w for w in line.get('words',[]) if norm(w['text']).strip(' |;')==value]
+                        if date_words:
+                            field_src={**src,'box':source_box({'words':date_words,'box':line['box']}),
+                                       'confidence':min(w['confidence'] for w in date_words),'snippet':'Nascimento: '+value}
                     previous=fields[key]
                     candidates=previous.get('candidates', [])
                     if previous['value'] and norm(previous['value'])!=norm(value):
-                        candidates=[{k:v for k,v in previous.items() if k!='candidates'}, {'value':value,**src}]
+                        candidates=[{k:v for k,v in previous.items() if k!='candidates'}, {'value':value,**field_src}]
                         issues.append({'message':f'Campo {key} repetido com valor diferente na página {page["number"]}. Conferência obrigatória.','reviewed':False,'reason':''})
-                        fields[key]={'value':'',**src,'candidates':candidates}
-                    elif candidates or line['confidence'] < 60:
-                        fields[key]={'value':'',**src,'candidates':candidates+[{'value':value,**src}]}
-                    else: fields[key]={'value':value,**src,'candidates':[]}
+                        fields[key]={'value':'',**field_src,'candidates':candidates}
+                    elif candidates or field_src['confidence'] < 60:
+                        fields[key]={'value':'',**field_src,'candidates':candidates+[{'value':value,**field_src}]}
+                    else: fields[key]={'value':value,**field_src,'candidates':[]}
                 continue
             if re.match(r'^(EXAMES|PROCEDIMENTOS|ITENS SOLICITADOS|PROCEDIMENTOS AUTORIZADOS)\b',n): in_exams=True; continue
             # Cabeçalhos de tabela: coordenadas permitem descrição, quantidade e código em qualquer ordem.

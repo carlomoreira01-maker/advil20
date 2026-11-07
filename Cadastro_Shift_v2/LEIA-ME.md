@@ -1,6 +1,16 @@
-# Cadastro Assistido Shift — versão 2.4.2
+# Cadastro Assistido Shift — versão 2.4.3
 
-Comece por [ATUALIZAR_PARA_2_4_2.txt](ATUALIZAR_PARA_2_4_2.txt). Esta versão modifica o aplicativo Python/Tkinter existente e preserva dados, importação antiga, perfis, catálogo e simulação local. Não acessa o Shift real.
+Comece por [ATUALIZAR_PARA_2_4_3.txt](ATUALIZAR_PARA_2_4_3.txt). Esta versão modifica o aplicativo Python/Tkinter existente e preserva dados, importação antiga, perfis, catálogo e simulação local. Não acessa o Shift real.
+
+## Leitura e conferência 2.4.3
+
+Os dois PDFs reais enviados foram testados localmente, da importação até os campos e tabelas na interface. Foram corrigidos nomes truncados, rótulos/data confundidos com senha, associação de células de conselho/CRM e recuperação de quantidades em formulários densos. A nova releitura regional exige concordância para recuperar informações ausentes e mantém incertezas para revisão.
+
+As sete páginas e seus originais foram preservados, com 118 verificações gráficas aprovadas. Paciente e carteira aparecem nas duas fichas. Algumas quantidades e o CRM consolidado de uma ficha permanecem pendentes; nenhum atendimento real foi aprovado ou preparado. Os documentos reais e seu conteúdo não acompanham o pacote. A validação não certifica cada valor clínico.
+
+Use **Reprocessar leitura** nas fichas antigas e refaça a conferência. Quando um campo possuir alternativas, **Origem** abre as leituras com suas referências para escolha humana. A visualização acompanha a orientação do OCR; **Girar** altera somente a tela. Guias densas podem levar alguns minutos para a leitura detalhada.
+
+A suíte final passou com **200 testes** (46 de interface e 3 de navegador simulado) e **270 verificações sintéticas**. Veja [CORRECAO_2_4_3.md](docs/CORRECAO_2_4_3.md), [TESTES_REAIS_2_4_3.json](docs/TESTES_REAIS_2_4_3.json), [REGRESSAO_CAMPOS_2_4_3.json](docs/REGRESSAO_CAMPOS_2_4_3.json) e [RESULTADO_TESTES_2_4_3.txt](docs/RESULTADO_TESTES_2_4_3.txt). O agrupamento e as funcionalidades anteriores continuam preservados.
 
 ## Correção do agrupamento 2.4.2
 
@@ -23,7 +33,7 @@ Veja [CORRECAO_2_4_2.md](docs/CORRECAO_2_4_2.md), [COMPARACAO_2_4_2.json](docs/C
 
 Os testes automatizados incluem documentos sintéticos densos, PDF com pedido/guia em ambas as ordens, dois pacientes misturados, guia escaneada girada, imagens, quantidade zero/ausente, exame não autorizado, reclassificação e correção manual na interface até pré-cadastro local. O relatório por campo compara valores e origem: [RELATORIO_CAMPOS_2_4.json](docs/RELATORIO_CAMPOS_2_4.json). Veja [CORRECAO_2_4.md](docs/CORRECAO_2_4.md) e [RESULTADO_TESTES_2_4.txt](docs/RESULTADO_TESTES_2_4.txt).
 
-Na rodada anterior, os PDFs fornecidos foram analisados localmente para diagnóstico e não integram fixtures, pacote ou GitHub. Nesta rodada foram usados exclusivamente documentos fictícios. Contagens não substituem conferência de valores. Alguns campos desses layouts continuam incertos; códigos numéricos de conselho/UF exigem validação. A versão é testável e assistida, sem garantia de leitura integral de qualquer guia.
+Os testes automatizados e fixtures usam somente documentos fictícios. Nesta rodada, os dois PDFs reais fornecidos também foram processados localmente em uma instalação privada de teste, sem envio externo. Eles não integram fixtures, pacote ou GitHub. Contagens não substituem conferência dos valores. Quantidades incertas, divergência de CRM, classificação/finalidade das guias e códigos numéricos de conselho/UF exigem revisão. A versão é testável e assistida, sem garantia de leitura integral de qualquer guia.
 
 Execução nativa do instalador, binários OCR e interface no Windows permanece pendente. O laboratório deve homologar catálogo, fontes pagadoras, mapeamentos e regras de atendimento. Continuações sem identificadores exigem conferência; no modo múltiplo podem exigir associação manual. O fluxo interno sem guia permanece individual. Não há adaptador de produção para o Shift.
 
@@ -42,4 +52,4 @@ DISPLAY=:90 SHIFT_GUI_TESTS=1 SHIFT_BROWSER_TESTS=1 python -m unittest discover 
 python validar_campos_2_4_2.py
 ```
 
-No Windows, use `TESTAR_WINDOWS.bat`. Playwright/Chromium são opcionais para a simulação e não são instalados na recepção por padrão. As instruções e relatórios 2.1 a 2.4 permanecem como histórico; siga o guia 2.4.2 para atualizar.
+No Windows, use `TESTAR_WINDOWS.bat`. Playwright/Chromium são opcionais para a simulação e não são instalados na recepção por padrão. As instruções e relatórios 2.1 a 2.4 permanecem como histórico; siga o guia 2.4.3 para atualizar.

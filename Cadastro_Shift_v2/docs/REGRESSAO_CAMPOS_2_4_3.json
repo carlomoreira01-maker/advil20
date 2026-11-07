@@ -1,0 +1,17 @@
+{
+  "somente_sinteticos": true,
+  "matrizes": [
+    {
+      "script": "validar_campos_2_4.py",
+      "checks": 175,
+      "passed": 175,
+      "failed": 0
+    },
+    {
+      "script": "validar_campos_2_4_2.py",
+      "checks": 95,
+      "passed": 95,
+      "failed": 0
+    }
+  ]
+}

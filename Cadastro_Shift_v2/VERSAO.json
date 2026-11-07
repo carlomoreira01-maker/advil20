@@ -1,8 +1,8 @@
 {
-  "versao": "2.4.2",
+  "versao": "2.4.3",
   "data": "2026-11-07",
-  "testes_aprovados": 184,
-  "testes_interface": 43,
+  "testes_aprovados": 200,
+  "testes_interface": 46,
   "falhas": 0,
   "ignorados": 0,
   "ambiente_testes": "Linux Debian 13 / Python 3.12.14 / PyMuPDF 1.26.6 / Pillow 13.0.0 / Tesseract 5.5.0 / Xorg dummy",
@@ -13,11 +13,21 @@
   },
   "testes_navegador": 3,
   "verificacoes_campos": 270,
-  "layouts_reais": "Não utilizados nesta rodada. Desenvolvimento e testes exclusivamente com documentos fictícios.",
+  "layouts_reais": "Dois PDFs fornecidos pelo usuário, sete páginas, processados somente localmente. 118 verificações gráficas aprovadas; não substituem conferência clínica independente. Os documentos reais não integram a entrega.",
   "base_estavel": "2.4",
   "versao_comparada": "2.4.1",
   "verificacoes_campos_detalhe": {
     "regressao_2_4": 175,
     "novos_casos_2_4_2": 95
-  }
+  },
+  "verificacoes_interface_documentos_reais": 118,
+  "paginas_reais": 7,
+  "pendencias_reais": [
+    "Quantidades e campos sem leitura confiável exigem conferência.",
+    "CRM divergente entre páginas de uma ficha permanece pendente.",
+    "Conselho/UF numéricos exigem mapeamento homologado.",
+    "Finalidade/classificação dos documentos exige conferência."
+  ],
+  "base_atualizacao": "2.4.2",
+  "relatorio_real": "docs/TESTES_REAIS_2_4_3.json"
 }

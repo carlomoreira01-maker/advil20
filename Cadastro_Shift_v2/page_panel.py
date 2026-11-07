@@ -38,7 +38,9 @@ class PagePanel(ttk.Frame):
             page['number']=index+1;doc['pages'].append(page)
             text=f'Página {item["page"]}\n{item["kind"]}'
             try:
-                im,_=preview(path,item['page']-1);im.thumbnail((140,145));photo=ImageTk.PhotoImage(im);self.photos.append(photo)
+                im,_=preview(path,item['page']-1)
+                if page.get('orientation'):im=im.rotate(int(page['orientation']),expand=True)
+                im.thumbnail((140,145));photo=ImageTk.PhotoImage(im);self.photos.append(photo)
                 button=ttk.Button(self.thumbs,text=text,image=photo,compound='top',command=lambda i=index:self.select(i))
             except (ValueError,OSError):
                 button=ttk.Button(self.thumbs,text=text+'\nPrévia indisponível',command=lambda i=index:self.select(i))

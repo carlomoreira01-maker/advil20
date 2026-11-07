@@ -2,6 +2,7 @@
 import re
 from difflib import get_close_matches
 from statistics import median
+from functools import lru_cache
 from core import norm
 from ocr_processing import union_box
 
@@ -10,9 +11,9 @@ LABELS={
 2:r'(?:N\S*\s+(?:DA\s+)?)?GUIA\s+(?:(?:NO|DO|DA)\s+)?PRESTADOR',
 3:r'(?:N\S*\s+(?:DA\s+)?)?GUIA\s+PRINCIPAL',
 4:r'DATA\s+(?:(?:DA|DE)\s+)?AUTORIZACAO',5:r'SENHA(?:\s+DE\s+AUTORIZACAO)?',
-6:r'VALIDADE\s+(?:(?:DA|DE)\s+)?SENHA',
+6:r'(?:DATA\s+(?:DE\s+)?)?VALIDADE\s+(?:(?:DA|DE)\s+)?SENHA',
 7:r'(?:N\S*\s+(?:DA\s+)?)?GUIA\s+(?:ATRIBUID[AO]\s+)?(?:(?:PELA|DA)\s+)?OPERADORA',
-8:r'(?:N\S*\s+(?:DA\s+)?)?CARTEIRA',9:r'VALIDADE\s+(?:(?:DA|DE)\s+)?CARTEIRA',
+8:r'(?:N\S*\s+(?:DA\s+)?)?CARTEIRA',9:r'(?:DATA\s+(?:DE\s+)?)?VALIDADE\s+(?:(?:DA|DE)\s+)?CARTEIRA',
 10:r'NOME\s+(?:(?:DO|DA)\s+)?BENEFICIARIO',11:r'(?:CARTAO\s+NACIONAL\s+DE\s+SAUDE|CNS)',
 12:r'ATENDIMENTO\s+A\s+RN',13:r'CODIGO\s+(?:(?:(?:DO|DA)\s+)?CONTRATADO(?:\s+SOLICITANTE)?(?:\s+NA\s+OPERADORA)?|NA\s+OPERADORA)',
 14:r'NOME\s+(?:(?:DO|DA)\s+)?CONTRATADO',15:r'NOME\s+(?:(?:DO|DA)\s+)?PROFISSIONAL(?:\s+SOLICITANTE)?',
@@ -49,8 +50,19 @@ def rows(words):
  return out
 
 
+@lru_cache(maxsize=2048)
 def header_token(text):
  token=norm(text).strip(':.|')
+ # Tiny form labels are often joined by OCR. Expand only known LABELS;
+ # patient names, identifiers and procedure values are never fuzzy-corrected.
+ compact=re.sub(r'[^A-Z]','',token)
+ fused={'NOMEDOBENEFICIARIO':'NOME DO BENEFICIARIO','NOMEBENEFICIARIO':'NOME BENEFICIARIO',
+        'NUMERODACARTEIRA':'NUMERO DA CARTEIRA','NDACARTEIRA':'NUMERO DA CARTEIRA',
+        'NUMERODOCONSELHO':'NUMERO DO CONSELHO','NUMERONOCONSELHO':'NUMERO NO CONSELHO',
+        'CONSELHOPROFISSIONAL':'CONSELHO PROFISSIONAL','NOMEDOPROFISSIONALSOLICITANTE':'NOME DO PROFISSIONAL SOLICITANTE'}
+ if compact in fused:return fused[compact]
+ if re.fullmatch(r'(?:QT|QTD|QTDE|QUANTIDADE)SOL(?:IC|ICITADA|ICITADO)?',compact):return 'QT SOLICITADA'
+ if re.fullmatch(r'(?:QT|QTD|QTDE|QUANTIDADE)AUT(?:OR|ORIZADA|ORIZADO)?',compact):return 'QT AUTORIZADA'
  vocabulary='CODIGO NUMERO NOME SOLICITANTE BENEFICIARIO PROFISSIONAL CONSELHO PROCEDIMENTO DESCRICAO QUANTIDADE SOLICITADA AUTORIZADA AUTORIZACAO SOLICITACAO VALIDADE CARTEIRA CONTRATADO PRESTADOR OPERADORA PRINCIPAL'.split()
  if token in vocabulary:return token
  if len(token)>=4 and token.isalpha():
@@ -76,14 +88,14 @@ def anchors(page):
    if segment and re.fullmatch(r'\d{1,2}[-.)]',norm(w['text'])):break
    segment.append(w)
   while segment and not re.search(r'[A-Za-zÀ-ÿ]',segment[0]['text']):segment.pop(0)
-  tokens=([suffix] if re.search(r'[A-Z]',suffix) else [])+[header_token(w['text']) for w in segment]
+  tokens=([header_token(suffix)] if re.search(r'[A-Z]',suffix) else [])+[header_token(w['text']) for w in segment]
   text=' '.join(tokens).strip(' -:')
   m=re.match(LABELS[num]+r'(?=\s|:|$)',text)
   # A legible printed number plus an unambiguous prefix remains an anchor
   # when a tiny-font suffix is damaged. This is only a label rule.
   if not m and num in [10,15]:m=re.match(r'NOME(?=\s|$)',text)
   if not m:continue
-  label=[seed];length=len(suffix) if re.search(r'[A-Z]',suffix) else 0
+  label=[seed];length=len(header_token(suffix)) if re.search(r'[A-Z]',suffix) else 0
   for w in segment:
    token=header_token(w['text']);token_start=length+(1 if length else 0)
    if token_start>=m.end():break
@@ -95,10 +107,11 @@ def anchors(page):
  for row in rows(words):
   ws=row['words']
   for i,w in enumerate(ws):
-   if not re.match(r'^(?:N\S*|VALIDADE|DATA|SENHA|CONSELHO|UF|INDICACAO|CODIGO)$',header_token(w['text'])):continue
+   if not re.match(r'^(?:N\S*|VALIDADE|DATA|SENHA|CONSELHO|UF|INDICACAO|CODIGO|QT\s+SOLICITADA|QT\s+AUTORIZADA)$',header_token(w['text'])):continue
    if any(w in a['header'] for a in found):continue
    text=' '.join(header_token(x['text']) for x in ws[i:i+10])
-   for num in [2,3,4,5,6,7,8,9,10,14,15,16,17,18,19,22,23,25]:
+   for num in [2,3,4,5,6,7,8,9,10,14,15,16,17,18,19,22,23,25,27,28]:
+    if num in [27,28] and not re.match(r'QT\s+'+('SOL' if num==27 else 'AUT'),text):continue
     m=re.match(LABELS[num]+r'(?=\s|:|$)',text)
     if not m and num==10 and header_token(w['text'])=='NOME' and not re.match(r'NOME\s+SOCIAL',text) and any(a['num'] in [8,9] and abs(a['y']-w['box'][1])<7 for a in found):m=re.match('NOME',text)
     if not m:continue
@@ -108,7 +121,8 @@ def anchors(page):
      label.append(x);length+=len(header_token(x['text']))+(1 if length else 0)
     if any(abs(a['x']-w['box'][0])<5 and abs(a['y']-w['box'][1])<5 for a in found):break
     box=union_box(label,False)
-    found.append({'num':num,'x':box[0],'y':box[1],'bottom':box[3],'height':max(2,box[3]-box[1]),'header':label,'label_box':box,'number_inferred_from_label':True});break
+    x=box[0]-max(5,(box[3]-box[1])*2) if num in [27,28] else box[0]
+    found.append({'num':num,'x':x,'y':box[1],'bottom':box[3],'height':max(2,box[3]-box[1]),'header':label,'label_box':box,'number_inferred_from_label':True});break
  found=[a for a in found if not (a['num']==25 and a.get('number_inferred_from_label') and
         not any(b['num']==26 and abs(b['y']-a['y'])<8 for b in found))]
  # In a verified numbered 26-description header, adjacent printed 25/27/28
@@ -138,11 +152,12 @@ def cell_words(page,a,aa):
  limit=min(nxt-1,a['bottom']+h*7)
  label_ids={id(w) for b in aa for w in b['header']}
  left=a['x']-max(3,h*(3 if a.get('number_inferred_from_label') else .8))
- below=[w for w in words if id(w) not in label_ids and left<=w['box'][0]<a['right'] and
+ below=[w for w in words if id(w) not in label_ids and left<=(w['box'][0]+w['box'][2])/2<a['right'] and
         w['box'][1]>=a['bottom']-.5 and w['box'][1]<limit]
  # A value can be beside the label (e.g. field 2 in the top right corner).
  lb=a['label_box'];inline=[w for w in words if id(w) not in label_ids and lb[2]+1<=w['box'][0]<a['right'] and
         abs((w['box'][1]+w['box'][3])/2-(lb[1]+lb[3])/2)<=max(3,h*.65)]
+ if a['num']!=2 and inline and min(w['box'][0] for w in inline)-lb[2]>max(12,h*4):inline=[]
  return (inline or below) if a['num']==2 else (below or inline)
 
 
@@ -207,7 +222,7 @@ def table_rows(page,aa,document):
    for key in ['quantidade_solicitada','quantidade_autorizada','quantidade_executada']:
     qty=re.sub(r'\s+','',text.get(key,''));ws=cells.get(key,[])
     row[key]=qty if re.fullmatch(r'\d{1,3}',qty) and ws and min(w['confidence'] for w in ws)>=80 else ''
-   row['cell_origins']={k:{**origin,'box':union_box(ws),'snippet':' '.join(w['text'] for w in ws)} for k,ws in cells.items() if ws}
+   row['cell_origins']={k:{**origin,'box':union_box(ws),'snippet':' '.join(w['text'] for w in ws),'confidence':min(w['confidence'] for w in ws)} for k,ws in cells.items() if ws}
    row['quantidade']=row['quantidade_autorizada']
    if not row.get('codigo'):row['notes'].append('Código não identificado; conferir a linha e o catálogo aprovado.')
    if row['quantidade_autorizada'] in ['', '0']:row['notes'].append('Quantidade autorizada ausente, zero ou ilegível. Conferir; não presumir autorização.')

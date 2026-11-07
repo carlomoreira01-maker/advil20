@@ -1,0 +1,13 @@
+CADASTRO ASSISTIDO SHIFT 2.4.3 — BAIXAR PELO GITHUB
+
+1. Abra este link no navegador:
+https://github.com/carlomoreira01-maker/advil20/raw/refs/heads/entrega/shift-v2.4.3/entrega/Cadastro_Shift_v2_4_3_corrigido.zip
+2. Salve o ZIP e extraia tudo em uma pasta nova.
+3. Entre em Cadastro_Shift_v2 e siga ATUALIZAR_PARA_2_4_3.txt. Faça backup antes de copiar dados_v2 da instalação antiga.
+4. Abra INSTALAR_WINDOWS.bat e depois INICIAR_WINDOWS.bat. Nas fichas já importadas, use Reprocessar leitura e confira novamente.
+
+SE O LINK DIRETO NÃO ABRIR
+Abra https://github.com/carlomoreira01-maker/advil20/tree/entrega/shift-v2.4.3
+Clique em Code e Download ZIP. Extraia tudo e entre na pasta Cadastro_Shift_v2 para encontrar as instruções e os inicializadores.
+
+Os documentos reais não acompanham a entrega. Tudo permanece local; a integração com Shift continua simulada. Windows nativo e homologação clínica/catálogo ainda precisam de validação. Não desative o antivírus para instalar.
