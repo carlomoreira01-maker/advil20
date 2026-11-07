@@ -55,27 +55,10 @@ def extract(document):
    if not fields[key]['value']:fields[key]['diagnostic']='Região localizada, sem valor legível/validável; conferir original.'
    value_rows=rows(region)
    if kind=='name':
-    chunks=[]
-    for r in value_rows:
-     chunk=[]
-     for w in r['words']:
-      if chunk and w['box'][0]-chunk[-1]['box'][2]>max(18,(w['box'][3]-w['box'][1])*3):
-       chunks.append(chunk);chunk=[]
-      chunk.append(w)
-     if chunk:chunks.append(chunk)
-    def name_chunk(chunk):
-     text=norm(' '.join(w['text'] for w in chunk))
-     return bool(re.search('[A-Z]',text)) and not re.search(r'\d|BENEFICIARIO|PROFISSIONAL|CONTRATADO|CONSELHO|NOME SOCIAL|PROCEDIMENTOS|EXECUTADOS|SOLICITADOS|SOLICITANTE|DADOS DO|DADOS DA',text)
-    chunks=[c for c in chunks if name_chunk(c)]
-    initial=[c for c in chunks if valid(norm(' '.join(w['text'] for w in c)),kind)]
-    if initial:
-     first=min(initial,key=lambda c:(round(c[0]['box'][1]/5),c[0]['box'][0]));ws=list(first)
-     height=max(w['box'][3]-w['box'][1] for w in first)
-     for c in chunks:
-      if c is first:continue
-      if abs(c[0]['box'][0]-first[0]['box'][0])<height*2 and 2<c[0]['box'][1]-first[0]['box'][1]<height*2.5:ws.extend(c)
-     value=norm(' '.join(w['text'] for w in ws)).strip(' :|')
-     if valid(value,kind):candidate=(value,ws)
+    from tiss_names import name_words
+    ws=name_words(region)
+    value=norm(' '.join(w['text'] for w in ws)).strip(' :|')
+    if valid(value,kind):candidate=(value,ws)
 
    else:
     for r in value_rows:

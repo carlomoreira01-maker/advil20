@@ -18,6 +18,7 @@ from reader import preview
 ROOT=Path(__file__).resolve().parent
 DATA=ROOT/'dados_v2'
 UNIDENTIFIED='Não identificado'
+IMPORT_MODES={'single':'Um atendimento — várias páginas','multiple':'Vários pacientes — verificar identificação'}
 
 
 class DocumentView(ttk.Frame):
@@ -25,6 +26,7 @@ class DocumentView(ttk.Frame):
         super().__init__(parent)
         self.path=None;self.doc=None;self.index=0;self.zoom=1.;self.box=None
         self.seen=set()
+        self.on_page=None
         bar=ttk.Frame(self);bar.pack(fill='x')
         ttk.Label(bar,text=title,font=('Segoe UI',11,'bold')).pack(side='left')
         for text,fn in [('<',lambda:self.move(-1)),('>',lambda:self.move(1)),('-',lambda:self.scale(.8)),('+',lambda:self.scale(1.25))]:ttk.Button(bar,text=text,width=3,command=fn).pack(side='left',padx=1)
@@ -67,6 +69,7 @@ class DocumentView(ttk.Frame):
                     self.canvas.create_rectangle(b[0]*sx,b[1]*sy,b[2]*sx,b[3]*sy,outline='#dc5b12',width=3)
                     self.canvas.yview_moveto(max(0,b[1]*sy-40)/max(1,im.height))
             self.canvas.configure(scrollregion=self.canvas.bbox('all'))
+            if self.on_page:self.on_page(self.index)
         except Exception as exc:self.canvas.create_text(10,10,text='Não foi possível exibir original: '+str(exc),anchor='nw',width=480)
 
 
@@ -83,9 +86,9 @@ class App:
         self.ocr_request=0;self.ocr_dialog=None;self.ocr_health=None
         self.import_sequence=0
         root.report_callback_exception=self.callback_failure
-        root.title('Cadastro Assistido Shift · versão 2.4 · Local');root.geometry('1450x950');root.minsize(1100,760)
+        root.title('Cadastro Assistido Shift · versão 2.4.2 · Local');root.geometry('1450x950');root.minsize(1100,760)
         st=ttk.Style();st.theme_use('clam');st.configure('TButton',padding=6);st.configure('Treeview',rowheight=28)
-        tk.Label(root,text='CADASTRO ASSISTIDO SHIFT  |  2.4',font=('Segoe UI',19,'bold'),bg='#173d52',fg='white',anchor='w',padx=18,pady=12).pack(fill='x')
+        tk.Label(root,text='CADASTRO ASSISTIDO SHIFT  |  2.4.2',font=('Segoe UI',19,'bold'),bg='#173d52',fg='white',anchor='w',padx=18,pady=12).pack(fill='x')
         ttk.Label(root,text='Importar escaneamento → Identificar documentos → Extrair dados → Comparar exames → Conferir → Preparar cadastro',font=('Segoe UI',11,'bold'),padding=8).pack(fill='x')
         ttk.Label(root,text='Processamento local | Revisão humana obrigatória | Pré-cadastro não enviado ao Shift',padding=(10,0)).pack(anchor='w')
         bar=ttk.Frame(root,padding=8);bar.pack(fill='x')
@@ -97,6 +100,10 @@ class App:
         config_button=ttk.Menubutton(bar,text='Configurações e ferramentas');config_button.pack(side='right',padx=5)
         menu=tk.Menu(config_button,tearoff=False);config_button.configure(menu=menu)
         for title,fn in [('Catálogo do laboratório',self.catalog_window),('Fontes pagadoras',self.payer_window),('Diagnóstico e configuração OCR',self.ocr_settings_window),('Importar par separado (legado)',self.import_pair),('Importar lote CSV (legado)',self.import_csv),('Simulação local fictícia',self.simulation_window),('DEMO v1',self.legacy)]:menu.add_command(label=title,command=lambda f=fn:self.guard(f))
+        mode_bar=ttk.Frame(root,padding=(8,0));mode_bar.pack(fill='x')
+        ttk.Label(mode_bar,text='Modo de importação:').pack(side='left')
+        self.import_mode=tk.StringVar(value=IMPORT_MODES['single'])
+        ttk.Combobox(mode_bar,textvariable=self.import_mode,values=list(IMPORT_MODES.values()),state='readonly',width=48).pack(side='left',padx=6)
         self.ocr_status=tk.StringVar(value='OCR: verificando mecanismo e idiomas…')
         self.ocr_status_label=tk.Label(root,textvariable=self.ocr_status,anchor='w',fg='#865400',padx=10,wraplength=1100)
         self.ocr_status_label.pack(fill='x')
@@ -111,6 +118,10 @@ class App:
         ttk.Button(sidebar,text='Reprocessar leitura',command=lambda:self.guard(self.reanalyze_case)).pack(fill='x',pady=3)
         self.tabs=ttk.Notebook(main);self.tabs.pack(fill='both',expand=True)
         self.doc_tab=ttk.Frame(self.tabs);self.review_container=ttk.Frame(self.tabs);self.out_tab=ttk.Frame(self.tabs,padding=8)
+        from page_panel import PagePanel
+        self.page_tab=ttk.Frame(self.tabs);self.tabs.add(self.page_tab,text='Páginas do atendimento')
+        self.page_panel=PagePanel(self.page_tab,DocumentView);self.page_panel.pack(fill='both',expand=True)
+        ttk.Button(self.page_tab,text='Corrigir página / agrupamento',command=lambda:self.guard(self.classification_window)).pack(pady=5)
         self.tabs.add(self.doc_tab,text='1 · Originais lado a lado');self.tabs.add(self.review_container,text='2 · Comparar e conferir');self.tabs.add(self.out_tab,text='3 · Pré-cadastro')
         self.diagnostic_tab=ttk.Frame(self.tabs,padding=8)
         self.tabs.add(self.diagnostic_tab,text='Diagnóstico de leitura')
@@ -137,7 +148,7 @@ class App:
         self.review_tab.bind('<Configure>',lambda e:self.review_canvas.configure(scrollregion=self.review_canvas.bbox('all')))
         originals=ttk.Panedwindow(self.doc_tab,orient='horizontal');originals.pack(fill='both',expand=True)
         self.views={}
-        for k,title in [('pedido','Pedido médico'),('guia','Guia autorizada')]:
+        for k,title in [('pedido','Pedido médico'),('guia','Guia SP/SADT · conferir autorização')]:
             self.views[k]=DocumentView(originals,title);originals.add(self.views[k],weight=1)
         self.origin_text=tk.Text(self.doc_tab,height=3,wrap='word',state='disabled')
         self.origin_text.pack(fill='x')
@@ -155,7 +166,7 @@ class App:
             for name,group in groups.items():field_tabs.add(group,text=name)
             counts={name:0 for name in groups};self.field_entries[kind]={};self.field_vars[kind]={};self.field_checks[kind]={}
             for key in FIELDS:
-                category='Paciente' if key in ['Paciente','Nascimento','Fonte pagadora','Operadora','Carteira','Validade carteira'] else 'Médico e atendimento' if key in ['Medico','Conselho','Número conselho','UF conselho','Código solicitante','Data solicitação','Indicação clínica','Regime atendimento','Data execução'] else 'Guia TISS'
+                category='Paciente' if key in ['Paciente','Nascimento','Fonte pagadora','Operadora','Carteira','Validade carteira','CPF','CNS'] else 'Médico e atendimento' if key in ['Medico','Conselho','Número conselho','UF conselho','Código solicitante','Data solicitação','Indicação clínica','Regime atendimento','Data execução'] else 'Guia TISS'
                 fields=groups[category];i=counts[category];counts[category]+=1
                 col=(i%2)*4;r=i//2
                 ttk.Label(fields,text=key+' (legado)' if key in ['Guia','Validade'] else key).grid(row=r,column=col,sticky='w',padx=3)
@@ -253,6 +264,8 @@ class App:
         self.ocr_dialog={'window':window,'path':path,'result':result,'button':button,'choose':choose,'test':test,'auto':auto}
     def case_stage(self,models,status):
         if status=='PREPARADO':return 'Pronto para pré-cadastro'
+        if any(m.get('identity_conflict') for m in models.values()):return 'Conflito de identidade'
+        if any(m.get('association_pending') for m in models.values()):return 'Agrupamento provisório'
         errors=compare_models(models['pedido'],models['guia'],self.catalog)['pendencias']
         if any('diverg' in e.lower() or 'Não autorizado' in e for e in errors):return 'Divergência de autorização'
         if errors:return 'Informações incompletas'
@@ -402,7 +415,7 @@ class App:
         self.cases.delete(*self.cases.get_children())
         for cid,cur,status in self.store.db.execute('SELECT id,current,status FROM casos_v2 ORDER BY rowid'):
             if status=='RECLASSIFICADO':continue
-            models=json.loads(cur)['models'];name=models['pedido']['fields']['Paciente']['value'] or models['guia']['fields']['Paciente']['value'] or 'Identidade pendente'
+            models=json.loads(cur)['models'];name=models['pedido'].get('scan_patient_name') or models['pedido']['fields']['Paciente']['value'] or models['guia']['fields']['Paciente']['value'] or 'Identidade pendente'
             count=len(models['pedido']['exams']) or len(models['guia']['exams'])
             errors=compare_models(models['pedido'],models['guia'],self.catalog)['pendencias']+review_errors(models)
             self.cases.insert('','end',iid=cid,values=(name,self.case_stage(models,status),count,len(errors)))
@@ -437,6 +450,12 @@ class App:
                     self.field_checks[k][f].set(self.models[k]['fields'][f]['reviewed'])
                 self.page_checks[k].set(self.models[k]['pages_reviewed']);self.views[k].load(obj['docs'][k]);self.render_rows(k)
         finally:self.loading=False
+        batch_id=obj['docs']['pedido'].get('scan_batch')
+        if batch_id:
+            from scan_import import load_batch
+            self.page_panel.load(load_batch(self.store,batch_id),obj['docs']['pedido']['scan_group'],self.data)
+        else:
+            self.page_panel.clear();self.page_panel.info.set('Atendimento legado: originais disponíveis na aba lado a lado.')
         self.confirm.set(False);self.show_comparison()
         self.set_text(self.output,json.dumps(out,ensure_ascii=False,indent=2) if out else 'Pré-cadastro ainda não preparado. Conclua a conferência.')
         self.status.set(f'Revisão {self.rev} · {status}')
@@ -516,6 +535,9 @@ class App:
         if reason and reason.strip():issue.update(reviewed=True,reason=reason.strip());self.confirm.set(False);self.render_rows(k);self.show_comparison()
     def check_pages(self,k):
         if not self.models:self.page_checks[k].set(False);return
+        for n,page in enumerate(self.views[k].doc['pages'],1):
+            src=page.get('source',{})
+            if src.get('sha256','')+':'+str(src.get('page')) in self.page_panel.seen_ids:self.views[k].seen.add(n)
         if self.page_checks[k].get() and len(self.views[k].seen)!=len(self.views[k].doc['pages']):
             self.page_checks[k].set(False);messagebox.showinfo('Páginas pendentes','Abra todas as páginas deste documento na aba Originais antes de confirmar.')
         self.review_changed()
@@ -535,7 +557,7 @@ class App:
         if not out:raise ValueError('Prepare o pré-cadastro primeiro.')
         p=filedialog.asksaveasfilename(title='Salvar pré-cadastro local',defaultextension='.json',initialfile='pre_cadastro_'+self.cid[:8]+'.json',filetypes=[('JSON','*.json')])
         if p:Path(p).write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8');self.status.set('JSON salvo. Nenhum cadastro ou impressão enviado.')
-    def import_scans(self,paths=None,reprocess=None):
+    def import_scans(self,paths=None,reprocess=None,mode=None):
         from scan_import import read_scan
         if self.cid and self.dirty():raise ValueError('Salve as correções antes de importar ou reprocessar.')
         if paths is None:
@@ -549,9 +571,10 @@ class App:
         ttk.Label(self.progress,textvariable=self.scan_progress,padding=20,wraplength=470).pack()
         self.progress_indicator=ttk.Progressbar(self.progress,mode='indeterminate',length=350);self.progress_indicator.pack(padx=20,pady=15);self.progress_indicator.start()
         cat=copy.deepcopy(self.catalog)
+        mode=(reprocess.get('mode','multiple') if reprocess else mode or next(k for k,v in IMPORT_MODES.items() if v==self.import_mode.get()))
         def worker():
             try:
-                batch=read_scan(paths,self.data,cat,settings_path=self.ocr_settings_path,
+                batch=read_scan(paths,self.data,cat,settings_path=self.ocr_settings_path,mode=mode,
                     progress=lambda i,total,text:self.events.put(('scan_progress',text)))
                 if reprocess:
                     # Preserve manual page assignments, not old OCR values.
@@ -561,58 +584,92 @@ class App:
                     for item in batch['pages']:
                         old=previous[item['id']]
                         for key in ['group','kind','reviewed','reason']:item[key]=old[key]
+                        if old.get('identity_edits'):
+                            from scan_import import apply_identity_edits
+                            apply_identity_edits(item,{k:h['history'][-1]['after'] for k,h in old['identity_edits'].items()},'Reprocessamento local','Reaplicação de correção humana registrada')
+                            item['identity_edits']=copy.deepcopy(old['identity_edits'])
+                    batch['group_reviews']={}  # A new reading requires a new grouping review.
+
                 self.events.put(('scan_batch',batch,bool(reprocess)))
             except Exception as exc:self.events.put(('error',safe_failure(exc)))
             finally:self.events.put(('done',))
         threading.Thread(target=worker,daemon=True).start()
     def classification_window(self):
-        from scan_import import load_batch, save_batch, KINDS
+        from scan_import import load_batch,save_batch,KINDS,confirm_group,assess_group,apply_identity_edits
+        from identity_evidence import IDENTIFIERS
         if not self.cid:raise ValueError('Importe um escaneamento ou selecione um atendimento.')
         if self.dirty():raise ValueError('Salve as correções antes de alterar a classificação das páginas.')
-        obj=self.store.get(self.cid)[0];batch_id=obj['docs']['pedido'].get('scan_batch') or obj['docs']['guia'].get('scan_batch')
-        if not batch_id:raise ValueError('Atendimento importado pelo modo antigo. Use IMPORTAR ESCANEAMENTO com os originais para classificar as páginas individualmente.')
-        batch=load_batch(self.store,batch_id)
-        w=tk.Toplevel(self.root);w.title('Identificar documentos · todas as páginas originais');w.geometry('1180x800')
-        ttk.Label(w,text='Confira tipo e atendimento de cada página. Nome isolado não confirma identidade.\nUse o mesmo atendimento somente após conferir identificadores. Alterar a classificação exige nova conferência dos campos.',padding=10).pack(fill='x')
-        table=ttk.Treeview(w,columns=('arquivo','pagina','tipo','atendimento','paciente'),show='headings',height=7)
-        for key,title,width in [('arquivo','Original',220),('pagina','Página',65),('tipo','Tipo',170),('atendimento','Atendimento',140),('paciente','Paciente identificado',240)]:table.heading(key,text=title);table.column(key,width=width)
+        obj=self.store.get(self.cid)[0];batch_id=obj['docs']['pedido'].get('scan_batch')
+        if not batch_id:raise ValueError('Atendimento legado: use os originais lado a lado ou importe pelo modo de escaneamento.')
+        batch=load_batch(self.store,batch_id);seen=set(self.page_panel.seen_ids)
+        w=tk.Toplevel(self.root);w.title('Identificar documentos e confirmar agrupamento');w.geometry('1250x930')
+        ttk.Label(w,text='Cada página pertence a uma ficha provisória. Revise desconhecidos, mova páginas ou corrija a identificação lida.\nConflitos não são liberados por confirmação. Para corrigir OCR, compare com o original e registre o motivo.',padding=8).pack(fill='x')
+        table=ttk.Treeview(w,columns=('arquivo','pagina','tipo','atendimento','paciente'),show='headings',height=5)
+        for key,title,width in [('arquivo','Original',210),('pagina','Página',55),('tipo','Tipo',160),('atendimento','Atendimento',150),('paciente','Identificação lida',250)]:table.heading(key,text=title);table.column(key,width=width)
         table.pack(fill='x',padx=8)
-        editor=ttk.Frame(w,padding=8);editor.pack(fill='x')
-        kind=tk.StringVar();group=tk.StringVar();reason=tk.StringVar();reviewed=tk.BooleanVar()
+        editor=ttk.Frame(w,padding=6);editor.pack(fill='x')
+        kind=tk.StringVar();group=tk.StringVar();reason=tk.StringVar();reviewed=tk.BooleanVar();state=tk.StringVar()
         ttk.Label(editor,text='Tipo:').grid(row=0,column=0);ttk.Combobox(editor,textvariable=kind,values=KINDS,state='readonly',width=24).grid(row=0,column=1)
-        ttk.Label(editor,text='Atendimento:').grid(row=0,column=2);ttk.Entry(editor,textvariable=group,width=25).grid(row=0,column=3)
-        ttk.Label(editor,text='Motivo / identificadores conferidos:').grid(row=1,column=0,columnspan=2);ttk.Entry(editor,textvariable=reason,width=65).grid(row=1,column=2,columnspan=3,sticky='ew')
-        ttk.Checkbutton(editor,text='Conferi a classificação e a associação desta página',variable=reviewed).grid(row=2,column=0,columnspan=4,sticky='w')
-        view=DocumentView(w,'Original integral · página selecionada');view.pack(fill='both',expand=True,padx=8)
+        ttk.Label(editor,text='Mover para atendimento:').grid(row=0,column=2)
+        group_picker=ttk.Combobox(editor,textvariable=group,width=26);group_picker.grid(row=0,column=3)
+        ttk.Label(editor,text='Motivo / identificadores conferidos:').grid(row=1,column=0,columnspan=2)
+        ttk.Entry(editor,textvariable=reason,width=66).grid(row=1,column=2,columnspan=3,sticky='ew')
+        ttk.Checkbutton(editor,text='Conferi o tipo e os dados desta página no original',variable=reviewed).grid(row=2,column=0,columnspan=4,sticky='w')
+        identity_vars={}
+        identity_frame=ttk.LabelFrame(editor,text='Corrigir identificação desta página (sem alterar o PDF)',padding=4);identity_frame.grid(row=3,column=0,columnspan=5,sticky='ew')
+        for index,key in enumerate(['Paciente',*IDENTIFIERS]):
+            ttk.Label(identity_frame,text=key).grid(row=index//3*2,column=index%3,sticky='w')
+            var=tk.StringVar();identity_vars[key]=var;ttk.Entry(identity_frame,textvariable=var,width=35).grid(row=index//3*2+1,column=index%3,padx=5,sticky='ew')
+        ttk.Label(editor,textvariable=state,wraplength=1150,foreground='#9a3525').grid(row=4,column=0,columnspan=5,sticky='w',pady=3)
+        view=DocumentView(w,'Página selecionada · original preservado');view.pack(fill='both',expand=True,padx=8)
         def refresh():
-            table.delete(*table.get_children())
+            table.delete(*table.get_children());group_picker.configure(values=list(dict.fromkeys(i['group'] for i in batch['pages'])))
             for i,item in enumerate(batch['pages']):
-                src=batch['sources'][item['source']]
-                table.insert('','end',iid=str(i),values=(src['file'],item['page'],item['kind'],item['group'],item['model']['fields']['Paciente']['value'] or UNIDENTIFIED))
+                source=batch['sources'][item['source']]
+                table.insert('','end',iid=str(i),values=(source['file'],item['page'],item['kind'],item['group'],item['model']['fields']['Paciente']['value'] or UNIDENTIFIED))
+        def current():
+            selection=table.selection()
+            if not selection:raise ValueError('Selecione uma página.')
+            return int(selection[0]),batch['pages'][int(selection[0])]
         def select(event=None):
-            sel=table.selection()
-            if not sel:return
-            item=batch['pages'][int(sel[0])];kind.set(item['kind']);group.set(item['group']);reason.set(item['reason']);reviewed.set(item['reviewed'])
+            if not table.selection():return
+            index,item=current();kind.set(item['kind']);group.set(item['group']);reason.set(item['reason']);reviewed.set(item['reviewed'])
+            for key,var in identity_vars.items():var.set(item['model']['fields'].get(key,{}).get('value',''))
+            members=[p for p in batch['pages'] if p['group']==item['group']];assessment=assess_group(members)
+            state.set(' · '.join(assessment['errors']) or f'{len(members)} páginas neste atendimento. A confirmação do agrupamento exige visualizar todas e conferir os identificadores.')
             source=batch['sources'][item['source']];page=copy.deepcopy(next(p for p in source['pages'] if p['number']==item['page']))
             local=self.data/'documentos'/(source['sha256']+Path(source['file']).suffix.lower())
-            page['source']={'path':str(local),'page':item['page']};view.load({**source,'pages':[page]})
+            page['source']={'path':str(local),'page':item['page']};view.load({**source,'pages':[page]});seen.add(item['id'])
         def apply():
-            sel=table.selection()
-            if not sel:return
+            index,item=current()
             if not reason.get().strip() or not reviewed.get() or not group.get().strip():raise ValueError('Informe atendimento, motivo e confirmação da página.')
-            i=int(sel[0]);batch['pages'][i].update(kind=kind.get(),group=group.get().strip(),reason=reason.get().strip(),reviewed=True)
-            refresh();table.selection_set(str(i))
+            edits={k:v.get().strip() for k,v in identity_vars.items()}
+            if any(edits[k]!=item['model']['fields'].get(k,{}).get('value','') for k in edits):
+                apply_identity_edits(item,edits,self.actor.get(),reason.get().strip())
+            item.update(kind=kind.get(),group=group.get().strip(),reason=reason.get().strip(),reviewed=True)
+            refresh();table.selection_set(str(index))
+        def approve():
+            index,item=current()
+            confirm_group(batch,item['group'],self.actor.get(),reason.get(),seen)
+            state.set('Agrupamento conferido nesta revisão. Salve a classificação para atualizar a ficha e conferir os campos/exames.')
+        def regroup():
+            index,item=current()
+            if not reason.get().strip():raise ValueError('Informe por que deseja reunir as páginas deste PDF.')
+            source=item['source'];name='Provisório PDF '+str(list(batch['sources']).index(source)+1)
+            for page in batch['pages']:
+                if page['source']==source:page['group']=name
+            batch['mode']='single';batch['group_reviews']={};refresh();table.selection_set(str(index));select()
         def save():
             if not self.actor.get().strip():raise ValueError('Informe seu nome no campo Revisor da janela principal.')
-            if not messagebox.askyesno('Salvar classificação','Reinterpretar os grupos e substituir os campos atuais deste escaneamento?\nAs revisões anteriores serão preservadas no histórico local.',parent=w):return
+            if not messagebox.askyesno('Salvar classificação','Atualizar as fichas com esta classificação e identificação?\nAs revisões anteriores serão preservadas e os campos precisarão de conferência.',parent=w):return
             cids=save_batch(self.store,batch,self.catalog,self.actor.get(),replace=True)
             self.refresh();self.cases.selection_set(cids[0]);self.open_case(cids[0]);self.tabs.select(self.review_container);w.destroy()
-        buttons=ttk.Frame(editor);buttons.grid(row=3,column=0,columnspan=5,sticky='w',pady=6)
-        ttk.Button(buttons,text='Aplicar à página selecionada',command=lambda:self.guard(apply)).pack(side='left',padx=4)
-        ttk.Button(buttons,text='Salvar classificação e extrair dados',command=lambda:self.guard(save)).pack(side='left',padx=4)
+        buttons=ttk.Frame(editor);buttons.grid(row=5,column=0,columnspan=5,sticky='w',pady=4)
+        for title,fn in [('Aplicar à página',apply),('Reunir páginas deste PDF',regroup),('Confirmar agrupamento',approve),('Salvar classificação e extrair dados',save)]:ttk.Button(buttons,text=title,command=lambda f=fn:self.guard(f)).pack(side='left',padx=3)
         table.bind('<<TreeviewSelect>>',select);refresh()
-        if batch['pages']:table.selection_set('0');select()
-        self.classification_editor={'window':w,'table':table,'kind':kind,'group':group,'reason':reason,'reviewed':reviewed,'apply':apply,'save':save,'batch':batch}
+        selected=next((i for i,p in enumerate(batch['pages']) if p['id']==self.page_panel.selected_id),0)
+        if batch['pages']:table.selection_set(str(selected));select()
+        self.classification_editor={'window':w,'table':table,'kind':kind,'group':group,'reason':reason,'reviewed':reviewed,'identity':identity_vars,'apply':apply,'save':save,'confirm':approve,'regroup':regroup,'batch':batch,'seen':seen,'state':state}
     def import_pair(self):
         if self.cid and self.dirty():raise ValueError('Salve a conferência atual antes de importar novos documentos.')
         opts={'filetypes':[('Documentos','*.pdf *.png *.jpg *.jpeg *.txt')]}

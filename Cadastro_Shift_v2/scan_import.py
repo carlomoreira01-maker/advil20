@@ -9,19 +9,7 @@ from engine_v2 import read_document, parse_document, FIELDS
 from ocr_runtime import LocalReadError
 
 KINDS=['pedido','guia','continuação de pedido','continuação de guia','outro','incerto']
-IDENTIFIERS=['Nascimento','Carteira']
-
-
-def value(model,key):return norm(model['fields'].get(key,{}).get('value',''))
-
-
-def compatible(a,b):
- """Nome sozinho, proximidade e ordem de importação nunca associam pacientes."""
- names=[value(m,'Paciente') for m in [a,b]]
- if names[0] and names[1] and names[0]!=names[1]:return False
- common=[k for k in IDENTIFIERS if value(a,k) and value(b,k)]
- if any(value(a,k)!=value(b,k) for k in common):return False
- return bool(common and names[0] and names[1])
+from identity_evidence import IDENTIFIERS, value, compatible
 
 
 def classify(document,page,catalog):
@@ -32,7 +20,7 @@ def classify(document,page,catalog):
  if kind not in ['pedido','guia']:
   # Printed request headings need not contain the literal word PEDIDO.
   if value(model,'Paciente') and model['exams'] and re.search(r'\b(SOLICITACAO|SOLICITO|REQUISICAO)\b',text):kind='pedido'
-  elif re.search(r'\b(RECIBO|COMPROVANTE|RESULTADO DE EXAME)\b',text):kind='outro'
+  elif re.search(r'\b(RECIBO|COMPROVANTE|RESULTADO DE EXAME|DOCUMENTO COMPLEMENTAR)\b',text):kind='outro'
   else:kind='incerto'
  if re.search(r'\bCONTINUA(?:CAO)?\b',text) and kind in ['pedido','guia']:kind='continuação de '+kind
  if kind=='guia' and model.get('tiss') and model['exams'] and not value(model,'Paciente') and not value(model,'Carteira') and not value(model,'Guia prestador'):
@@ -40,11 +28,12 @@ def classify(document,page,catalog):
  return kind,model
 
 
-def read_scan(paths,data,catalog,settings_path=None,progress=None):
+def read_scan(paths,data,catalog,settings_path=None,progress=None,mode='multiple'):
+ if mode not in ['single','multiple']:raise LocalReadError('Modo de importação inválido.')
  paths=[Path(p) for p in paths]
  if not 1<=len(paths)<=100:raise LocalReadError('Selecione de 1 a 100 arquivos.')
  target=Path(data)/'documentos';target.mkdir(parents=True,exist_ok=True)
- batch={'id':uuid.uuid4().hex,'sources':{},'pages':[],'version':1}
+ batch={'id':uuid.uuid4().hex,'sources':{},'pages':[],'version':2,'mode':mode,'group_reviews':{}}
  seen=set()
  for index,path in enumerate(paths,1):
   if path.suffix.lower() not in ['.pdf','.png','.jpg','.jpeg']:raise LocalReadError('Importe PDF, JPG ou PNG.')
@@ -63,9 +52,13 @@ def read_scan(paths,data,catalog,settings_path=None,progress=None):
    batch['pages'].append({'id':sha+':'+str(page['number']),'source':sha,'page':page['number'],
        'kind':kind,'group':'','model':model,'reviewed':False,'reason':'',
        'classification_reason':'Rótulos/estrutura reconhecidos' if kind not in ['incerto','outro'] else 'Tipo não confirmado; conferir original.'})
+ if mode=='single':
+  order={sha:i+1 for i,sha in enumerate(batch['sources'])}
+  for item in batch['pages']:item['group']='Atendimento '+str(order[item['source']])
+  return batch
  groups=[]
  for item in batch['pages']:
-  matches=[group for group in groups if all(other['kind'] not in ['incerto','outro'] and compatible(item['model'],other['model']) for other in group)]
+  matches=[group for group in groups if any(compatible(item['model'],other['model']) for other in group) and not assess_group([*group,item])['errors'] and all(other['kind'] not in ['incerto','outro'] for other in group)]
   # Unknown pages always remain separate for manual assignment, even with a name.
   if len(matches)==1 and item['kind'] not in ['incerto','outro']:
    group=matches[0];item['group']=group[0]['group'];group.append(item)
@@ -74,48 +67,122 @@ def read_scan(paths,data,catalog,settings_path=None,progress=None):
  return batch
 
 
+def group_fingerprint(items):
+ return digest([{'id':i['id'],'kind':i['kind'],'identidade':{k:value(i['model'],k) for k in ['Paciente',*IDENTIFIERS]},
+                 'reviewed':i['reviewed'],'identity_edits':i.get('identity_edits',{})} for i in items])
+
+
+def assess_group(items):
+ from identity_evidence import identifier,names_compatible,full_name
+ errors=[];models=[i['model'] for i in items];name=full_name(models)
+ names=[value(m,'Paciente') for m in models if value(m,'Paciente')]
+ if names and not name:errors.append('Nomes incompatíveis entre páginas; confira a identificação ou separe os atendimentos.')
+ for key in IDENTIFIERS:
+  values={identifier(key,value(m,key)) for m in models if identifier(key,value(m,key))}
+  if len(values)>1:errors.append(key+': identificadores incompatíveis entre páginas.')
+  if any(value(m,key) and not identifier(key,value(m,key)) for m in models):errors.append(key+': identificação inválida/ilegível; confira a página.')
+ sufficient=bool(name and len(name.split())>=2 and any(identifier(k,value(m,k)) for m in models for k in IDENTIFIERS))
+ return {'errors':errors,'name':name,'sufficient':sufficient}
+
+
+def confirm_group(batch,group,actor,reason,seen_ids):
+ from datetime import datetime
+ items=[i for i in batch['pages'] if i['group']==group]
+ if not actor.strip() or not reason.strip():raise LocalReadError('Informe revisor e motivo para confirmar o agrupamento.')
+ if not items:raise LocalReadError('Atendimento não localizado.')
+ assessment=assess_group(items)
+ if assessment['errors']:raise LocalReadError('Agrupamento bloqueado: '+' '.join(assessment['errors']))
+ if not assessment['sufficient']:raise LocalReadError('Identificação insuficiente: confira nome completo e ao menos um identificador válido.')
+ if any(i['id'] not in seen_ids for i in items):raise LocalReadError('Visualize todas as páginas deste atendimento antes de confirmar o agrupamento.')
+ if any(i['kind']=='incerto' or (i['kind']=='outro' and (not i['reviewed'] or not i['reason'].strip())) for i in items):
+  raise LocalReadError('Classifique as páginas desconhecidas e confirme a finalidade dos documentos complementares.')
+ batch.setdefault('group_reviews',{})[group]={'fingerprint':group_fingerprint(items),'actor':actor.strip(),'reason':reason.strip(),'at':datetime.now().isoformat()}
+
+
+def apply_identity_edits(item,edits,actor,reason):
+ if not actor.strip() or not reason.strip():raise LocalReadError('Informe revisor e motivo para corrigir a identificação da página.')
+ allowed=['Paciente',*IDENTIFIERS]
+ for key,new in edits.items():
+  if key not in allowed:raise LocalReadError('Campo de identificação desconhecido.')
+  from tiss import empty_field
+  field=item['model']['fields'].setdefault(key,empty_field())
+  if field['value']==new:continue
+  history=item.setdefault('identity_edits',{}).setdefault(key,{'original':copy.deepcopy(field),'history':[]})
+  history['history'].append({'before':field['value'],'after':new,'actor':actor,'reason':reason})
+  field.update(value=new,confidence=None,reviewed=False,origin_type='correcao_manual_da_pagina',candidates=[])
+
+
+def _merged_fields(model,doc,selected):
+ from identity_evidence import full_name,identifier
+ from tiss import empty_field
+ for key in FIELDS:
+  candidates=[]
+  for logical,item in enumerate(selected,1):
+   field=copy.deepcopy(item['model']['fields'].get(key,empty_field()))
+   if not field.get('value'):continue
+   field['page']=logical;field['document']=doc['file'];field['source_document']=copy.deepcopy(doc['pages'][logical-1]['source'])
+   candidates.append(field)
+  if not candidates:continue
+  if key in ['Paciente','Medico']:
+   name=full_name([{'fields':{'Paciente':c}} for c in candidates])
+   equivalent=bool(name);chosen=next((c for c in candidates if value({'fields':{'Paciente':c}},'Paciente')==name),candidates[0])
+  else:
+   keys={identifier(key,c['value']) if key in IDENTIFIERS else norm(c['value']) for c in candidates}
+   equivalent=len(keys)==1;chosen=candidates[0]
+  if equivalent:
+   chosen['origins']=[{k:c.get(k) for k in ['document','page','box','snippet','source_document']} for c in candidates]
+   model['fields'][key]=chosen
+   model['issues']=[i for i in model['issues'] if not (i['message'].startswith('Campo '+key+' repetido') or i['message'].startswith('Campo '+key+' incerto ou conflitante'))]
+  else:
+   model['fields'][key]={**empty_field(doc['file']),'candidates':candidates,'diagnostic':'Valores conflitantes entre páginas; conferir cada origem.'}
+   model['issues'].append({'message':'Campo '+key+' conflitante entre páginas; confira a origem antes de corrigir.','reviewed':False,'reason':''})
+
+
 def build_cases(batch,catalog):
- """Grupos editáveis; nenhuma página é descartada, nem o PDF é recortado."""
+ """Uma ficha provisória pode conter páginas sem identificação; isso não a aprova."""
  groups={}
  for item in batch['pages']:
   if item['kind'] not in KINDS or not item['group'].strip():raise LocalReadError('Defina tipo e atendimento para todas as páginas.')
   groups.setdefault(item['group'].strip(),[]).append(item)
  cases=[]
  for name,items in groups.items():
-  docs={};models={}
-  for role in ['pedido','guia']:
-   selected=[i for i in items if i['kind'] in [role,'continuação de '+role] or (role=='pedido' and i['kind'] in ['outro','incerto'])]
+  docs={};models={};assessment=assess_group(items)
+  approval=batch.get('group_reviews',{}).get(name,{})
+  confirmed=bool(approval.get('fingerprint')==group_fingerprint(items) and approval.get('actor') and approval.get('reason') and assessment['sufficient'] and not assessment['errors'])
+  missing=any(not value(i['model'],'Paciente') for i in items)
+  pending=(batch.get('mode','multiple')=='single' and not confirmed) or (not confirmed and (missing or not assessment['sufficient']))
+  for role in ['pedido','guia','apoio']:
+   selected=[i for i in items if (i['kind'] in ['outro','incerto'] if role=='apoio' else i['kind'] in [role,'continuação de '+role])]
+   if role=='apoio' and not selected:continue
    ids=[i['id'] for i in selected]
    doc={'file':name+' · '+role,'sha256':digest({'role':role,'pages':ids,'missing':batch['id'] if not ids else ''}),
-        'document_type':role,'pages':[],'scan_batch':batch['id'],'scan_group':name,'page_ids':ids,
-        'original_sources':[]}
-
+        'document_type':role,'pages':[],'scan_batch':batch['id'],'scan_group':name,'page_ids':ids,'original_sources':[]}
    source_ids={i['source'] for i in selected}
    doc['original_sources']=[{k:s[k] for k in ['file','sha256','local_path']} for sha,s in batch['sources'].items() if sha in source_ids]
-   for i in selected:
-    source=batch['sources'][i['source']];page=copy.deepcopy(next(p for p in source['pages'] if p['number']==i['page']))
+   for item in selected:
+    source=batch['sources'][item['source']];page=copy.deepcopy(next(p for p in source['pages'] if p['number']==item['page']))
     page['source']={'sha256':source['sha256'],'file':source['file'],'path':source['local_path'],'page':page['number']}
     page['number']=len(doc['pages'])+1;doc['pages'].append(page)
-   docs[role]=doc;model=parse_document(doc,catalog);models[role]=model
-   model['scan_group']=name;model['classification_pending']=any(i['kind'] in ['incerto','outro'] or (i['reason'] and not i['reviewed']) for i in items)
-   model['identity_conflict']=any(value(a['model'],key) and value(b['model'],key) and value(a['model'],key)!=value(b['model'],key)
-       for n,a in enumerate(items) for b in items[n+1:] for key in IDENTIFIERS)
+   docs[role]=doc
+   if role=='apoio':continue  # Preserved and visible; never interpreted as a prescription.
+   model=parse_document(doc,catalog);models[role]=model
+   # Reconcile actual values from individual pages. Empty/partial continuation
+   # must not erase a full name printed elsewhere in this same document.
+   _merged_fields(model,doc,selected)
+   model['interpretation'].update(fields_found=sum(bool(v['value']) for v in model['fields'].values()),exams_found=len(model['exams']))
+   model.update(scan_group=name,scan_mode=batch.get('mode','multiple'),association_pending=pending,
+       scan_association_confirmed=confirmed,identity_conflict=bool(assessment['errors']),
+       scan_validation_errors=assessment['errors'],scan_patient_name=assessment['name'],
+       classification_pending=any(i['kind']=='incerto' or (i['kind']=='outro' and (not i['reviewed'] or not i['reason'].strip())) for i in items))
    if not selected:
     model['issues'].append({'message':role.capitalize()+': documento não identificado neste atendimento. Corrija a classificação ou use fluxo interno homologado.','reviewed':False,'reason':''})
     if role=='guia':model['tiss']=True
-   if any(i['kind'] in ['incerto','outro'] for i in items):
-    model['issues'].append({'message':'Há página com tipo incerto/outro. Identifique sua finalidade em Identificar documentos antes de preparar.','reviewed':False,'reason':''})
-   if len(items)>1:
-    # A manual grouping records the decision but never suppresses identity conflicts.
-    refs=[i['model'] for i in items if value(i['model'],'Paciente')]
-    model['association_pending']=len(refs)<len(items) or any(not compatible(a,b) for n,a in enumerate(refs) for b in refs[n+1:])
-    if model['association_pending'] and all(i['reviewed'] and i['reason'].strip() for i in items):model['association_pending']=False
-   else:model['association_pending']=False
-   # Keep logical page for navigation and physical source for traceability.
+   if model['classification_pending']:
+    model['issues'].append({'message':'Há página desconhecida ou complementar sem revisão. Abra Identificar documentos.','reviewed':False,'reason':''})
    def provenance(obj):
     if isinstance(obj,dict):
      page_no=obj.get('page')
-     if isinstance(page_no,int) and 1<=page_no<=len(doc['pages']):
+     if isinstance(page_no,int) and 1<=page_no<=len(doc['pages']) and not obj.get('source_document'):
       obj['source_document']=copy.deepcopy(doc['pages'][page_no-1]['source'])
      for key,v in list(obj.items()):
       if key!='source_document':provenance(v)
@@ -124,7 +191,6 @@ def build_cases(batch,catalog):
    provenance(model)
   cases.append((name,docs,models))
  return cases
-
 
 def save_batch(store,batch,catalog,actor,replace=False):
  cases=build_cases(batch,catalog)

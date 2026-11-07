@@ -1,6 +1,7 @@
 """Comparação TISS separa solicitação, autorização e execução; nenhuma aprovação automática."""
 from core import norm,digest
 from payer_mapping import map_payer
+from identity_evidence import names_compatible, identifier, IDENTIFIERS
 
 
 def compare_tiss(p,g,catalog):
@@ -11,11 +12,15 @@ def compare_tiss(p,g,catalog):
  mapping=map_payer(g,g.get('payer_profile'))
  internal=bool(g.get('internal') and not mapping['errors'] and (g.get('payer_profile') or {}).get('exige_autorizacao') is False)
  a=p['fields']['Paciente']['value'];b=g['fields']['Paciente']['value']
- if not a or not b or norm(a)!=norm(b):errors.append('Identidade: nomes ausentes ou divergentes; bloqueado.')
- identifiers=['Nascimento','Carteira']
+ if not a or not b or not names_compatible(a,b):errors.append('Identidade: nomes ausentes ou divergentes; bloqueado.')
+ identifiers=IDENTIFIERS
  common=[k for k in identifiers if p['fields'].get(k,{}).get('value') and g['fields'].get(k,{}).get('value')]
  if not common:errors.append('Identidade: falta segundo identificador comum; nome isolado não confirma paciente.')
- if any(norm(p['fields'][k]['value'])!=norm(g['fields'][k]['value']) for k in common):errors.append('Identidade: identificadores divergentes; bloqueado.')
+ if any(identifier(k,p['fields'][k]['value'])!=identifier(k,g['fields'][k]['value']) for k in common):errors.append('Identidade: identificadores divergentes; bloqueado.')
+ for model in [p,g]:
+  for key in identifiers:
+   val=model['fields'].get(key,{}).get('value','')
+   if val and not identifier(key,val):errors.append('Identidade: '+key+' inválido; conferir origem.')
  if not p['fields']['Medico']['value']:errors.append('Médico solicitante não identificado no pedido.')
  for key in ['Medico','Conselho','Número conselho','UF conselho']:
   if not g['fields'].get(key,{}).get('value'):errors.append('Solicitante: '+key+' não identificado; conferir cadastro.')

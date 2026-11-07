@@ -1,0 +1,45 @@
+CADASTRO ASSISTIDO SHIFT 2.4.2 — CORREÇÃO DO AGRUPAMENTO
+
+ATUALIZAR SEM PERDER O HISTÓRICO
+1. Feche a instalação antiga (2.4 ou 2.4.1) e faça uma cópia de segurança da pasta inteira.
+2. Extraia TODO o ZIP 2.4.2 em uma pasta nova. Não execute dentro do ZIP.
+3. Entre na pasta extraída Cadastro_Shift_v2. Antes de iniciar novos atendimentos, copie a pasta dados_v2 antiga para esta pasta. Mantenha os programas fechados e não sobrescreva dados novos. Não copie a pasta .venv.
+4. Abra INSTALAR_WINDOWS.bat. Depois abra INICIAR_WINDOWS.bat. O título deve mostrar versão 2.4.2. São necessários Python 3.12 a 3.14 e Tesseract já instalados.
+5. Se necessário, abra Configurações e ferramentas → Diagnóstico e configuração OCR e teste/salve o executável. A configuração existente é reaproveitada quando disponível; português e inglês continuam necessários.
+
+TESTE PRINCIPAL, SOMENTE COM DADOS FICTÍCIOS
+1. Informe seu nome no campo Revisor.
+2. Deixe selecionado o modo Um atendimento — várias páginas.
+3. Clique em IMPORTAR ESCANEAMENTO e escolha exemplos_2_4_2\01_um_atendimento_quatro_paginas.pdf.
+4. Aguarde a leitura. Deve aparecer UMA ficha provisória na fila, com QUATRO páginas na aba Páginas do atendimento: pedido, guia, continuação e documento complementar. Clique nas quatro miniaturas; role a lista se necessário.
+5. O nome completo do pedido, os números separados da guia/carteira/senha e os cinco exames devem aparecer em Comparar e conferir. O nome da guia é propositalmente parcial neste exemplo: ele não deve ser completado por suposição. A ficha usa o nome completo realmente impresso no pedido.
+6. Na aba de páginas, clique em Corrigir página / agrupamento. Selecione a página 4, mantenha o tipo outro, informe o motivo (ex.: documento complementar conferido), marque a conferência e clique em Aplicar à página.
+7. Após visualizar TODAS as páginas e conferir os identificadores, informe o motivo da associação e clique em Confirmar agrupamento. Depois clique em Salvar classificação e extrair dados.
+8. A ficha continua única. A confirmação do agrupamento não aprova exames, autorização, catálogo ou cadastro. Confira os campos/exames com os originais e use Salvar correções e comparar. O preparo continua bloqueado enquanto houver pendências essenciais.
+9. Para comparar os códigos fictícios, use exemplos_tiss\catalogo_ficticio.json apenas em uma instalação de TESTE separada. A falta de códigos internos reais e perfil homologado deve bloquear o preparo. Os testes automatizados usam códigos e perfis explicitamente fictícios para validar o fluxo completo até pré-cadastro local.
+
+TESTE DE CONFLITO
+Importe exemplos_2_4_2\02_identificadores_incompativeis.pdf no modo Um atendimento — várias páginas. Deve surgir UMA ficha provisória com aviso de conflito. Tentar Confirmar agrupamento deve ser BLOQUEADO, mesmo após marcar conferência ou escrever um motivo. O PDF contém duas pessoas fictícias diferentes.
+Para separar, selecione a página correspondente no editor, escreva outro nome em Mover para atendimento, informe o motivo, marque a conferência e clique em Aplicar à página. Salve a classificação. As duas fichas ficam separadas e ainda precisam dos documentos/dados correspondentes. Não altere identificadores verdadeiros apenas para eliminar um conflito.
+
+QUAL MODO ESCOLHER
+- Um atendimento — várias páginas: cada PDF selecionado gera uma ficha provisória com todas as suas páginas. Nome parcial, identificação ausente ou tipo desconhecido não dividem a ficha. Vários PDFs selecionados geram uma ficha provisória por arquivo, sem juntar arquivos por suposição. Conflitos impedem a confirmação.
+- Vários pacientes — verificar identificação: use para um PDF/lote contendo pessoas diferentes. O programa associa somente quando encontra evidência suficiente; páginas sem identificação podem ficar separadas para revisão. Nome isolado ou ordem das páginas não confirmam paciente.
+
+RECUPERAR UM PDF QUE A VERSÃO ANTIGA SEPAROU
+1. Selecione uma das fichas daquele escaneamento e abra Identificar documentos.
+2. Selecione uma página do PDF, informe o motivo e clique em Reunir páginas deste PDF.
+3. Salve a classificação. As páginas serão reunidas em uma ficha PROVISÓRIA, sem executar OCR novamente ou apagar o histórico das fichas anteriores.
+4. Confira todas as páginas e os identificadores, resolva classificações desconhecidas/complementares e confirme o agrupamento. Se houver pessoas diferentes, separe as páginas em vez de confirmar.
+A movimentação de páginas funciona entre fichas do mesmo lote de importação. Não foi adicionada transferência automática entre lotes importados separadamente.
+
+CORRIGIR UMA LEITURA SEM MODIFICAR O PDF
+No editor de páginas, selecione a página e confira a imagem original. Corrija nome, carteira, nascimento ou identificadores adicionais nos campos de identificação, informe revisor/motivo e aplique à página. A correção mantém a origem e o histórico. Conflitos não podem ser liberados pela edição apenas dos campos gerais da ficha.
+Os demais campos e exames permanecem editáveis em Comparar e conferir. Os vários números de guia, carteira e senha continuam separados. Campo ausente fica Não identificado; quantidade autorizada vazia ou zero não autoriza procedimento.
+Reprocessar leitura mantém tipos, distribuição das páginas e correções de identificação registradas, mas revoga a confirmação anterior do agrupamento e exige nova conferência. Pré-cadastros preparados permanecem protegidos.
+
+RESULTADOS E LIMITES
+A comparação sintética reproduziu quatro fichas na 2.4 e quatro na 2.4.1; na 2.4.1 uma página deixava de aparecer nas visualizações. A 2.4.2 produziu uma ficha e preservou as quatro páginas. Os detalhes estão em docs\CORRECAO_2_4_2.md e docs\COMPARACAO_2_4_2.json.
+Os testes completos foram executados em Linux com interface real, Tesseract e simulação local de navegador. A instalação e execução nativas no Windows ainda precisam ser verificadas no seu computador. TESTAR_WINDOWS.bat executa os documentos sintéticos e a suíte com interface; testes de navegador são opcionais.
+A correção não garante leitura de manuscritos, carimbos ilegíveis ou qualquer layout real. Campos que não forem reconhecidos exigem correção com o original. Catálogo, códigos internos, conselho/UF numéricos e regras por fonte pagadora dependem de homologação do laboratório.
+Tudo é local. Nenhum documento clínico foi usado nesta rodada de desenvolvimento/testes ou incluído na entrega. Não houve acesso ao Shift real, criação de O.S. real ou impressão oficial. Mantenha a proteção antivírus; se houver detecção, registre o arquivo e o nome da ameaça para investigação.

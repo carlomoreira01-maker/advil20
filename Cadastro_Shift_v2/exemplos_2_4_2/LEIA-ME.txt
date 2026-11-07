@@ -1,0 +1,1 @@
+TODOS OS DADOS SAO FICTICIOS. O primeiro PDF tem pedido, guia com nome parcial, continuacao sem identidade e documento complementar. Importe no modo Um atendimento - varias paginas: deve aparecer uma ficha provisoria com quatro miniaturas. O segundo PDF contem conflito proposital e NAO pode ter agrupamento confirmado. Nenhum codigo representa cadastro Shift real.

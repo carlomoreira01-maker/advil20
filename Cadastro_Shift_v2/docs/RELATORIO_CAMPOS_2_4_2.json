@@ -1,0 +1,1613 @@
+{
+  "somente_sinteticos": true,
+  "verificacoes": 95,
+  "passaram": 95,
+  "falharam": 0,
+  "resultados": [
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Quantidade de fichas",
+      "esperado": 1,
+      "obtido": 1,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Páginas preservadas",
+      "esperado": 4,
+      "obtido": 4,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Arquivo integral preservado",
+      "esperado": true,
+      "obtido": true,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Tipo página 1",
+      "esperado": "pedido",
+      "obtido": "pedido",
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Tipo página 2",
+      "esperado": "guia",
+      "obtido": "guia",
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Tipo página 3",
+      "esperado": "continuação de guia",
+      "obtido": "continuação de guia",
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Tipo página 4",
+      "esperado": "outro",
+      "obtido": "outro",
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Nome completo impresso no pedido",
+      "esperado": "PESSOA FICTICIA ALFA",
+      "obtido": "PESSOA FICTICIA ALFA",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          40.0,
+          54.78400802612305,
+          292.5439758300781,
+          76.76800537109375
+        ],
+        "trecho": "Paciente: PESSOA FICTICIA ALFA"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "2 Guia prestador",
+      "esperado": "00000111",
+      "obtido": "00000111",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          112.94999694824219,
+          97.27201843261719,
+          132.18600463867188
+        ],
+        "trecho": "2 Numero da guia no prestador / 00000111"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "3 Guia principal",
+      "esperado": "00000222",
+      "obtido": "00000222",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          390.0,
+          112.94999694824219,
+          452.27197265625,
+          132.18600463867188
+        ],
+        "trecho": "3 Numero da guia principal / 00000222"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "4 Data autorização",
+      "esperado": "07/11/2026",
+      "obtido": "07/11/2026",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          745.0,
+          112.94999694824219,
+          815.0560302734375,
+          132.18600463867188
+        ],
+        "trecho": "4 Data da autorizacao / 07/11/2026"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "5 Senha autorização",
+      "esperado": "00000555",
+      "obtido": "00000555",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          170.9499969482422,
+          97.27201843261719,
+          190.18600463867188
+        ],
+        "trecho": "5 Senha de autorizacao / 00000555"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "6 Validade senha",
+      "esperado": "31/12/2099",
+      "obtido": "31/12/2099",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          390.0,
+          170.9499969482422,
+          460.05596923828125,
+          190.18600463867188
+        ],
+        "trecho": "6 Validade da senha / 31/12/2099"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "7 Guia operadora",
+      "esperado": "00000777",
+      "obtido": "00000777",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          745.0,
+          170.9499969482422,
+          807.27197265625,
+          190.18600463867188
+        ],
+        "trecho": "7 Numero da guia atribuido pela operadora / 00000777"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "8 Carteira",
+      "esperado": "0000087654",
+      "obtido": "0000087654",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          228.9499969482422,
+          112.84002685546875,
+          248.18600463867188
+        ],
+        "trecho": "8 Numero da carteira / 0000087654"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "9 Validade carteira",
+      "esperado": "31/12/2099",
+      "obtido": "31/12/2099",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          390.0,
+          228.9499969482422,
+          460.05596923828125,
+          248.18600463867188
+        ],
+        "trecho": "9 Validade da carteira / 31/12/2099"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "10 Paciente",
+      "esperado": "PESSOA FICTICIA",
+      "obtido": "PESSOA FICTICIA",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          745.0,
+          228.9499969482422,
+          864.8121948242188,
+          248.18600463867188
+        ],
+        "trecho": "10 Nome do beneficiario / PESSOA FICTICIA"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "13 Código solicitante",
+      "esperado": "000001313",
+      "obtido": "000001313",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          286.95001220703125,
+          105.05602264404297,
+          306.1860046386719
+        ],
+        "trecho": "13 Codigo do contratado solicitante / 000001313"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "15 Medico",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "obtido": "DRA EXEMPLO SINTETICA",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          390.0,
+          286.95001220703125,
+          568.1500854492188,
+          306.1860046386719
+        ],
+        "trecho": "15 Nome do profissional solicitante / DRA EXEMPLO SINTETICA"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "16 Conselho",
+      "esperado": "CRM",
+      "obtido": "CRM",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          745.0,
+          286.95001220703125,
+          776.8779296875,
+          306.1860046386719
+        ],
+        "trecho": "16 Conselho profissional / CRM"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "17 Número conselho",
+      "esperado": "0012345",
+      "obtido": "0012345",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          344.95001220703125,
+          89.4880142211914,
+          364.1860046386719
+        ],
+        "trecho": "17 Numero do conselho / 0012345"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "18 UF conselho",
+      "esperado": "GO",
+      "obtido": "GO",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          390.0,
+          344.95001220703125,
+          411.78399658203125,
+          364.1860046386719
+        ],
+        "trecho": "18 UF / GO"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "22 Data solicitação",
+      "esperado": "07/11/2026",
+      "obtido": "07/11/2026",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          745.0,
+          344.95001220703125,
+          815.0560302734375,
+          364.1860046386719
+        ],
+        "trecho": "22 Data da solicitacao / 07/11/2026"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Número de procedimentos",
+      "esperado": 5,
+      "obtido": 5,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Procedimento 1 codigo",
+      "esperado": "90000001",
+      "obtido": "90000001",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          491.0249938964844,
+          92.82398986816406,
+          508.8869934082031
+        ],
+        "trecho": "90000001"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Procedimento 1 descricao",
+      "esperado": "Hemograma",
+      "obtido": "Hemograma",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          225.0,
+          491.0249938964844,
+          296.51300048828125,
+          508.8869934082031
+        ],
+        "trecho": "Hemograma"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Procedimento 1 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          680.0,
+          491.0249938964844,
+          687.22802734375,
+          508.8869934082031
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Procedimento 1 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          855.0,
+          491.0249938964844,
+          862.22802734375,
+          508.8869934082031
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Procedimento 2 codigo",
+      "esperado": "90000002",
+      "obtido": "90000002",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          520.0250244140625,
+          92.82398986816406,
+          537.8870239257812
+        ],
+        "trecho": "90000002"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Procedimento 2 descricao",
+      "esperado": "Glicose",
+      "obtido": "Glicose",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          225.0,
+          520.0250244140625,
+          268.3420104980469,
+          537.8870239257812
+        ],
+        "trecho": "Glicose"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Procedimento 2 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          680.0,
+          520.0250244140625,
+          687.22802734375,
+          537.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Procedimento 2 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          855.0,
+          520.0250244140625,
+          862.22802734375,
+          537.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Procedimento 3 codigo",
+      "esperado": "90000003",
+      "obtido": "90000003",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          549.0250244140625,
+          92.82398986816406,
+          566.8870239257812
+        ],
+        "trecho": "90000003"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Procedimento 3 descricao",
+      "esperado": "TSH",
+      "obtido": "TSH",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          225.0,
+          549.0250244140625,
+          251.0,
+          566.8870239257812
+        ],
+        "trecho": "TSH"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Procedimento 3 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          680.0,
+          549.0250244140625,
+          687.22802734375,
+          566.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Procedimento 3 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          855.0,
+          549.0250244140625,
+          862.22802734375,
+          566.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Procedimento 4 codigo",
+      "esperado": "90000004",
+      "obtido": "90000004",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          35.0,
+          101.0250015258789,
+          92.82398986816406,
+          118.88700103759766
+        ],
+        "trecho": "90000004"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Procedimento 4 descricao",
+      "esperado": "Creatinina",
+      "obtido": "Creatinina",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          225.0,
+          101.0250015258789,
+          284.240966796875,
+          118.88700103759766
+        ],
+        "trecho": "Creatinina"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Procedimento 4 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          680.0,
+          101.0250015258789,
+          687.22802734375,
+          118.88700103759766
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Procedimento 4 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          855.0,
+          101.0250015258789,
+          862.22802734375,
+          118.88700103759766
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Procedimento 5 codigo",
+      "esperado": "90000005",
+      "obtido": "90000005",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          35.0,
+          130.02499389648438,
+          92.82398986816406,
+          147.88699340820312
+        ],
+        "trecho": "90000005"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Procedimento 5 descricao",
+      "esperado": "Colesterol total",
+      "obtido": "Colesterol total",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          225.0,
+          130.02499389648438,
+          311.697021484375,
+          147.88699340820312
+        ],
+        "trecho": "Colesterol total"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Procedimento 5 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          680.0,
+          130.02499389648438,
+          687.22802734375,
+          147.88699340820312
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Procedimento 5 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_atendimento_quatro_paginas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          855.0,
+          130.02499389648438,
+          862.22802734375,
+          147.88699340820312
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Associação ainda provisória",
+      "esperado": true,
+      "obtido": true,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "documento_ficticio": "01_um_atendimento_quatro_paginas.pdf",
+      "campo": "Associação confirmada explicitamente",
+      "esperado": false,
+      "obtido": false,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Quantidade de fichas",
+      "esperado": 1,
+      "obtido": 1,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Páginas preservadas",
+      "esperado": 4,
+      "obtido": 4,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Arquivo integral preservado",
+      "esperado": true,
+      "obtido": true,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Tipo página 1",
+      "esperado": "pedido",
+      "obtido": "pedido",
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Tipo página 2",
+      "esperado": "guia",
+      "obtido": "guia",
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Tipo página 3",
+      "esperado": "continuação de guia",
+      "obtido": "continuação de guia",
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Tipo página 4",
+      "esperado": "outro",
+      "obtido": "outro",
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Nome completo impresso no pedido",
+      "esperado": "PESSOA FICTICIA ALFA",
+      "obtido": "PESSOA FICTICIA ALFA",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          60.0,
+          557.6,
+          72.4,
+          808.8
+        ],
+        "trecho": "Paciente: PESSOA FICTICIA ALFA"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "2 Guia prestador",
+      "esperado": "00000111",
+      "obtido": "00000111",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          117.6,
+          1005.6,
+          128.4,
+          1064.4
+        ],
+        "trecho": "2 Numero da guia no prestador / 00000111"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "3 Guia principal",
+      "esperado": "00000222",
+      "obtido": "00000222",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          117.6,
+          648.4,
+          128.4,
+          709.6
+        ],
+        "trecho": "3 Numero da guia principal / 00000222"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "4 Data autorização",
+      "esperado": "07/11/2026",
+      "obtido": "07/11/2026",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          117.6,
+          285.2,
+          128.4,
+          354.4
+        ],
+        "trecho": "4 Data da autorizacao / 07/11/2026"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "5 Senha autorização",
+      "esperado": "00000555",
+      "obtido": "00000555",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          175.6,
+          1003.2,
+          186.4,
+          1064.4
+        ],
+        "trecho": "5 Senha de autorizacao / 00000555"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "6 Validade senha",
+      "esperado": "31/12/2099",
+      "obtido": "31/12/2099",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          175.6,
+          640.4,
+          186.4,
+          709.6
+        ],
+        "trecho": "6 Validade da senha / 31/12/2099"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "7 Guia operadora",
+      "esperado": "00000777",
+      "obtido": "00000777",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          175.6,
+          293.2,
+          186.4,
+          354.4
+        ],
+        "trecho": "7 Numero da guia atribuido pela operadora / 00000777"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "8 Carteira",
+      "esperado": "0000087654",
+      "obtido": "0000087654",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          233.6,
+          987.6,
+          244.4,
+          1064.4
+        ],
+        "trecho": "8 Numero da carteira / 0000087654"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "9 Validade carteira",
+      "esperado": "31/12/2099",
+      "obtido": "31/12/2099",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          233.6,
+          640.4,
+          244.4,
+          709.6
+        ],
+        "trecho": "9 Validade da carteira / 31/12/2099"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "10 Paciente",
+      "esperado": "PESSOA FICTICIA",
+      "obtido": "PESSOA FICTICIA",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          233.6,
+          235.2,
+          244.4,
+          354.0
+        ],
+        "trecho": "10 Nome do beneficiario / PESSOA FICTICIA"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "13 Código solicitante",
+      "esperado": "000001313",
+      "obtido": "000001313",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          291.6,
+          995.6,
+          302.4,
+          1064.4
+        ],
+        "trecho": "13 Codigo do contratado solicitante / 000001313"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "15 Medico",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "obtido": "DRA EXEMPLO SINTETICA",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          291.6,
+          532.0,
+          302.4,
+          708.8
+        ],
+        "trecho": "15 Nome do profissional solicitante / DRA EXEMPLO SINTETICA"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "16 Conselho",
+      "esperado": "CRM",
+      "obtido": "CRM",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          291.6,
+          324.0,
+          302.4,
+          354.4
+        ],
+        "trecho": "16 Conselho profissional / CRM"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "17 Número conselho",
+      "esperado": "0012345",
+      "obtido": "0012345",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          349.6,
+          1010.8,
+          360.4,
+          1064.4
+        ],
+        "trecho": "17 Numero do conselho / 0012345"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "18 UF conselho",
+      "esperado": "GO",
+      "obtido": "GO",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          349.6,
+          688.8,
+          360.4,
+          709.6
+        ],
+        "trecho": "18-UF / GO"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "22 Data solicitação",
+      "esperado": "07/11/2026",
+      "obtido": "07/11/2026",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          349.6,
+          285.2,
+          360.4,
+          354.4
+        ],
+        "trecho": "22 Data da solicitacao / 07/11/2026"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Número de procedimentos",
+      "esperado": 5,
+      "obtido": 5,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Procedimento 1 codigo",
+      "esperado": "90000001",
+      "obtido": "90000001",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          495.6,
+          1009.6,
+          505.6,
+          1064.8
+        ],
+        "trecho": "90000001"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Procedimento 1 descricao",
+      "esperado": "Hemograma",
+      "obtido": "Hemograma",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          495.2,
+          803.6,
+          508.0,
+          874.0
+        ],
+        "trecho": "Hemograma"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Procedimento 1 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          495.6,
+          415.2,
+          505.2,
+          418.8
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Procedimento 1 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          495.6,
+          240.4,
+          505.2,
+          243.6
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Procedimento 2 codigo",
+      "esperado": "90000002",
+      "obtido": "90000002",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          524.4,
+          1007.6,
+          534.4,
+          1064.8
+        ],
+        "trecho": "90000002"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Procedimento 2 descricao",
+      "esperado": "Glicose",
+      "obtido": "Glicose",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          524.4,
+          832.0,
+          534.4,
+          874.4
+        ],
+        "trecho": "Glicose"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Procedimento 2 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          524.4,
+          415.2,
+          534.0,
+          418.8
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Procedimento 2 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          524.4,
+          240.4,
+          534.0,
+          243.6
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Procedimento 3 codigo",
+      "esperado": "90000003",
+      "obtido": "90000003",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          553.6,
+          1007.6,
+          563.6,
+          1064.8
+        ],
+        "trecho": "90000003"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Procedimento 3 descricao",
+      "esperado": "TSH",
+      "obtido": "TSH",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          553.2,
+          850.0,
+          563.6,
+          874.8
+        ],
+        "trecho": "TSH"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Procedimento 3 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          553.6,
+          415.2,
+          563.2,
+          418.8
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Procedimento 3 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          553.6,
+          240.4,
+          563.2,
+          243.6
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Procedimento 4 codigo",
+      "esperado": "90000004",
+      "obtido": "90000004",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          105.6,
+          1007.6,
+          115.2,
+          1064.4
+        ],
+        "trecho": "90000004"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Procedimento 4 descricao",
+      "esperado": "Creatinina",
+      "obtido": "Creatinina",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          105.2,
+          816.0,
+          115.2,
+          874.4
+        ],
+        "trecho": "Creatinina"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Procedimento 4 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          105.6,
+          415.6,
+          115.2,
+          418.8
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Procedimento 4 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          105.6,
+          240.4,
+          115.2,
+          243.6
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Procedimento 5 codigo",
+      "esperado": "90000005",
+      "obtido": "90000005",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          134.8,
+          1007.6,
+          144.4,
+          1064.4
+        ],
+        "trecho": "90000005"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Procedimento 5 descricao",
+      "esperado": "Colesterol total",
+      "obtido": "Colesterol total",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          134.4,
+          789.2,
+          144.4,
+          874.4
+        ],
+        "trecho": "Colesterol total"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Procedimento 5 quantidade_solicitada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          134.4,
+          415.2,
+          144.0,
+          418.8
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Procedimento 5 quantidade_autorizada",
+      "esperado": "1",
+      "obtido": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_quatro_paginas_escaneadas.pdf",
+        "pagina_original": 3,
+        "regiao": [
+          134.4,
+          240.4,
+          144.0,
+          243.6
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Associação ainda provisória",
+      "esperado": true,
+      "obtido": true,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "documento_ficticio": "03_quatro_paginas_escaneadas.pdf",
+      "campo": "Associação confirmada explicitamente",
+      "esperado": false,
+      "obtido": false,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "documento_ficticio": "04_nome_espacado.pdf",
+      "campo": "Nome completo sem coluna vizinha",
+      "esperado": "PRIMEIRO SEGUNDO TERCEIRO",
+      "obtido": "PRIMEIRO SEGUNDO TERCEIRO",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_nome_espacado.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          30.0,
+          52.099998474121094,
+          346.0119934082031,
+          68.58799743652344
+        ],
+        "trecho": "10 Nome do beneficiario / PRIMEIRO SEGUNDO TERCEIRO"
+      }
+    },
+    {
+      "documento_ficticio": "05_coluna_vizinha.pdf",
+      "campo": "Nome completo sem coluna vizinha",
+      "esperado": "PRIMEIRO SEGUNDO TERCEIRO",
+      "obtido": "PRIMEIRO SEGUNDO TERCEIRO",
+      "passou": true,
+      "origem": {
+        "arquivo": "05_coluna_vizinha.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          30.0,
+          52.099998474121094,
+          218.68798828125,
+          68.58799743652344
+        ],
+        "trecho": "10 Nome do beneficiario / PRIMEIRO SEGUNDO TERCEIRO"
+      }
+    },
+    {
+      "documento_ficticio": "02_identificadores_incompativeis.pdf",
+      "campo": "Conflito bloqueia confirmação",
+      "esperado": true,
+      "obtido": true,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": null
+      }
+    }
+  ]
+}

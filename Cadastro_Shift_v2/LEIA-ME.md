@@ -1,10 +1,18 @@
-# Cadastro Assistido Shift — versão 2.4
+# Cadastro Assistido Shift — versão 2.4.2
 
-Comece por [ATUALIZAR_PARA_2_4.txt](ATUALIZAR_PARA_2_4.txt). Esta versão modifica o aplicativo Python/Tkinter existente e preserva dados, importação antiga, perfis, catálogo e simulação local. Não acessa o Shift real.
+Comece por [ATUALIZAR_PARA_2_4_2.txt](ATUALIZAR_PARA_2_4_2.txt). Esta versão modifica o aplicativo Python/Tkinter existente e preserva dados, importação antiga, perfis, catálogo e simulação local. Não acessa o Shift real.
 
-## Correções
+## Correção do agrupamento 2.4.2
 
-- **IMPORTAR ESCANEAMENTO** aceita PDF multipágina, JPG, PNG e lotes. Lê cada página sem pressupor ordem; associa por nome e identificador comum, bloqueando conflitos. Páginas incertas/continuações sem identificação ficam separadas para revisão.
+Escolha **Um atendimento — várias páginas** para manter todas as páginas de um PDF em uma ficha provisória. Nome parcial, identificação ausente e página complementar não dividem esse arquivo. **Vários pacientes — verificar identificação** mantém a associação conservadora por evidências.
+
+A ficha possui miniaturas de todas as páginas. Em **Corrigir página / agrupamento**, edite tipo, mova páginas entre fichas do lote e corrija identificação com motivo e origem. **Confirmar agrupamento** exige visualização e conferência, sem permitir conflitos. PDFs que versões antigas separaram podem ser reunidos sem novo OCR. O preparo continua dependendo das demais verificações.
+
+Veja [CORRECAO_2_4_2.md](docs/CORRECAO_2_4_2.md), [COMPARACAO_2_4_2.json](docs/COMPARACAO_2_4_2.json), [RELATORIO_CAMPOS_2_4_2.json](docs/RELATORIO_CAMPOS_2_4_2.json) e [RESULTADO_TESTES_2_4_2.txt](docs/RESULTADO_TESTES_2_4_2.txt). Use `exemplos_2_4_2/01_um_atendimento_quatro_paginas.pdf` para o teste principal e `02_identificadores_incompativeis.pdf` para verificar o bloqueio.
+
+## Funcionalidades preservadas
+
+- **IMPORTAR ESCANEAMENTO** aceita PDF multipágina, JPG, PNG e lotes. Lê cada página sem pressupor ordem; associa por nome e identificador comum, bloqueando conflitos. No modo de vários pacientes, páginas incertas/continuações sem identificação podem ficar separadas para revisão; no modo individual ficam na ficha provisória.
 - **Identificar documentos** permite editar tipo/atendimento por página, com motivo e confirmação. Os arquivos originais integrais ficam preservados; cada campo/procedimento aponta para arquivo, página física e região.
 - OCR local corrige orientação e pequena inclinação. A escolha da orientação deixou de premiar tokens gigantes sem sentido.
 - Interpretação SP/SADT passou a usar palavras, rótulos e limites das células, incluindo campos adjacentes. Reconhece valores na mesma linha, cabeçalhos quebrados, tabelas densas e quantidade solicitada/autorizada separadas. Execução não duplica a solicitação nem fornece autorização.
@@ -15,9 +23,9 @@ Comece por [ATUALIZAR_PARA_2_4.txt](ATUALIZAR_PARA_2_4.txt). Esta versão modifi
 
 Os testes automatizados incluem documentos sintéticos densos, PDF com pedido/guia em ambas as ordens, dois pacientes misturados, guia escaneada girada, imagens, quantidade zero/ausente, exame não autorizado, reclassificação e correção manual na interface até pré-cadastro local. O relatório por campo compara valores e origem: [RELATORIO_CAMPOS_2_4.json](docs/RELATORIO_CAMPOS_2_4.json). Veja [CORRECAO_2_4.md](docs/CORRECAO_2_4.md) e [RESULTADO_TESTES_2_4.txt](docs/RESULTADO_TESTES_2_4.txt).
 
-Os dois PDFs fornecidos foram analisados localmente para diagnóstico e não integram fixtures, pacote ou GitHub. Contagens não substituem conferência de valores. Alguns campos desses layouts continuam incertos; códigos numéricos de conselho/UF exigem validação. A versão é testável e assistida, sem garantia de leitura integral de qualquer guia.
+Na rodada anterior, os PDFs fornecidos foram analisados localmente para diagnóstico e não integram fixtures, pacote ou GitHub. Nesta rodada foram usados exclusivamente documentos fictícios. Contagens não substituem conferência de valores. Alguns campos desses layouts continuam incertos; códigos numéricos de conselho/UF exigem validação. A versão é testável e assistida, sem garantia de leitura integral de qualquer guia.
 
-Execução nativa do instalador, binários OCR e interface no Windows permanece pendente. O laboratório deve homologar catálogo, fontes pagadoras, mapeamentos e regras de atendimento. Continuações sem identificadores exigem associação manual. O fluxo interno sem guia permanece individual. Não há adaptador de produção para o Shift.
+Execução nativa do instalador, binários OCR e interface no Windows permanece pendente. O laboratório deve homologar catálogo, fontes pagadoras, mapeamentos e regras de atendimento. Continuações sem identificadores exigem conferência; no modo múltiplo podem exigir associação manual. O fluxo interno sem guia permanece individual. Não há adaptador de produção para o Shift.
 
 ## Instalação e segurança
 
@@ -31,7 +39,7 @@ A simulação Playwright usa somente loopback e dados fictícios. Nenhuma ordem 
 
 ```bash
 DISPLAY=:90 SHIFT_GUI_TESTS=1 SHIFT_BROWSER_TESTS=1 python -m unittest discover -s tests -v
-python validar_campos_2_4.py
+python validar_campos_2_4_2.py
 ```
 
-No Windows, use `TESTAR_WINDOWS.bat`. Playwright/Chromium são opcionais para a simulação e não são instalados na recepção por padrão. As instruções e relatórios 2.1, 2.2 e 2.3 permanecem como histórico.
+No Windows, use `TESTAR_WINDOWS.bat`. Playwright/Chromium são opcionais para a simulação e não são instalados na recepção por padrão. As instruções e relatórios 2.1 a 2.4 permanecem como histórico; siga o guia 2.4.2 para atualizar.

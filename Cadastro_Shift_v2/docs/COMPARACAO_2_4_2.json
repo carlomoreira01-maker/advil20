@@ -1,0 +1,53 @@
+{
+  "somente_sinteticos": true,
+  "resultados": [
+    {
+      "versao": "2.4",
+      "fichas": 4,
+      "paginas_preservadas_nas_fichas": 4,
+      "paginas_no_original": 4,
+      "tipos": [
+        "pedido",
+        "guia",
+        "continuação de guia",
+        "incerto"
+      ],
+      "campos_nomes_ficticios": {
+        "04_nome_espacado.pdf": "SEGUNDO TERCEIRO",
+        "05_coluna_vizinha.pdf": "PRIMEIRO SEGUNDO TERCEIRO"
+      }
+    },
+    {
+      "versao": "2.4.1",
+      "fichas": 4,
+      "paginas_preservadas_nas_fichas": 3,
+      "paginas_no_original": 4,
+      "tipos": [
+        "pedido",
+        "guia",
+        "continuação de guia",
+        "incerto"
+      ],
+      "campos_nomes_ficticios": {
+        "04_nome_espacado.pdf": "PRIMEIRO SEGUNDO TERCEIRO",
+        "05_coluna_vizinha.pdf": ""
+      }
+    },
+    {
+      "versao": "2.4.2",
+      "fichas": 1,
+      "paginas_preservadas_nas_fichas": 4,
+      "paginas_no_original": 4,
+      "tipos": [
+        "pedido",
+        "guia",
+        "continuação de guia",
+        "outro"
+      ],
+      "campos_nomes_ficticios": {
+        "04_nome_espacado.pdf": "PRIMEIRO SEGUNDO TERCEIRO",
+        "05_coluna_vizinha.pdf": "PRIMEIRO SEGUNDO TERCEIRO"
+      }
+    }
+  ]
+}

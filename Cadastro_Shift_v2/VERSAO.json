@@ -1,17 +1,23 @@
 {
-  "versao": "2.4",
+  "versao": "2.4.2",
   "data": "2026-11-07",
-  "testes_aprovados": 159,
-  "testes_interface": 35,
+  "testes_aprovados": 184,
+  "testes_interface": 43,
   "falhas": 0,
   "ignorados": 0,
   "ambiente_testes": "Linux Debian 13 / Python 3.12.14 / PyMuPDF 1.26.6 / Pillow 13.0.0 / Tesseract 5.5.0 / Xorg dummy",
-  "windows": "Execução nativa pendente. Instalação, binários OCR e antivírus dependem de teste no Windows. Campos reais incertos e regras locais exigem conferência/homologação.",
+  "windows": "Execução nativa pendente. Programa e fluxos gráficos validados em Linux; instalação/Tesseract no Windows e regras locais exigem validação no laboratório.",
   "modelos": {
     "por.traineddata": "c4932b937207a9514b7514d518b931a99938c02a28a5a5a553f8599ed58b7deb",
     "eng.traineddata": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2"
   },
   "testes_navegador": 3,
-  "verificacoes_campos": 175,
-  "layouts_reais": "Diagnóstico local de 7 páginas; PDFs/texto clínico excluídos da entrega. Contagens não são validação independente de todos os valores."
+  "verificacoes_campos": 270,
+  "layouts_reais": "Não utilizados nesta rodada. Desenvolvimento e testes exclusivamente com documentos fictícios.",
+  "base_estavel": "2.4",
+  "versao_comparada": "2.4.1",
+  "verificacoes_campos_detalhe": {
+    "regressao_2_4": 175,
+    "novos_casos_2_4_2": 95
+  }
 }

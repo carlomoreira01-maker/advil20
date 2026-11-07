@@ -2,7 +2,7 @@
 import copy,json,os,tempfile,time,tkinter as tk,unittest
 from pathlib import Path
 from unittest.mock import patch
-from app import App,UNIDENTIFIED
+from app import App,UNIDENTIFIED,IMPORT_MODES
 from gerar_exemplos_tiss import catalog,VALUES
 from gerar_exemplos_2_4 import main,combine
 from tests.test_mapping_sim import profile
@@ -18,7 +18,7 @@ class ScanInterface(unittest.TestCase):
  def setUp(self):
   self.tmp=tempfile.TemporaryDirectory();self.root=tk.Tk();self.app=App(self.root,Path(self.tmp.name)/'dados');self.app.catalog=catalog()
   for row in self.app.catalog:row['codigo_shift']='SIM-LAB-'+row['tuss']  # supplied by test only
-  self.app.actor.set('REVISOR FICTICIO');self.root.update()
+  self.app.import_mode.set(IMPORT_MODES['multiple']);self.app.actor.set('REVISOR FICTICIO');self.root.update()
  def tearDown(self):
   self.app.store.db.close();self.root.destroy();self.tmp.cleanup()
  def wait(self):

@@ -1,0 +1,14 @@
+CADASTRO ASSISTIDO SHIFT 2.4.2 — ENTREGA
+
+ZIP direto:
+https://github.com/carlomoreira01-maker/advil20/raw/refs/heads/entrega/shift-v2.4.2/entrega/Cadastro_Shift_v2_4_2_corrigido.zip
+
+Se necessário, abra a branch:
+https://github.com/carlomoreira01-maker/advil20/tree/entrega/shift-v2.4.2
+Entre na sua conta GitHub e escolha Code → Download ZIP. Extraia tudo e entre em Cadastro_Shift_v2.
+Leia ATUALIZAR_PARA_2_4_2.txt. Faça backup antes de copiar dados_v2; não copie a .venv antiga.
+Abra INSTALAR_WINDOWS.bat e depois INICIAR_WINDOWS.bat.
+
+Teste no modo Um atendimento — várias páginas com exemplos_2_4_2/01_um_atendimento_quatro_paginas.pdf.
+Resultado: uma ficha PROVISÓRIA, quatro páginas, cinco exames. A confirmação do agrupamento é humana e conflitos continuam bloqueados.
+A execução nativa Windows ainda precisa de validação local. Os testes da entrega usam apenas dados fictícios, sem Shift real ou impressão oficial.

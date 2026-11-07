@@ -18,7 +18,7 @@ from ocr_processing import source_box
 from ocr_runtime import tesseract_exe, ocr_configuration, run_local, safe_failure, LocalReadError
 
 from tiss import EXTRA_FIELDS, empty_field
-FIELDS = ['Paciente', 'Nascimento', 'Fonte pagadora', 'Operadora', 'Guia', 'Medico', 'Validade', 'Status'] + EXTRA_FIELDS
+FIELDS = ['Paciente', 'Nascimento', 'Fonte pagadora', 'Operadora', 'Guia', 'Medico', 'Validade', 'Status'] + EXTRA_FIELDS + ['CPF','CNS']
 ALIASES = {
     'NOME DO PACIENTE':'Paciente', 'NOME DO BENEFICIARIO':'Paciente', 'BENEFICIARIO':'Paciente', 'PACIENTE':'Paciente',
     'DATA DE NASCIMENTO':'Nascimento', 'NASCIMENTO':'Nascimento', 'DATA NASC.':'Nascimento', 'DN':'Nascimento',
@@ -39,6 +39,7 @@ ALIASES.update({
 })
 ALIASES.update({k.upper():k for k in EXTRA_FIELDS})
 ALIASES.update({'REGIME DE ATENDIMENTO':'Regime atendimento','INDICACAO CLINICA':'Indicação clínica','MATRICULA':'Carteira','CARTEIRINHA':'Carteira','CRM':'Número conselho','UF DO CONSELHO':'UF conselho'})
+ALIASES.update({'CPF':'CPF','CNS':'CNS','CARTAO NACIONAL DE SAUDE':'CNS'})
 ALIASES = {norm(k): v for k, v in ALIASES.items()}
 MAX_BYTES = 30 * 1024 * 1024
 
@@ -455,6 +456,7 @@ def compare_models(p,g,catalog):
 def review_errors(models):
     errors=[]
     for kind,m in models.items():
+        errors.extend(kind+': '+e for e in m.get('scan_validation_errors',[]))
         if m.get('identity_conflict'):errors.append(kind+': identificadores incompatíveis nas páginas agrupadas. Separe os pacientes em Identificar documentos.')
         if m.get('classification_pending'):errors.append(kind+': classificação de página pendente. Abra Identificar documentos.')
         if m.get('association_pending'):errors.append(kind+': associação das páginas não confirmada. Confira identificadores em Identificar documentos.')
