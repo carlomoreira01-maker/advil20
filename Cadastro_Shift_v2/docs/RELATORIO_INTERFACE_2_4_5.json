@@ -1,0 +1,151 @@
+{
+  "somente_sinteticos": true,
+  "verificacoes": [
+    {
+      "verificacao": "Importação terminou",
+      "esperado": false,
+      "encontrado": false,
+      "passou": true
+    },
+    {
+      "verificacao": "Uma ficha",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true
+    },
+    {
+      "verificacao": "Duas páginas",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true
+    },
+    {
+      "verificacao": "Tipos das páginas",
+      "esperado": [
+        "pedido",
+        "guia"
+      ],
+      "encontrado": [
+        "pedido",
+        "guia"
+      ],
+      "passou": true
+    },
+    {
+      "verificacao": "Erro leva ao campo Revisor",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "verificacao": "Aviso nomeia Revisor",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "verificacao": "Motivo mostra a aba correta",
+      "esperado": ".!panedwindow.!frame2.!notebook.!frame2",
+      "encontrado": ".!panedwindow.!frame2.!notebook.!frame2",
+      "passou": true
+    },
+    {
+      "verificacao": "Erro leva ao campo Motivo",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "verificacao": "Agrupamento conferido",
+      "esperado": false,
+      "encontrado": false,
+      "passou": true
+    },
+    {
+      "verificacao": "Páginas vistas não são perdidas",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "verificacao": "Campo visível Paciente",
+      "esperado": "PESSOA FICTICIA ALFA",
+      "encontrado": "PESSOA FICTICIA ALFA",
+      "passou": true
+    },
+    {
+      "verificacao": "Campo visível Medico",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "encontrado": "DRA EXEMPLO SINTETICA",
+      "passou": true
+    },
+    {
+      "verificacao": "Campo visível Número conselho",
+      "esperado": "0012345",
+      "encontrado": "0012345",
+      "passou": true
+    },
+    {
+      "verificacao": "Campo visível UF conselho",
+      "esperado": "GO",
+      "encontrado": "GO",
+      "passou": true
+    },
+    {
+      "verificacao": "Linhas de exames na conferência",
+      "esperado": 10,
+      "encontrado": 10,
+      "passou": true
+    },
+    {
+      "verificacao": "Conferência salva",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "verificacao": "Sem pendências após revisão",
+      "esperado": [],
+      "encontrado": [],
+      "passou": true
+    },
+    {
+      "verificacao": "Botão aguarda confirmação final",
+      "esperado": "disabled",
+      "encontrado": "disabled",
+      "passou": true
+    },
+    {
+      "verificacao": "Botão liberado após confirmação",
+      "esperado": "normal",
+      "encontrado": "normal",
+      "passou": true
+    },
+    {
+      "verificacao": "Estado final",
+      "esperado": "PREPARADO",
+      "encontrado": "PREPARADO",
+      "passou": true
+    },
+    {
+      "verificacao": "Nenhuma O.S. real",
+      "esperado": null,
+      "encontrado": null,
+      "passou": true
+    },
+    {
+      "verificacao": "Revisor e motivo persistidos",
+      "esperado": {
+        "revisor": "REVISOR FICTICIO",
+        "motivo": "Conferência fictícia dos dados, exames, páginas e alertas"
+      },
+      "encontrado": {
+        "revisor": "REVISOR FICTICIO",
+        "motivo": "Conferência fictícia dos dados, exames, páginas e alertas"
+      },
+      "passou": true
+    }
+  ],
+  "passaram": 22,
+  "falharam": 0
+}

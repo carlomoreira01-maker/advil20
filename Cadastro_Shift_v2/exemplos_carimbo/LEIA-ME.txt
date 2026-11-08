@@ -1,0 +1,1 @@
+SOMENTE DADOS FICTICIOS. 01 contem pedido sem titulo, com carimbo, e guia. 03 contem quatro paginas do mesmo paciente ficticio. 04 tem autorizacao zero e deve bloquear o preparo. 05 e pedido escaneado girado. Consentimento/receita com CRM nao devem virar pedido so por conter carimbo. Nenhum codigo interno do Shift e fornecido por estes documentos.

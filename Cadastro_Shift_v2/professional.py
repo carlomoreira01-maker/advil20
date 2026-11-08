@@ -7,13 +7,18 @@ from ocr_processing import union_box
 
 
 def free_identification(document):
-    result={k:empty_field(document.get('file')) for k in ['Conselho','Número conselho','UF conselho']}
+    result={k:empty_field(document.get('file')) for k in ['Conselho','Número conselho','UF conselho','Medico']}
     observations=[]
     states='|'.join(sorted(UFS))
     pattern=re.compile(r'\b(?P<council>CRM|CRO|COREN|CRBM|CRF|CREFITO|CRP|CRN|CRFA)\b\s*[:/-]?\s*'
                        r'(?:(?P<before>'+states+r')\b\s*[:/-]?\s*)?'
                        r'(?P<number>\d(?:[\d .]*\d)?)(?:\s*[-/]?\s*(?P<after>'+states+r')\b)?')
     for page in document['pages']:
+        from prescription_layout import stamped_names
+        for value,line in stamped_names(page):
+            observations.append({'Medico':{'value':value,'document':document.get('file'),'page':page['number'],
+                'box':union_box(line.get('words',[])) or line['box'],'confidence':line['confidence'],
+                'snippet':line['text'],'origin_type':'nome_no_carimbo_impresso','reviewed':False,'candidates':[]}})
         for line in rows(words_of(page)):
             words=line['words'];text=norm(' '.join(w['text'] for w in words))
             for match in pattern.finditer(text):
@@ -37,7 +42,9 @@ def reconcile(structured,free,issues):
     for key,alternative in free.items():
         current=structured[key]
         if not alternative['value']:continue
-        if current['value'] and current['value']!=alternative['value']:
+        from prescription_layout import doctor_name
+        equivalent=(doctor_name(current['value'])==doctor_name(alternative['value'])) if key=='Medico' else current['value']==alternative['value']
+        if current['value'] and not equivalent:
             structured[key]={**empty_field(current.get('document')),'candidates':[copy.deepcopy(current),copy.deepcopy(alternative)],
                 'diagnostic':'Campo estruturado e identificação livre/carimbo divergem; conferir ambas as origens.'}
             issues.append('Solicitante: '+key+' diverge entre campo estruturado e identificação livre/carimbo.')

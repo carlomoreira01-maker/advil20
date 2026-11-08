@@ -1,0 +1,22 @@
+CADASTRO ASSISTIDO SHIFT 2.4.5 — PACOTE TESTADO
+
+257 arquivos, incluindo todos os 224 arquivos da versão anterior. CRC do ZIP aprovado e SHA-256 de cada membro igual ao manifesto.
+SHA-256 do ZIP: fe194d41decf5cc8fc240a863e7bad1bd2dab833d59abfa1a26a8dce35a96a9d
+
+O ZIP foi extraído em pasta nova. Os oito testes de conferência foram executados A PARTIR DOS ARQUIVOS EXTRAÍDOS: revisor/motivo, clique em botão bloqueado, conferência guiada, revisão salva com pendências, motivo alterado, quatro páginas e demonstração completa. Todos passaram com documentos fictícios. Windows nativo continua pendente.
+
+SAÍDA
+
+test_conferencia_salva_mas_autorizacao_zero_continua_bloqueada (tests.test_conferencia_gui_245.Conferencia245.test_conferencia_salva_mas_autorizacao_zero_continua_bloqueada) ... ok
+test_erro_metadado_no_assistente_mostra_o_campo_dentro_da_janela (tests.test_conferencia_gui_245.Conferencia245.test_erro_metadado_no_assistente_mostra_o_campo_dentro_da_janela) ... ok
+test_exemplo_ficticio_completo_sem_configurar_shift (tests.test_conferencia_gui_245.Conferencia245.test_exemplo_ficticio_completo_sem_configurar_shift) ... ok
+test_falta_revisor_ou_motivo_destaca_e_foca_o_campo_sem_salvar (tests.test_conferencia_gui_245.Conferencia245.test_falta_revisor_ou_motivo_destaca_e_foca_o_campo_sem_salvar) ... ok
+test_fluxo_carimbo_ate_pre_cadastro_sem_mutar_validadores (tests.test_conferencia_gui_245.Conferencia245.test_fluxo_carimbo_ate_pre_cadastro_sem_mutar_validadores) ... ok
+test_motivo_editado_apos_salvar_exige_novo_salvamento (tests.test_conferencia_gui_245.Conferencia245.test_motivo_editado_apos_salvar_exige_novo_salvamento) ... ok
+test_quatro_paginas_confirmacao_simplificada_preserva_vistas (tests.test_conferencia_gui_245.Conferencia245.test_quatro_paginas_confirmacao_simplificada_preserva_vistas) ... ok
+test_sem_catalogo_nao_inventa_codigo_e_explicita_configuracao (tests.test_conferencia_gui_245.Conferencia245.test_sem_catalogo_nao_inventa_codigo_e_explicita_configuracao) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 7.524s
+
+OK

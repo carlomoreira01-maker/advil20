@@ -1,0 +1,27 @@
+{
+  "somente_ficticios": true,
+  "paciente": "PESSOA FICTICIA ALFA",
+  "medico": "DRA EXEMPLO SINTETICA",
+  "conselho": "CRM",
+  "numero": "0012345",
+  "uf": "GO",
+  "exames": [
+    "Hemograma",
+    "Glicose",
+    "TSH",
+    "Creatinina",
+    "Colesterol total"
+  ],
+  "quantidade": "1",
+  "quantidade_ausente": "",
+  "tipos_duas_paginas": [
+    "pedido",
+    "guia"
+  ],
+  "tipos_quatro_paginas": [
+    "pedido",
+    "guia",
+    "continuação de guia",
+    "outro"
+  ]
+}

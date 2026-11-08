@@ -1,0 +1,1572 @@
+{
+  "somente_sinteticos": true,
+  "verificacoes": 102,
+  "passaram": 102,
+  "falharam": 0,
+  "resultados": [
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Classificação",
+      "esperado": [
+        "pedido",
+        "guia"
+      ],
+      "encontrado": [
+        "pedido",
+        "guia"
+      ],
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Atendimentos",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Páginas",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Paciente",
+      "esperado": "PESSOA FICTICIA ALFA",
+      "encontrado": "PESSOA FICTICIA ALFA",
+      "passou": true,
+      "origem": {
+        "documento": "01_pedido_carimbo_e_guia.pdf",
+        "pagina": 1,
+        "regiao": [
+          35.0,
+          89.94999694824219,
+          252.083984375,
+          109.18599700927734
+        ],
+        "trecho": "Paciente PESSOA FICTICIA ALFA"
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Medico",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "encontrado": "DRA EXEMPLO SINTETICA",
+      "passou": true,
+      "origem": {
+        "documento": "01_pedido_carimbo_e_guia.pdf",
+        "pagina": 1,
+        "regiao": [
+          300.0,
+          624.9500122070312,
+          475.0420227050781,
+          644.1859741210938
+        ],
+        "trecho": "Dra. EXEMPLO SINTETICA"
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Conselho",
+      "esperado": "CRM",
+      "encontrado": "CRM",
+      "passou": true,
+      "origem": {
+        "documento": "01_pedido_carimbo_e_guia.pdf",
+        "pagina": 1,
+        "regiao": [
+          300.0,
+          649.9500122070312,
+          416.7039489746094,
+          669.1859741210938
+        ],
+        "trecho": "CRM-GO 0012345"
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Número conselho",
+      "esperado": "0012345",
+      "encontrado": "0012345",
+      "passou": true,
+      "origem": {
+        "documento": "01_pedido_carimbo_e_guia.pdf",
+        "pagina": 1,
+        "regiao": [
+          300.0,
+          649.9500122070312,
+          416.7039489746094,
+          669.1859741210938
+        ],
+        "trecho": "CRM-GO 0012345"
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "UF conselho",
+      "esperado": "GO",
+      "encontrado": "GO",
+      "passou": true,
+      "origem": {
+        "documento": "01_pedido_carimbo_e_guia.pdf",
+        "pagina": 1,
+        "regiao": [
+          300.0,
+          649.9500122070312,
+          416.7039489746094,
+          669.1859741210938
+        ],
+        "trecho": "CRM-GO 0012345"
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Exames",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Exame 1",
+      "esperado": "Hemograma",
+      "encontrado": "Hemograma",
+      "passou": true,
+      "origem": {
+        "documento": "01_pedido_carimbo_e_guia.pdf",
+        "pagina": 1,
+        "regiao": [
+          50.0,
+          224.9499969482422,
+          184.61000061035156,
+          244.18600463867188
+        ],
+        "trecho": "1. Hemograma Qtd: 1"
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Quantidade 1",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Sem código inventado 1",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Exame 2",
+      "esperado": "Glicose",
+      "encontrado": "Glicose",
+      "passou": true,
+      "origem": {
+        "documento": "01_pedido_carimbo_e_guia.pdf",
+        "pagina": 1,
+        "regiao": [
+          50.0,
+          259.95001220703125,
+          154.27200317382812,
+          279.1860046386719
+        ],
+        "trecho": "2. Glicose Qtd: 1"
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Quantidade 2",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Sem código inventado 2",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Exame 3",
+      "esperado": "TSH",
+      "encontrado": "TSH",
+      "passou": true,
+      "origem": {
+        "documento": "01_pedido_carimbo_e_guia.pdf",
+        "pagina": 1,
+        "regiao": [
+          50.0,
+          294.95001220703125,
+          135.59600830078125,
+          314.1860046386719
+        ],
+        "trecho": "3. TSH Qtd: 1"
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Quantidade 3",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Sem código inventado 3",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Exame 4",
+      "esperado": "Creatinina",
+      "encontrado": "Creatinina",
+      "passou": true,
+      "origem": {
+        "documento": "01_pedido_carimbo_e_guia.pdf",
+        "pagina": 1,
+        "regiao": [
+          50.0,
+          329.95001220703125,
+          171.39401245117188,
+          349.1860046386719
+        ],
+        "trecho": "4. Creatinina Qtd: 1"
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Quantidade 4",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Sem código inventado 4",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Exame 5",
+      "esperado": "Colesterol total",
+      "encontrado": "Colesterol total",
+      "passou": true,
+      "origem": {
+        "documento": "01_pedido_carimbo_e_guia.pdf",
+        "pagina": 1,
+        "regiao": [
+          50.0,
+          364.95001220703125,
+          200.9619903564453,
+          384.1860046386719
+        ],
+        "trecho": "5. Colesterol total Qtd: 1"
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Quantidade 5",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "01_pedido_carimbo_e_guia.pdf",
+      "campo": "Sem código inventado 5",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Classificação",
+      "esperado": [
+        "guia",
+        "pedido"
+      ],
+      "encontrado": [
+        "guia",
+        "pedido"
+      ],
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Atendimentos",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Páginas",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Paciente",
+      "esperado": "PESSOA FICTICIA ALFA",
+      "encontrado": "PESSOA FICTICIA ALFA",
+      "passou": true,
+      "origem": {
+        "documento": "02_guia_antes_pedido.pdf",
+        "pagina": 2,
+        "regiao": [
+          35.0,
+          89.94999694824219,
+          252.083984375,
+          109.18599700927734
+        ],
+        "trecho": "Paciente PESSOA FICTICIA ALFA"
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Medico",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "encontrado": "DRA EXEMPLO SINTETICA",
+      "passou": true,
+      "origem": {
+        "documento": "02_guia_antes_pedido.pdf",
+        "pagina": 2,
+        "regiao": [
+          300.0,
+          624.9500122070312,
+          475.0420227050781,
+          644.1859741210938
+        ],
+        "trecho": "Dra. EXEMPLO SINTETICA"
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Conselho",
+      "esperado": "CRM",
+      "encontrado": "CRM",
+      "passou": true,
+      "origem": {
+        "documento": "02_guia_antes_pedido.pdf",
+        "pagina": 2,
+        "regiao": [
+          300.0,
+          649.9500122070312,
+          416.7039489746094,
+          669.1859741210938
+        ],
+        "trecho": "CRM-GO 0012345"
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Número conselho",
+      "esperado": "0012345",
+      "encontrado": "0012345",
+      "passou": true,
+      "origem": {
+        "documento": "02_guia_antes_pedido.pdf",
+        "pagina": 2,
+        "regiao": [
+          300.0,
+          649.9500122070312,
+          416.7039489746094,
+          669.1859741210938
+        ],
+        "trecho": "CRM-GO 0012345"
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "UF conselho",
+      "esperado": "GO",
+      "encontrado": "GO",
+      "passou": true,
+      "origem": {
+        "documento": "02_guia_antes_pedido.pdf",
+        "pagina": 2,
+        "regiao": [
+          300.0,
+          649.9500122070312,
+          416.7039489746094,
+          669.1859741210938
+        ],
+        "trecho": "CRM-GO 0012345"
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Exames",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Exame 1",
+      "esperado": "Hemograma",
+      "encontrado": "Hemograma",
+      "passou": true,
+      "origem": {
+        "documento": "02_guia_antes_pedido.pdf",
+        "pagina": 2,
+        "regiao": [
+          50.0,
+          224.9499969482422,
+          184.61000061035156,
+          244.18600463867188
+        ],
+        "trecho": "1. Hemograma Qtd: 1"
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Quantidade 1",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Sem código inventado 1",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Exame 2",
+      "esperado": "Glicose",
+      "encontrado": "Glicose",
+      "passou": true,
+      "origem": {
+        "documento": "02_guia_antes_pedido.pdf",
+        "pagina": 2,
+        "regiao": [
+          50.0,
+          259.95001220703125,
+          154.27200317382812,
+          279.1860046386719
+        ],
+        "trecho": "2. Glicose Qtd: 1"
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Quantidade 2",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Sem código inventado 2",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Exame 3",
+      "esperado": "TSH",
+      "encontrado": "TSH",
+      "passou": true,
+      "origem": {
+        "documento": "02_guia_antes_pedido.pdf",
+        "pagina": 2,
+        "regiao": [
+          50.0,
+          294.95001220703125,
+          135.59600830078125,
+          314.1860046386719
+        ],
+        "trecho": "3. TSH Qtd: 1"
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Quantidade 3",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Sem código inventado 3",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Exame 4",
+      "esperado": "Creatinina",
+      "encontrado": "Creatinina",
+      "passou": true,
+      "origem": {
+        "documento": "02_guia_antes_pedido.pdf",
+        "pagina": 2,
+        "regiao": [
+          50.0,
+          329.95001220703125,
+          171.39401245117188,
+          349.1860046386719
+        ],
+        "trecho": "4. Creatinina Qtd: 1"
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Quantidade 4",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Sem código inventado 4",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Exame 5",
+      "esperado": "Colesterol total",
+      "encontrado": "Colesterol total",
+      "passou": true,
+      "origem": {
+        "documento": "02_guia_antes_pedido.pdf",
+        "pagina": 2,
+        "regiao": [
+          50.0,
+          364.95001220703125,
+          200.9619903564453,
+          384.1860046386719
+        ],
+        "trecho": "5. Colesterol total Qtd: 1"
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Quantidade 5",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "02_guia_antes_pedido.pdf",
+      "campo": "Sem código inventado 5",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Classificação",
+      "esperado": [
+        "pedido",
+        "guia",
+        "continuação de guia",
+        "outro"
+      ],
+      "encontrado": [
+        "pedido",
+        "guia",
+        "continuação de guia",
+        "outro"
+      ],
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Atendimentos",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Páginas",
+      "esperado": 4,
+      "encontrado": 4,
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Paciente",
+      "esperado": "PESSOA FICTICIA ALFA",
+      "encontrado": "PESSOA FICTICIA ALFA",
+      "passou": true,
+      "origem": {
+        "documento": "03_quatro_paginas.pdf",
+        "pagina": 1,
+        "regiao": [
+          35.0,
+          89.94999694824219,
+          252.083984375,
+          109.18599700927734
+        ],
+        "trecho": "Paciente PESSOA FICTICIA ALFA"
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Medico",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "encontrado": "DRA EXEMPLO SINTETICA",
+      "passou": true,
+      "origem": {
+        "documento": "03_quatro_paginas.pdf",
+        "pagina": 1,
+        "regiao": [
+          300.0,
+          624.9500122070312,
+          475.0420227050781,
+          644.1859741210938
+        ],
+        "trecho": "Dra. EXEMPLO SINTETICA"
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Conselho",
+      "esperado": "CRM",
+      "encontrado": "CRM",
+      "passou": true,
+      "origem": {
+        "documento": "03_quatro_paginas.pdf",
+        "pagina": 1,
+        "regiao": [
+          300.0,
+          649.9500122070312,
+          416.7039489746094,
+          669.1859741210938
+        ],
+        "trecho": "CRM-GO 0012345"
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Número conselho",
+      "esperado": "0012345",
+      "encontrado": "0012345",
+      "passou": true,
+      "origem": {
+        "documento": "03_quatro_paginas.pdf",
+        "pagina": 1,
+        "regiao": [
+          300.0,
+          649.9500122070312,
+          416.7039489746094,
+          669.1859741210938
+        ],
+        "trecho": "CRM-GO 0012345"
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "UF conselho",
+      "esperado": "GO",
+      "encontrado": "GO",
+      "passou": true,
+      "origem": {
+        "documento": "03_quatro_paginas.pdf",
+        "pagina": 1,
+        "regiao": [
+          300.0,
+          649.9500122070312,
+          416.7039489746094,
+          669.1859741210938
+        ],
+        "trecho": "CRM-GO 0012345"
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Exames",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Exame 1",
+      "esperado": "Hemograma",
+      "encontrado": "Hemograma",
+      "passou": true,
+      "origem": {
+        "documento": "03_quatro_paginas.pdf",
+        "pagina": 1,
+        "regiao": [
+          50.0,
+          224.9499969482422,
+          184.61000061035156,
+          244.18600463867188
+        ],
+        "trecho": "1. Hemograma Qtd: 1"
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Quantidade 1",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Sem código inventado 1",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Exame 2",
+      "esperado": "Glicose",
+      "encontrado": "Glicose",
+      "passou": true,
+      "origem": {
+        "documento": "03_quatro_paginas.pdf",
+        "pagina": 1,
+        "regiao": [
+          50.0,
+          259.95001220703125,
+          154.27200317382812,
+          279.1860046386719
+        ],
+        "trecho": "2. Glicose Qtd: 1"
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Quantidade 2",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Sem código inventado 2",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Exame 3",
+      "esperado": "TSH",
+      "encontrado": "TSH",
+      "passou": true,
+      "origem": {
+        "documento": "03_quatro_paginas.pdf",
+        "pagina": 1,
+        "regiao": [
+          50.0,
+          294.95001220703125,
+          135.59600830078125,
+          314.1860046386719
+        ],
+        "trecho": "3. TSH Qtd: 1"
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Quantidade 3",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Sem código inventado 3",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Exame 4",
+      "esperado": "Creatinina",
+      "encontrado": "Creatinina",
+      "passou": true,
+      "origem": {
+        "documento": "03_quatro_paginas.pdf",
+        "pagina": 1,
+        "regiao": [
+          50.0,
+          329.95001220703125,
+          171.39401245117188,
+          349.1860046386719
+        ],
+        "trecho": "4. Creatinina Qtd: 1"
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Quantidade 4",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Sem código inventado 4",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Exame 5",
+      "esperado": "Colesterol total",
+      "encontrado": "Colesterol total",
+      "passou": true,
+      "origem": {
+        "documento": "03_quatro_paginas.pdf",
+        "pagina": 1,
+        "regiao": [
+          50.0,
+          364.95001220703125,
+          200.9619903564453,
+          384.1860046386719
+        ],
+        "trecho": "5. Colesterol total Qtd: 1"
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Quantidade 5",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "03_quatro_paginas.pdf",
+      "campo": "Sem código inventado 5",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Classificação",
+      "esperado": [
+        "pedido"
+      ],
+      "encontrado": [
+        "pedido"
+      ],
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Atendimentos",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Páginas",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Paciente",
+      "esperado": "PESSOA FICTICIA ALFA",
+      "encontrado": "PESSOA FICTICIA ALFA",
+      "passou": true,
+      "origem": {
+        "documento": "05_pedido_girado.pdf",
+        "pagina": 1,
+        "regiao": [
+          94.4,
+          398.0,
+          105.6,
+          614.0
+        ],
+        "trecho": "Paciente PESSOA FICTICIA ALFA"
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Medico",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "encontrado": "DRA EXEMPLO SINTETICA",
+      "passou": true,
+      "origem": {
+        "documento": "05_pedido_girado.pdf",
+        "pagina": 1,
+        "regiao": [
+          629.6,
+          175.2,
+          640.4,
+          348.8
+        ],
+        "trecho": "Dra. EXEMPLO SINTETICA"
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Conselho",
+      "esperado": "CRM",
+      "encontrado": "CRM",
+      "passou": true,
+      "origem": {
+        "documento": "05_pedido_girado.pdf",
+        "pagina": 1,
+        "regiao": [
+          654.4,
+          233.6,
+          665.6,
+          349.6
+        ],
+        "trecho": "CRM-GO 0012345"
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Número conselho",
+      "esperado": "0012345",
+      "encontrado": "0012345",
+      "passou": true,
+      "origem": {
+        "documento": "05_pedido_girado.pdf",
+        "pagina": 1,
+        "regiao": [
+          654.4,
+          233.6,
+          665.6,
+          349.6
+        ],
+        "trecho": "CRM-GO 0012345"
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "UF conselho",
+      "esperado": "GO",
+      "encontrado": "GO",
+      "passou": true,
+      "origem": {
+        "documento": "05_pedido_girado.pdf",
+        "pagina": 1,
+        "regiao": [
+          654.4,
+          233.6,
+          665.6,
+          349.6
+        ],
+        "trecho": "CRM-GO 0012345"
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Exames",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Exame 1",
+      "esperado": "Hemograma",
+      "encontrado": "Hemograma",
+      "passou": true,
+      "origem": {
+        "documento": "05_pedido_girado.pdf",
+        "pagina": 1,
+        "regiao": [
+          229.6,
+          468.0,
+          243.2,
+          598.8
+        ],
+        "trecho": "1. Hemograma Qtd: 1"
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Quantidade 1",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Sem código inventado 1",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Exame 2",
+      "esperado": "Glicose",
+      "encontrado": "Glicose",
+      "passou": true,
+      "origem": {
+        "documento": "05_pedido_girado.pdf",
+        "pagina": 1,
+        "regiao": [
+          264.4,
+          498.4,
+          276.0,
+          599.6
+        ],
+        "trecho": "2. Glicose Qtd: 1"
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Quantidade 2",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Sem código inventado 2",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Exame 3",
+      "esperado": "TSH",
+      "encontrado": "TSH",
+      "passou": true,
+      "origem": {
+        "documento": "05_pedido_girado.pdf",
+        "pagina": 1,
+        "regiao": [
+          299.6,
+          517.2,
+          310.8,
+          599.6
+        ],
+        "trecho": "3. TSH Qtd: 1"
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Quantidade 3",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Sem código inventado 3",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Exame 4",
+      "esperado": "Creatinina",
+      "encontrado": "Creatinina",
+      "passou": true,
+      "origem": {
+        "documento": "05_pedido_girado.pdf",
+        "pagina": 1,
+        "regiao": [
+          334.4,
+          481.2,
+          346.0,
+          599.6
+        ],
+        "trecho": "4. Creatinina Qtd: 1"
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Quantidade 4",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Sem código inventado 4",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Exame 5",
+      "esperado": "Colesterol total",
+      "encontrado": "Colesterol total",
+      "passou": true,
+      "origem": {
+        "documento": "05_pedido_girado.pdf",
+        "pagina": 1,
+        "regiao": [
+          369.6,
+          452.0,
+          380.8,
+          599.6
+        ],
+        "trecho": "5. Colesterol total Qtd: 1"
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Quantidade 5",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "05_pedido_girado.pdf",
+      "campo": "Sem código inventado 5",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "consentimento_carimbo.pdf",
+      "campo": "Tipo incerto preservado",
+      "esperado": "incerto",
+      "encontrado": "incerto",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "receita_carimbo.pdf",
+      "campo": "Tipo incerto preservado",
+      "esperado": "incerto",
+      "encontrado": "incerto",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "pedido_sem_carimbo.pdf",
+      "campo": "Tipo incerto preservado",
+      "esperado": "incerto",
+      "encontrado": "incerto",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "Quantidade ausente",
+      "campo": "Não presumir 1",
+      "esperado": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "encontrado": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "Reprocessamento",
+      "campo": "Tipo automático corrigido",
+      "esperado": "pedido",
+      "encontrado": "pedido",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "Reprocessamento",
+      "campo": "Tipo humano mantido",
+      "esperado": "outro",
+      "encontrado": "outro",
+      "passou": true,
+      "origem": {
+        "documento": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    }
+  ]
+}

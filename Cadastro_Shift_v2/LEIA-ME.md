@@ -1,6 +1,20 @@
-# Cadastro Assistido Shift — versão 2.4.4
+# Cadastro Assistido Shift — versão 2.4.5
 
-Comece por [ATUALIZAR_PARA_2_4_4.txt](ATUALIZAR_PARA_2_4_4.txt). Esta versão modifica o aplicativo Python/Tkinter existente e preserva dados, importação antiga, perfis, catálogo e simulação local. Não acessa o Shift real.
+Comece por [ATUALIZAR_PARA_2_4_5.txt](ATUALIZAR_PARA_2_4_5.txt). Esta versão modifica o aplicativo Python/Tkinter existente e preserva dados, importação antiga, perfis, catálogo e simulação local. Não acessa o Shift real.
+
+## Pedido carimbado e conferência guiada 2.4.5
+
+Um pedido com lista de exames, paciente e carimbo profissional legível pode ser reconhecido mesmo sem o título Pedido médico. Guia com carimbo continua guia quando apresenta evidências de guia. O nome impresso junto ao CRM tem origem própria; carimbo isolado não determina o tipo. Listas são preservadas mesmo sem catálogo, sem inventar códigos ou quantidades.
+
+**Revisor e Motivo da conferência agora ficam visíveis.** Revisor é o nome de quem confere. Motivo tem uma sugestão editável. Se faltar um deles, o programa destaca e foca o campo; para o motivo, abre a aba correta. Clicar no pré-cadastro bloqueado também explica a pendência.
+
+Use **CONFERIR ATENDIMENTO** na lateral. A janela reúne Dados, Exames e Alertas. Depois de ver as páginas, confirmar a identidade e marcar as conferências realizadas, clique em **SALVAR CONFERÊNCIA E VER RESULTADO**. A tela distingue revisão salva de cadastro ainda bloqueado. O preparo local continua exigindo todos os requisitos e confirmação final.
+
+Em **Páginas do atendimento**, há correção rápida do tipo e confirmação das páginas. Reprocessar passa a atualizar classificações automáticas antigas; correções humanas explícitas são preservadas. As páginas já vistas não são esquecidas durante a confirmação.
+
+Para praticar o fluxo completo sem configuração do Shift, use uma instalação separada/vazia, clique em **Exemplos fictícios** e selecione a **primeira ficha**. Para testar carimbo, use `exemplos_carimbo/01_pedido_carimbo_e_guia.pdf`.
+
+Veja [CORRECAO_2_4_5.md](docs/CORRECAO_2_4_5.md), [RESULTADO_TESTES_2_4_5.txt](docs/RESULTADO_TESTES_2_4_5.txt), [RELATORIO_CARIMBO_2_4_5.json](docs/RELATORIO_CARIMBO_2_4_5.json) e [RELATORIO_INTERFACE_2_4_5.json](docs/RELATORIO_INTERFACE_2_4_5.json). A execução nativa no Windows permanece pendente. O histórico anterior está preservado abaixo.
 
 ## Auditoria e correção do fluxo 2.4.4
 
@@ -66,4 +80,4 @@ DISPLAY=:90 SHIFT_GUI_TESTS=1 SHIFT_BROWSER_TESTS=1 python -m unittest discover 
 python validar_campos_2_4_2.py
 ```
 
-No Windows, use `TESTAR_WINDOWS.bat`. Playwright/Chromium são opcionais para a simulação e não são instalados na recepção por padrão. As instruções e relatórios 2.1 a 2.4 permanecem como histórico; siga o guia 2.4.4 para atualizar.
+No Windows, use `TESTAR_WINDOWS.bat`. Playwright/Chromium são opcionais para a simulação e não são instalados na recepção por padrão. As instruções e relatórios 2.1 a 2.4 permanecem como histórico; siga o guia 2.4.5 para atualizar.

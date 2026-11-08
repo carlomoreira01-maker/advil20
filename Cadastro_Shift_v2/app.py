@@ -94,17 +94,17 @@ class App:
         self.ocr_request=0;self.ocr_dialog=None;self.ocr_health=None
         self.import_sequence=0
         root.report_callback_exception=self.callback_failure
-        root.title('Cadastro Assistido Shift · versão 2.4.4 · Local');root.geometry('1450x950');root.minsize(1100,760)
+        root.title('Cadastro Assistido Shift · versão 2.4.5 · Local');root.geometry('1450x950');root.minsize(1100,760)
         st=ttk.Style();st.theme_use('clam');st.configure('TButton',padding=6);st.configure('Treeview',rowheight=28)
-        tk.Label(root,text='CADASTRO ASSISTIDO SHIFT  |  2.4.4',font=('Segoe UI',19,'bold'),bg='#173d52',fg='white',anchor='w',padx=18,pady=12).pack(fill='x')
+        tk.Label(root,text='CADASTRO ASSISTIDO SHIFT  |  2.4.5',font=('Segoe UI',19,'bold'),bg='#173d52',fg='white',anchor='w',padx=18,pady=12).pack(fill='x')
         ttk.Label(root,text='Importar escaneamento → Identificar documentos → Extrair dados → Comparar exames → Conferir → Preparar cadastro',font=('Segoe UI',11,'bold'),padding=8).pack(fill='x')
         ttk.Label(root,text='Processamento local | Revisão humana obrigatória | Pré-cadastro não enviado ao Shift',padding=(10,0)).pack(anchor='w')
         bar=ttk.Frame(root,padding=8);bar.pack(fill='x')
-        ttk.Label(bar,text='Revisor:').pack(side='left');self.actor=tk.StringVar(value='');ttk.Entry(bar,textvariable=self.actor,width=20).pack(side='left',padx=5)
+        ttk.Label(bar,text='Revisor:').pack(side='left');self.actor=tk.StringVar(value='');self.actor_entry=ttk.Entry(bar,textvariable=self.actor,width=20);self.actor_entry.pack(side='left',padx=5)
         st.configure('Accent.TButton',font=('Segoe UI',11,'bold'),padding=(12,10))
         self.import_scan_button=ttk.Button(bar,text='IMPORTAR ESCANEAMENTO',style='Accent.TButton',command=lambda:self.guard(self.import_scans));self.import_scan_button.pack(side='left',padx=3)
         ttk.Button(bar,text='Identificar documentos',command=lambda:self.guard(self.classification_window)).pack(side='left',padx=3)
-        ttk.Button(bar,text='Exemplos fictícios',command=lambda:self.guard(self.examples)).pack(side='left',padx=3)
+        self.examples_button=ttk.Button(bar,text='Exemplos fictícios',command=lambda:self.guard(self.examples));self.examples_button.pack(side='left',padx=3)
         config_button=ttk.Menubutton(bar,text='Configurações e ferramentas');config_button.pack(side='right',padx=5)
         menu=tk.Menu(config_button,tearoff=False);config_button.configure(menu=menu)
         for title,fn in [('Catálogo do laboratório',self.catalog_window),('Fontes pagadoras',self.payer_window),('Diagnóstico e configuração OCR',self.ocr_settings_window),('Importar par separado (legado)',self.import_pair),('Importar lote CSV (legado)',self.import_csv),('Simulação local fictícia',self.simulation_window),('DEMO v1',self.legacy)]:menu.add_command(label=title,command=lambda f=fn:self.guard(f))
@@ -118,6 +118,7 @@ class App:
         panes=ttk.Panedwindow(root,orient='horizontal');panes.pack(fill='both',expand=True,padx=8)
         sidebar=ttk.Frame(panes,width=210);main=ttk.Frame(panes);panes.add(sidebar,weight=1);panes.add(main,weight=7)
         ttk.Label(sidebar,text='PACIENTES NA FILA',padding=6).pack()
+        self.assisted_button=ttk.Button(sidebar,text='CONFERIR ATENDIMENTO',style='Accent.TButton',command=lambda:self.guard(self.assisted_review));self.assisted_button.pack(fill='x',pady=5)
         self.cases=ttk.Treeview(sidebar,columns=('nome','etapa','exames','pendencias'),show='headings',selectmode='browse')
         for c,t,w in [('nome','Paciente',140),('etapa','Etapa',115),('exames','Exames',55),('pendencias','Pend.',50)]:self.cases.heading(c,text=t);self.cases.column(c,width=w)
         self.cases.pack(fill='both',expand=True);self.cases.bind('<<TreeviewSelect>>',self.select)
@@ -129,6 +130,17 @@ class App:
         from page_panel import PagePanel
         self.page_tab=ttk.Frame(self.tabs);self.tabs.add(self.page_tab,text='Páginas do atendimento')
         self.page_panel=PagePanel(self.page_tab,DocumentView);self.page_panel.pack(fill='both',expand=True)
+        page_actions=ttk.Frame(self.page_tab,padding=5);page_actions.pack(fill='x')
+        self.page_kind=tk.StringVar(value='pedido')
+        old_on_page=self.page_panel.viewer.on_page
+        def page_selected(index):
+            old_on_page(index)
+            if 0<=index<len(self.page_panel.items):self.page_kind.set(self.page_panel.items[index]['kind'])
+        self.page_panel.viewer.on_page=page_selected
+        ttk.Label(page_actions,text='Tipo da página selecionada:').pack(side='left')
+        ttk.Combobox(page_actions,textvariable=self.page_kind,values=['pedido','guia','continuação de pedido','continuação de guia','outro','incerto'],state='readonly',width=24).pack(side='left',padx=4)
+        self.page_type_button=ttk.Button(page_actions,text='Corrigir tipo',command=lambda:self.guard(self.correct_page_type));self.page_type_button.pack(side='left',padx=3)
+        self.group_confirm_button=ttk.Button(page_actions,text='Confirmar páginas e identidade',command=lambda:self.guard(self.confirm_case_pages));self.group_confirm_button.pack(side='left',padx=3)
         ttk.Button(self.page_tab,text='Corrigir página / agrupamento',command=lambda:self.guard(self.classification_window)).pack(pady=5)
         self.tabs.add(self.doc_tab,text='1 · Originais lado a lado');self.tabs.add(self.review_container,text='2 · Comparar e conferir');self.tabs.add(self.out_tab,text='3 · Pré-cadastro')
         self.diagnostic_tab=ttk.Frame(self.tabs,padding=8)
@@ -202,11 +214,23 @@ class App:
             alerts=ttk.Treeview(frame,columns=('msg','ok'),show='headings',height=2);alerts.heading('msg',text='Alertas de cobertura — duplo clique para registrar resolução');alerts.heading('ok',text='Resolvido');alerts.column('msg',width=650);alerts.column('ok',width=70);alerts.pack(fill='x',pady=4);alerts.bind('<Double-1>',lambda e,k=kind:self.guard(lambda:self.resolve_issue(k)));self.alert_tables[kind]=alerts
             v=tk.BooleanVar();self.page_checks[kind]=v;ttk.Checkbutton(frame,text='Conferi visualmente TODAS as páginas e os dados ausentes deste documento',variable=v,command=lambda k=kind:self.check_pages(k)).pack(anchor='w')
         actions=ttk.Frame(self.review_container,padding=5);actions.grid(row=2,column=0,columnspan=2,sticky='ew')
+        metadata=ttk.Frame(actions);metadata.pack(fill='x',pady=(0,5))
+        ttk.Label(metadata,text='Motivo da conferência:').pack(side='left')
+        self.review_reason=tk.StringVar(value='Conferência dos campos e exames com os originais')
+        self.reason_entry=ttk.Entry(metadata,textvariable=self.review_reason);self.reason_entry.pack(side='left',fill='x',expand=True,padx=5)
+        self.review_hint=tk.StringVar(value='Preencha Revisor no topo e confira o motivo antes de salvar.')
+        ttk.Label(metadata,textvariable=self.review_hint,foreground='#a43224',wraplength=260).pack(side='right')
+        self.prepare_help_button=ttk.Button(metadata,text='Por que está bloqueado?',command=lambda:self.guard(self.explain_prepare));self.prepare_help_button.pack(side='right',padx=4)
+        controls=ttk.Frame(actions);controls.pack(fill='x')
+        actions=controls
         ttk.Button(actions,text='Corrigir manualmente',command=lambda:self.guard(self.manual_correction)).pack(side='left')
         ttk.Button(actions,text='Conferir campos vistos',command=lambda:self.guard(self.review_fields)).pack(side='left')
         self.save_review_button=ttk.Button(actions,text='Salvar correções e comparar',command=lambda:self.guard(self.save));self.save_review_button.pack(side='left')
         self.confirm=tk.BooleanVar();ttk.Checkbutton(actions,text='Conferi o paciente e os documentos',variable=self.confirm).pack(side='left',padx=6)
         self.prepare_button=ttk.Button(actions,text='Preparar pré-cadastro >',command=lambda:self.guard(self.prepare));self.prepare_button.pack(side='right')
+        def blocked_prepare_click(event):
+            if str(self.prepare_button['state'])=='disabled':self.guard(self.explain_prepare);return 'break'
+        self.prepare_button.bind('<Button-1>',blocked_prepare_click)
         self.output=tk.Text(self.out_tab,state='disabled',wrap='word');self.output.pack(fill='both',expand=True)
         ttk.Button(self.out_tab,text='Salvar pré-cadastro JSON',command=lambda:self.guard(self.export)).pack(pady=8)
         self.status=tk.StringVar(value='Clique em IMPORTAR ESCANEAMENTO. A leitura começa automaticamente.')
@@ -217,6 +241,7 @@ class App:
         self.check_ocr()
         self.confirm.trace_add('write',lambda *_:self.update_prepare_state())
         self.actor.trace_add('write',lambda *_:self.update_prepare_state())
+        self.review_reason.trace_add('write',lambda *_:self.review_changed())
         self.prepare_button.configure(state='disabled')
     def check_ocr(self,exe=None,save=False):
         self.ocr_request+=1;request=self.ocr_request;self.ocr_health=None
@@ -400,13 +425,85 @@ class App:
     def update_prepare_state(self):
         if not hasattr(self,'prepare_button'):return
         ready=bool(self.cid and self.models and not getattr(self,'comparison_errors',[True]) and self.confirm.get()
-                   and self.actor.get().strip() and not self.dirty() and self.store.get(self.cid)[2]!='PREPARADO')
+                   and self.actor.get().strip() and self.review_reason.get().strip() and not self.dirty() and self.store.get(self.cid)[2]!='PREPARADO')
         self.prepare_button.configure(state='normal' if ready else 'disabled')
     def manual_correction(self):
         if not self.models:raise ValueError('Selecione um atendimento na fila.')
         self.tabs.select(self.review_container)
         self.status.set('Edite os campos e exames abaixo. Confira os originais, salve as correções e compare novamente.')
         self.field_entries['pedido']['Paciente'].focus_set()
+    def metadata_ready(self,entries=None):
+        entries=entries or {'actor':self.actor_entry,'reason':self.reason_entry}
+        for key,variable,label in [('actor',self.actor,'Revisor'),('reason',self.review_reason,'Motivo da conferência')]:
+            if not variable.get().strip():
+                message='Preencha '+label+'. O campo está destacado nesta tela.'
+                self.review_hint.set(message);self.status.set(message)
+                if entries[key] is self.reason_entry:self.tabs.select(self.review_container)
+                entries[key].winfo_toplevel().lift()
+                ttk.Style().configure('Missing.TEntry',fieldbackground='#fff0dc')
+                entries[key].configure(style='Missing.TEntry');entries[key].focus_force()
+                return False
+            entries[key].configure(style='TEntry')
+        self.review_hint.set('Revisor e motivo preenchidos. Salve a conferência após revisar os documentos.')
+        return True
+    def explain_prepare(self):
+        self.tabs.select(self.review_container)
+        if not self.metadata_ready():return
+        if self.dirty():
+            self.status.set('Há alterações não salvas. Clique em Salvar correções e comparar.');self.save_review_button.focus_force();return
+        self.show_comparison()
+        if self.comparison_errors:
+            self.status.set('O pré-cadastro está bloqueado pelas pendências listadas. Use CONFERIR ATENDIMENTO para seguir os passos.')
+            return self.assisted_review()
+        self.status.set('Marque a confirmação final do paciente e dos documentos para liberar Preparar pré-cadastro.')
+    def assisted_review(self):
+        if not self.cid:raise ValueError('Importe um escaneamento ou selecione um atendimento.')
+        from assisted_review import ReviewAssistant
+        current=getattr(self,'review_assistant',None)
+        if current and current.window.winfo_exists() and current.cid==self.cid:current.show();return
+        if current and current.window.winfo_exists():current.window.destroy()
+        self.review_assistant=ReviewAssistant(self)
+    def _save_pages(self,batch,seen):
+        from scan_import import save_batch
+        selected_page=self.page_panel.selected_id
+        cid=self.cid;cids=save_batch(self.store,batch,self.catalog,self.actor.get(),replace=True)
+        cid=cid if cid in cids else cids[0]
+        self.refresh();self.cases.selection_set(cid);self.open_case(cid)
+        self.page_panel.seen_ids.update(seen.intersection({i['id'] for i in self.page_panel.items}))
+        selected_index=next((i for i,p in enumerate(self.page_panel.items) if p['id']==selected_page),None)
+        if selected_index is not None:self.page_panel.select(selected_index)
+        self.restore_seen_pages()
+    def restore_seen_pages(self):
+        for view in self.views.values():
+            for i,page in enumerate(view.doc['pages'],1):
+                src=page.get('source',{})
+                if src.get('sha256','')+':'+str(src.get('page')) in self.page_panel.seen_ids:view.seen.add(i)
+    def correct_page_type(self):
+        if not self.cid or not self.page_panel.selected_id:raise ValueError('Selecione uma página nas miniaturas.')
+        if not self.metadata_ready():return
+        if self.dirty() and not self.save():return
+        from scan_import import load_batch
+        obj=self.store.get(self.cid)[0];batch=load_batch(self.store,obj['docs']['pedido']['scan_batch'])
+        item=next(i for i in batch['pages'] if i['id']==self.page_panel.selected_id)
+        item.update(kind=self.page_kind.get(),classification_origin='manual',reviewed=True,reason=self.review_reason.get().strip())
+        seen=set(self.page_panel.seen_ids);self._save_pages(batch,seen);self.tabs.select(self.page_tab)
+        self.status.set('Tipo da página corrigido. A ficha e a comparação foram atualizadas; confirme as páginas e a identidade.')
+    def confirm_case_pages(self):
+        if not self.cid:raise ValueError('Selecione um atendimento.')
+        if not self.metadata_ready():return
+        if self.dirty() and not self.save():return
+        from scan_import import load_batch,confirm_group
+        obj=self.store.get(self.cid)[0];batch_id=obj['docs']['pedido'].get('scan_batch')
+        if not batch_id:raise ValueError('Atendimento legado: confira os originais lado a lado.')
+        batch=load_batch(self.store,batch_id);group=obj['docs']['pedido']['scan_group'];seen=set(self.page_panel.seen_ids)
+        items=[i for i in batch['pages'] if i['group']==group]
+        if any(i['id'] not in seen for i in items):raise ValueError('Abra todas as miniaturas antes de confirmar as páginas e a identidade.')
+        if not messagebox.askyesno('Conferir páginas e identidade','Confirma o tipo de TODAS as páginas, a finalidade dos complementares e os identificadores da mesma pessoa?\nConflitos e páginas incertas continuam bloqueados.'):return
+        for item in items:
+            if item['kind']=='outro':item.update(reviewed=True,reason=self.review_reason.get().strip())
+        confirm_group(batch,group,self.actor.get(),self.review_reason.get(),seen)
+        self._save_pages(batch,seen);self.tabs.select(self.review_container)
+        self.status.set('Páginas e identidade confirmadas. Clique em CONFERIR ATENDIMENTO para revisar os dados e os exames.')
     def review_fields(self):
         if not self.models:raise ValueError('Selecione um atendimento.')
         k=['pedido','guia'][self.forms.index(self.forms.select())]
@@ -433,7 +530,10 @@ class App:
             m[k]['pages_reviewed']=self.page_checks[k].get()
         return m
     def dirty(self):
-        return self.cid and digest(self.collect())!=digest(self.store.get(self.cid)[0]['models'])
+        if not self.cid:return False
+        obj=self.store.get(self.cid)[0]
+        metadata=obj.get('review_metadata')
+        return digest(self.collect())!=digest(obj['models']) or bool(metadata and metadata!={'revisor':self.actor.get().strip(),'motivo':self.review_reason.get().strip()})
     def refresh(self):
         self.cases.delete(*self.cases.get_children())
         for cid,cur,status in self.store.db.execute('SELECT id,current,status FROM casos_v2 ORDER BY rowid'):
@@ -453,6 +553,7 @@ class App:
         self.open_case(s[0])
     def open_case(self,cid,restore_diagnostics=True):
         self.cid=cid;obj,self.rev,status,out=self.store.get(cid);self.models=copy.deepcopy(obj['models']);self.selected_profile=self.models['guia'].get('payer_profile');self.loading=True
+        if obj.get('review_metadata'):self.review_reason.set(obj['review_metadata']['motivo'])
         # Saved absolute paths can change after copying dados_v2 to a new folder.
         for doc in obj['docs'].values():
             for page in doc['pages']:
@@ -649,10 +750,11 @@ class App:
             self.page_checks[k].set(False);messagebox.showinfo('Páginas pendentes','Abra todas as páginas deste documento na aba Originais antes de confirmar.')
         self.review_changed()
     def save(self):
+        if not self.metadata_ready():return False
         m=self.collect()
-        reason=simpledialog.askstring('Salvar conferência','Motivo / observação desta revisão:',initialvalue='Conferência dos campos e exames com os originais')
-        if not reason:return
+        reason=self.review_reason.get().strip()
         self.store.save(self.cid,m,self.actor.get(),reason,self.rev);self.rev+=1;self.models=m;self.confirm.set(False);[self.render_rows(k) for k in self.models];self.show_comparison();self.refresh();self.status.set(f'Conferência salva · revisão {self.rev}')
+        return True
     def prepare(self):
         if not self.cid:raise ValueError('Selecione um paciente.')
         if self.dirty():raise ValueError('Salve a conferência antes de preparar.')
@@ -684,18 +786,8 @@ class App:
                 batch=read_scan(paths,self.data,cat,settings_path=self.ocr_settings_path,mode=mode,
                     progress=lambda i,total,text:self.events.put(('scan_progress',text)))
                 if reprocess:
-                    # Preserve manual page assignments, not old OCR values.
-                    previous={p['id']:p for p in reprocess['pages']}
-                    if set(previous)!={p['id'] for p in batch['pages']}:raise ValueError('Os originais não correspondem às páginas importadas.')
-                    batch['id']=reprocess['id']
-                    for item in batch['pages']:
-                        old=previous[item['id']]
-                        for key in ['group','kind','reviewed','reason']:item[key]=old[key]
-                        if old.get('identity_edits'):
-                            from scan_import import apply_identity_edits
-                            apply_identity_edits(item,{k:h['history'][-1]['after'] for k,h in old['identity_edits'].items()},'Reprocessamento local','Reaplicação de correção humana registrada')
-                            item['identity_edits']=copy.deepcopy(old['identity_edits'])
-                    batch['group_reviews']={}  # A new reading requires a new grouping review.
+                    from scan_import import merge_reprocessed
+                    merge_reprocessed(batch,reprocess)
 
                 self.events.put(('scan_batch',batch,bool(reprocess)))
             except Exception as exc:self.events.put(('error',safe_failure(exc)))
@@ -753,7 +845,7 @@ class App:
             edits={k:v.get().strip() for k,v in identity_vars.items()}
             if any(edits[k]!=item['model']['fields'].get(k,{}).get('value','') for k in edits):
                 apply_identity_edits(item,edits,self.actor.get(),reason.get().strip())
-            item.update(kind=kind.get(),group=group.get().strip(),reason=reason.get().strip(),reviewed=True)
+            item.update(kind=kind.get(),classification_origin='manual',group=group.get().strip(),reason=reason.get().strip(),reviewed=True)
             refresh();table.selection_set(str(index))
         def approve():
             index,item=current()
@@ -932,7 +1024,7 @@ class App:
                 elif item[0]=='error':messagebox.showwarning('Documento não importado',item[1])
                 else:
                     self.busy=False;self.pending_imports.clear();self.progress_indicator.stop();self.progress.grab_release();self.progress.destroy()
-                    self.status.set('Leitura encerrada. Confira os campos e as falhas na aba Diagnóstico de leitura.');self.refresh()
+                    self.status.set('Leitura encerrada. Clique em CONFERIR ATENDIMENTO. Revisor e motivo ficam visíveis antes de salvar.');self.refresh()
         except queue.Empty:pass
         except Exception as exc:
             # Uma falha de atualização não deve interromper para sempre o consumo

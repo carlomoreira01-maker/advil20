@@ -4,7 +4,7 @@ from core import norm
 from tiss_geometry import anchors
 
 
-def classify_page(page):
+def classify_page(page,catalog=()):
     text=norm(page.get('text',''))
     aa=anchors(page);numbers={a['num'] for a in aa}
     request=bool(re.search(r'\b(?:PEDIDO MEDICO|SOLICITACAO DE EXAMES|REQUISICAO DE EXAMES)\b',text))
@@ -36,6 +36,10 @@ def classify_page(page):
         listing=bool(re.search(r'\b(?:EXAMES|PROCEDIMENTOS)\b',text))
         kind='pedido' if patient and doctor and intention and listing else 'incerto'
         if kind=='pedido':evidence.append('Paciente, solicitante, intenção de solicitação e lista de exames.')
+        if kind=='incerto':
+            from prescription_layout import evidence as prescription_evidence
+            pad=prescription_evidence(page,catalog)
+            if pad['supported']:kind='pedido';evidence.append(pad['reason'])
     if re.search(r'\bCONTINUA(?:CAO)?\b',text) and kind in ['pedido','guia']:kind='continuação de '+kind
     return {'kind':kind,'uncertain':kind=='incerto','evidence':evidence,
             'reason':' '.join(evidence) if evidence else 'Classificação incerta: confira o tipo desta página no original.'}

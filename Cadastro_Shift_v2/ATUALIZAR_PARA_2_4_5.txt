@@ -1,0 +1,42 @@
+CADASTRO ASSISTIDO SHIFT 2.4.5 — PEDIDO COM CARIMBO E CONFERÊNCIA GUIADA
+
+ATUALIZAR
+1. Feche o programa e faça uma cópia da pasta antiga inteira, incluindo dados_v2.
+2. Extraia TODO o ZIP novo em uma pasta NOVA. Não execute dentro do ZIP.
+3. Entre em Cadastro_Shift_v2. Com o programa fechado, copie dados_v2 da versão antiga para a nova. Não copie .venv e não sobrescreva atendimentos novos.
+4. Abra INSTALAR_WINDOWS.bat e depois INICIAR_WINDOWS.bat. O título deve mostrar 2.4.5. Python e Tesseract precisam estar instalados; os modelos por/eng acompanham o pacote.
+
+ANTES DE CONFERIR
+No campo Revisor, no topo, digite SEU NOME. Não é o nome do paciente.
+O Motivo da conferência fica visível e já tem uma sugestão editável: Conferência dos campos e exames com os originais. Use-a somente se descrever o que você conferiu ou escreva sua observação.
+Se um desses campos ficar vazio, o programa informa qual falta, destaca o campo e leva o cursor até ele. Se o motivo estiver em outra aba, abre a aba correta. Clicar no pré-cadastro bloqueado também explica o próximo passo. Há ainda o botão Por que está bloqueado?.
+
+RECUPERAR UM ATENDIMENTO ANTIGO COM TIPO ERRADO
+1. Preencha Revisor e selecione a ficha na fila.
+2. Clique em Reprocessar leitura. Agora a classificação AUTOMÁTICA antiga pode ser corrigida pela nova análise. As classificações que você confirmou manualmente são preservadas.
+3. Se você já confirmou um tipo incorreto, abra Páginas do atendimento, clique na miniatura, selecione pedido ou guia no campo Tipo da página selecionada e clique em Corrigir tipo.
+4. Pedido médico é a solicitação dos exames, que pode ter carimbo e não ter título. Uma guia SP/SADT também pode ter carimbo. O programa usa o conjunto de evidências, não somente o carimbo. Tipo incerto exige conferência.
+
+NOVO CAMINHO PARA CONCLUIR
+1. Importe o PDF pelo botão IMPORTAR ESCANEAMENTO. Para um paciente com várias páginas, use Um atendimento — várias páginas.
+2. Veja TODAS as miniaturas e confira os tipos. Clique em Confirmar páginas e identidade após verificar que são da mesma pessoa. Conflitos continuam bloqueados. Correções avançadas e separação de páginas continuam disponíveis em Corrigir página / agrupamento.
+3. Clique no botão grande CONFERIR ATENDIMENTO na lateral.
+4. Na janela guiada, confira as três abas: Dados, Exames e Alertas. Para corrigir valores, use Corrigir campos na tela principal ou selecione um exame e clique em Editar o exame selecionado. Depois volte pelo botão CONFERIR ATENDIMENTO.
+5. Marque SOMENTE os dados, exames e alertas que você comparou com os originais. As ausências também precisam ser conferidas. Quantidade não impressa continua vazia; o programa não presume 1.
+6. Clique em SALVAR CONFERÊNCIA E VER RESULTADO. A tela informa claramente CONFERÊNCIA SALVA e mostra as pendências restantes, se houver.
+7. Se aparecer CONFERÊNCIA SALVA SEM PENDÊNCIAS, marque a confirmação final do paciente/documentos/exames/autorização e clique em Preparar pré-cadastro local.
+8. Se faltarem código interno, catálogo ou perfil homologado, peça a configuração ao responsável do laboratório. O botão Configuração pendente do laboratório abre a área correspondente. Salvar a conferência não cria códigos nem dispensa autorização. Não marque uma divergência como resolvida apenas para avançar.
+
+TESTAR ATÉ O FIM SEM CONFIGURAR O SHIFT
+Faça este teste em uma cópia NOVA, separada, SEM copiar dados_v2 da rotina:
+1. Abra o programa e preencha Revisor.
+2. Clique em Exemplos fictícios e aguarde. Selecione a PRIMEIRA ficha da fila; os outros exemplos têm divergências propositais.
+3. Clique em CONFERIR ATENDIMENTO. Veja os originais lado a lado, os dados, exames e alertas. Volte pelo botão da lateral e marque as conferências realizadas.
+4. Salve a conferência, marque a confirmação final e prepare o pré-cadastro LOCAL fictício. Nada é enviado ao Shift.
+Para testar especificamente a leitura com carimbo, importe exemplos_carimbo\01_pedido_carimbo_e_guia.pdf. O resultado esperado é pedido na página 1, guia na página 2, médica DRA EXEMPLO SINTETICA, CRM 0012345/GO e cinco exames. Esse PDF, sozinho, não fornece catálogo interno nem perfil do laboratório.
+
+LIMITES
+Carimbo, nome ou exames ilegíveis continuam exigindo correção humana. GO não é presumido. Carimbo isolado não prova pedido ou autorização. O programa não lê com garantia assinaturas manuscritas.
+A instalação e execução nativas no Windows ainda precisam ser verificadas no seu computador; os testes completos foram feitos em Linux com interface e OCR reais. Não desative o antivírus para instalar.
+Esta rodada usa exclusivamente documentos fictícios. Não houve envio de dados clínicos, conexão ao Shift real, criação de O.S. real ou impressão oficial.
+Resultados: docs\CORRECAO_2_4_5.md, docs\RESULTADO_TESTES_2_4_5.txt, docs\RELATORIO_CARIMBO_2_4_5.json e docs\RELATORIO_INTERFACE_2_4_5.json.

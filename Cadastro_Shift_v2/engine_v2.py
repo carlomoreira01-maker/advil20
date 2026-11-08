@@ -352,7 +352,7 @@ def parse_document(document, catalog):
             # Linhas fora da seção só são exames quando começam por um nome exato de catálogo.
             known=any(re.match(r'^'+re.escape(norm(s))+r'(?:\s|$)',n) for r in catalog for s in [r['nome'],*r['sinonimos']])
             if not in_exams and not known: continue
-            if n.startswith(('OBSERVACAO','ASSINATURA','CRM','TOTAL','DATA:')):
+            if n.startswith(('OBSERVACAO','ASSINATURA','CRM','TOTAL','DATA:')) or re.match(r'^(?:DR[.]?|DRA[.]?|CARIMBO)\s',n):
                 in_exams=False;continue
             row={'descricao':'','codigo':'','quantidade':'','material':'',**src,'raw':text,'notes':[]}
             parts=[s.strip() for s in text.split('|')]
@@ -407,7 +407,14 @@ def parse_document(document, catalog):
     if structured['detected']:reconcile(structured['fields'],free,professional_issues)
     else:
         for key,field in free.items():
-            if field['value'] or field.get('candidates'):fields[key]=field
+            if field['value'] or field.get('candidates'):
+                if key=='Medico' and fields[key]['value']:
+                    from prescription_layout import doctor_name
+                    if doctor_name(fields[key]['value'])!=doctor_name(field['value']):
+                        fields[key]={**empty_field(document.get('file')),'candidates':[copy.deepcopy(fields[key]),field],
+                                     'diagnostic':'Médico do campo e do carimbo divergem; conferir origens.'}
+                    else:fields[key].setdefault('corroborating_origins',[]).append(field)
+                else:fields[key]=field
     if structured['detected']:
         from tiss import SCHEMA,valid
         kinds={key:kind for key,kind in SCHEMA.values()}
@@ -421,6 +428,25 @@ def parse_document(document, catalog):
         issues=[i for i in issues if not i['message'].startswith('Nenhum exame')]
         for msg in structured['issues']+professional_issues:issues.append({'message':msg,'reviewed':False,'reason':''})
         if not exams:issues.append({'message':'Interpretação TISS: nenhum procedimento identificado. Conferir tabela.','reviewed':False,'reason':''})
+    if not structured['detected']:
+        from prescription_layout import evidence as prescription_evidence
+        for page in document['pages']:
+            pad=prescription_evidence(page,catalog)
+            if not pad['supported']:continue
+            for line in pad['exam_lines']:
+                if any(e['page']==page['number'] and abs(e['box'][1]-source_box(line)[1])<4 for e in exams):continue
+                text=re.sub(r'^\s*(?:[-•]|\d{1,2}[.)])\s*','',line['text']);code='';qty=''
+                match=re.match(r'^(\d{8})\s+(.+)$',text)
+                if match:code,text=match[1],match[2]
+                match=re.search(r'\b(?:QTD(?:E)?[.]?|QUANTIDADE)\s*[:=]?\s*(\d{1,3})\s*$',text,re.I)
+                if match:qty=match[1];text=text[:match.start()].strip()
+                notes=[];_,err=resolve_exam({'descricao':text,'codigo':code},catalog)
+                if err:notes.append(err)
+                if not qty:notes.append('Quantidade ausente; conferir no original, sem presumir 1.')
+                exams.append({'descricao':text,'codigo':code,'quantidade':qty,'material':'','page':page['number'],
+                    'box':source_box(line),'confidence':line['confidence'],'reviewed':False,'document':document.get('file'),
+                    'snippet':line['text'],'raw':line['text'],'notes':notes,'origin_type':'lista_em_pedido_carimbado'})
+        if exams:issues=[i for i in issues if not i['message'].startswith('Nenhum exame identificado')]
     return {'fields':fields,'exams':exams,'issues':issues,'pages_reviewed':False,
             'document_type':document.get('document_type', detect_document_type(document)),
             'tiss':structured['detected'],'tiss_detail':structured if structured['detected'] else None,
@@ -536,6 +562,7 @@ class CaseStore:
             obj,rev,status,_=self.get(cid)
             if rev!=revision or status=='PREPARADO':raise ValueError('Caso mudou ou já foi preparado. Reabra para conferir.')
             before=copy.deepcopy(obj['models']);before_docs=copy.deepcopy(obj['docs']);obj['models']=models
+            obj['review_metadata']={'revisor':actor.strip(),'motivo':reason.strip()}
             if documents is not None:
                 if sorted(d['sha256'] for d in documents.values())!=sorted(d['sha256'] for d in obj['docs'].values()):
                     raise ValueError('Reanálise deve usar os mesmos documentos do atendimento.')

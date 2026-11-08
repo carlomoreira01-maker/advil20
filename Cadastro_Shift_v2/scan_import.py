@@ -16,9 +16,11 @@ def classify(document,page,catalog):
  one={**document,'pages':[page]};one.pop('document_type',None)
  model=parse_document(one,catalog)
  from document_classification import classify_page
- classification=classify_page(page);kind=classification['kind'];model['classification']=classification
+ classification=classify_page(page,catalog);kind=classification['kind'];model['classification']=classification
  if kind=='guia' and model.get('tiss') and model['exams'] and not value(model,'Paciente') and not value(model,'Carteira') and not value(model,'Guia prestador'):
   kind='continuação de guia'
+ classification['kind']=kind
+ if kind in ['pedido','guia','continuação de pedido','continuação de guia']:model['document_type']=kind.replace('continuação de ','')
  return kind,model
 
 
@@ -44,7 +46,7 @@ def read_scan(paths,data,catalog,settings_path=None,progress=None,mode='multiple
   for page in document['pages']:
    kind,model=classify(document,page,catalog)
    batch['pages'].append({'id':sha+':'+str(page['number']),'source':sha,'page':page['number'],
-       'kind':kind,'group':'','model':model,'reviewed':False,'reason':'',
+       'kind':kind,'classification_origin':'automatic','group':'','model':model,'reviewed':False,'reason':'',
        'classification_reason':model['classification']['reason']})
  if mode=='single':
   order={sha:i+1 for i,sha in enumerate(batch['sources'])}
@@ -58,6 +60,24 @@ def read_scan(paths,data,catalog,settings_path=None,progress=None,mode='multiple
    group=matches[0];item['group']=group[0]['group'];group.append(item)
   else:
    item['group']='Atendimento '+str(len(groups)+1);groups.append([item])
+ return batch
+
+
+def merge_reprocessed(batch,previous):
+ old_pages={p['id']:p for p in previous['pages']}
+ if set(old_pages)!={p['id'] for p in batch['pages']}:raise LocalReadError('Os originais não correspondem às páginas importadas.')
+ batch['id']=previous['id']
+ for sha,source in batch['sources'].items():source['file']=previous['sources'][sha]['file']
+ for item in batch['pages']:
+  old=old_pages[item['id']];item['group']=old['group']
+  manual=old.get('classification_origin')=='manual' or (old.get('reviewed') and bool(old.get('reason','').strip()))
+  if manual:
+   for key in ['kind','reviewed','reason']:item[key]=old[key]
+   item['classification_origin']='manual'
+  if old.get('identity_edits'):
+   apply_identity_edits(item,{k:h['history'][-1]['after'] for k,h in old['identity_edits'].items()},'Reprocessamento local','Reaplicação de correção humana registrada')
+   item['identity_edits']=copy.deepcopy(old['identity_edits'])
+ batch['group_reviews']={}
  return batch
 
 

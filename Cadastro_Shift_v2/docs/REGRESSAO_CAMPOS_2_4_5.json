@@ -1,0 +1,23 @@
+{
+  "somente_sinteticos": true,
+  "matrizes": [
+    {
+      "matriz": "2_4",
+      "verificacoes": 175,
+      "passaram": 175,
+      "falharam": 0
+    },
+    {
+      "matriz": "2_4_2",
+      "verificacoes": 95,
+      "passaram": 95,
+      "falharam": 0
+    },
+    {
+      "matriz": "2_4_4",
+      "verificacoes": 167,
+      "passaram": 167,
+      "falharam": 0
+    }
+  ]
+}

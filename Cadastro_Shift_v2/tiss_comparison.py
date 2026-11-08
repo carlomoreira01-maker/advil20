@@ -35,7 +35,9 @@ def compare_tiss(p,g,catalog):
  for key in ['Medico','Conselho','Número conselho','UF conselho']:
   if not g['fields'].get(key,{}).get('value'):errors.append('Solicitante: '+key+' não identificado; conferir cadastro.')
   a=p['fields'].get(key,{}).get('value','');b=g['fields'].get(key,{}).get('value','')
-  if a and b and norm(a)!=norm(b):errors.append('Solicitante divergente entre pedido e guia: '+key+'.')
+  from prescription_layout import doctor_name
+  equivalent=doctor_name(a)==doctor_name(b) if key=='Medico' else norm(a)==norm(b)
+  if a and b and not equivalent:errors.append('Solicitante divergente entre pedido e guia: '+key+'.')
  maps=[]
  for title,model in [('Pedido',p),('Guia',g)]:
   found={}
