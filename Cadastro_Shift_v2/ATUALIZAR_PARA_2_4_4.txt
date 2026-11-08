@@ -1,0 +1,43 @@
+CADASTRO ASSISTIDO SHIFT 2.4.4 — AUDITORIA E CORREÇÃO DO FLUXO
+
+COMO ATUALIZAR
+1. Feche o programa antigo. Faça uma cópia de segurança da pasta inteira, principalmente dados_v2. A versão 2.4.3 permanece disponível separadamente no GitHub.
+2. Extraia TODO o ZIP 2.4.4 em uma pasta NOVA. Não execute dentro do ZIP e não substitua a pasta antiga.
+3. Entre em Cadastro_Shift_v2. Com o programa fechado, copie dados_v2 da versão antiga para esta pasta. Não copie .venv e não sobrescreva atendimentos novos.
+4. Abra INSTALAR_WINDOWS.bat e aguarde terminar. Depois abra INICIAR_WINDOWS.bat. O título deve mostrar 2.4.4.
+5. Python 3.12 a 3.14 e Tesseract devem estar instalados. Se o OCR não ficar verde, abra Configurações e ferramentas → Diagnóstico e configuração OCR, escolha o tesseract.exe instalado e teste/salve. A pasta tessdata com português e inglês deve ser extraída junto com o programa.
+6. Nas fichas antigas, clique em Reprocessar leitura para aplicar a nova interpretação. Refaça a conferência. A confirmação antiga do agrupamento não é reutilizada automaticamente.
+
+IMPORTAR PEDIDO E GUIA JUNTOS
+1. Informe seu nome no campo Revisor.
+2. Escolha Um atendimento — várias páginas quando o PDF contiver documentos de uma única pessoa. Todas as páginas ficam em uma ficha provisória; nome parcial ou página sem identificação não cria outra ficha.
+3. Clique em IMPORTAR ESCANEAMENTO e escolha o PDF. A leitura começa automaticamente. Aguarde: páginas densas/escaneadas podem levar alguns minutos.
+4. Em Páginas do atendimento, veja as miniaturas e o tipo atribuído a cada página. Para alterar tipo ou mover página, clique em Corrigir página / agrupamento.
+5. Depois de ver todas as páginas e comparar os identificadores, confirme o agrupamento e salve a classificação. Se houver pacientes diferentes, separe as páginas. Conflitos não são liberados apenas marcando uma caixa.
+6. Para PDF/lote contendo pessoas diferentes, escolha Vários pacientes — verificar identificação. Páginas sem evidência suficiente podem exigir associação manual.
+
+COMO CONCLUIR COMPARAR E CONFERIR
+1. A aba abre mesmo com campos incompletos. Veja a lista O que falta para concluir.
+2. Selecione uma pendência e clique em Resolver pendência selecionada. O programa abre o campo, exame, alerta, página, perfil ou catálogo correspondente.
+3. Compare com o original. O campo Número conselho corresponde ao campo 17; Conselho, UF conselho e CBO são informações separadas. GO não é preenchido quando não foi lido.
+4. Para um campo com leituras diferentes, use Origem e confira cada página/região. Escolher uma leitura ainda exige marcar Conferido e salvar.
+5. Depois de ver todas as páginas de um documento, marque sua conferência visual e use Conferir campos vistos. Confira também cada exame e registre a resolução dos alertas. Marcar conferência não substitui informações essenciais ausentes.
+6. Quantidade solicitada e autorizada são separadas. Vazio ou zero não é autorização. Exame identificado — código interno pendente significa que o laboratório ainda precisa cadastrar a correspondência; não invente um código.
+7. Selecione o perfil de fonte pagadora homologado pelo laboratório. Não use os perfis/códigos fictícios de teste em atendimentos reais.
+8. Clique em Salvar correções e comparar. Resolva as pendências restantes. Quando não houver bloqueios, marque a confirmação final do paciente e clique em Preparar pré-cadastro. A saída continua LOCAL, sem envio ao Shift.
+
+QUANDO NÃO SE APLICA
+Campos opcionais podem ser marcados pelo botão Aplicar não aplicáveis do perfil SOMENTE quando o perfil homologado listar esses campos e corresponder à fonte, ao regime e aos procedimentos. A configuração técnica aceita os nomes Guia principal, Guia operadora, Senha autorização, Validade senha e CBO, separados por ;.
+Senha/validade não podem ser dispensadas em perfil que exige autorização. Um campo já preenchido não é apagado por esse botão. A revisão e os demais bloqueios continuam obrigatórios. A equipe responsável deve homologar essa configuração; não crie uma exceção apenas para avançar.
+
+TESTE FICTÍCIO, EM PASTA SEPARADA DA ROTINA
+1. Importe exemplos_auditoria\01_quatro_paginas.pdf no modo individual. Espere uma ficha com quatro páginas: pedido, guia, continuação e complementar. Cinco exames devem aparecer; Número conselho deve ser 0012345, Conselho CRM, UF GO e CBO 225125.
+2. Importe 02_ordem_invertida.pdf para conferir guia antes do pedido.
+3. Importe 08_conflito.pdf: confirmar o agrupamento deve ser bloqueado.
+4. Em 07_conferencia.pdf, o número do conselho está propositalmente ilegível. O gabarito FICTÍCIO informa 0012345 para testar correção manual. Não aplique esse valor em documento real.
+5. TESTAR_WINDOWS.bat executa a suíte com documentos fictícios. Para testar até pré-cadastro, os testes automatizados fornecem catálogo e perfil explicitamente fictícios. A instalação normal inicia sem inventar códigos internos ou regras do laboratório.
+
+LIMITES E RELATÓRIOS
+Os testes desta rodada usam somente documentos fictícios. A instalação e execução nativas no Windows ainda precisam de validação no seu computador; a interface real, o Tesseract e a simulação de navegador foram testados em Linux. Valores manuscritos/ilegíveis, novos layouts e carimbos sem leitura suficiente podem continuar pendentes.
+Veja docs\AUDITORIA_2_4_4.md, docs\RESULTADO_TESTES_2_4_4.txt, docs\RELATORIO_AUDITORIA_2_4_4.json e docs\RELATORIO_INTERFACE_2_4_4.json para resultados esperado/encontrado e origens.
+O processamento permanece local. Nenhum documento clínico foi enviado, nenhum Shift real foi acessado, nenhuma O.S. real foi criada e nenhuma etiqueta oficial foi impressa. Não desative o antivírus para instalar.

@@ -1,0 +1,19 @@
+{
+  "somente_sinteticos": true,
+  "matrizes": [
+    {
+      "script": "validar_campos_2_4.py",
+      "verificacoes": 175,
+      "passaram": 175,
+      "falharam": 0,
+      "exit_code": 0
+    },
+    {
+      "script": "validar_campos_2_4_2.py",
+      "verificacoes": 95,
+      "passaram": 95,
+      "falharam": 0,
+      "exit_code": 0
+    }
+  ]
+}

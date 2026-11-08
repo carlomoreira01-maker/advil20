@@ -18,6 +18,7 @@ from reader import preview
 ROOT=Path(__file__).resolve().parent
 DATA=ROOT/'dados_v2'
 UNIDENTIFIED='Não identificado'
+NOT_APPLICABLE='Não se aplica (perfil)'
 IMPORT_MODES={'single':'Um atendimento — várias páginas','multiple':'Vários pacientes — verificar identificação'}
 
 
@@ -93,9 +94,9 @@ class App:
         self.ocr_request=0;self.ocr_dialog=None;self.ocr_health=None
         self.import_sequence=0
         root.report_callback_exception=self.callback_failure
-        root.title('Cadastro Assistido Shift · versão 2.4.3 · Local');root.geometry('1450x950');root.minsize(1100,760)
+        root.title('Cadastro Assistido Shift · versão 2.4.4 · Local');root.geometry('1450x950');root.minsize(1100,760)
         st=ttk.Style();st.theme_use('clam');st.configure('TButton',padding=6);st.configure('Treeview',rowheight=28)
-        tk.Label(root,text='CADASTRO ASSISTIDO SHIFT  |  2.4.3',font=('Segoe UI',19,'bold'),bg='#173d52',fg='white',anchor='w',padx=18,pady=12).pack(fill='x')
+        tk.Label(root,text='CADASTRO ASSISTIDO SHIFT  |  2.4.4',font=('Segoe UI',19,'bold'),bg='#173d52',fg='white',anchor='w',padx=18,pady=12).pack(fill='x')
         ttk.Label(root,text='Importar escaneamento → Identificar documentos → Extrair dados → Comparar exames → Conferir → Preparar cadastro',font=('Segoe UI',11,'bold'),padding=8).pack(fill='x')
         ttk.Label(root,text='Processamento local | Revisão humana obrigatória | Pré-cadastro não enviado ao Shift',padding=(10,0)).pack(anchor='w')
         bar=ttk.Frame(root,padding=8);bar.pack(fill='x')
@@ -164,6 +165,15 @@ class App:
         for c,t,w in [('nome','Exame',170),('code','Interno',75),('lido','Código lido',90),('p','Pedido',55),('g','Guia',55),('pp','Pág. pedido',70),('pg','Pág. guia',70),('status','Comparação',190)]:self.compare_table.heading(c,text=t);self.compare_table.column(c,width=w)
         self.compare_table.pack(fill='x')
         self.blockers=tk.Text(self.review_tab,height=3,wrap='word',fg='#a43224',state='disabled');self.blockers.pack(fill='x',pady=5)
+        pending_frame=ttk.Frame(self.review_tab);pending_frame.pack(fill='x')
+        self.pending_table=ttk.Treeview(pending_frame,columns=('message','action'),show='headings',height=3)
+        self.pending_table.heading('message',text='O que falta para concluir');self.pending_table.column('message',width=650)
+        self.pending_table.heading('action',text='Como resolver');self.pending_table.column('action',width=180)
+        pending_scroll=ttk.Scrollbar(pending_frame,orient='vertical',command=self.pending_table.yview)
+        self.pending_table.configure(yscrollcommand=pending_scroll.set);pending_scroll.pack(side='right',fill='y')
+        self.pending_table.pack(fill='x',expand=True);self.pending_table.bind('<Double-1>',lambda e:self.guard(self.navigate_pending))
+        self.pending_button=ttk.Button(self.review_tab,text='Resolver pendência selecionada →',command=lambda:self.guard(self.navigate_pending));self.pending_button.pack(anchor='w',pady=3)
+        self.na_button=ttk.Button(self.review_tab,text='Aplicar não aplicáveis do perfil',command=lambda:self.guard(self.apply_not_applicable));self.na_button.pack(anchor='w',pady=2)
         self.forms=ttk.Notebook(self.review_tab);self.forms.pack(fill='both',expand=True)
         self.field_vars={};self.field_checks={};self.exam_tables={};self.page_checks={};self.alert_tables={};self.field_tabs={};self.field_entries={}
         for kind,title in [('pedido','Pedido'),('guia','Guia')]:
@@ -173,7 +183,7 @@ class App:
             for name,group in groups.items():field_tabs.add(group,text=name)
             counts={name:0 for name in groups};self.field_entries[kind]={};self.field_vars[kind]={};self.field_checks[kind]={}
             for key in FIELDS:
-                category='Paciente' if key in ['Paciente','Nascimento','Fonte pagadora','Operadora','Carteira','Validade carteira','CPF','CNS'] else 'Médico e atendimento' if key in ['Medico','Conselho','Número conselho','UF conselho','Código solicitante','Data solicitação','Indicação clínica','Regime atendimento','Data execução'] else 'Guia TISS'
+                category='Paciente' if key in ['Paciente','Nascimento','Fonte pagadora','Operadora','Carteira','Validade carteira','CPF','CNS'] else 'Médico e atendimento' if key in ['Medico','Conselho','Número conselho','UF conselho','CBO','Código solicitante','Data solicitação','Indicação clínica','Regime atendimento','Data execução'] else 'Guia TISS'
                 fields=groups[category];i=counts[category];counts[category]+=1
                 col=(i%2)*4;r=i//2
                 ttk.Label(fields,text=key+' (legado)' if key in ['Guia','Validade'] else key).grid(row=r,column=col,sticky='w',padx=3)
@@ -324,6 +334,7 @@ class App:
                 try:
                     item={key:var.get().strip() for key,var in variables.items()};item['procedimentos']=[x.strip() for x in item['procedimentos'].split(';') if x.strip()]
                     item.update(homologado=approved.get(),exige_autorizacao=authorization.get(),mapeamento={d:v.get() for d,v in mapping.items() if v.get()},obrigatorios=[d for d,v in required.items() if v.get()],valores_tecnicos={})
+                    item['campos_nao_aplicaveis']=[k.strip() for k in na_fields.get().split(';') if k.strip()]
                     for dest,var in defaults.items():
                         if var.get().strip():
                             if not default_checks[dest].get():raise ValueError('Padrão técnico só pode ser salvo com aprovação explícita.')
@@ -334,7 +345,10 @@ class App:
                     else:profiles[index]=item
                     persist();picker.current(index);editor.destroy()
                 except Exception as exc:messagebox.showerror('Configuração não salva',str(exc),parent=editor)
-            ttk.Button(editor,text='Salvar perfil local',command=save_profile).grid(row=19,column=0,columnspan=5,pady=10)
+            na_fields=tk.StringVar(value=';'.join(old.get('campos_nao_aplicaveis',[])))
+            ttk.Label(editor,text='Campos não aplicáveis aprovados (separar por ;)').grid(row=19,column=0,columnspan=2)
+            ttk.Entry(editor,textvariable=na_fields,width=55).grid(row=19,column=2,columnspan=3)
+            ttk.Button(editor,text='Salvar perfil local',command=save_profile).grid(row=20,column=0,columnspan=5,pady=10)
             self.profile_editor={'window':editor,'variables':variables,'mapping':mapping,'required':required,'authorization':authorization,'approved':approved,'save':save_profile}
         bar=ttk.Frame(window,padding=10);bar.pack(fill='x')
         for title,fn in [('Novo / editar perfil',edit),('Importar perfis JSON',load),('Aplicar ao atendimento',choose)]:ttk.Button(bar,text=title,command=fn).pack(side='left',padx=5)
@@ -409,6 +423,8 @@ class App:
             for f in FIELDS:
                 value=self.field_vars[k][f].get().strip()
                 value='' if value.casefold()==UNIDENTIFIED.casefold() else value
+                if value==NOT_APPLICABLE and m[k]['fields'][f].get('not_applicable'):value=''
+                elif m[k]['fields'][f].get('not_applicable'):m[k]['fields'][f].pop('not_applicable')
                 if value!=m[k]['fields'][f]['value']:
                     m[k]['fields'][f]['origin_type']='correcao_manual';m[k]['fields'][f]['confidence']=None
                     m[k]['fields'][f]['candidates']=[]
@@ -453,7 +469,8 @@ class App:
                     d=obj['docs'][k]
                     self.update_diagnostic('Caso selecionado · '+k,document_diagnostics(d),d.get('document_type',UNIDENTIFIED))
                 for f in FIELDS:
-                    self.field_vars[k][f].set(self.models[k]['fields'][f]['value'] or UNIDENTIFIED)
+                    field=self.models[k]['fields'][f]
+                    self.field_vars[k][f].set(field['value'] or (NOT_APPLICABLE if field.get('not_applicable') else UNIDENTIFIED))
                     self.field_checks[k][f].set(self.models[k]['fields'][f]['reviewed'])
                 self.page_checks[k].set(self.models[k]['pages_reviewed']);self.views[k].load(obj['docs'][k]);self.render_rows(k)
         finally:self.loading=False
@@ -468,7 +485,7 @@ class App:
         self.status.set(f'Revisão {self.rev} · {status}')
     def render_rows(self,k):
         t=self.exam_tables[k];t.delete(*t.get_children())
-        for i,e in enumerate(self.models[k]['exams']):t.insert('','end',iid=str(i),values=(e['descricao'],e['codigo'],e.get('quantidade_solicitada',''),e['quantidade'],e['material'],f'Pág. {e["page"] or "manual"} · '+('INCERTO' if e['confidence'] is not None and e['confidence']<80 else 'Conferir original'), 'Sim' if e['reviewed'] else 'Não'))
+        for i,e in enumerate(self.models[k]['exams']):t.insert('','end',iid=str(i),values=(e['descricao'],e['codigo'],e.get('quantidade_solicitada',''),e.get('quantidade_solicitada',e['quantidade']) if k=='pedido' else e['quantidade'],e['material'],f'Pág. {e["page"] or "manual"} · '+('INCERTO' if e['confidence'] is not None and e['confidence']<80 else 'Conferir original'), 'Sim' if e['reviewed'] else 'Não'))
         t=self.alert_tables[k];t.delete(*t.get_children())
         for i,a in enumerate(self.models[k]['issues']):t.insert('','end',iid=str(i),values=(a['message'],'Sim' if a['reviewed'] else 'Não'))
     def show_comparison(self):
@@ -478,8 +495,57 @@ class App:
         errors=self.analysis['pendencias']+review_errors(m)
         self.comparison_errors=errors
         self.blockers.configure(fg='#a43224' if errors else '#24633d')
-        self.set_text(self.blockers,'\n'.join('• '+e for e in errors) or 'Conferência salva sem pendências. Marque a confirmação final e prepare o pré-cadastro.')
+        self.set_text(self.blockers,('Há '+str(len(errors))+' verificações pendentes. Selecione uma linha abaixo e clique em Resolver pendência.\n'+'\n'.join('• '+e for e in errors[:3])) if errors else 'Conferência salva sem pendências. Marque a confirmação final e prepare o pré-cadastro.')
+        from review_workflow import review_plan,ACTION_LABELS
+        self.pending_steps=review_plan(m,self.analysis)
+        self.pending_table.delete(*self.pending_table.get_children())
+        for i,step in enumerate(self.pending_steps):self.pending_table.insert('','end',iid=str(i),values=(step['message'],ACTION_LABELS[step['action']]))
+        self.pending_button.configure(state='normal' if self.pending_steps else 'disabled')
+        if self.pending_steps:self.pending_table.selection_set('0')
+        elif self.dirty():self.set_text(self.blockers,'Conferência preenchida. Clique em Salvar correções e comparar antes de confirmar o paciente.')
         self.update_prepare_state()
+    def navigate_pending(self):
+        if not self.models:raise ValueError('Selecione um atendimento.')
+        selected=self.pending_table.selection()
+        if not selected:raise ValueError('Selecione uma pendência na lista.')
+        step=self.pending_steps[int(selected[0])];action=step['action'];role=step['role']
+        if action=='classify':return self.classification_window()
+        if action=='profile':return self.payer_window()
+        if action=='catalog':return self.catalog_window()
+        self.tabs.select(self.review_container);self.forms.select(0 if role=='pedido' else 1)
+        if action=='pages':
+            view=self.views[role]
+            if not view.doc['pages']:
+                self.status.set('Documento ausente. Abra Identificar documentos e corrija o tipo das páginas.');return self.classification_window()
+            page=next((i for i in range(1,len(view.doc['pages'])+1) if i not in view.seen),1)
+            view.locate(page,None);self.tabs.select(self.doc_tab)
+            self.status.set('Veja todas as páginas e depois marque a conferência visual do '+role+'.');return
+        if action=='field':
+            field=step['field'];entry=self.field_entries[role][field]
+            self.field_tabs[role].select(entry.master);entry.focus_set()
+            self.root.update_idletasks()
+            y=entry.winfo_rooty()-self.review_tab.winfo_rooty()
+            self.review_canvas.yview_moveto(max(0,y-100)/max(1,self.review_tab.winfo_height()))
+            self.status.set('Confira '+field+' com o original; edite se necessário e marque Conferido.')
+        elif action=='exam':
+            index=step['index']
+            if index is not None:self.exam_tables[role].selection_set(str(index))
+            self.edit_exam(role,new=index is None)
+        elif action=='issue':
+            self.alert_tables[role].selection_set(str(step['index']));self.resolve_issue(role)
+    def apply_not_applicable(self):
+        if not self.models:raise ValueError('Selecione um atendimento.')
+        from payer_mapping import mark_not_applicable
+        model=copy.deepcopy(self.collect()['guia'])
+        mark_not_applicable(model,self.selected_profile)
+        if not messagebox.askyesno('Conferir regra homologada','Confirma que os campos não se aplicam ao atendimento e que não há informação correspondente no original?'):return
+        self.models['guia']=model
+        self.loading=True
+        try:
+            for key,field in model['fields'].items():
+                if field.get('not_applicable'):self.field_vars['guia'][key].set(NOT_APPLICABLE);self.field_checks['guia'][key].set(False)
+        finally:self.loading=False
+        self.confirm.set(False);self.show_comparison()
     def locate_field(self,k,f):
         if not self.models:return
         src=self.models[k]['fields'][f]
@@ -535,7 +601,8 @@ class App:
         old={'descricao':'','codigo':'','quantidade':'','material':'','page':None,'box':None,'confidence':None,'reviewed':False,'raw':'','notes':['Inclusão manual']} if new else self.models[k]['exams'][idx]
         w=tk.Toplevel(self.root);w.title('Conferir exame · '+k);w.transient(self.root);w.grab_set();variables={}
         for i,(key,label) in enumerate([('descricao','Descrição'),('codigo','Código lido (interno ou TUSS)'),('quantidade_solicitada','Quantidade solicitada (TISS)'),('quantidade','Quantidade autorizada / quantidade do pedido'),('material','Material lido'),('page','Página de origem')]):
-            ttk.Label(w,text=label).grid(row=i,column=0,padx=10,pady=6,sticky='w');v=tk.StringVar(value=str(old.get(key) or ''));variables[key]=v;ttk.Entry(w,textvariable=v,width=48).grid(row=i,column=1,padx=10)
+            initial=old.get('quantidade_solicitada',old.get('quantidade')) if k=='pedido' and key=='quantidade' else old.get(key)
+            ttk.Label(w,text=label).grid(row=i,column=0,padx=10,pady=6,sticky='w');v=tk.StringVar(value=str(initial or ''));variables[key]=v;ttk.Entry(w,textvariable=v,width=48,state='disabled' if k=='pedido' and key=='quantidade_solicitada' else 'normal').grid(row=i,column=1,padx=10)
         ttk.Label(w,text='\n'.join(old.get('notes',[])) or 'Compare a linha com o original.',wraplength=500).grid(row=6,column=0,columnspan=2,padx=10,pady=8)
         checked=tk.BooleanVar(value=old['reviewed'])
         for v in variables.values():v.trace_add('write',lambda *_:checked.set(False))
@@ -545,6 +612,8 @@ class App:
                 e={**old,**{key:v.get().strip() for key,v in variables.items()},'reviewed':checked.get()}
                 if not e['descricao']:raise ValueError('Informe a descrição.')
                 if e['quantidade'] and (not e['quantidade'].isdigit() or not 0<=int(e['quantidade'])<=999):raise ValueError('Quantidade deve ficar vazia ou ser de 0 a 999; vazio e zero não autorizam.')
+                if k=='pedido':e['quantidade_solicitada']=e['quantidade']
+                elif e.get('quantidade_solicitada') and (not e['quantidade_solicitada'].isdigit() or not 0<=int(e['quantidade_solicitada'])<=999):raise ValueError('Quantidade solicitada deve ser de 0 a 999 ou ficar vazia para conferência.')
                 if not e['page'].isdigit() or not 1<=int(e['page'])<=len(self.views[k].doc['pages']):raise ValueError('Indique uma página válida do documento.')
                 e['page']=int(e['page'])
                 physical=self.views[k].doc['pages'][e['page']-1].get('source')
@@ -556,13 +625,15 @@ class App:
                 else:self.models[k]['exams'][idx]=e
                 self.confirm.set(False);self.render_rows(k);self.show_comparison();w.destroy()
             except Exception as exc:messagebox.showerror('Conferir exame',str(exc),parent=w)
-        ttk.Button(w,text='Aplicar à conferência',command=commit).grid(row=8,column=0,columnspan=2,pady=12)
+        button=ttk.Button(w,text='Aplicar à conferência',command=commit);button.grid(row=8,column=0,columnspan=2,pady=12)
+        self.exam_editor={'window':w,'variables':variables,'checked':checked,'button':button}
     def delete_exam(self,k):
         s=self.exam_tables[k].selection()
         if s:
             reason=simpledialog.askstring('Excluir linha','Motivo da exclusão (por exemplo: rodapé reconhecido como exame):')
             if not reason:return
-            e=self.models[k]['exams'].pop(int(s[0]));self.models[k]['issues'].append({'message':'Linha excluída: '+e['raw'],'reviewed':True,'reason':reason});self.render_rows(k);self.confirm.set(False);self.show_comparison()
+            e=self.models[k]['exams'].pop(int(s[0]));self.models[k].setdefault('removed_exams',[]).append({'exam':copy.deepcopy(e),'reason':reason})
+            self.models[k]['issues'].append({'message':'Linha excluída: '+e['raw'],'reviewed':True,'reason':reason});self.render_rows(k);self.confirm.set(False);self.show_comparison()
     def resolve_issue(self,k):
         s=self.alert_tables[k].selection()
         if not s:return
@@ -818,7 +889,7 @@ class App:
     def record_ui_stage(self,success):
         # Only counts/status in technical records; field contents remain in the case.
         if success:
-            success=all(self.field_vars[k][f].get()==(v['value'] or UNIDENTIFIED)
+            success=all(self.field_vars[k][f].get()==(v['value'] or (NOT_APPLICABLE if v.get('not_applicable') else UNIDENTIFIED))
                         for k,m in self.models.items() for f,v in m['fields'].items())
         for label,result in self.stage_diagnostics.items():
             if result['ui'] is None:

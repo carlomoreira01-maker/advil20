@@ -1,0 +1,2 @@
+TODOS OS NOMES, NUMEROS, CODIGOS E DOCUMENTOS SAO FICTICIOS.
+Use 01_quatro_paginas.pdf no modo Um atendimento - varias paginas. O PDF 08_conflito.pdf deve bloquear a confirmacao. O caso 07_conferencia.pdf exige corrigir o CRM ilegiveI no original ficticio para 0012345, salvar e conferir. O catalogo/perfil ficticio dos testes nao deve ser usado em producao.

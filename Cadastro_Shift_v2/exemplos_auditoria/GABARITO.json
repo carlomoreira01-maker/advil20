@@ -1,0 +1,66 @@
+{
+  "somente_dados_ficticios": true,
+  "paciente": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+  "campos": {
+    "2": "00000111",
+    "3": "00000222",
+    "4": "07/11/2026",
+    "5": "00000555",
+    "6": "31/12/2099",
+    "7": "00000777",
+    "8": "0000087654",
+    "9": "31/12/2099",
+    "10": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+    "13": "000001313",
+    "15": "DRA EXEMPLO SINTETICA",
+    "16": "CRM",
+    "17": "0012345",
+    "18": "GO",
+    "22": "07/11/2026",
+    "19": "225125"
+  },
+  "tipos_quatro_paginas": [
+    "pedido",
+    "guia",
+    "continuação de guia",
+    "outro"
+  ],
+  "crm_tamanhos": [
+    "12",
+    "00123",
+    "0012345",
+    "0001234567"
+  ],
+  "exames": [
+    {
+      "codigo": "90000001",
+      "descricao": "Hemograma",
+      "solicitada": "1",
+      "autorizada": "1"
+    },
+    {
+      "codigo": "90000002",
+      "descricao": "Glicose",
+      "solicitada": "1",
+      "autorizada": "1"
+    },
+    {
+      "codigo": "90000003",
+      "descricao": "TSH",
+      "solicitada": "1",
+      "autorizada": "1"
+    },
+    {
+      "codigo": "90000004",
+      "descricao": "Creatinina",
+      "solicitada": "1",
+      "autorizada": "1"
+    },
+    {
+      "codigo": "90000005",
+      "descricao": "Colesterol total",
+      "solicitada": "1",
+      "autorizada": "1"
+    }
+  ]
+}

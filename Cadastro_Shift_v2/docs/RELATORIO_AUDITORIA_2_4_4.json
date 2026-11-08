@@ -1,0 +1,2887 @@
+{
+  "somente_sinteticos": true,
+  "verificacoes": 167,
+  "passaram": 167,
+  "falharam": 0,
+  "resultados": [
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Tipos por página",
+      "esperado": [
+        "pedido",
+        "guia",
+        "continuação de guia",
+        "outro"
+      ],
+      "encontrado": [
+        "pedido",
+        "guia",
+        "continuação de guia",
+        "outro"
+      ],
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Atendimentos provisórios",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Páginas preservadas",
+      "esperado": 4,
+      "encontrado": 4,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Original integral preservado",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Paciente pedido",
+      "esperado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "encontrado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 1,
+        "regiao": [
+          35.0,
+          54.18595886230469,
+          404.5720520019531,
+          73.42195892333984
+        ],
+        "trecho": "Paciente: PESSOA FICTICIA DE OLIVEIRA DOS SANTOS"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Paciente guia",
+      "esperado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "encontrado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          745.0,
+          233.25,
+          964.5099487304688,
+          246.99000549316406
+        ],
+        "trecho": "10 Nome do beneficiario / PESSOA FICTICIA DE OLIVEIRA DOS SANTOS"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "2 Guia prestador",
+      "esperado": "00000111",
+      "encontrado": "00000111",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          35.0,
+          112.94999694824219,
+          97.27201843261719,
+          132.18600463867188
+        ],
+        "trecho": "2 Numero da guia no prestador / 00000111"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "3 Guia principal",
+      "esperado": "00000222",
+      "encontrado": "00000222",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          390.0,
+          112.94999694824219,
+          452.27197265625,
+          132.18600463867188
+        ],
+        "trecho": "3 Numero da guia principal / 00000222"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "4 Data autorização",
+      "esperado": "07/11/2026",
+      "encontrado": "07/11/2026",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          745.0,
+          112.94999694824219,
+          815.0560302734375,
+          132.18600463867188
+        ],
+        "trecho": "4 Data da autorizacao / 07/11/2026"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "5 Senha autorização",
+      "esperado": "00000555",
+      "encontrado": "00000555",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          35.0,
+          170.9499969482422,
+          97.27201843261719,
+          190.18600463867188
+        ],
+        "trecho": "5 Senha de autorizacao / 00000555"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "6 Validade senha",
+      "esperado": "31/12/2099",
+      "encontrado": "31/12/2099",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          390.0,
+          170.9499969482422,
+          460.05596923828125,
+          190.18600463867188
+        ],
+        "trecho": "6 Validade da senha / 31/12/2099"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "7 Guia operadora",
+      "esperado": "00000777",
+      "encontrado": "00000777",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          745.0,
+          170.9499969482422,
+          807.27197265625,
+          190.18600463867188
+        ],
+        "trecho": "7 Numero da guia atribuido pela operadora / 00000777"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "8 Carteira",
+      "esperado": "0000087654",
+      "encontrado": "0000087654",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          35.0,
+          228.9499969482422,
+          112.84002685546875,
+          248.18600463867188
+        ],
+        "trecho": "8 Numero da carteira / 0000087654"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "9 Validade carteira",
+      "esperado": "31/12/2099",
+      "encontrado": "31/12/2099",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          390.0,
+          228.9499969482422,
+          460.05596923828125,
+          248.18600463867188
+        ],
+        "trecho": "9 Validade da carteira / 31/12/2099"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "10 Paciente",
+      "esperado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "encontrado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          745.0,
+          233.25,
+          964.5099487304688,
+          246.99000549316406
+        ],
+        "trecho": "10 Nome do beneficiario / PESSOA FICTICIA DE OLIVEIRA DOS SANTOS"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "13 Código solicitante",
+      "esperado": "000001313",
+      "encontrado": "000001313",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          35.0,
+          286.95001220703125,
+          105.05602264404297,
+          306.1860046386719
+        ],
+        "trecho": "13 Codigo do contratado solicitante / 000001313"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "15 Medico",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "encontrado": "DRA EXEMPLO SINTETICA",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          390.0,
+          286.95001220703125,
+          568.1500854492188,
+          306.1860046386719
+        ],
+        "trecho": "15 Nome do profissional solicitante / DRA EXEMPLO SINTETICA"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "16 Conselho",
+      "esperado": "CRM",
+      "encontrado": "CRM",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          745.0,
+          286.95001220703125,
+          776.8779296875,
+          306.1860046386719
+        ],
+        "trecho": "16 Conselho profissional / CRM"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "17 Número conselho",
+      "esperado": "0012345",
+      "encontrado": "0012345",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          35.0,
+          362.1000061035156,
+          101.72000122070312,
+          378.5880126953125
+        ],
+        "trecho": "17 Numero no conselho / 0 0 1 2 3 4 5"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "18 UF conselho",
+      "esperado": "GO",
+      "encontrado": "GO",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          390.0,
+          344.95001220703125,
+          411.78399658203125,
+          364.1860046386719
+        ],
+        "trecho": "18 UF / GO"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "22 Data solicitação",
+      "esperado": "07/11/2026",
+      "encontrado": "07/11/2026",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          745.0,
+          344.95001220703125,
+          815.0560302734375,
+          364.1860046386719
+        ],
+        "trecho": "22 Data da solicitacao / 07/11/2026"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "19 CBO",
+      "esperado": "225125",
+      "encontrado": "225125",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          745.0,
+          405.1000061035156,
+          785.031982421875,
+          421.5880126953125
+        ],
+        "trecho": "19 Codigo CBO / 225125"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exames no pedido",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exames na guia",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exame 1 codigo",
+      "esperado": "90000001",
+      "encontrado": "90000001",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          35.0,
+          491.0249938964844,
+          92.82398986816406,
+          508.8869934082031
+        ],
+        "trecho": "90000001"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exame 1 descricao",
+      "esperado": "Hemograma",
+      "encontrado": "Hemograma",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          225.0,
+          491.0249938964844,
+          296.51300048828125,
+          508.8869934082031
+        ],
+        "trecho": "Hemograma"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exame 1 quantidade_solicitada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          680.0,
+          491.0249938964844,
+          687.22802734375,
+          508.8869934082031
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exame 1 quantidade_autorizada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          855.0,
+          491.0249938964844,
+          862.22802734375,
+          508.8869934082031
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exame 2 codigo",
+      "esperado": "90000002",
+      "encontrado": "90000002",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          35.0,
+          520.0250244140625,
+          92.82398986816406,
+          537.8870239257812
+        ],
+        "trecho": "90000002"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exame 2 descricao",
+      "esperado": "Glicose",
+      "encontrado": "Glicose",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          225.0,
+          520.0250244140625,
+          268.3420104980469,
+          537.8870239257812
+        ],
+        "trecho": "Glicose"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exame 2 quantidade_solicitada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          680.0,
+          520.0250244140625,
+          687.22802734375,
+          537.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exame 2 quantidade_autorizada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          855.0,
+          520.0250244140625,
+          862.22802734375,
+          537.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exame 3 codigo",
+      "esperado": "90000003",
+      "encontrado": "90000003",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          35.0,
+          549.0250244140625,
+          92.82398986816406,
+          566.8870239257812
+        ],
+        "trecho": "90000003"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exame 3 descricao",
+      "esperado": "TSH",
+      "encontrado": "TSH",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          225.0,
+          549.0250244140625,
+          251.0,
+          566.8870239257812
+        ],
+        "trecho": "TSH"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exame 3 quantidade_solicitada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          680.0,
+          549.0250244140625,
+          687.22802734375,
+          566.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exame 3 quantidade_autorizada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 2,
+        "regiao": [
+          855.0,
+          549.0250244140625,
+          862.22802734375,
+          566.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exame 4 codigo",
+      "esperado": "90000004",
+      "encontrado": "90000004",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 3,
+        "regiao": [
+          35.0,
+          101.0250015258789,
+          92.82398986816406,
+          118.88700103759766
+        ],
+        "trecho": "90000004"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exame 4 descricao",
+      "esperado": "Creatinina",
+      "encontrado": "Creatinina",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 3,
+        "regiao": [
+          225.0,
+          101.0250015258789,
+          284.240966796875,
+          118.88700103759766
+        ],
+        "trecho": "Creatinina"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exame 4 quantidade_solicitada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 3,
+        "regiao": [
+          680.0,
+          101.0250015258789,
+          687.22802734375,
+          118.88700103759766
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exame 4 quantidade_autorizada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 3,
+        "regiao": [
+          855.0,
+          101.0250015258789,
+          862.22802734375,
+          118.88700103759766
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exame 5 codigo",
+      "esperado": "90000005",
+      "encontrado": "90000005",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 3,
+        "regiao": [
+          35.0,
+          130.02499389648438,
+          92.82398986816406,
+          147.88699340820312
+        ],
+        "trecho": "90000005"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exame 5 descricao",
+      "esperado": "Colesterol total",
+      "encontrado": "Colesterol total",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 3,
+        "regiao": [
+          225.0,
+          130.02499389648438,
+          311.697021484375,
+          147.88699340820312
+        ],
+        "trecho": "Colesterol total"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exame 5 quantidade_solicitada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 3,
+        "regiao": [
+          680.0,
+          130.02499389648438,
+          687.22802734375,
+          147.88699340820312
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "01_quatro_paginas.pdf",
+      "campo": "Exame 5 quantidade_autorizada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_quatro_paginas.pdf",
+        "pagina": 3,
+        "regiao": [
+          855.0,
+          130.02499389648438,
+          862.22802734375,
+          147.88699340820312
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Tipos por página",
+      "esperado": [
+        "guia",
+        "pedido"
+      ],
+      "encontrado": [
+        "guia",
+        "pedido"
+      ],
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Atendimentos provisórios",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Páginas preservadas",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Original integral preservado",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Paciente pedido",
+      "esperado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "encontrado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 2,
+        "regiao": [
+          35.0,
+          54.18595886230469,
+          404.5720520019531,
+          73.42195892333984
+        ],
+        "trecho": "Paciente: PESSOA FICTICIA DE OLIVEIRA DOS SANTOS"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Paciente guia",
+      "esperado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "encontrado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          745.0,
+          233.25,
+          964.5099487304688,
+          246.99000549316406
+        ],
+        "trecho": "10 Nome do beneficiario / PESSOA FICTICIA DE OLIVEIRA DOS SANTOS"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "2 Guia prestador",
+      "esperado": "00000111",
+      "encontrado": "00000111",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          35.0,
+          112.94999694824219,
+          97.27201843261719,
+          132.18600463867188
+        ],
+        "trecho": "2 Numero da guia no prestador / 00000111"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "3 Guia principal",
+      "esperado": "00000222",
+      "encontrado": "00000222",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          390.0,
+          112.94999694824219,
+          452.27197265625,
+          132.18600463867188
+        ],
+        "trecho": "3 Numero da guia principal / 00000222"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "4 Data autorização",
+      "esperado": "07/11/2026",
+      "encontrado": "07/11/2026",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          745.0,
+          112.94999694824219,
+          815.0560302734375,
+          132.18600463867188
+        ],
+        "trecho": "4 Data da autorizacao / 07/11/2026"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "5 Senha autorização",
+      "esperado": "00000555",
+      "encontrado": "00000555",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          35.0,
+          170.9499969482422,
+          97.27201843261719,
+          190.18600463867188
+        ],
+        "trecho": "5 Senha de autorizacao / 00000555"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "6 Validade senha",
+      "esperado": "31/12/2099",
+      "encontrado": "31/12/2099",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          390.0,
+          170.9499969482422,
+          460.05596923828125,
+          190.18600463867188
+        ],
+        "trecho": "6 Validade da senha / 31/12/2099"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "7 Guia operadora",
+      "esperado": "00000777",
+      "encontrado": "00000777",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          745.0,
+          170.9499969482422,
+          807.27197265625,
+          190.18600463867188
+        ],
+        "trecho": "7 Numero da guia atribuido pela operadora / 00000777"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "8 Carteira",
+      "esperado": "0000087654",
+      "encontrado": "0000087654",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          35.0,
+          228.9499969482422,
+          112.84002685546875,
+          248.18600463867188
+        ],
+        "trecho": "8 Numero da carteira / 0000087654"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "9 Validade carteira",
+      "esperado": "31/12/2099",
+      "encontrado": "31/12/2099",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          390.0,
+          228.9499969482422,
+          460.05596923828125,
+          248.18600463867188
+        ],
+        "trecho": "9 Validade da carteira / 31/12/2099"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "10 Paciente",
+      "esperado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "encontrado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          745.0,
+          233.25,
+          964.5099487304688,
+          246.99000549316406
+        ],
+        "trecho": "10 Nome do beneficiario / PESSOA FICTICIA DE OLIVEIRA DOS SANTOS"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "13 Código solicitante",
+      "esperado": "000001313",
+      "encontrado": "000001313",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          35.0,
+          286.95001220703125,
+          105.05602264404297,
+          306.1860046386719
+        ],
+        "trecho": "13 Codigo do contratado solicitante / 000001313"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "15 Medico",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "encontrado": "DRA EXEMPLO SINTETICA",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          390.0,
+          286.95001220703125,
+          568.1500854492188,
+          306.1860046386719
+        ],
+        "trecho": "15 Nome do profissional solicitante / DRA EXEMPLO SINTETICA"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "16 Conselho",
+      "esperado": "CRM",
+      "encontrado": "CRM",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          745.0,
+          286.95001220703125,
+          776.8779296875,
+          306.1860046386719
+        ],
+        "trecho": "16 Conselho profissional / CRM"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "17 Número conselho",
+      "esperado": "0012345",
+      "encontrado": "0012345",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          35.0,
+          362.1000061035156,
+          101.72000122070312,
+          378.5880126953125
+        ],
+        "trecho": "17 Numero no conselho / 0 0 1 2 3 4 5"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "18 UF conselho",
+      "esperado": "GO",
+      "encontrado": "GO",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          390.0,
+          344.95001220703125,
+          411.78399658203125,
+          364.1860046386719
+        ],
+        "trecho": "18 UF / GO"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "22 Data solicitação",
+      "esperado": "07/11/2026",
+      "encontrado": "07/11/2026",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          745.0,
+          344.95001220703125,
+          815.0560302734375,
+          364.1860046386719
+        ],
+        "trecho": "22 Data da solicitacao / 07/11/2026"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "19 CBO",
+      "esperado": "225125",
+      "encontrado": "225125",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          745.0,
+          405.1000061035156,
+          785.031982421875,
+          421.5880126953125
+        ],
+        "trecho": "19 Codigo CBO / 225125"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exames no pedido",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exames na guia",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exame 1 codigo",
+      "esperado": "90000001",
+      "encontrado": "90000001",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          35.0,
+          491.0249938964844,
+          92.82398986816406,
+          508.8869934082031
+        ],
+        "trecho": "90000001"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exame 1 descricao",
+      "esperado": "Hemograma",
+      "encontrado": "Hemograma",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          225.0,
+          491.0249938964844,
+          296.51300048828125,
+          508.8869934082031
+        ],
+        "trecho": "Hemograma"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exame 1 quantidade_solicitada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          680.0,
+          491.0249938964844,
+          687.22802734375,
+          508.8869934082031
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exame 1 quantidade_autorizada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          855.0,
+          491.0249938964844,
+          862.22802734375,
+          508.8869934082031
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exame 2 codigo",
+      "esperado": "90000002",
+      "encontrado": "90000002",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          35.0,
+          520.0250244140625,
+          92.82398986816406,
+          537.8870239257812
+        ],
+        "trecho": "90000002"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exame 2 descricao",
+      "esperado": "Glicose",
+      "encontrado": "Glicose",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          225.0,
+          520.0250244140625,
+          268.3420104980469,
+          537.8870239257812
+        ],
+        "trecho": "Glicose"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exame 2 quantidade_solicitada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          680.0,
+          520.0250244140625,
+          687.22802734375,
+          537.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exame 2 quantidade_autorizada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          855.0,
+          520.0250244140625,
+          862.22802734375,
+          537.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exame 3 codigo",
+      "esperado": "90000003",
+      "encontrado": "90000003",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          35.0,
+          549.0250244140625,
+          92.82398986816406,
+          566.8870239257812
+        ],
+        "trecho": "90000003"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exame 3 descricao",
+      "esperado": "TSH",
+      "encontrado": "TSH",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          225.0,
+          549.0250244140625,
+          251.0,
+          566.8870239257812
+        ],
+        "trecho": "TSH"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exame 3 quantidade_solicitada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          680.0,
+          549.0250244140625,
+          687.22802734375,
+          566.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exame 3 quantidade_autorizada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          855.0,
+          549.0250244140625,
+          862.22802734375,
+          566.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exame 4 codigo",
+      "esperado": "90000004",
+      "encontrado": "90000004",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          35.0,
+          578.0250244140625,
+          92.82398986816406,
+          595.8870239257812
+        ],
+        "trecho": "90000004"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exame 4 descricao",
+      "esperado": "Creatinina",
+      "encontrado": "Creatinina",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          225.0,
+          578.0250244140625,
+          284.240966796875,
+          595.8870239257812
+        ],
+        "trecho": "Creatinina"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exame 4 quantidade_solicitada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          680.0,
+          578.0250244140625,
+          687.22802734375,
+          595.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exame 4 quantidade_autorizada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          855.0,
+          578.0250244140625,
+          862.22802734375,
+          595.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exame 5 codigo",
+      "esperado": "90000005",
+      "encontrado": "90000005",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          35.0,
+          607.0250244140625,
+          92.82398986816406,
+          624.8870239257812
+        ],
+        "trecho": "90000005"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exame 5 descricao",
+      "esperado": "Colesterol total",
+      "encontrado": "Colesterol total",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          225.0,
+          607.0250244140625,
+          311.697021484375,
+          624.8870239257812
+        ],
+        "trecho": "Colesterol total"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exame 5 quantidade_solicitada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          680.0,
+          607.0250244140625,
+          687.22802734375,
+          624.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "02_ordem_invertida.pdf",
+      "campo": "Exame 5 quantidade_autorizada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "02_ordem_invertida.pdf",
+        "pagina": 1,
+        "regiao": [
+          855.0,
+          607.0250244140625,
+          862.22802734375,
+          624.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Tipos por página",
+      "esperado": [
+        "pedido",
+        "guia"
+      ],
+      "encontrado": [
+        "pedido",
+        "guia"
+      ],
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Atendimentos provisórios",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Páginas preservadas",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Original integral preservado",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Paciente pedido",
+      "esperado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "encontrado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 1,
+        "regiao": [
+          35.0,
+          54.18595886230469,
+          404.5720520019531,
+          73.42195892333984
+        ],
+        "trecho": "Paciente: PESSOA FICTICIA DE OLIVEIRA DOS SANTOS"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Paciente guia",
+      "esperado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "encontrado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          745.0,
+          233.25,
+          964.5099487304688,
+          246.99000549316406
+        ],
+        "trecho": "10 Nome do beneficiario / PESSOA FICTICIA DE OLIVEIRA DOS SANTOS"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "2 Guia prestador",
+      "esperado": "00000111",
+      "encontrado": "00000111",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          35.0,
+          112.94999694824219,
+          97.27201843261719,
+          132.18600463867188
+        ],
+        "trecho": "2 Numero da guia no prestador / 00000111"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "3 Guia principal",
+      "esperado": "00000222",
+      "encontrado": "00000222",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          390.0,
+          112.94999694824219,
+          452.27197265625,
+          132.18600463867188
+        ],
+        "trecho": "3 Numero da guia principal / 00000222"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "4 Data autorização",
+      "esperado": "07/11/2026",
+      "encontrado": "07/11/2026",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          745.0,
+          112.94999694824219,
+          815.0560302734375,
+          132.18600463867188
+        ],
+        "trecho": "4 Data da autorizacao / 07/11/2026"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "5 Senha autorização",
+      "esperado": "00000555",
+      "encontrado": "00000555",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          35.0,
+          170.9499969482422,
+          97.27201843261719,
+          190.18600463867188
+        ],
+        "trecho": "5 Senha de autorizacao / 00000555"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "6 Validade senha",
+      "esperado": "31/12/2099",
+      "encontrado": "31/12/2099",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          390.0,
+          170.9499969482422,
+          460.05596923828125,
+          190.18600463867188
+        ],
+        "trecho": "6 Validade da senha / 31/12/2099"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "7 Guia operadora",
+      "esperado": "00000777",
+      "encontrado": "00000777",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          745.0,
+          170.9499969482422,
+          807.27197265625,
+          190.18600463867188
+        ],
+        "trecho": "7 Numero da guia atribuido pela operadora / 00000777"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "8 Carteira",
+      "esperado": "0000087654",
+      "encontrado": "0000087654",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          35.0,
+          228.9499969482422,
+          112.84002685546875,
+          248.18600463867188
+        ],
+        "trecho": "8 Numero da carteira / 0000087654"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "9 Validade carteira",
+      "esperado": "31/12/2099",
+      "encontrado": "31/12/2099",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          390.0,
+          228.9499969482422,
+          460.05596923828125,
+          248.18600463867188
+        ],
+        "trecho": "9 Validade da carteira / 31/12/2099"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "10 Paciente",
+      "esperado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "encontrado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          745.0,
+          233.25,
+          964.5099487304688,
+          246.99000549316406
+        ],
+        "trecho": "10 Nome do beneficiario / PESSOA FICTICIA DE OLIVEIRA DOS SANTOS"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "13 Código solicitante",
+      "esperado": "000001313",
+      "encontrado": "000001313",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          35.0,
+          286.95001220703125,
+          105.05602264404297,
+          306.1860046386719
+        ],
+        "trecho": "13 Codigo do contratado solicitante / 000001313"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "15 Medico",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "encontrado": "DRA EXEMPLO SINTETICA",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          390.0,
+          286.95001220703125,
+          568.1500854492188,
+          306.1860046386719
+        ],
+        "trecho": "15 Nome do profissional solicitante / DRA EXEMPLO SINTETICA"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "16 Conselho",
+      "esperado": "CRM",
+      "encontrado": "CRM",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          745.0,
+          286.95001220703125,
+          776.8779296875,
+          306.1860046386719
+        ],
+        "trecho": "16 Conselho profissional / CRM"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "17 Número conselho",
+      "esperado": "0012345",
+      "encontrado": "0012345",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          35.0,
+          362.1000061035156,
+          101.72000122070312,
+          378.5880126953125
+        ],
+        "trecho": "17 Numero no conselho / 0 0 1 2 3 4 5"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "18 UF conselho",
+      "esperado": "GO",
+      "encontrado": "GO",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          390.0,
+          344.95001220703125,
+          411.78399658203125,
+          364.1860046386719
+        ],
+        "trecho": "18 UF / GO"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "22 Data solicitação",
+      "esperado": "07/11/2026",
+      "encontrado": "07/11/2026",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          745.0,
+          344.95001220703125,
+          815.0560302734375,
+          364.1860046386719
+        ],
+        "trecho": "22 Data da solicitacao / 07/11/2026"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "19 CBO",
+      "esperado": "225125",
+      "encontrado": "225125",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          745.0,
+          405.1000061035156,
+          785.031982421875,
+          421.5880126953125
+        ],
+        "trecho": "19 Codigo CBO / 225125"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exames no pedido",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exames na guia",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exame 1 codigo",
+      "esperado": "90000001",
+      "encontrado": "90000001",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          35.0,
+          491.0249938964844,
+          92.82398986816406,
+          508.8869934082031
+        ],
+        "trecho": "90000001"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exame 1 descricao",
+      "esperado": "Hemograma",
+      "encontrado": "Hemograma",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          225.0,
+          491.0249938964844,
+          296.51300048828125,
+          508.8869934082031
+        ],
+        "trecho": "Hemograma"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exame 1 quantidade_solicitada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          680.0,
+          491.0249938964844,
+          687.22802734375,
+          508.8869934082031
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exame 1 quantidade_autorizada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          855.0,
+          491.0249938964844,
+          862.22802734375,
+          508.8869934082031
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exame 2 codigo",
+      "esperado": "90000002",
+      "encontrado": "90000002",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          35.0,
+          520.0250244140625,
+          92.82398986816406,
+          537.8870239257812
+        ],
+        "trecho": "90000002"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exame 2 descricao",
+      "esperado": "Glicose",
+      "encontrado": "Glicose",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          225.0,
+          520.0250244140625,
+          268.3420104980469,
+          537.8870239257812
+        ],
+        "trecho": "Glicose"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exame 2 quantidade_solicitada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          680.0,
+          520.0250244140625,
+          687.22802734375,
+          537.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exame 2 quantidade_autorizada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          855.0,
+          520.0250244140625,
+          862.22802734375,
+          537.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exame 3 codigo",
+      "esperado": "90000003",
+      "encontrado": "90000003",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          35.0,
+          549.0250244140625,
+          92.82398986816406,
+          566.8870239257812
+        ],
+        "trecho": "90000003"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exame 3 descricao",
+      "esperado": "TSH",
+      "encontrado": "TSH",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          225.0,
+          549.0250244140625,
+          251.0,
+          566.8870239257812
+        ],
+        "trecho": "TSH"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exame 3 quantidade_solicitada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          680.0,
+          549.0250244140625,
+          687.22802734375,
+          566.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exame 3 quantidade_autorizada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          855.0,
+          549.0250244140625,
+          862.22802734375,
+          566.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exame 4 codigo",
+      "esperado": "90000004",
+      "encontrado": "90000004",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          35.0,
+          578.0250244140625,
+          92.82398986816406,
+          595.8870239257812
+        ],
+        "trecho": "90000004"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exame 4 descricao",
+      "esperado": "Creatinina",
+      "encontrado": "Creatinina",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          225.0,
+          578.0250244140625,
+          284.240966796875,
+          595.8870239257812
+        ],
+        "trecho": "Creatinina"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exame 4 quantidade_solicitada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          680.0,
+          578.0250244140625,
+          687.22802734375,
+          595.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exame 4 quantidade_autorizada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          855.0,
+          578.0250244140625,
+          862.22802734375,
+          595.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exame 5 codigo",
+      "esperado": "90000005",
+      "encontrado": "90000005",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          35.0,
+          607.0250244140625,
+          92.82398986816406,
+          624.8870239257812
+        ],
+        "trecho": "90000005"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exame 5 descricao",
+      "esperado": "Colesterol total",
+      "encontrado": "Colesterol total",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          225.0,
+          607.0250244140625,
+          311.697021484375,
+          624.8870239257812
+        ],
+        "trecho": "Colesterol total"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exame 5 quantidade_solicitada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          680.0,
+          607.0250244140625,
+          687.22802734375,
+          624.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "03_nome_composto.pdf",
+      "campo": "Exame 5 quantidade_autorizada",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_nome_composto.pdf",
+        "pagina": 2,
+        "regiao": [
+          855.0,
+          607.0250244140625,
+          862.22802734375,
+          624.8870239257812
+        ],
+        "trecho": "1"
+      }
+    },
+    {
+      "caso": "04_conselho crm_tamanho_1.pdf",
+      "campo": "Conselho",
+      "esperado": "CRM",
+      "encontrado": "CRM",
+      "passou": true,
+      "origem": {
+        "arquivo": "crm_tamanho_1.pdf",
+        "pagina": 1,
+        "regiao": [
+          745.0,
+          286.95001220703125,
+          776.8779296875,
+          306.1860046386719
+        ],
+        "trecho": "16 Conselho profissional / CRM"
+      }
+    },
+    {
+      "caso": "04_conselho crm_tamanho_1.pdf",
+      "campo": "Número conselho",
+      "esperado": "12",
+      "encontrado": "12",
+      "passou": true,
+      "origem": {
+        "arquivo": "crm_tamanho_1.pdf",
+        "pagina": 1,
+        "regiao": [
+          35.0,
+          362.1000061035156,
+          48.34400177001953,
+          378.5880126953125
+        ],
+        "trecho": "17 Numero no conselho / 12"
+      }
+    },
+    {
+      "caso": "04_conselho crm_tamanho_1.pdf",
+      "campo": "UF conselho",
+      "esperado": "GO",
+      "encontrado": "GO",
+      "passou": true,
+      "origem": {
+        "arquivo": "crm_tamanho_1.pdf",
+        "pagina": 1,
+        "regiao": [
+          390.0,
+          344.95001220703125,
+          411.78399658203125,
+          364.1860046386719
+        ],
+        "trecho": "18 UF / GO"
+      }
+    },
+    {
+      "caso": "04_conselho crm_tamanho_1.pdf",
+      "campo": "CBO",
+      "esperado": "225125",
+      "encontrado": "225125",
+      "passou": true,
+      "origem": {
+        "arquivo": "crm_tamanho_1.pdf",
+        "pagina": 1,
+        "regiao": [
+          745.0,
+          405.1000061035156,
+          785.031982421875,
+          421.5880126953125
+        ],
+        "trecho": "19 Codigo CBO / 225125"
+      }
+    },
+    {
+      "caso": "04_conselho crm_tamanho_2.pdf",
+      "campo": "Conselho",
+      "esperado": "CRM",
+      "encontrado": "CRM",
+      "passou": true,
+      "origem": {
+        "arquivo": "crm_tamanho_2.pdf",
+        "pagina": 1,
+        "regiao": [
+          745.0,
+          286.95001220703125,
+          776.8779296875,
+          306.1860046386719
+        ],
+        "trecho": "16 Conselho profissional / CRM"
+      }
+    },
+    {
+      "caso": "04_conselho crm_tamanho_2.pdf",
+      "campo": "Número conselho",
+      "esperado": "00123",
+      "encontrado": "00123",
+      "passou": true,
+      "origem": {
+        "arquivo": "crm_tamanho_2.pdf",
+        "pagina": 1,
+        "regiao": [
+          35.0,
+          362.1000061035156,
+          81.70401000976562,
+          378.5880126953125
+        ],
+        "trecho": "17 Numero no conselho / 0 0 1 2 3"
+      }
+    },
+    {
+      "caso": "04_conselho crm_tamanho_2.pdf",
+      "campo": "UF conselho",
+      "esperado": "GO",
+      "encontrado": "GO",
+      "passou": true,
+      "origem": {
+        "arquivo": "crm_tamanho_2.pdf",
+        "pagina": 1,
+        "regiao": [
+          390.0,
+          344.95001220703125,
+          411.78399658203125,
+          364.1860046386719
+        ],
+        "trecho": "18 UF / GO"
+      }
+    },
+    {
+      "caso": "04_conselho crm_tamanho_2.pdf",
+      "campo": "CBO",
+      "esperado": "225125",
+      "encontrado": "225125",
+      "passou": true,
+      "origem": {
+        "arquivo": "crm_tamanho_2.pdf",
+        "pagina": 1,
+        "regiao": [
+          745.0,
+          405.1000061035156,
+          785.031982421875,
+          421.5880126953125
+        ],
+        "trecho": "19 Codigo CBO / 225125"
+      }
+    },
+    {
+      "caso": "04_conselho crm_tamanho_3.pdf",
+      "campo": "Conselho",
+      "esperado": "CRM",
+      "encontrado": "CRM",
+      "passou": true,
+      "origem": {
+        "arquivo": "crm_tamanho_3.pdf",
+        "pagina": 1,
+        "regiao": [
+          745.0,
+          286.95001220703125,
+          776.8779296875,
+          306.1860046386719
+        ],
+        "trecho": "16 Conselho profissional / CRM"
+      }
+    },
+    {
+      "caso": "04_conselho crm_tamanho_3.pdf",
+      "campo": "Número conselho",
+      "esperado": "0012345",
+      "encontrado": "0012345",
+      "passou": true,
+      "origem": {
+        "arquivo": "crm_tamanho_3.pdf",
+        "pagina": 1,
+        "regiao": [
+          35.0,
+          362.1000061035156,
+          81.70399475097656,
+          378.5880126953125
+        ],
+        "trecho": "17 Numero no conselho / 0012345"
+      }
+    },
+    {
+      "caso": "04_conselho crm_tamanho_3.pdf",
+      "campo": "UF conselho",
+      "esperado": "GO",
+      "encontrado": "GO",
+      "passou": true,
+      "origem": {
+        "arquivo": "crm_tamanho_3.pdf",
+        "pagina": 1,
+        "regiao": [
+          390.0,
+          344.95001220703125,
+          411.78399658203125,
+          364.1860046386719
+        ],
+        "trecho": "18 UF / GO"
+      }
+    },
+    {
+      "caso": "04_conselho crm_tamanho_3.pdf",
+      "campo": "CBO",
+      "esperado": "225125",
+      "encontrado": "225125",
+      "passou": true,
+      "origem": {
+        "arquivo": "crm_tamanho_3.pdf",
+        "pagina": 1,
+        "regiao": [
+          745.0,
+          405.1000061035156,
+          785.031982421875,
+          421.5880126953125
+        ],
+        "trecho": "19 Codigo CBO / 225125"
+      }
+    },
+    {
+      "caso": "04_conselho crm_tamanho_4.pdf",
+      "campo": "Conselho",
+      "esperado": "CRM",
+      "encontrado": "CRM",
+      "passou": true,
+      "origem": {
+        "arquivo": "crm_tamanho_4.pdf",
+        "pagina": 1,
+        "regiao": [
+          745.0,
+          286.95001220703125,
+          776.8779296875,
+          306.1860046386719
+        ],
+        "trecho": "16 Conselho profissional / CRM"
+      }
+    },
+    {
+      "caso": "04_conselho crm_tamanho_4.pdf",
+      "campo": "Número conselho",
+      "esperado": "0001234567",
+      "encontrado": "0001234567",
+      "passou": true,
+      "origem": {
+        "arquivo": "crm_tamanho_4.pdf",
+        "pagina": 1,
+        "regiao": [
+          35.0,
+          362.1000061035156,
+          131.74398803710938,
+          378.5880126953125
+        ],
+        "trecho": "17 Numero no conselho / 0 0 0 1 2 3 4 5 6 7"
+      }
+    },
+    {
+      "caso": "04_conselho crm_tamanho_4.pdf",
+      "campo": "UF conselho",
+      "esperado": "GO",
+      "encontrado": "GO",
+      "passou": true,
+      "origem": {
+        "arquivo": "crm_tamanho_4.pdf",
+        "pagina": 1,
+        "regiao": [
+          390.0,
+          344.95001220703125,
+          411.78399658203125,
+          364.1860046386719
+        ],
+        "trecho": "18 UF / GO"
+      }
+    },
+    {
+      "caso": "04_conselho crm_tamanho_4.pdf",
+      "campo": "CBO",
+      "esperado": "225125",
+      "encontrado": "225125",
+      "passou": true,
+      "origem": {
+        "arquivo": "crm_tamanho_4.pdf",
+        "pagina": 1,
+        "regiao": [
+          745.0,
+          405.1000061035156,
+          785.031982421875,
+          421.5880126953125
+        ],
+        "trecho": "19 Codigo CBO / 225125"
+      }
+    },
+    {
+      "caso": "05_guia_incompleta",
+      "campo": "Guia principal",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "05_guia_incompleta",
+      "campo": "Senha autorização",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "05_guia_incompleta",
+      "campo": "Validade senha",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "05_guia_incompleta",
+      "campo": "Quantidades autorizadas",
+      "esperado": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "encontrado": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "06_exames",
+      "campo": "Solicitadas",
+      "esperado": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "encontrado": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "06_exames",
+      "campo": "Autorizadas",
+      "esperado": [
+        "0",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "encontrado": [
+        "0",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "06_exames",
+      "campo": "Primeira comparação",
+      "esperado": "Não autorizado",
+      "encontrado": "Não autorizado",
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "08_conflito",
+      "campo": "Confirmação bloqueada",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "09_incerto",
+      "campo": "Tipo",
+      "esperado": "incerto",
+      "encontrado": "incerto",
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "10_pedido_estruturado",
+      "campo": "Tipo",
+      "esperado": "pedido",
+      "encontrado": "pedido",
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "10_pedido_estruturado",
+      "campo": "Exames preservados",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "10_pedido_estruturado",
+      "campo": "Conselho preservado",
+      "esperado": "CRM",
+      "encontrado": "CRM",
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "UF ausente",
+      "campo": "Sem inferir GO",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "Carimbo conflitante",
+      "campo": "Número pendente",
+      "esperado": "",
+      "encontrado": "",
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "Carimbo conflitante",
+      "campo": "Não virou sexto exame",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "07_conferência e 09_interface",
+      "campo": "test_corrigir_crm_salvar_resolve_e_avanca chegou a PREPARADO",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "07_conferência e 09_interface",
+      "campo": "test_resolver_quantidade_por_botao_atualiza_e_avanca chegou a PREPARADO",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "07_conferência e 09_interface",
+      "campo": "test_quatro_paginas_campos17_cbo_visiveis_ate_pre_cadastro chegou a PREPARADO",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    },
+    {
+      "caso": "09_interface",
+      "campo": "Casos gráficos distintos",
+      "esperado": 6,
+      "encontrado": 6,
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina": null,
+        "regiao": null,
+        "trecho": null
+      }
+    }
+  ]
+}

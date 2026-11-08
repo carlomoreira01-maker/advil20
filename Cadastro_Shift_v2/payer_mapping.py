@@ -5,6 +5,7 @@ from core import norm
 
 DESTINATIONS={'Matrícula','Guia','Senha/Autorização','Guia principal','Guia operadora','Indicação clínica','Regime de atendimento','Data de execução'}
 SOURCES={'Carteira','Guia prestador','Guia principal','Guia operadora','Senha autorização','Indicação clínica','Regime atendimento','Data execução'}
+OPTIONAL_FIELDS={'Guia principal','Guia operadora','Senha autorização','Validade senha','CBO'}
 
 
 def validate_profile(profile):
@@ -22,7 +23,24 @@ def validate_profile(profile):
  for dest,default in profile.get('valores_tecnicos',{}).items():
   if dest not in DESTINATIONS or not isinstance(default,dict) or not all(default.get(k) for k in ['valor','aprovado_por','aprovado_em']):raise ValueError('Valor técnico exige aprovação individual explícita.')
  if any(x not in DESTINATIONS for x in profile.get('obrigatorios',[])):raise ValueError('Campo obrigatório desconhecido.')
+ na=profile.get('campos_nao_aplicaveis',[])
+ if not isinstance(na,list) or any(k not in OPTIONAL_FIELDS for k in na):raise ValueError('Campo não aplicável desconhecido ou essencial.')
+ if profile.get('exige_autorizacao',True) and any(k in na for k in ['Senha autorização','Validade senha']):raise ValueError('Este perfil exige autorização; senha e validade não podem ser dispensadas.')
+ if any(profile.get('mapeamento',{}).get(dest) in na for dest in profile.get('obrigatorios',[])):raise ValueError('Campo não aplicável conflita com mapeamento obrigatório.')
  return copy.deepcopy(profile)
+
+
+def mark_not_applicable(model,profile):
+ profile=validate_profile(profile)
+ if not profile.get('homologado'):raise ValueError('Não aplicável exige perfil homologado com responsável e data.')
+ if norm(model['fields']['Fonte pagadora']['value'])!=norm(profile['fonte_pagadora']) or norm(model['fields']['Regime atendimento']['value'])!=norm(profile['tipo_atendimento']):raise ValueError('Confirme fonte pagadora e regime antes de aplicar as regras do perfil.')
+ if '*' not in profile['procedimentos'] and any(e['codigo'] not in profile['procedimentos'] for e in model['exams']):raise ValueError('Procedimento fora do escopo homologado do perfil.')
+ if not profile.get('campos_nao_aplicaveis'):raise ValueError('O perfil não contém campos não aplicáveis aprovados.')
+ if any(model['fields'][k]['value'] for k in profile['campos_nao_aplicaveis']):raise ValueError('Há valor impresso/preenchido no campo. Não será apagado como não aplicável; confira o documento e o perfil.')
+ for key in profile['campos_nao_aplicaveis']:
+  model['fields'][key].update(not_applicable={k:profile[k] for k in ['id','aprovado_por','aprovado_em']},
+      origin_type='nao_aplicavel_perfil_homologado',reviewed=False)
+ return model
 
 
 def load_profiles(path):

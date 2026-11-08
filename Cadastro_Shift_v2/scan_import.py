@@ -15,14 +15,8 @@ from identity_evidence import IDENTIFIERS, value, compatible
 def classify(document,page,catalog):
  one={**document,'pages':[page]};one.pop('document_type',None)
  model=parse_document(one,catalog)
- text=norm(page.get('text',''))
- kind=model['document_type']
- if kind not in ['pedido','guia']:
-  # Printed request headings need not contain the literal word PEDIDO.
-  if value(model,'Paciente') and model['exams'] and re.search(r'\b(SOLICITACAO|SOLICITO|REQUISICAO)\b',text):kind='pedido'
-  elif re.search(r'\b(RECIBO|COMPROVANTE|RESULTADO DE EXAME|DOCUMENTO COMPLEMENTAR)\b',text):kind='outro'
-  else:kind='incerto'
- if re.search(r'\bCONTINUA(?:CAO)?\b',text) and kind in ['pedido','guia']:kind='continuação de '+kind
+ from document_classification import classify_page
+ classification=classify_page(page);kind=classification['kind'];model['classification']=classification
  if kind=='guia' and model.get('tiss') and model['exams'] and not value(model,'Paciente') and not value(model,'Carteira') and not value(model,'Guia prestador'):
   kind='continuação de guia'
  return kind,model
@@ -51,7 +45,7 @@ def read_scan(paths,data,catalog,settings_path=None,progress=None,mode='multiple
    kind,model=classify(document,page,catalog)
    batch['pages'].append({'id':sha+':'+str(page['number']),'source':sha,'page':page['number'],
        'kind':kind,'group':'','model':model,'reviewed':False,'reason':'',
-       'classification_reason':'Rótulos/estrutura reconhecidos' if kind not in ['incerto','outro'] else 'Tipo não confirmado; conferir original.'})
+       'classification_reason':model['classification']['reason']})
  if mode=='single':
   order={sha:i+1 for i,sha in enumerate(batch['sources'])}
   for item in batch['pages']:item['group']='Atendimento '+str(order[item['source']])
@@ -192,6 +186,37 @@ def build_cases(batch,catalog):
   cases.append((name,docs,models))
  return cases
 
+
+def preserve_manual(previous,docs,models):
+ """Mantém ajustes do mesmo conjunto físico de páginas, exigindo nova conferência."""
+ for role,model in models.items():
+  old=previous['models'].get(role,{})
+  if old.get('payer_profile'):model['payer_profile']=copy.deepcopy(old['payer_profile'])
+  before=previous['docs'].get(role,{}).get('page_ids',[]);after=docs[role].get('page_ids',[])
+  if not before or set(before)!=set(after):continue
+  page_map={i+1:after.index(pid)+1 for i,pid in enumerate(before)}
+  for key,field in old.get('fields',{}).items():
+   if field.get('origin_type') not in ['correcao_manual','escolha_humana_de_leitura','nao_aplicavel_perfil_homologado']:continue
+   if field.get('not_applicable') and model['fields'][key]['value']:continue
+   saved=copy.deepcopy(field);saved.update(reviewed=False)
+   if saved.get('page') in page_map:saved['page']=page_map[saved['page']]
+   model['fields'][key]=saved
+  for exam in old.get('exams',[]):
+   if exam.get('origin_type')!='correcao_manual':continue
+   saved=copy.deepcopy(exam);saved.update(reviewed=False,page=page_map.get(exam.get('page'),exam.get('page')))
+   matches=[i for i,e in enumerate(model['exams']) if e.get('page')==saved['page'] and e.get('raw')==exam.get('raw')]
+   if len(matches)==1:model['exams'][matches[0]]=saved
+   elif not exam.get('raw'):model['exams'].append(saved)
+   else:
+    model.setdefault('manual_unresolved',[]).append(saved)
+    model['issues'].append({'message':'Correção manual de exame sem correspondência unívoca após reprocessamento; conferir histórico antes de resolver.','reviewed':False,'reason':''})
+  for removal in old.get('removed_exams',[]):
+   exam=removal['exam'];page=page_map.get(exam.get('page'))
+   model['exams']=[e for e in model['exams'] if not (e.get('page')==page and e.get('raw')==exam.get('raw'))]
+  if old.get('removed_exams'):model['removed_exams']=copy.deepcopy(old['removed_exams'])
+  model['interpretation'].update(fields_found=sum(bool(v['value']) for v in model['fields'].values()),exams_found=len(model['exams']))
+
+
 def save_batch(store,batch,catalog,actor,replace=False):
  cases=build_cases(batch,catalog)
  # A stable physical-page fingerprint catches reimports in any file order.
@@ -220,6 +245,8 @@ def save_batch(store,batch,catalog,actor,replace=False):
    for sha,source in original['sources'].items():
     if batch['sources'][sha]['sha256']!=source['sha256']:raise LocalReadError('Original alterado.')
   for name,docs,models in cases:
+   previous=store.get(old[name])[0] if name in old else None
+   if previous:preserve_manual(previous,docs,models)
    obj={'docs':docs,'models':models};encoded=json.dumps(obj,ensure_ascii=False)
    if name in old:
     cid=old.pop(name);previous,rev,_,_=store.get(cid)

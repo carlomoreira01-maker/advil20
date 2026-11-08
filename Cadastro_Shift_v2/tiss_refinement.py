@@ -56,6 +56,14 @@ def reconcile_fields(fields,page,variants,issues):
                 src=copy.deepcopy(old);old.update(value='',candidates=[src,*[copy.deepcopy(c) for _,c in observations]],diagnostic='Leitura principal fraca diverge da região; conferir origem.')
                 issues.append('Campo '+key+' com leituras locais divergentes; conferir origem.')
             continue
+        if len(agreed)>1:
+            candidates=[copy.deepcopy(entries[0][1]) for entries in agreed]
+            if old['value']:candidates.insert(0,copy.deepcopy(old))
+            fields[key]={**empty_field(document=old.get('document')),'page':page['number'],
+                'box':candidates[0].get('box'),'candidates':candidates,
+                'diagnostic':'Duas leituras concordantes apoiam valores diferentes; escolha humana necessária.'}
+            issues.append('Campo '+key+' com consensos locais conflitantes; conferir origem.')
+            continue
         entries=max(agreed,key=lambda entries:(len(entries),min(c['confidence'] for _,c in entries)))
         candidate=copy.deepcopy(entries[0][1]);value=candidate['value']
         if old['value'] and norm(old['value'])!=norm(value):

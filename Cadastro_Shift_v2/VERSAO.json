@@ -1,33 +1,35 @@
 {
-  "versao": "2.4.3",
-  "data": "2026-11-07",
-  "testes_aprovados": 200,
-  "testes_interface": 46,
+  "versao": "2.4.4",
+  "data": "2026-11-08",
+  "testes_aprovados": 225,
+  "testes_interface": 52,
   "falhas": 0,
   "ignorados": 0,
-  "ambiente_testes": "Linux Debian 13 / Python 3.12.14 / PyMuPDF 1.26.6 / Pillow 13.0.0 / Tesseract 5.5.0 / Xorg dummy",
-  "windows": "Execução nativa pendente. Programa e fluxos gráficos validados em Linux; instalação/Tesseract no Windows e regras locais exigem validação no laboratório.",
+  "ambiente_testes": "Linux / Python 3.12.14 / PyMuPDF 1.26.6 / Pillow 13.0.0 / tesseract 5.5.0 / Tkinter Xorg dummy / Playwright Chromium",
+  "windows": "Execução nativa pendente. Testes completos com interface real e OCR em Linux; instalação, binários e desempenho no Windows dependem de validação local.",
   "modelos": {
     "por.traineddata": "c4932b937207a9514b7514d518b931a99938c02a28a5a5a553f8599ed58b7deb",
     "eng.traineddata": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2"
   },
   "testes_navegador": 3,
   "verificacoes_campos": 270,
-  "layouts_reais": "Dois PDFs fornecidos pelo usuário, sete páginas, processados somente localmente. 118 verificações gráficas aprovadas; não substituem conferência clínica independente. Os documentos reais não integram a entrega.",
+  "layouts_reais": "Não usados nesta auditoria. Todos os testes e exemplos da rodada 2.4.4 são sintéticos. O relatório 2.4.3 permanece histórico.",
   "base_estavel": "2.4",
   "versao_comparada": "2.4.1",
   "verificacoes_campos_detalhe": {
     "regressao_2_4": 175,
     "novos_casos_2_4_2": 95
   },
-  "verificacoes_interface_documentos_reais": 118,
-  "paginas_reais": 7,
-  "pendencias_reais": [
-    "Quantidades e campos sem leitura confiável exigem conferência.",
-    "CRM divergente entre páginas de uma ficha permanece pendente.",
-    "Conselho/UF numéricos exigem mapeamento homologado.",
-    "Finalidade/classificação dos documentos exige conferência."
-  ],
-  "base_atualizacao": "2.4.2",
-  "relatorio_real": "docs/TESTES_REAIS_2_4_3.json"
+  "verificacoes_interface_documentos_reais": 0,
+  "paginas_reais": 0,
+  "base_atualizacao": "2.4.3",
+  "testes_antes": 200,
+  "verificacoes_auditoria": 167,
+  "verificacoes_widgets": 29,
+  "historico_validacao_2_4_3": {
+    "relatorio": "docs/TESTES_REAIS_2_4_3.json",
+    "paginas": 7,
+    "verificacoes_interface": 118
+  },
+  "relatorio_auditoria": "docs/AUDITORIA_2_4_4.md"
 }

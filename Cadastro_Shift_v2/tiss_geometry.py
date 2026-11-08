@@ -84,13 +84,23 @@ def anchors(page):
                w['box'][3]-w['box'][1]<=h*1.75],key=lambda w:w['box'][0])
   # Stop at the next numbered label, so values cannot become label words.
   segment=[]
-  for w in near:
-   if segment and re.fullmatch(r'\d{1,2}[-.)]',norm(w['text'])):break
+  for index,w in enumerate(near):
+   next_number=re.fullmatch(r'\d{1,2}',norm(w['text'])) and index+1<len(near) and norm(near[index+1]['text']) in ['-','.',')']
+   if segment and (re.fullmatch(r'\d{1,2}[-.)].*',norm(w['text'])) or next_number):break
    segment.append(w)
   while segment and not re.search(r'[A-Za-zÀ-ÿ]',segment[0]['text']):segment.pop(0)
   tokens=([header_token(suffix)] if re.search(r'[A-Z]',suffix) else [])+[header_token(w['text']) for w in segment]
   text=' '.join(tokens).strip(' -:')
   m=re.match(LABELS[num]+r'(?=\s|:|$)',text)
+  if not m and num==17 and re.match(r'N\S*(?:\s+(?:DO|DA|NO))?$',text):
+   # The number and the word CONSELHO can occupy separate label lines.
+   # Only the exact label suffix within this numbered cell is recovered.
+   edge=min((w['box'][0] for w in words if w['box'][0]>b[0]+10 and abs(w['box'][1]-b[1])<h and re.fullmatch(r'(?:18|19)[-.)]?',norm(w['text']))),default=b[0]+h*18)
+   wrapped=[w for w in words if b[0]-2<=w['box'][0]<edge and b[3]-h*.25<w['box'][1]<=b[3]+h*1.7 and header_token(w['text']) in ['CONSELHO','PROFISSIONAL']]
+   if wrapped:
+    segment.extend(sorted(wrapped,key=lambda w:(w['box'][1],w['box'][0])))
+    text=' '.join(([header_token(suffix)] if suffix else [])+[header_token(w['text']) for w in segment]).strip(' -:')
+    m=re.match(LABELS[num]+r'(?=\s|:|$)',text)
   # A legible printed number plus an unambiguous prefix remains an anchor
   # when a tiny-font suffix is damaged. This is only a label rule.
   if not m and num in [10,15]:m=re.match(r'NOME(?=\s|$)',text)
@@ -158,6 +168,7 @@ def cell_words(page,a,aa):
  lb=a['label_box'];inline=[w for w in words if id(w) not in label_ids and lb[2]+1<=w['box'][0]<a['right'] and
         abs((w['box'][1]+w['box'][3])/2-(lb[1]+lb[3])/2)<=max(3,h*.65)]
  if a['num']!=2 and inline and min(w['box'][0] for w in inline)-lb[2]>max(12,h*4):inline=[]
+ if inline and a['header'][-1]['text'].rstrip().endswith(':'):return inline
  return (inline or below) if a['num']==2 else (below or inline)
 
 
@@ -182,7 +193,7 @@ def table_rows(page,aa,document):
   cols.sort();top=max(a['bottom'] for a in heads)
   # Any following numbered field/header ends this table.
   stop=min((a['y'] for a in aa if a['y']>top+2 and a['num'] not in [25,26,27,28]),default=max(w['box'][3] for w in words)+1)
-  titles=[r for r in rows(words) if r['base']>top+4 and re.search(r'DADOS.*(?:EXECUTANTE|EXECUCAO)|PROCEDIMENTOS.*(?:EXECUTADOS|REALIZADOS)',norm(' '.join(w['text'] for w in r['words'])))]
+  titles=[r for r in rows(words) if r['base']>top+4 and re.search(r'DADOS.*(?:EXECUTANTE|EXECUCAO)|PROCEDIMENTOS.*(?:EXECUTADOS|REALIZADOS)|^(?:ASSINATURA|CARIMBO|CRM\b)',norm(' '.join(w['text'] for w in r['words'])))]
   if titles:stop=min(stop,min(min(w['box'][1] for w in r['words']) for r in titles))
   following=min((a['y'] for a in starts if a['y']>top+2),default=stop);stop=min(stop,following)
   codewords=[w for w in words if top<w['box'][1]<stop and start['x']-5<=w['box'][0]<description['x']-3 and re.fullmatch(r'(?:\d{4,12}|[A-Z][A-Z0-9._/-]{1,39})',norm(w['text']))]

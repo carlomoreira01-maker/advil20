@@ -21,6 +21,16 @@ def compare_tiss(p,g,catalog):
   for key in identifiers:
    val=model['fields'].get(key,{}).get('value','')
    if val and not identifier(key,val):errors.append('Identidade: '+key+' inválido; conferir origem.')
+  from tiss import SCHEMA,valid
+  for key,kind in SCHEMA.values():
+   val=model['fields'].get(key,{}).get('value','')
+   if val and not valid(norm(val),kind):errors.append(key+': valor inválido; corrija o campo e confira a origem.')
+  for key,field in model['fields'].items():
+   annotation=field.get('not_applicable')
+   if annotation:
+    profile=g.get('payer_profile') or {}
+    if not profile.get('homologado') or key not in profile.get('campos_nao_aplicaveis',[]) or any(annotation.get(k)!=profile.get(k) for k in ['id','aprovado_por','aprovado_em']) or field.get('value'):
+     errors.append(key+': não aplicável sem regra vigente; confira o perfil homologado.')
  if not p['fields']['Medico']['value']:errors.append('Médico solicitante não identificado no pedido.')
  for key in ['Medico','Conselho','Número conselho','UF conselho']:
   if not g['fields'].get(key,{}).get('value'):errors.append('Solicitante: '+key+' não identificado; conferir cadastro.')
@@ -37,7 +47,7 @@ def compare_tiss(p,g,catalog):
     rows.append({'nome':e.get('descricao') or 'Não identificado','codigo_shift':'',
        'codigo_lido':e.get('codigo',''),'pedido':e.get('quantidade_solicitada',e.get('quantidade','')) if title=='Pedido' else '',
        'guia':e.get('quantidade_autorizada',e.get('quantidade','')) if title=='Guia' else '',
-       'situacao':'Catálogo: correspondência não validada',
+       'situacao':'Exame identificado — código interno pendente (correspondência não validada)',
        'pagina_pedido':e.get('page') if title=='Pedido' else None,'pagina_guia':e.get('page') if title=='Guia' else None})
     continue
    identity=cat.get('tuss') or cat.get('codigo_shift') or norm(cat['nome'])
@@ -58,8 +68,9 @@ def compare_tiss(p,g,catalog):
   elif not requested.isdigit() or not authorized.isdigit() or int(requested)!=int(authorized):state='Quantidade divergente'
   elif qs and (not qs.isdigit() or int(qs)!=int(requested)):state='Quantidade solicitada divergente'
   if state!='Conferir':errors.append(code+': '+state)
+  if pedido and (not requested.isdigit() or not 1<=int(requested)<=999):errors.append('Quantidade solicitada inválida; confira o pedido.')
   if not item.get('codigo_shift'):errors.append('Código interno Shift não fornecido pelo laboratório.')
-  rows.append({**item,'pedido':requested,'guia':'Não se aplica' if internal else authorized,'situacao':state,'pagina_pedido':pedido[0]['page'] if pedido else None,'pagina_guia':guia[0]['page'] if guia else None})
+  rows.append({**item,'pedido':requested,'guia':'Não se aplica' if internal else authorized,'situacao':'Exame identificado — código interno pendente' if not item.get('codigo_shift') and state=='Conferir' else state,'pagina_pedido':pedido[0]['page'] if pedido else None,'pagina_guia':guia[0]['page'] if guia else None})
  mapping=map_payer(g,g.get('payer_profile'))
  errors.extend(mapping['errors'])
  # A profile must explicitly permit an internal workflow; no global internal exemption.

@@ -45,7 +45,9 @@ def conflicts(a,b):
 def compatible(a,b):
     if conflicts(a,b):return False
     common=[key for key in IDENTIFIERS if identifier(key,value(a,key)) and identifier(key,value(b,key))]
-    return bool(common and value(a,'Paciente') and value(b,'Paciente'))
+    names=[value(a,'Paciente'),value(b,'Paciente')]
+    strong=any(k in common for k in ['Carteira','CPF','CNS'])
+    return bool(common and all(names) and (strong or min(len(n.split()) for n in names)>=2))
 
 
 def full_name(models):

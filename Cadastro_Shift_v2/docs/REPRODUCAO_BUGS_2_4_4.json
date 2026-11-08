@@ -1,0 +1,100 @@
+{
+  "somente_sinteticos": true,
+  "base": "2.4.3 preservada em ZIP",
+  "antes": [
+    {
+      "caso": "pedido_estruturado",
+      "esperado": {
+        "tipo": "pedido",
+        "Paciente": "PESSOA FICTICIA DE SOUZA"
+      },
+      "encontrado": {
+        "tipo": "guia",
+        "Paciente": "PESSOA FICTICIA DE SOUZA"
+      },
+      "passou": false
+    },
+    {
+      "caso": "guia_titulo_extenso",
+      "esperado": {
+        "tipo": "guia"
+      },
+      "encontrado": {
+        "tipo": "incerto"
+      },
+      "passou": false
+    },
+    {
+      "caso": "rotulo17_quebrado",
+      "esperado": {
+        "Número conselho": "0012345",
+        "Conselho": "CRM",
+        "UF conselho": "GO"
+      },
+      "encontrado": {
+        "Número conselho": "",
+        "Conselho": "CRM",
+        "UF conselho": "GO"
+      },
+      "passou": false
+    },
+    {
+      "caso": "campo_livre_apagado",
+      "esperado": {
+        "Número conselho": "0012345"
+      },
+      "encontrado": {
+        "Número conselho": ""
+      },
+      "passou": false
+    }
+  ],
+  "depois": [
+    {
+      "caso": "pedido_estruturado",
+      "esperado": {
+        "tipo": "pedido",
+        "Paciente": "PESSOA FICTICIA DE SOUZA"
+      },
+      "encontrado": {
+        "tipo": "pedido",
+        "Paciente": "PESSOA FICTICIA DE SOUZA"
+      },
+      "passou": true
+    },
+    {
+      "caso": "guia_titulo_extenso",
+      "esperado": {
+        "tipo": "guia"
+      },
+      "encontrado": {
+        "tipo": "guia"
+      },
+      "passou": true
+    },
+    {
+      "caso": "rotulo17_quebrado",
+      "esperado": {
+        "Número conselho": "0012345",
+        "Conselho": "CRM",
+        "UF conselho": "GO"
+      },
+      "encontrado": {
+        "Número conselho": "0012345",
+        "Conselho": "CRM",
+        "UF conselho": "GO"
+      },
+      "passou": true
+    },
+    {
+      "caso": "campo_livre_apagado",
+      "esperado": {
+        "Número conselho": "0012345"
+      },
+      "encontrado": {
+        "Número conselho": "0012345"
+      },
+      "passou": true
+    }
+  ]
+}

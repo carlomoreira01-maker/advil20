@@ -1,0 +1,900 @@
+{
+  "metodo": "AST em todos os módulos, mapa de imports e exceções; revisão manual dos caminhos críticos e suíte de regressão. Não constitui prova formal de ausência de bugs.",
+  "modulos": [
+    {
+      "modulo": "app.py",
+      "linhas": 1027,
+      "dependencias": [
+        "PIL",
+        "app_v1",
+        "copy",
+        "csv",
+        "datetime",
+        "document_geometry",
+        "engine_v2",
+        "hashlib",
+        "identity_evidence",
+        "internal_workflow",
+        "json",
+        "ocr_runtime",
+        "page_panel",
+        "pathlib",
+        "payer_mapping",
+        "queue",
+        "reader",
+        "review_workflow",
+        "scan_import",
+        "shutil",
+        "simulador",
+        "threading",
+        "tkinter",
+        "webbrowser"
+      ],
+      "excecoes_amplas": 11
+    },
+    {
+      "modulo": "app_v1.py",
+      "linhas": 328,
+      "dependencias": [
+        "PIL",
+        "core",
+        "csv",
+        "datetime",
+        "exporter",
+        "hashlib",
+        "html",
+        "json",
+        "pathlib",
+        "queue",
+        "reader",
+        "threading",
+        "tkinter"
+      ],
+      "excecoes_amplas": 3
+    },
+    {
+      "modulo": "core.py",
+      "linhas": 212,
+      "dependencias": [
+        "datetime",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "sqlite3",
+        "unicodedata",
+        "uuid"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "diagnostico.py",
+      "linhas": 44,
+      "dependencias": [
+        "PIL",
+        "engine_v2",
+        "hashlib",
+        "json",
+        "ocr_runtime",
+        "pathlib",
+        "pymupdf",
+        "sys",
+        "tempfile"
+      ],
+      "excecoes_amplas": 1
+    },
+    {
+      "modulo": "document_classification.py",
+      "linhas": 46,
+      "dependencias": [
+        "core",
+        "re",
+        "tiss_geometry"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "document_geometry.py",
+      "linhas": 12,
+      "dependencias": [],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "engine_v2.py",
+      "linhas": 566,
+      "dependencias": [
+        "PIL",
+        "copy",
+        "core",
+        "csv",
+        "datetime",
+        "document_classification",
+        "hashlib",
+        "io",
+        "json",
+        "ocr_processing",
+        "ocr_runtime",
+        "os",
+        "pathlib",
+        "professional",
+        "pymupdf",
+        "re",
+        "shutil",
+        "sqlite3",
+        "subprocess",
+        "tempfile",
+        "tiss",
+        "tiss_comparison",
+        "uuid"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "exporter.py",
+      "linhas": 20,
+      "dependencias": [
+        "html",
+        "json"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "gerar_exemplos_2_4.py",
+      "linhas": 69,
+      "dependencias": [
+        "PIL",
+        "gerar_exemplos_tiss",
+        "io",
+        "pathlib",
+        "pymupdf"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "gerar_exemplos_2_4_2.py",
+      "linhas": 36,
+      "dependencias": [
+        "gerar_exemplos_2_4",
+        "gerar_exemplos_tiss",
+        "pathlib",
+        "pymupdf"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "gerar_exemplos_auditoria.py",
+      "linhas": 62,
+      "dependencias": [
+        "gerar_exemplos_2_4",
+        "gerar_exemplos_tiss",
+        "json",
+        "pathlib",
+        "pymupdf"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "gerar_exemplos_correcao.py",
+      "linhas": 21,
+      "dependencias": [
+        "gerar_exemplos_v2",
+        "io",
+        "pathlib",
+        "pymupdf"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "gerar_exemplos_tiss.py",
+      "linhas": 70,
+      "dependencias": [
+        "PIL",
+        "io",
+        "json",
+        "pathlib",
+        "pymupdf"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "gerar_exemplos_v2.py",
+      "linhas": 46,
+      "dependencias": [
+        "PIL",
+        "io",
+        "pathlib",
+        "pymupdf"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "identity_evidence.py",
+      "linhas": 58,
+      "dependencias": [
+        "core",
+        "datetime",
+        "re"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "instalacao_aux.py",
+      "linhas": 49,
+      "dependencias": [
+        "ocr_runtime",
+        "pathlib",
+        "sys",
+        "tkinter"
+      ],
+      "excecoes_amplas": 1
+    },
+    {
+      "modulo": "instalar_local.py",
+      "linhas": 21,
+      "dependencias": [
+        "pathlib",
+        "subprocess",
+        "sys"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "internal_workflow.py",
+      "linhas": 25,
+      "dependencias": [
+        "copy",
+        "core",
+        "payer_mapping"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "ocr_processing.py",
+      "linhas": 90,
+      "dependencias": [
+        "PIL",
+        "core",
+        "math",
+        "ocr_regions"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "ocr_regions.py",
+      "linhas": 40,
+      "dependencias": [
+        "PIL",
+        "engine_v2",
+        "statistics",
+        "subprocess",
+        "tiss_geometry"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "ocr_runtime.py",
+      "linhas": 193,
+      "dependencias": [
+        "PIL",
+        "json",
+        "os",
+        "pathlib",
+        "shutil",
+        "subprocess",
+        "tempfile",
+        "winreg"
+      ],
+      "excecoes_amplas": 1
+    },
+    {
+      "modulo": "page_panel.py",
+      "linhas": 58,
+      "dependencias": [
+        "PIL",
+        "copy",
+        "pathlib",
+        "reader",
+        "tkinter"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "payer_mapping.py",
+      "linhas": 78,
+      "dependencias": [
+        "copy",
+        "core",
+        "datetime",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "professional.py",
+      "linhas": 45,
+      "dependencias": [
+        "copy",
+        "core",
+        "ocr_processing",
+        "re",
+        "tiss",
+        "tiss_geometry"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "reader.py",
+      "linhas": 85,
+      "dependencias": [
+        "PIL",
+        "hashlib",
+        "io",
+        "ocr_runtime",
+        "os",
+        "pathlib",
+        "pymupdf",
+        "shutil",
+        "subprocess",
+        "tempfile"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "review_workflow.py",
+      "linhas": 35,
+      "dependencias": [],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "rpa_bloqueado.py",
+      "linhas": 6,
+      "dependencias": [],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "scan_import.py",
+      "linhas": 270,
+      "dependencias": [
+        "copy",
+        "core",
+        "datetime",
+        "document_classification",
+        "engine_v2",
+        "hashlib",
+        "identity_evidence",
+        "json",
+        "ocr_runtime",
+        "pathlib",
+        "re",
+        "tiss",
+        "uuid"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "simulador.py",
+      "linhas": 77,
+      "dependencias": [
+        "core",
+        "http.server",
+        "json",
+        "pathlib",
+        "threading",
+        "time",
+        "uuid",
+        "webbrowser"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_auditoria_244.py",
+      "linhas": 103,
+      "dependencias": [
+        "copy",
+        "engine_v2",
+        "gerar_exemplos_auditoria",
+        "gerar_exemplos_tiss",
+        "pathlib",
+        "payer_mapping",
+        "scan_import",
+        "tempfile",
+        "tests.test_mapping_sim",
+        "tiss",
+        "tiss_refinement",
+        "unittest"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_auditoria_gui_244.py",
+      "linhas": 78,
+      "dependencias": [
+        "app",
+        "gerar_exemplos_auditoria",
+        "gerar_exemplos_tiss",
+        "json",
+        "os",
+        "pathlib",
+        "tempfile",
+        "tests.test_grouping_gui_242",
+        "tests.test_mapping_sim",
+        "time",
+        "tkinter",
+        "unittest",
+        "unittest.mock"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_core.py",
+      "linhas": 134,
+      "dependencias": [
+        "copy",
+        "core",
+        "datetime",
+        "exporter",
+        "json",
+        "pathlib",
+        "reader",
+        "sqlite3",
+        "tempfile",
+        "unittest",
+        "unittest.mock"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_fluxo_interface.py",
+      "linhas": 106,
+      "dependencias": [
+        "app",
+        "engine_v2",
+        "os",
+        "pathlib",
+        "tempfile",
+        "test_v2",
+        "time",
+        "tkinter",
+        "unittest",
+        "unittest.mock"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_grouping_242.py",
+      "linhas": 112,
+      "dependencias": [
+        "copy",
+        "engine_v2",
+        "gerar_exemplos_2_4_2",
+        "gerar_exemplos_tiss",
+        "json",
+        "pathlib",
+        "pymupdf",
+        "scan_import",
+        "tempfile",
+        "tiss",
+        "unittest"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_grouping_gui_242.py",
+      "linhas": 115,
+      "dependencias": [
+        "app",
+        "copy",
+        "gerar_exemplos_2_4_2",
+        "gerar_exemplos_tiss",
+        "os",
+        "pathlib",
+        "scan_import",
+        "tempfile",
+        "tests.test_mapping_sim",
+        "time",
+        "tkinter",
+        "unittest",
+        "unittest.mock"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_gui_v2.py",
+      "linhas": 53,
+      "dependencias": [
+        "PIL",
+        "app",
+        "copy",
+        "engine_v2",
+        "json",
+        "os",
+        "pathlib",
+        "tempfile",
+        "time",
+        "tkinter",
+        "unittest",
+        "unittest.mock"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_layout_v2.py",
+      "linhas": 27,
+      "dependencias": [
+        "engine_v2",
+        "pathlib",
+        "pymupdf",
+        "tempfile",
+        "unittest"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_mapping_sim.py",
+      "linhas": 78,
+      "dependencias": [
+        "copy",
+        "engine_v2",
+        "gerar_exemplos_tiss",
+        "internal_workflow",
+        "pathlib",
+        "payer_mapping",
+        "simulador",
+        "tempfile",
+        "unittest"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_ocr_config.py",
+      "linhas": 141,
+      "dependencias": [
+        "engine_v2",
+        "instalacao_aux",
+        "io",
+        "json",
+        "ocr_runtime",
+        "os",
+        "pathlib",
+        "pymupdf",
+        "shutil",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "test_v2",
+        "unittest",
+        "unittest.mock"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_ocr_config_gui.py",
+      "linhas": 142,
+      "dependencias": [
+        "PIL",
+        "app",
+        "json",
+        "ocr_runtime",
+        "os",
+        "pathlib",
+        "shutil",
+        "tempfile",
+        "test_v2",
+        "time",
+        "tkinter",
+        "unittest",
+        "unittest.mock"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_regions_243.py",
+      "linhas": 82,
+      "dependencias": [
+        "copy",
+        "document_geometry",
+        "engine_v2",
+        "gerar_exemplos_tiss",
+        "pathlib",
+        "pymupdf",
+        "tempfile",
+        "tiss",
+        "tiss_geometry",
+        "tiss_names",
+        "unittest"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_regions_gui_243.py",
+      "linhas": 37,
+      "dependencias": [
+        "app",
+        "copy",
+        "engine_v2",
+        "gerar_exemplos_tiss",
+        "os",
+        "pathlib",
+        "tempfile",
+        "time",
+        "tiss",
+        "tkinter",
+        "unittest",
+        "unittest.mock"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_regressao_2_4_1.py",
+      "linhas": 50,
+      "dependencias": [
+        "engine_v2",
+        "pathlib",
+        "pymupdf",
+        "scan_import",
+        "tempfile",
+        "unittest"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_regressao_leitura.py",
+      "linhas": 169,
+      "dependencias": [
+        "PIL",
+        "core",
+        "engine_v2",
+        "io",
+        "json",
+        "ocr_runtime",
+        "os",
+        "pathlib",
+        "pymupdf",
+        "reader",
+        "subprocess",
+        "tempfile",
+        "test_v2",
+        "unittest",
+        "unittest.mock"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_scan_gui.py",
+      "linhas": 119,
+      "dependencias": [
+        "app",
+        "copy",
+        "gerar_exemplos_2_4",
+        "gerar_exemplos_tiss",
+        "json",
+        "ocr_runtime",
+        "os",
+        "pathlib",
+        "tempfile",
+        "tests.test_mapping_sim",
+        "time",
+        "tiss",
+        "tkinter",
+        "unittest",
+        "unittest.mock"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_scan_import.py",
+      "linhas": 128,
+      "dependencias": [
+        "PIL",
+        "copy",
+        "engine_v2",
+        "gerar_exemplos_2_4",
+        "gerar_exemplos_tiss",
+        "hashlib",
+        "io",
+        "json",
+        "ocr_processing",
+        "ocr_runtime",
+        "pathlib",
+        "pymupdf",
+        "scan_import",
+        "tempfile",
+        "tiss",
+        "unittest",
+        "unittest.mock"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_sim_browser.py",
+      "linhas": 30,
+      "dependencias": [
+        "os",
+        "pathlib",
+        "playwright.sync_api",
+        "simulador",
+        "unittest"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_tiss.py",
+      "linhas": 136,
+      "dependencias": [
+        "copy",
+        "engine_v2",
+        "gerar_exemplos_tiss",
+        "json",
+        "pathlib",
+        "pymupdf",
+        "tempfile",
+        "tiss",
+        "unittest",
+        "unittest.mock"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_tiss_gui.py",
+      "linhas": 101,
+      "dependencias": [
+        "app",
+        "engine_v2",
+        "gerar_exemplos_tiss",
+        "json",
+        "os",
+        "pathlib",
+        "tempfile",
+        "test_mapping_sim",
+        "time",
+        "tiss",
+        "tkinter",
+        "unittest",
+        "unittest.mock"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tests/test_v2.py",
+      "linhas": 152,
+      "dependencias": [
+        "PIL",
+        "app",
+        "copy",
+        "engine_v2",
+        "io",
+        "json",
+        "pathlib",
+        "pymupdf",
+        "tempfile",
+        "unittest",
+        "unittest.mock"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tiss.py",
+      "linhas": 110,
+      "dependencias": [
+        "core",
+        "datetime",
+        "ocr_processing",
+        "re",
+        "tiss_geometry",
+        "tiss_names",
+        "tiss_refinement"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tiss_comparison.py",
+      "linhas": 87,
+      "dependencias": [
+        "core",
+        "datetime",
+        "engine_v2",
+        "identity_evidence",
+        "payer_mapping",
+        "tiss"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tiss_geometry.py",
+      "linhas": 241,
+      "dependencias": [
+        "core",
+        "difflib",
+        "functools",
+        "ocr_processing",
+        "re",
+        "statistics"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tiss_names.py",
+      "linhas": 38,
+      "dependencias": [
+        "core",
+        "re",
+        "statistics",
+        "tiss_geometry"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "tiss_refinement.py",
+      "linhas": 113,
+      "dependencias": [
+        "collections",
+        "copy",
+        "core",
+        "engine_v2",
+        "identity_evidence",
+        "tiss",
+        "tiss_geometry"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "validar_auditoria_244.py",
+      "linhas": 62,
+      "dependencias": [
+        "engine_v2",
+        "gerar_exemplos_auditoria",
+        "gerar_exemplos_tiss",
+        "json",
+        "pathlib",
+        "scan_import",
+        "tempfile",
+        "tiss"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "validar_campos_2_4.py",
+      "linhas": 40,
+      "dependencias": [
+        "gerar_exemplos_tiss",
+        "hashlib",
+        "json",
+        "pathlib",
+        "scan_import",
+        "tempfile",
+        "tiss"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "validar_campos_2_4_2.py",
+      "linhas": 55,
+      "dependencias": [
+        "engine_v2",
+        "gerar_exemplos_tiss",
+        "hashlib",
+        "json",
+        "pathlib",
+        "scan_import",
+        "tempfile",
+        "tiss"
+      ],
+      "excecoes_amplas": 0
+    },
+    {
+      "modulo": "validar_campos_tiss.py",
+      "linhas": 38,
+      "dependencias": [
+        "engine_v2",
+        "gerar_exemplos_tiss",
+        "hashlib",
+        "json",
+        "pathlib",
+        "tiss"
+      ],
+      "excecoes_amplas": 0
+    }
+  ]
+}

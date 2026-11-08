@@ -1,0 +1,179 @@
+{
+  "somente_sinteticos": true,
+  "verificacoes": [
+    {
+      "teste": "test_botao_confirmar_nao_aprova_identificadores_incompativeis",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true
+    },
+    {
+      "teste": "test_botao_confirmar_nao_aprova_identificadores_incompativeis",
+      "esperado": "disabled",
+      "encontrado": "disabled",
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_salvar_resolve_e_avanca",
+      "esperado": "0012345",
+      "encontrado": "0012345",
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_salvar_resolve_e_avanca",
+      "esperado": "normal",
+      "encontrado": "normal",
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_salvar_resolve_e_avanca",
+      "esperado": "PREPARADO",
+      "encontrado": "PREPARADO",
+      "passou": true
+    },
+    {
+      "teste": "test_nao_aplicavel_homologado_persiste_sem_dispensar_senha",
+      "esperado": "Não se aplica (perfil)",
+      "encontrado": "Não se aplica (perfil)",
+      "passou": true
+    },
+    {
+      "teste": "test_nao_aplicavel_homologado_persiste_sem_dispensar_senha",
+      "esperado": "Não se aplica (perfil)",
+      "encontrado": "Não se aplica (perfil)",
+      "passou": true
+    },
+    {
+      "teste": "test_nao_aplicavel_homologado_persiste_sem_dispensar_senha",
+      "esperado": "disabled",
+      "encontrado": "disabled",
+      "passou": true
+    },
+    {
+      "teste": "test_pdf_girado_ocr_preenche_crm_go_e_cbo",
+      "esperado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "encontrado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "passou": true
+    },
+    {
+      "teste": "test_pdf_girado_ocr_preenche_crm_go_e_cbo",
+      "esperado": "0012345",
+      "encontrado": "0012345",
+      "passou": true
+    },
+    {
+      "teste": "test_pdf_girado_ocr_preenche_crm_go_e_cbo",
+      "esperado": "CRM",
+      "encontrado": "CRM",
+      "passou": true
+    },
+    {
+      "teste": "test_pdf_girado_ocr_preenche_crm_go_e_cbo",
+      "esperado": "GO",
+      "encontrado": "GO",
+      "passou": true
+    },
+    {
+      "teste": "test_pdf_girado_ocr_preenche_crm_go_e_cbo",
+      "esperado": "225125",
+      "encontrado": "225125",
+      "passou": true
+    },
+    {
+      "teste": "test_pdf_girado_ocr_preenche_crm_go_e_cbo",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true
+    },
+    {
+      "teste": "test_pdf_girado_ocr_preenche_crm_go_e_cbo",
+      "esperado": 270,
+      "encontrado": 270,
+      "passou": true
+    },
+    {
+      "teste": "test_quatro_paginas_campos17_cbo_visiveis_ate_pre_cadastro",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true
+    },
+    {
+      "teste": "test_quatro_paginas_campos17_cbo_visiveis_ate_pre_cadastro",
+      "esperado": 4,
+      "encontrado": 4,
+      "passou": true
+    },
+    {
+      "teste": "test_quatro_paginas_campos17_cbo_visiveis_ate_pre_cadastro",
+      "esperado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "encontrado": "PESSOA FICTICIA DE OLIVEIRA DOS SANTOS",
+      "passou": true
+    },
+    {
+      "teste": "test_quatro_paginas_campos17_cbo_visiveis_ate_pre_cadastro",
+      "esperado": "CRM",
+      "encontrado": "CRM",
+      "passou": true
+    },
+    {
+      "teste": "test_quatro_paginas_campos17_cbo_visiveis_ate_pre_cadastro",
+      "esperado": "0012345",
+      "encontrado": "0012345",
+      "passou": true
+    },
+    {
+      "teste": "test_quatro_paginas_campos17_cbo_visiveis_ate_pre_cadastro",
+      "esperado": "GO",
+      "encontrado": "GO",
+      "passou": true
+    },
+    {
+      "teste": "test_quatro_paginas_campos17_cbo_visiveis_ate_pre_cadastro",
+      "esperado": "225125",
+      "encontrado": "225125",
+      "passou": true
+    },
+    {
+      "teste": "test_quatro_paginas_campos17_cbo_visiveis_ate_pre_cadastro",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true
+    },
+    {
+      "teste": "test_quatro_paginas_campos17_cbo_visiveis_ate_pre_cadastro",
+      "esperado": ".!panedwindow.!frame2.!notebook.!frame2",
+      "encontrado": ".!panedwindow.!frame2.!notebook.!frame2",
+      "passou": true
+    },
+    {
+      "teste": "test_quatro_paginas_campos17_cbo_visiveis_ate_pre_cadastro",
+      "esperado": "normal",
+      "encontrado": "normal",
+      "passou": true
+    },
+    {
+      "teste": "test_quatro_paginas_campos17_cbo_visiveis_ate_pre_cadastro",
+      "esperado": "PREPARADO",
+      "encontrado": "PREPARADO",
+      "passou": true
+    },
+    {
+      "teste": "test_resolver_quantidade_por_botao_atualiza_e_avanca",
+      "esperado": "1",
+      "encontrado": "1",
+      "passou": true
+    },
+    {
+      "teste": "test_resolver_quantidade_por_botao_atualiza_e_avanca",
+      "esperado": "normal",
+      "encontrado": "normal",
+      "passou": true
+    },
+    {
+      "teste": "test_resolver_quantidade_por_botao_atualiza_e_avanca",
+      "esperado": "PREPARADO",
+      "encontrado": "PREPARADO",
+      "passou": true
+    }
+  ]
+}

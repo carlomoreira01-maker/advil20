@@ -1,6 +1,20 @@
-# Cadastro Assistido Shift — versão 2.4.3
+# Cadastro Assistido Shift — versão 2.4.4
 
-Comece por [ATUALIZAR_PARA_2_4_3.txt](ATUALIZAR_PARA_2_4_3.txt). Esta versão modifica o aplicativo Python/Tkinter existente e preserva dados, importação antiga, perfis, catálogo e simulação local. Não acessa o Shift real.
+Comece por [ATUALIZAR_PARA_2_4_4.txt](ATUALIZAR_PARA_2_4_4.txt). Esta versão modifica o aplicativo Python/Tkinter existente e preserva dados, importação antiga, perfis, catálogo e simulação local. Não acessa o Shift real.
+
+## Auditoria e correção do fluxo 2.4.4
+
+O projeto existente foi auditado a partir da 2.4.3, com backup íntegro e 200 testes originais executados antes das alterações. As correções se concentram na classificação de pedido/guia, campo 17, preservação dos valores extraídos e conclusão da conferência. A versão anterior e seus relatórios permanecem como histórico.
+
+- A classificação combina títulos, células TISS e sinais de solicitação; o título extenso SP/SADT é reconhecido. Um pedido com células numeradas continua pedido, e página incerta continua disponível para revisão.
+- Campo 17 aceita rótulo quebrado e dígitos separados, com zeros à esquerda. Conselho, número, UF e CBO têm campos próprios. Identificação livre/carimbo tem origem separada e divergências exigem conferência; GO não é presumido.
+- Leitura estruturada vazia não apaga valor válido obtido por outro rótulo. Listas de exames são preservadas. Nome/código de entradas diferentes do catálogo são bloqueados mesmo se ambos ainda não tiverem código interno.
+- **O que falta para concluir → Resolver pendência selecionada** abre a ação correspondente. A conferência permanece acessível. Ajustes e perfil são preservados ao reclassificar o mesmo conjunto de páginas, com nova revisão obrigatória.
+- **Aplicar não aplicáveis do perfil** exige regra homologada para campo opcional, sem apagar valor existente ou dispensar autorização exigida.
+
+Use `exemplos_auditoria/01_quatro_paginas.pdf` em uma instalação de teste para ver uma ficha com pedido, guia, continuação e complementar. O exemplo `08_conflito.pdf` deve bloquear a confirmação. Instruções completas: [ATUALIZAR_PARA_2_4_4.txt](ATUALIZAR_PARA_2_4_4.txt).
+
+Veja [AUDITORIA_2_4_4.md](docs/AUDITORIA_2_4_4.md), [RESULTADO_TESTES_2_4_4.txt](docs/RESULTADO_TESTES_2_4_4.txt), [RELATORIO_AUDITORIA_2_4_4.json](docs/RELATORIO_AUDITORIA_2_4_4.json) e [RELATORIO_INTERFACE_2_4_4.json](docs/RELATORIO_INTERFACE_2_4_4.json) para valores esperados/encontrados, origens e execução gráfica até pré-cadastro fictício. Esta rodada usa somente documentos sintéticos; nenhum documento real foi reprocessado.
 
 ## Leitura e conferência 2.4.3
 
@@ -52,4 +66,4 @@ DISPLAY=:90 SHIFT_GUI_TESTS=1 SHIFT_BROWSER_TESTS=1 python -m unittest discover 
 python validar_campos_2_4_2.py
 ```
 
-No Windows, use `TESTAR_WINDOWS.bat`. Playwright/Chromium são opcionais para a simulação e não são instalados na recepção por padrão. As instruções e relatórios 2.1 a 2.4 permanecem como histórico; siga o guia 2.4.3 para atualizar.
+No Windows, use `TESTAR_WINDOWS.bat`. Playwright/Chromium são opcionais para a simulação e não são instalados na recepção por padrão. As instruções e relatórios 2.1 a 2.4 permanecem como histórico; siga o guia 2.4.4 para atualizar.

@@ -19,7 +19,7 @@ def collect_regions(image,words,recognize):
     h=median(small)
     bands=[('header',(0,0,image.width,beneficiary-h*.5),[2,3,4,5,6,7],[(6,2),(11,2),(4,1.5)]),
            ('beneficiary',(0,beneficiary-h*1.3,image.width,doctor-h*.35),[8,9,10],[(6,2),(11,2),(4,1.5),(6,1.5)]),
-           ('doctor',(0,doctor-h*1.1,image.width,table-h*.5),[13,15,16,17,18,22],[(6,2),(11,2),(4,1.5),(11,1.5)]),
+           ('doctor',(0,doctor-h*1.1,image.width,table-h*.5),[13,15,16,17,18,19,22],[(6,2),(11,2),(4,1.5),(11,1.5)]),
            ('table',(0,table-h,image.width,end-h*.5),[],[(6,2),(4,1.5),(6,1.5)])]
     result=[]
     for family,box,targets,settings in bands:

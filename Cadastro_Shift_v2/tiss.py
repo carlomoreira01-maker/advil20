@@ -9,10 +9,10 @@ SCHEMA={
  5:('Senha autorização','id'),6:('Validade senha','date'),7:('Guia operadora','id'),
  8:('Carteira','id'),9:('Validade carteira','date'),10:('Paciente','name'),
  13:('Código solicitante','id'),15:('Medico','name'),16:('Conselho','council'),
- 17:('Número conselho','number'),18:('UF conselho','uf'),22:('Data solicitação','date'),23:('Indicação clínica','text')}
+ 17:('Número conselho','number'),18:('UF conselho','uf'),19:('CBO','cbo'),22:('Data solicitação','date'),23:('Indicação clínica','text')}
 EXTRA_FIELDS=['Guia prestador','Guia principal','Data autorização','Senha autorização','Validade senha',
  'Guia operadora','Carteira','Validade carteira','Código solicitante','Conselho','Número conselho','UF conselho',
- 'Data solicitação','Indicação clínica','Regime atendimento','Data execução']
+ 'Data solicitação','Indicação clínica','Regime atendimento','Data execução','CBO']
 STARTS={2:'NUMERO GUIA',3:'NUMERO GUIA',4:'DATA',5:'SENHA',6:'VALIDADE',7:'NUMERO GUIA',8:'NUMERO CARTEIRA',
 9:'VALIDADE',10:'NOME',13:'CODIGO',15:'NOME',16:'CONSELHO',17:'NUMERO',18:'UF',22:'DATA',
 25:'CODIGO',26:'DESCRICAO',27:'QUANTIDADE QTD QTDE QTD.',28:'QUANTIDADE QTD QTDE QTD.'}
@@ -30,6 +30,7 @@ def valid(value,kind):
   if re.fullmatch(r'\d{1,2}/\d{1,2}/\d{4}',value):return False
   return bool(re.fullmatch(r'[A-Z0-9][A-Z0-9./-]*',value)) and bool(re.search(r'\d',value))
  if kind=='number':return bool(re.fullmatch(r'\d+',value))
+ if kind=='cbo':return bool(re.fullmatch(r'\d{6}',value))
  if kind=='date':
   try:datetime.strptime(value,'%d/%m/%Y');return True
   except ValueError:return False
@@ -55,7 +56,10 @@ def extract(document):
    if a['num'] not in SCHEMA:continue
    if a['y']>procedure_top:continue  # Solicitante não é o profissional executante/assinatura.
    key,kind=SCHEMA[a['num']];region=cell_words(page,a,aa);candidate=None
-   if not fields[key]['value']:fields[key]['diagnostic']='Região localizada, sem valor legível/validável; conferir original.'
+   if not fields[key]['value']:
+    fields[key].update(page=page['number'],box=union_box(region or a['header']),
+        snippet=' '.join(w['text'] for w in a['header'])+' / '+' '.join(w['text'] for w in region),
+        diagnostic='Região localizada, sem valor legível/validável; conferir original.')
    value_rows=rows(region)
    if kind=='name':
     from tiss_names import name_words
@@ -66,7 +70,7 @@ def extract(document):
    else:
     for r in value_rows:
      ws=r['words'];value=norm(' '.join(w['text'] for w in ws)).strip(' :|')
-     if kind in ['id','number','date']:value=re.sub(r'\s+','',value)
+     if kind in ['id','number','date','cbo']:value=re.sub(r'\s+','',value)
      if kind=='number' and re.fullmatch(r'[0-9.]+',value):value=value.replace('.','')
      if valid(value,kind):candidate=(value,ws);break
      if kind in ['council','uf'] and value.isdigit():

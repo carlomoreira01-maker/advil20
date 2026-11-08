@@ -106,11 +106,8 @@ def usable(words):
 
 
 def detect_document_type(document):
-    """Só classifica por títulos explícitos; ausência/conflito exige conferência."""
-    text = norm('\n'.join(p.get('text', '') for p in document['pages']))
-    pedido = bool(re.search(r'\b(PEDIDO MEDICO|SOLICITACAO DE EXAMES|REQUISICAO DE EXAMES)\b', text))
-    guia = bool(re.search(r'\b(GUIA DE AUTORIZACAO|GUIA AUTORIZADA|GUIA DE SP/SADT|GUIA SP/SADT)\b', text))
-    return ('pedido' if pedido else 'guia') if pedido != guia else 'Não identificado'
+    from document_classification import document_type
+    return document_type(document)
 
 
 def document_diagnostics(document):
@@ -224,7 +221,7 @@ def resolve_exam(exam, catalog):
     names=[r for r in catalog if name and name in {norm(v) for v in [r['nome'],*r['sinonimos']]}]
     codes=[r for r in catalog if code and code in {norm(str(v)) for v in [r['codigo_shift'],r.get('tuss') or '',*[q['codigo'] for q in r.get('equivalencias',[]) if q.get('aprovada') is True]]}]
     if len(names)>1 or len(codes)>1: return None,'Catálogo ambíguo.'
-    if names and codes and names[0]['codigo_shift']!=codes[0]['codigo_shift']: return None,'Código e descrição apontam para exames diferentes.'
+    if names and codes and names[0] is not codes[0]: return None,'Código e descrição apontam para exames diferentes.'
     row=(names or codes or [None])[0]
     if not row: return None,'Exame não encontrado no catálogo.'
     if code and not codes: return row,'Código ausente do catálogo ou divergente.'
@@ -404,16 +401,28 @@ def parse_document(document, catalog):
             fields['Operadora']={'value':name,'page':page['number'],'box':source_box(line),'confidence':line['confidence'],'reviewed':False,'document':document.get('file'),'snippet':line['text'],'candidates':[],'origin_type':'marca_literal_no_cabecalho'}
     from tiss import extract
     structured=extract(document)
+    from professional import free_identification,reconcile
+    free=free_identification(document)
+    professional_issues=[]
+    if structured['detected']:reconcile(structured['fields'],free,professional_issues)
+    else:
+        for key,field in free.items():
+            if field['value'] or field.get('candidates'):fields[key]=field
     if structured['detected']:
-        for key,value in structured['fields'].items():fields[key]=value
+        from tiss import SCHEMA,valid
+        kinds={key:kind for key,kind in SCHEMA.values()}
+        for key,value in structured['fields'].items():
+            # An empty structured cell must not erase a valid labelled reading.
+            # Conflicts/candidates, on the other hand, must stay pending.
+            if value['value'] or value.get('candidates') or not valid(fields[key]['value'],kinds[key]):fields[key]=value
         fields['Guia']=empty_field(document.get('file'))
         fields['Validade']=empty_field(document.get('file'))
-        exams=structured['exams']
+        if structured['exams']:exams=structured['exams']
         issues=[i for i in issues if not i['message'].startswith('Nenhum exame')]
-        for msg in structured['issues']:issues.append({'message':msg,'reviewed':False,'reason':''})
+        for msg in structured['issues']+professional_issues:issues.append({'message':msg,'reviewed':False,'reason':''})
         if not exams:issues.append({'message':'Interpretação TISS: nenhum procedimento identificado. Conferir tabela.','reviewed':False,'reason':''})
     return {'fields':fields,'exams':exams,'issues':issues,'pages_reviewed':False,
-            'document_type':'guia' if structured['detected'] else document.get('document_type', detect_document_type(document)),
+            'document_type':document.get('document_type', detect_document_type(document)),
             'tiss':structured['detected'],'tiss_detail':structured if structured['detected'] else None,
             'interpretation':{'executed':True,'fields_found':sum(bool(v['value']) for v in fields.values()),'exams_found':len(exams)}}
 
@@ -459,9 +468,10 @@ def compare_models(p,g,catalog):
                   'situacao':'Catálogo: correspondência não validada','pagina_pedido':e.get('page') if title=='Pedido' else None,'pagina_guia':e.get('page') if title=='Guia' else None})
             if not str(e['quantidade']).isdigit() or not 1<=int(e['quantidade'])<=999:errors.append(title+': quantidade inválida '+e['descricao']);continue
             if row:
-                code=row['codigo_shift']
+                code=row.get('tuss') or row['codigo_shift'] or norm(row['nome'])
                 if code in found:errors.append(title+': exame repetido '+code)
                 found[code]=(e,row)
+                if not row['codigo_shift']:errors.append('Código interno Shift não fornecido pelo laboratório.')
                 if e['material'] and norm(e['material'])!=norm(row['material']):errors.append(title+': material difere do catálogo: '+e['descricao'])
         maps.append(found)
     for code in sorted(set(maps[0])|set(maps[1])):

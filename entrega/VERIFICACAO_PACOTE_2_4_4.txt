@@ -1,0 +1,23 @@
+CADASTRO ASSISTIDO SHIFT 2.4.4 — PACOTE VALIDADO
+
+Arquivo: Cadastro_Shift_v2_4_4_corrigido.zip
+224 arquivos. Todos os 180 arquivos da entrega anterior preservados, com alterações identificadas no Git.
+CRC aprovado; SHA-256 de cada membro corresponde ao manifesto.
+SHA-256 do ZIP: 10fd10e5736d551c84af7127b04149cd64434175e155ea5ee35dc3ffb58c2057
+
+O ZIP foi extraído em pasta nova. Sete testes gráficos foram executados A PARTIR DOS ARQUIVOS EXTRAÍDOS: seis fluxos novos (incluindo OCR sintético girado, CRM, quantidades, perfil, agrupamento/conflito e pré-cadastro local) e um fluxo anterior de revisão/preparo/exportação. Todos passaram. Dados exclusivamente fictícios. Windows nativo permanece pendente.
+
+SAÍDA
+
+test_botao_confirmar_nao_aprova_identificadores_incompativeis (tests.test_auditoria_gui_244.AuditoriaGUI244.test_botao_confirmar_nao_aprova_identificadores_incompativeis) ... ok
+test_corrigir_crm_salvar_resolve_e_avanca (tests.test_auditoria_gui_244.AuditoriaGUI244.test_corrigir_crm_salvar_resolve_e_avanca) ... ok
+test_nao_aplicavel_homologado_persiste_sem_dispensar_senha (tests.test_auditoria_gui_244.AuditoriaGUI244.test_nao_aplicavel_homologado_persiste_sem_dispensar_senha) ... ok
+test_pdf_girado_ocr_preenche_crm_go_e_cbo (tests.test_auditoria_gui_244.AuditoriaGUI244.test_pdf_girado_ocr_preenche_crm_go_e_cbo) ... ok
+test_quatro_paginas_campos17_cbo_visiveis_ate_pre_cadastro (tests.test_auditoria_gui_244.AuditoriaGUI244.test_quatro_paginas_campos17_cbo_visiveis_ate_pre_cadastro) ... ok
+test_resolver_quantidade_por_botao_atualiza_e_avanca (tests.test_auditoria_gui_244.AuditoriaGUI244.test_resolver_quantidade_por_botao_atualiza_e_avanca) ... ok
+test_import_review_prepare_and_export (tests.test_gui_v2.Interface.test_import_review_prepare_and_export) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 21.731s
+
+OK
