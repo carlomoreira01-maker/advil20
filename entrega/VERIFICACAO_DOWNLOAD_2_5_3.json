@@ -1,0 +1,17 @@
+{
+  "arquivo": "Cadastro_Shift_v2_5_3_corrigido.zip",
+  "url": "https://github.com/carlomoreira01-maker/advil20/raw/refs/heads/entrega/shift-v2.5.3/entrega/Cadastro_Shift_v2_5_3_corrigido.zip",
+  "http": 200,
+  "bytes": 7637139,
+  "sha256": "bfca91fb26dce2615b50378379b90afb5651087f16503e7626afe61b79df315d",
+  "arquivos": 348,
+  "crc_integro": true,
+  "todos_os_membros_conferidos_sha256": true,
+  "arquivos_anteriores_preservados": 333,
+  "testes_zip_final": 334,
+  "falhas": 0,
+  "ignorados": 0,
+  "verificacoes_integradas": 95,
+  "windows_nativo_validado": false,
+  "producao_validada": false
+}
