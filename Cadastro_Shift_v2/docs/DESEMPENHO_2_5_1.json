@@ -1,0 +1,1338 @@
+{
+  "somente_sinteticos": true,
+  "ambiente": "Linux / 4 CPUs de cota / Python 3.12 / Tesseract 5.5 / mesmo equipamento",
+  "metodo": "Execuções sequenciais sem a suíte de testes concorrendo. Duas leituras por arquivo em cada versão; a segunda leitura da 2.5.1 reutiliza cache. Na 2.5.1 o cancelamento está habilitado, como no aplicativo. Mesma resolução 2,5x. Valores de todos os campos e exames comparados com a base, separadamente do gabarito de campos.",
+  "limites": "Amostra de dois PDFs sintéticos; uma medição fria e uma quente na nova versão. Não representa desempenho nem precisão universais ou do Windows. PDF digital pequeno teve custo adicional de verificação do cache.",
+  "comparacoes": [
+    {
+      "arquivo_sintetico": "exemplos_250/01_um_paciente.pdf",
+      "repeticao": 0,
+      "segundos_2_5_0": 0.09445929900175543,
+      "segundos_2_5_1": 0.11620088200288592,
+      "cache_na_2_5_1": false,
+      "valores_e_classificacao_iguais": true
+    },
+    {
+      "arquivo_sintetico": "exemplos_250/01_um_paciente.pdf",
+      "repeticao": 1,
+      "segundos_2_5_0": 0.06750612399991951,
+      "segundos_2_5_1": 0.06884058600189746,
+      "cache_na_2_5_1": true,
+      "valores_e_classificacao_iguais": true
+    },
+    {
+      "arquivo_sintetico": "exemplos_2_4_2/03_quatro_paginas_escaneadas.pdf",
+      "repeticao": 0,
+      "segundos_2_5_0": 29.5482930879989,
+      "segundos_2_5_1": 17.09078536400193,
+      "cache_na_2_5_1": false,
+      "valores_e_classificacao_iguais": true
+    },
+    {
+      "arquivo_sintetico": "exemplos_2_4_2/03_quatro_paginas_escaneadas.pdf",
+      "repeticao": 1,
+      "segundos_2_5_0": 31.084011469996767,
+      "segundos_2_5_1": 0.09973982799783698,
+      "cache_na_2_5_1": true,
+      "valores_e_classificacao_iguais": true
+    }
+  ],
+  "antes": {
+    "synthetic_only": true,
+    "runs": [
+      {
+        "file": "exemplos_250/01_um_paciente.pdf",
+        "repeat": 0,
+        "read_classify_seconds": 0.07067048500175588,
+        "build_seconds": 0.023788813999999547,
+        "total_seconds": 0.09445929900175543,
+        "types": [
+          "pedido",
+          "guia"
+        ],
+        "cases": 1,
+        "vector": [
+          {
+            "role": "pedido",
+            "fields": {
+              "Paciente": "PESSOA FICTICIA DE OLIVEIRA",
+              "Nascimento": "01/02/1995",
+              "Fonte pagadora": "",
+              "Operadora": "",
+              "Guia": "",
+              "Medico": "DRA EXEMPLO SINTETICA",
+              "Validade": "",
+              "Status": "",
+              "Guia prestador": "",
+              "Guia principal": "",
+              "Data autorização": "",
+              "Senha autorização": "",
+              "Validade senha": "",
+              "Guia operadora": "",
+              "Carteira": "0000087654",
+              "Validade carteira": "",
+              "Código solicitante": "",
+              "Conselho": "CRM",
+              "Número conselho": "0012345",
+              "UF conselho": "GO",
+              "Data solicitação": "",
+              "Indicação clínica": "",
+              "Regime atendimento": "",
+              "Data execução": "",
+              "CBO": "",
+              "Contratado executante": "",
+              "CPF": "",
+              "CNS": ""
+            },
+            "exams": [
+              {
+                "codigo": "90000001",
+                "descricao": "Hemograma",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000002",
+                "descricao": "Glicose",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000003",
+                "descricao": "TSH",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000004",
+                "descricao": "Creatinina",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000005",
+                "descricao": "Colesterol total",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              }
+            ]
+          },
+          {
+            "role": "guia",
+            "fields": {
+              "Paciente": "PESSOA FICTICIA DE OLIVEIRA",
+              "Nascimento": "01/02/1995",
+              "Fonte pagadora": "IPASGO",
+              "Operadora": "IPASGO",
+              "Guia": "",
+              "Medico": "DRA EXEMPLO SINTETICA",
+              "Validade": "",
+              "Status": "",
+              "Guia prestador": "00000111",
+              "Guia principal": "00000222",
+              "Data autorização": "07/11/2026",
+              "Senha autorização": "00000555",
+              "Validade senha": "31/12/2099",
+              "Guia operadora": "00000777",
+              "Carteira": "0000087654",
+              "Validade carteira": "31/12/2099",
+              "Código solicitante": "000001313",
+              "Conselho": "CRM",
+              "Número conselho": "0012345",
+              "UF conselho": "GO",
+              "Data solicitação": "07/11/2026",
+              "Indicação clínica": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+              "Regime atendimento": "AMBULATORIAL",
+              "Data execução": "",
+              "CBO": "225125",
+              "Contratado executante": "LABORATORIO FICTICIO DOS SANTOS",
+              "CPF": "",
+              "CNS": ""
+            },
+            "exams": [
+              {
+                "codigo": "90000001",
+                "descricao": "Hemograma",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000002",
+                "descricao": "Glicose",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000003",
+                "descricao": "TSH",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000004",
+                "descricao": "Creatinina",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000005",
+                "descricao": "Colesterol total",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              }
+            ]
+          }
+        ],
+        "timing": null
+      },
+      {
+        "file": "exemplos_250/01_um_paciente.pdf",
+        "repeat": 1,
+        "read_classify_seconds": 0.04316549800205394,
+        "build_seconds": 0.024340625997865573,
+        "total_seconds": 0.06750612399991951,
+        "types": [
+          "pedido",
+          "guia"
+        ],
+        "cases": 1,
+        "vector": [
+          {
+            "role": "pedido",
+            "fields": {
+              "Paciente": "PESSOA FICTICIA DE OLIVEIRA",
+              "Nascimento": "01/02/1995",
+              "Fonte pagadora": "",
+              "Operadora": "",
+              "Guia": "",
+              "Medico": "DRA EXEMPLO SINTETICA",
+              "Validade": "",
+              "Status": "",
+              "Guia prestador": "",
+              "Guia principal": "",
+              "Data autorização": "",
+              "Senha autorização": "",
+              "Validade senha": "",
+              "Guia operadora": "",
+              "Carteira": "0000087654",
+              "Validade carteira": "",
+              "Código solicitante": "",
+              "Conselho": "CRM",
+              "Número conselho": "0012345",
+              "UF conselho": "GO",
+              "Data solicitação": "",
+              "Indicação clínica": "",
+              "Regime atendimento": "",
+              "Data execução": "",
+              "CBO": "",
+              "Contratado executante": "",
+              "CPF": "",
+              "CNS": ""
+            },
+            "exams": [
+              {
+                "codigo": "90000001",
+                "descricao": "Hemograma",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000002",
+                "descricao": "Glicose",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000003",
+                "descricao": "TSH",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000004",
+                "descricao": "Creatinina",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000005",
+                "descricao": "Colesterol total",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              }
+            ]
+          },
+          {
+            "role": "guia",
+            "fields": {
+              "Paciente": "PESSOA FICTICIA DE OLIVEIRA",
+              "Nascimento": "01/02/1995",
+              "Fonte pagadora": "IPASGO",
+              "Operadora": "IPASGO",
+              "Guia": "",
+              "Medico": "DRA EXEMPLO SINTETICA",
+              "Validade": "",
+              "Status": "",
+              "Guia prestador": "00000111",
+              "Guia principal": "00000222",
+              "Data autorização": "07/11/2026",
+              "Senha autorização": "00000555",
+              "Validade senha": "31/12/2099",
+              "Guia operadora": "00000777",
+              "Carteira": "0000087654",
+              "Validade carteira": "31/12/2099",
+              "Código solicitante": "000001313",
+              "Conselho": "CRM",
+              "Número conselho": "0012345",
+              "UF conselho": "GO",
+              "Data solicitação": "07/11/2026",
+              "Indicação clínica": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+              "Regime atendimento": "AMBULATORIAL",
+              "Data execução": "",
+              "CBO": "225125",
+              "Contratado executante": "LABORATORIO FICTICIO DOS SANTOS",
+              "CPF": "",
+              "CNS": ""
+            },
+            "exams": [
+              {
+                "codigo": "90000001",
+                "descricao": "Hemograma",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000002",
+                "descricao": "Glicose",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000003",
+                "descricao": "TSH",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000004",
+                "descricao": "Creatinina",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000005",
+                "descricao": "Colesterol total",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              }
+            ]
+          }
+        ],
+        "timing": null
+      },
+      {
+        "file": "exemplos_2_4_2/03_quatro_paginas_escaneadas.pdf",
+        "repeat": 0,
+        "read_classify_seconds": 29.50627939900005,
+        "build_seconds": 0.04201368899884983,
+        "total_seconds": 29.5482930879989,
+        "types": [
+          "pedido",
+          "guia",
+          "continuação de guia",
+          "outro"
+        ],
+        "cases": 1,
+        "vector": [
+          {
+            "role": "pedido",
+            "fields": {
+              "Paciente": "PESSOA FICTICIA ALFA",
+              "Nascimento": "01/02/1995",
+              "Fonte pagadora": "",
+              "Operadora": "",
+              "Guia": "",
+              "Medico": "DRA EXEMPLO SINTETICA",
+              "Validade": "",
+              "Status": "",
+              "Guia prestador": "",
+              "Guia principal": "",
+              "Data autorização": "",
+              "Senha autorização": "",
+              "Validade senha": "",
+              "Guia operadora": "",
+              "Carteira": "0000087654",
+              "Validade carteira": "",
+              "Código solicitante": "",
+              "Conselho": "CRM",
+              "Número conselho": "0012345",
+              "UF conselho": "GO",
+              "Data solicitação": "",
+              "Indicação clínica": "",
+              "Regime atendimento": "",
+              "Data execução": "",
+              "CBO": "",
+              "Contratado executante": "",
+              "CPF": "",
+              "CNS": ""
+            },
+            "exams": [
+              {
+                "codigo": "90000001",
+                "descricao": "Hemograma",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000002",
+                "descricao": "Glicose",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000003",
+                "descricao": "TSH",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000004",
+                "descricao": "Creatinina",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000005",
+                "descricao": "Colesterol total",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              }
+            ]
+          },
+          {
+            "role": "guia",
+            "fields": {
+              "Paciente": "PESSOA FICTICIA",
+              "Nascimento": "01/02/1995",
+              "Fonte pagadora": "IPASGO",
+              "Operadora": "IPASGO",
+              "Guia": "",
+              "Medico": "DRA EXEMPLO SINTETICA",
+              "Validade": "",
+              "Status": "",
+              "Guia prestador": "00000111",
+              "Guia principal": "00000222",
+              "Data autorização": "07/11/2026",
+              "Senha autorização": "00000555",
+              "Validade senha": "31/12/2099",
+              "Guia operadora": "00000777",
+              "Carteira": "0000087654",
+              "Validade carteira": "31/12/2099",
+              "Código solicitante": "000001313",
+              "Conselho": "CRM",
+              "Número conselho": "0012345",
+              "UF conselho": "GO",
+              "Data solicitação": "07/11/2026",
+              "Indicação clínica": "",
+              "Regime atendimento": "AMBULATORIAL",
+              "Data execução": "",
+              "CBO": "",
+              "Contratado executante": "",
+              "CPF": "",
+              "CNS": ""
+            },
+            "exams": [
+              {
+                "codigo": "90000001",
+                "descricao": "Hemograma",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000002",
+                "descricao": "Glicose",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000003",
+                "descricao": "TSH",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000004",
+                "descricao": "Creatinina",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000005",
+                "descricao": "Colesterol total",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              }
+            ]
+          }
+        ],
+        "timing": null
+      },
+      {
+        "file": "exemplos_2_4_2/03_quatro_paginas_escaneadas.pdf",
+        "repeat": 1,
+        "read_classify_seconds": 31.04025369699957,
+        "build_seconds": 0.0437577729971963,
+        "total_seconds": 31.084011469996767,
+        "types": [
+          "pedido",
+          "guia",
+          "continuação de guia",
+          "outro"
+        ],
+        "cases": 1,
+        "vector": [
+          {
+            "role": "pedido",
+            "fields": {
+              "Paciente": "PESSOA FICTICIA ALFA",
+              "Nascimento": "01/02/1995",
+              "Fonte pagadora": "",
+              "Operadora": "",
+              "Guia": "",
+              "Medico": "DRA EXEMPLO SINTETICA",
+              "Validade": "",
+              "Status": "",
+              "Guia prestador": "",
+              "Guia principal": "",
+              "Data autorização": "",
+              "Senha autorização": "",
+              "Validade senha": "",
+              "Guia operadora": "",
+              "Carteira": "0000087654",
+              "Validade carteira": "",
+              "Código solicitante": "",
+              "Conselho": "CRM",
+              "Número conselho": "0012345",
+              "UF conselho": "GO",
+              "Data solicitação": "",
+              "Indicação clínica": "",
+              "Regime atendimento": "",
+              "Data execução": "",
+              "CBO": "",
+              "Contratado executante": "",
+              "CPF": "",
+              "CNS": ""
+            },
+            "exams": [
+              {
+                "codigo": "90000001",
+                "descricao": "Hemograma",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000002",
+                "descricao": "Glicose",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000003",
+                "descricao": "TSH",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000004",
+                "descricao": "Creatinina",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000005",
+                "descricao": "Colesterol total",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              }
+            ]
+          },
+          {
+            "role": "guia",
+            "fields": {
+              "Paciente": "PESSOA FICTICIA",
+              "Nascimento": "01/02/1995",
+              "Fonte pagadora": "IPASGO",
+              "Operadora": "IPASGO",
+              "Guia": "",
+              "Medico": "DRA EXEMPLO SINTETICA",
+              "Validade": "",
+              "Status": "",
+              "Guia prestador": "00000111",
+              "Guia principal": "00000222",
+              "Data autorização": "07/11/2026",
+              "Senha autorização": "00000555",
+              "Validade senha": "31/12/2099",
+              "Guia operadora": "00000777",
+              "Carteira": "0000087654",
+              "Validade carteira": "31/12/2099",
+              "Código solicitante": "000001313",
+              "Conselho": "CRM",
+              "Número conselho": "0012345",
+              "UF conselho": "GO",
+              "Data solicitação": "07/11/2026",
+              "Indicação clínica": "",
+              "Regime atendimento": "AMBULATORIAL",
+              "Data execução": "",
+              "CBO": "",
+              "Contratado executante": "",
+              "CPF": "",
+              "CNS": ""
+            },
+            "exams": [
+              {
+                "codigo": "90000001",
+                "descricao": "Hemograma",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000002",
+                "descricao": "Glicose",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000003",
+                "descricao": "TSH",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000004",
+                "descricao": "Creatinina",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000005",
+                "descricao": "Colesterol total",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              }
+            ]
+          }
+        ],
+        "timing": null
+      }
+    ]
+  },
+  "depois": {
+    "synthetic_only": true,
+    "runs": [
+      {
+        "file": "exemplos_250/01_um_paciente.pdf",
+        "repeat": 0,
+        "read_classify_seconds": 0.09159560400075861,
+        "build_seconds": 0.024605278002127307,
+        "total_seconds": 0.11620088200288592,
+        "types": [
+          "pedido",
+          "guia"
+        ],
+        "cases": 1,
+        "vector": [
+          {
+            "role": "pedido",
+            "fields": {
+              "Paciente": "PESSOA FICTICIA DE OLIVEIRA",
+              "Nascimento": "01/02/1995",
+              "Fonte pagadora": "",
+              "Operadora": "",
+              "Guia": "",
+              "Medico": "DRA EXEMPLO SINTETICA",
+              "Validade": "",
+              "Status": "",
+              "Guia prestador": "",
+              "Guia principal": "",
+              "Data autorização": "",
+              "Senha autorização": "",
+              "Validade senha": "",
+              "Guia operadora": "",
+              "Carteira": "0000087654",
+              "Validade carteira": "",
+              "Código solicitante": "",
+              "Conselho": "CRM",
+              "Número conselho": "0012345",
+              "UF conselho": "GO",
+              "Data solicitação": "",
+              "Indicação clínica": "",
+              "Regime atendimento": "",
+              "Data execução": "",
+              "CBO": "",
+              "Contratado executante": "",
+              "CPF": "",
+              "CNS": ""
+            },
+            "exams": [
+              {
+                "codigo": "90000001",
+                "descricao": "Hemograma",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000002",
+                "descricao": "Glicose",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000003",
+                "descricao": "TSH",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000004",
+                "descricao": "Creatinina",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000005",
+                "descricao": "Colesterol total",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              }
+            ]
+          },
+          {
+            "role": "guia",
+            "fields": {
+              "Paciente": "PESSOA FICTICIA DE OLIVEIRA",
+              "Nascimento": "01/02/1995",
+              "Fonte pagadora": "IPASGO",
+              "Operadora": "IPASGO",
+              "Guia": "",
+              "Medico": "DRA EXEMPLO SINTETICA",
+              "Validade": "",
+              "Status": "",
+              "Guia prestador": "00000111",
+              "Guia principal": "00000222",
+              "Data autorização": "07/11/2026",
+              "Senha autorização": "00000555",
+              "Validade senha": "31/12/2099",
+              "Guia operadora": "00000777",
+              "Carteira": "0000087654",
+              "Validade carteira": "31/12/2099",
+              "Código solicitante": "000001313",
+              "Conselho": "CRM",
+              "Número conselho": "0012345",
+              "UF conselho": "GO",
+              "Data solicitação": "07/11/2026",
+              "Indicação clínica": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+              "Regime atendimento": "AMBULATORIAL",
+              "Data execução": "",
+              "CBO": "225125",
+              "Contratado executante": "LABORATORIO FICTICIO DOS SANTOS",
+              "CPF": "",
+              "CNS": ""
+            },
+            "exams": [
+              {
+                "codigo": "90000001",
+                "descricao": "Hemograma",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000002",
+                "descricao": "Glicose",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000003",
+                "descricao": "TSH",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000004",
+                "descricao": "Creatinina",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000005",
+                "descricao": "Colesterol total",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              }
+            ]
+          }
+        ],
+        "timing": {
+          "files": [
+            {
+              "file_number": 1,
+              "read_seconds": 0.05142945300030988,
+              "cache_hit": false,
+              "pages": [
+                {
+                  "page": 1,
+                  "read_seconds": 0.0003534900024533272,
+                  "interpretation_seconds": 0.01107421499909833,
+                  "method": "Texto digital"
+                },
+                {
+                  "page": 2,
+                  "read_seconds": 0.0011216289967705961,
+                  "interpretation_seconds": 0.027278217999992194,
+                  "method": "Texto digital"
+                }
+              ]
+            }
+          ],
+          "total_seconds": 0.09055696199720842,
+          "workers": 2
+        }
+      },
+      {
+        "file": "exemplos_250/01_um_paciente.pdf",
+        "repeat": 1,
+        "read_classify_seconds": 0.04394975299874204,
+        "build_seconds": 0.02489083300315542,
+        "total_seconds": 0.06884058600189746,
+        "types": [
+          "pedido",
+          "guia"
+        ],
+        "cases": 1,
+        "vector": [
+          {
+            "role": "pedido",
+            "fields": {
+              "Paciente": "PESSOA FICTICIA DE OLIVEIRA",
+              "Nascimento": "01/02/1995",
+              "Fonte pagadora": "",
+              "Operadora": "",
+              "Guia": "",
+              "Medico": "DRA EXEMPLO SINTETICA",
+              "Validade": "",
+              "Status": "",
+              "Guia prestador": "",
+              "Guia principal": "",
+              "Data autorização": "",
+              "Senha autorização": "",
+              "Validade senha": "",
+              "Guia operadora": "",
+              "Carteira": "0000087654",
+              "Validade carteira": "",
+              "Código solicitante": "",
+              "Conselho": "CRM",
+              "Número conselho": "0012345",
+              "UF conselho": "GO",
+              "Data solicitação": "",
+              "Indicação clínica": "",
+              "Regime atendimento": "",
+              "Data execução": "",
+              "CBO": "",
+              "Contratado executante": "",
+              "CPF": "",
+              "CNS": ""
+            },
+            "exams": [
+              {
+                "codigo": "90000001",
+                "descricao": "Hemograma",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000002",
+                "descricao": "Glicose",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000003",
+                "descricao": "TSH",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000004",
+                "descricao": "Creatinina",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000005",
+                "descricao": "Colesterol total",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              }
+            ]
+          },
+          {
+            "role": "guia",
+            "fields": {
+              "Paciente": "PESSOA FICTICIA DE OLIVEIRA",
+              "Nascimento": "01/02/1995",
+              "Fonte pagadora": "IPASGO",
+              "Operadora": "IPASGO",
+              "Guia": "",
+              "Medico": "DRA EXEMPLO SINTETICA",
+              "Validade": "",
+              "Status": "",
+              "Guia prestador": "00000111",
+              "Guia principal": "00000222",
+              "Data autorização": "07/11/2026",
+              "Senha autorização": "00000555",
+              "Validade senha": "31/12/2099",
+              "Guia operadora": "00000777",
+              "Carteira": "0000087654",
+              "Validade carteira": "31/12/2099",
+              "Código solicitante": "000001313",
+              "Conselho": "CRM",
+              "Número conselho": "0012345",
+              "UF conselho": "GO",
+              "Data solicitação": "07/11/2026",
+              "Indicação clínica": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+              "Regime atendimento": "AMBULATORIAL",
+              "Data execução": "",
+              "CBO": "225125",
+              "Contratado executante": "LABORATORIO FICTICIO DOS SANTOS",
+              "CPF": "",
+              "CNS": ""
+            },
+            "exams": [
+              {
+                "codigo": "90000001",
+                "descricao": "Hemograma",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000002",
+                "descricao": "Glicose",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000003",
+                "descricao": "TSH",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000004",
+                "descricao": "Creatinina",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000005",
+                "descricao": "Colesterol total",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              }
+            ]
+          }
+        ],
+        "timing": {
+          "files": [
+            {
+              "file_number": 1,
+              "read_seconds": 0.009188585998344934,
+              "cache_hit": true,
+              "pages": [
+                {
+                  "page": 1,
+                  "read_seconds": 0,
+                  "interpretation_seconds": 0.006529089998366544,
+                  "method": "Texto digital"
+                },
+                {
+                  "page": 2,
+                  "read_seconds": 0,
+                  "interpretation_seconds": 0.027465249000670156,
+                  "method": "Texto digital"
+                }
+              ]
+            }
+          ],
+          "total_seconds": 0.04368327400152339,
+          "workers": 2
+        }
+      },
+      {
+        "file": "exemplos_2_4_2/03_quatro_paginas_escaneadas.pdf",
+        "repeat": 0,
+        "read_classify_seconds": 17.05384393300119,
+        "build_seconds": 0.03694143100074143,
+        "total_seconds": 17.09078536400193,
+        "types": [
+          "pedido",
+          "guia",
+          "continuação de guia",
+          "outro"
+        ],
+        "cases": 1,
+        "vector": [
+          {
+            "role": "pedido",
+            "fields": {
+              "Paciente": "PESSOA FICTICIA ALFA",
+              "Nascimento": "01/02/1995",
+              "Fonte pagadora": "",
+              "Operadora": "",
+              "Guia": "",
+              "Medico": "DRA EXEMPLO SINTETICA",
+              "Validade": "",
+              "Status": "",
+              "Guia prestador": "",
+              "Guia principal": "",
+              "Data autorização": "",
+              "Senha autorização": "",
+              "Validade senha": "",
+              "Guia operadora": "",
+              "Carteira": "0000087654",
+              "Validade carteira": "",
+              "Código solicitante": "",
+              "Conselho": "CRM",
+              "Número conselho": "0012345",
+              "UF conselho": "GO",
+              "Data solicitação": "",
+              "Indicação clínica": "",
+              "Regime atendimento": "",
+              "Data execução": "",
+              "CBO": "",
+              "Contratado executante": "",
+              "CPF": "",
+              "CNS": ""
+            },
+            "exams": [
+              {
+                "codigo": "90000001",
+                "descricao": "Hemograma",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000002",
+                "descricao": "Glicose",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000003",
+                "descricao": "TSH",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000004",
+                "descricao": "Creatinina",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000005",
+                "descricao": "Colesterol total",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              }
+            ]
+          },
+          {
+            "role": "guia",
+            "fields": {
+              "Paciente": "PESSOA FICTICIA",
+              "Nascimento": "01/02/1995",
+              "Fonte pagadora": "IPASGO",
+              "Operadora": "IPASGO",
+              "Guia": "",
+              "Medico": "DRA EXEMPLO SINTETICA",
+              "Validade": "",
+              "Status": "",
+              "Guia prestador": "00000111",
+              "Guia principal": "00000222",
+              "Data autorização": "07/11/2026",
+              "Senha autorização": "00000555",
+              "Validade senha": "31/12/2099",
+              "Guia operadora": "00000777",
+              "Carteira": "0000087654",
+              "Validade carteira": "31/12/2099",
+              "Código solicitante": "000001313",
+              "Conselho": "CRM",
+              "Número conselho": "0012345",
+              "UF conselho": "GO",
+              "Data solicitação": "07/11/2026",
+              "Indicação clínica": "",
+              "Regime atendimento": "AMBULATORIAL",
+              "Data execução": "",
+              "CBO": "",
+              "Contratado executante": "",
+              "CPF": "",
+              "CNS": ""
+            },
+            "exams": [
+              {
+                "codigo": "90000001",
+                "descricao": "Hemograma",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000002",
+                "descricao": "Glicose",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000003",
+                "descricao": "TSH",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000004",
+                "descricao": "Creatinina",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000005",
+                "descricao": "Colesterol total",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              }
+            ]
+          }
+        ],
+        "timing": {
+          "files": [
+            {
+              "file_number": 1,
+              "read_seconds": 17.00884955500078,
+              "cache_hit": false,
+              "pages": [
+                {
+                  "page": 1,
+                  "read_seconds": 5.360339589999057,
+                  "interpretation_seconds": 0.0038316790014505386,
+                  "method": "OCR local"
+                },
+                {
+                  "page": 2,
+                  "read_seconds": 13.57275409200156,
+                  "interpretation_seconds": 0.03313587500088033,
+                  "method": "OCR local"
+                },
+                {
+                  "page": 3,
+                  "read_seconds": 4.33896657799778,
+                  "interpretation_seconds": 0.003381121998245362,
+                  "method": "OCR local"
+                },
+                {
+                  "page": 4,
+                  "read_seconds": 2.5913392519978515,
+                  "interpretation_seconds": 0.0017423569988750387,
+                  "method": "OCR local"
+                }
+              ]
+            }
+          ],
+          "total_seconds": 17.05369022100058,
+          "workers": 2
+        }
+      },
+      {
+        "file": "exemplos_2_4_2/03_quatro_paginas_escaneadas.pdf",
+        "repeat": 1,
+        "read_classify_seconds": 0.05996061599944369,
+        "build_seconds": 0.039779211998393293,
+        "total_seconds": 0.09973982799783698,
+        "types": [
+          "pedido",
+          "guia",
+          "continuação de guia",
+          "outro"
+        ],
+        "cases": 1,
+        "vector": [
+          {
+            "role": "pedido",
+            "fields": {
+              "Paciente": "PESSOA FICTICIA ALFA",
+              "Nascimento": "01/02/1995",
+              "Fonte pagadora": "",
+              "Operadora": "",
+              "Guia": "",
+              "Medico": "DRA EXEMPLO SINTETICA",
+              "Validade": "",
+              "Status": "",
+              "Guia prestador": "",
+              "Guia principal": "",
+              "Data autorização": "",
+              "Senha autorização": "",
+              "Validade senha": "",
+              "Guia operadora": "",
+              "Carteira": "0000087654",
+              "Validade carteira": "",
+              "Código solicitante": "",
+              "Conselho": "CRM",
+              "Número conselho": "0012345",
+              "UF conselho": "GO",
+              "Data solicitação": "",
+              "Indicação clínica": "",
+              "Regime atendimento": "",
+              "Data execução": "",
+              "CBO": "",
+              "Contratado executante": "",
+              "CPF": "",
+              "CNS": ""
+            },
+            "exams": [
+              {
+                "codigo": "90000001",
+                "descricao": "Hemograma",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000002",
+                "descricao": "Glicose",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000003",
+                "descricao": "TSH",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000004",
+                "descricao": "Creatinina",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              },
+              {
+                "codigo": "90000005",
+                "descricao": "Colesterol total",
+                "quantidade_solicitada": null,
+                "quantidade_autorizada": null
+              }
+            ]
+          },
+          {
+            "role": "guia",
+            "fields": {
+              "Paciente": "PESSOA FICTICIA",
+              "Nascimento": "01/02/1995",
+              "Fonte pagadora": "IPASGO",
+              "Operadora": "IPASGO",
+              "Guia": "",
+              "Medico": "DRA EXEMPLO SINTETICA",
+              "Validade": "",
+              "Status": "",
+              "Guia prestador": "00000111",
+              "Guia principal": "00000222",
+              "Data autorização": "07/11/2026",
+              "Senha autorização": "00000555",
+              "Validade senha": "31/12/2099",
+              "Guia operadora": "00000777",
+              "Carteira": "0000087654",
+              "Validade carteira": "31/12/2099",
+              "Código solicitante": "000001313",
+              "Conselho": "CRM",
+              "Número conselho": "0012345",
+              "UF conselho": "GO",
+              "Data solicitação": "07/11/2026",
+              "Indicação clínica": "",
+              "Regime atendimento": "AMBULATORIAL",
+              "Data execução": "",
+              "CBO": "",
+              "Contratado executante": "",
+              "CPF": "",
+              "CNS": ""
+            },
+            "exams": [
+              {
+                "codigo": "90000001",
+                "descricao": "Hemograma",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000002",
+                "descricao": "Glicose",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000003",
+                "descricao": "TSH",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000004",
+                "descricao": "Creatinina",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              },
+              {
+                "codigo": "90000005",
+                "descricao": "Colesterol total",
+                "quantidade_solicitada": "1",
+                "quantidade_autorizada": "1"
+              }
+            ]
+          }
+        ],
+        "timing": {
+          "files": [
+            {
+              "file_number": 1,
+              "read_seconds": 0.012346239000180503,
+              "cache_hit": true,
+              "pages": [
+                {
+                  "page": 1,
+                  "read_seconds": 0,
+                  "interpretation_seconds": 0.00401109899758012,
+                  "method": "OCR local"
+                },
+                {
+                  "page": 2,
+                  "read_seconds": 0,
+                  "interpretation_seconds": 0.03682712399677257,
+                  "method": "OCR local"
+                },
+                {
+                  "page": 3,
+                  "read_seconds": 0,
+                  "interpretation_seconds": 0.0036763850002898835,
+                  "method": "OCR local"
+                },
+                {
+                  "page": 4,
+                  "read_seconds": 0,
+                  "interpretation_seconds": 0.0016023159987526014,
+                  "method": "OCR local"
+                }
+              ]
+            }
+          ],
+          "total_seconds": 0.05937236300087534,
+          "workers": 2
+        }
+      }
+    ]
+  }
+}

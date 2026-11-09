@@ -38,7 +38,7 @@ def main(capture=False):
         def open_ui(index):
             root=tk.Tk();app=create_workbench(root,base/('dados_'+str(index)));app.catalog=catalog();root.update();return root,app,app.workspace
         def import_file(root,app,ui,name,scope='single'):
-            ui.scope_tabs.select(0 if scope=='single' else 1);root.update()
+            ui.scope_tabs.select(0 if scope=='single' else 1);ui.advanced_grouping.set(scope=='multiple');root.update()
             with patch('app.filedialog.askopenfilenames',return_value=[str(files/name)]):click(ui.import_buttons[scope],root)
             wait(app,root)
         expected={**VALUES,10:PATIENTS[0],23:CLINICAL,30:EXECUTOR}

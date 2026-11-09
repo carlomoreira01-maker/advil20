@@ -24,7 +24,14 @@ def classify(document,page,catalog):
  return kind,model
 
 
-def read_scan(paths,data,catalog,settings_path=None,progress=None,mode='multiple'):
+def read_scan(paths,data,catalog,settings_path=None,progress=None,mode='multiple',cancel_event=None,workers=None,use_cache=True):
+ from time import perf_counter
+ from reading_control import check_cancelled,page_workers
+ from reading_cache import ReadingCache
+ import os
+ started=perf_counter();timings=[]
+ workers=max(1,min(2,workers or page_workers()))
+ cache=ReadingCache(Path(data)/'cache_leitura')
  if mode not in ['single','multiple']:raise LocalReadError('Modo de importação inválido.')
  paths=[Path(p) for p in paths]
  if not 1<=len(paths)<=100:raise LocalReadError('Selecione de 1 a 100 arquivos.')
@@ -32,10 +39,22 @@ def read_scan(paths,data,catalog,settings_path=None,progress=None,mode='multiple
  batch={'id':uuid.uuid4().hex,'sources':{},'pages':[],'version':2,'mode':mode,'group_reviews':{}}
  seen=set()
  for index,path in enumerate(paths,1):
+  check_cancelled(cancel_event);tick=perf_counter();file_started=tick;hit=False;key=None
   if path.suffix.lower() not in ['.pdf','.png','.jpg','.jpeg']:raise LocalReadError('Importe PDF, JPG ou PNG.')
   if progress:progress(index,len(paths),'Lendo arquivo '+str(index)+' de '+str(len(paths)))
-  document=read_document(path,settings_path=settings_path,
-      progress=(lambda page,total:progress(index,len(paths),'Arquivo '+str(index)+'/'+str(len(paths))+' · lendo página '+str(page)+'/'+str(total))) if progress else None)
+  try:
+   if use_cache:key=cache.key(path,settings_path)
+   document=cache.get(key) if key else None
+  except (OSError,ValueError):document=None
+  if document is not None:hit=True;document['file']=path.name
+  else:
+   document=read_document(path,settings_path=settings_path,workers=workers,cancel_event=cancel_event,
+       progress=(lambda page,total:progress(index,len(paths),'Arquivo '+str(index)+'/'+str(len(paths))+' · lendo página '+str(page)+'/'+str(total))) if progress else None)
+   check_cancelled(cancel_event)
+   if key:
+    try:cache.put(key,document)
+    except OSError:pass  # Cache é opcional; leitura válida permanece disponível.
+  reading_seconds=perf_counter()-tick;check_cancelled(cancel_event)
   sha=document['sha256']
   if sha in seen:continue
   seen.add(sha);raw=path.read_bytes()
@@ -44,10 +63,14 @@ def read_scan(paths,data,catalog,settings_path=None,progress=None,mode='multiple
   if not dest.exists():dest.write_bytes(raw)
   document['local_path']=str(dest.resolve());batch['sources'][sha]=document
   for page in document['pages']:
+   check_cancelled(cancel_event);tick=perf_counter()
    kind,model=classify(document,page,catalog)
+   page['interpretation_seconds']=perf_counter()-tick
    batch['pages'].append({'id':sha+':'+str(page['number']),'source':sha,'page':page['number'],
        'kind':kind,'classification_origin':'automatic','group':'','model':model,'reviewed':False,'reason':'',
        'classification_reason':model['classification']['reason']})
+  timings.append({'file_number':index,'total_seconds':perf_counter()-file_started,'read_seconds':reading_seconds,'cache_hit':hit,'pages':[{'page':p['number'],'read_seconds':0 if hit else p.get('elapsed_seconds',0),'interpretation_seconds':p['interpretation_seconds'],'method':p['method']} for p in document['pages']]})
+ batch['timing']={'files':timings,'total_seconds':perf_counter()-started,'workers':workers}
  if mode=='single':
   order={sha:i+1 for i,sha in enumerate(batch['sources'])}
   for item in batch['pages']:item['group']='Atendimento '+str(order[item['source']])
@@ -238,7 +261,10 @@ def preserve_manual(previous,docs,models):
 
 
 def save_batch(store,batch,catalog,actor,replace=False):
+ from time import perf_counter
+ tick=perf_counter()
  cases=build_cases(batch,catalog)
+ batch.setdefault('timing',{})['consolidation_seconds']=perf_counter()-tick
  # A stable physical-page fingerprint catches reimports in any file order.
  fingerprint=digest(sorted(i['id'] for i in batch['pages']))
  store.db.execute('CREATE TABLE IF NOT EXISTS scan_batches(id TEXT PRIMARY KEY,fingerprint TEXT UNIQUE,content TEXT)')

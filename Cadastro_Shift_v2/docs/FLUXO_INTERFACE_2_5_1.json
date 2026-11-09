@@ -1,0 +1,53 @@
+{
+  "somente_sinteticos": true,
+  "verificacoes": [
+    {
+      "verificacao": "Leitura concluída",
+      "esperado": false,
+      "encontrado": false,
+      "passou": true
+    },
+    {
+      "verificacao": "Uma ficha para o PDF",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true
+    },
+    {
+      "verificacao": "Quatro páginas preservadas",
+      "esperado": 4,
+      "encontrado": 4,
+      "passou": true
+    },
+    {
+      "verificacao": "Classificação",
+      "esperado": [
+        "pedido",
+        "guia",
+        "continuação de guia",
+        "outro"
+      ],
+      "encontrado": [
+        "pedido",
+        "guia",
+        "continuação de guia",
+        "outro"
+      ],
+      "passou": true
+    },
+    {
+      "verificacao": "Rascunho acessível",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "verificacao": "Sem preparo automático",
+      "esperado": null,
+      "encontrado": null,
+      "passou": true
+    }
+  ],
+  "passaram": 6,
+  "falharam": 0
+}

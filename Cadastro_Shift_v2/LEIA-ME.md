@@ -1,3 +1,16 @@
+# Cadastro Assistido Shift — versão 2.5.1
+
+Comece por [ATUALIZAR_PARA_2_5_1.txt](ATUALIZAR_PARA_2_5_1.txt).
+
+- **Padrão: um PDF = um atendimento provisório**, tanto na aba individual quanto na aba de vários pacientes. PDFs diferentes permanecem separados. Conflitos bloqueiam confirmação; páginas podem ser separadas ou reunidas manualmente.
+- **Cache local, OCR controlado e cancelamento**. Texto digital é lido diretamente; até duas páginas podem fazer OCR. As medições distinguem primeira leitura e cache: [DESEMPENHO_2_5_1.json](docs/DESEMPENHO_2_5_1.json).
+- **Interface 2.5 preservada**, com rascunho acessível, correções por campo, origem e pré-cadastro validado protegido.
+- **Treinamento RPA no navegador local**: pesquisa paciente, preenche fonte/guia/médico/exames, anexa PDFs sintéticos e, após confirmações humanas, gera O.S. e etiquetas fictícias. Instalação opcional: `INSTALAR_SIMULACAO_RPA.bat`; acesso em Mais opções. Não consome documentos da rotina e não tem conexão com o Shift real.
+
+Causas e limites: [CORRECAO_2_5_1.md](docs/CORRECAO_2_5_1.md). Resultados: [RESULTADO_TESTES_2_5_1.txt](docs/RESULTADO_TESTES_2_5_1.txt). Windows nativo e homologação do laboratório permanecem pendentes.
+
+## Histórico preservado da versão 2.5.0
+
 # Cadastro Assistido Shift — versão 2.5.0
 
 Comece por [ATUALIZAR_PARA_2_5_0.txt](ATUALIZAR_PARA_2_5_0.txt). A atualização modifica o aplicativo existente, mantém os arquivos anteriores e abre um painel simples em cinco telas.

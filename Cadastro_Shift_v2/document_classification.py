@@ -7,7 +7,7 @@ from tiss_geometry import anchors
 def classify_page(page,catalog=()):
     text=norm(page.get('text',''))
     aa=anchors(page);numbers={a['num'] for a in aa}
-    request=bool(re.search(r'\b(?:PEDIDO MEDICO|SOLICITACAO DE EXAMES|REQUISICAO DE EXAMES)\b',text))
+    request=bool(re.search(r'\b(?:PEDIDO MEDICO|PEDIDO DE EXAMES|SOLICITACAO MEDICA|SOLICITACAO DE EXAMES|REQUISICAO LABORATORIAL|REQUISICAO DE EXAMES)\b',text))
     guide=bool(re.search(r'\b(?:GUIA DE AUTORIZACAO|GUIA AUTORIZADA|GUIA (?:DE )?(?:SP\s*/\s*SADT|SP-SADT))\b',text))
     long_title=bool(re.search(r'GUIA DE SERVICO PROFISSIONAL',text) and re.search(r'SERVICO AUXILIAR DE DIAGNOSTICO',text))
     administration=bool(re.search(r'\b(?:RECIBO|COMPROVANTE|RESULTADO DE EXAME|DOCUMENTO COMPLEMENTAR)\b',text))
@@ -16,7 +16,10 @@ def classify_page(page,catalog=()):
     procedures={25,26}<=numbers and any(abs(a['y']-b['y'])<max(8,a['height']) for a in aa if a['num']==25 for b in aa if b['num']==26)
     authorization=bool(numbers & {2,3,4,5,6,7})
     partial_structure={8,10,15}<=numbers
-    structure=(beneficiary and requester and (authorization or procedures) and len(numbers)>=5) or partial_structure
+    ans=bool(re.search(r'\b(?:REGISTRO )?ANS\b',text))
+    from prescription_layout import evidence as prescription_evidence
+    prescription=prescription_evidence(page,catalog)
+    structure=(beneficiary and requester and (authorization or procedures) and len(numbers)>=5) or (partial_structure and (ans or authorization or procedures or not prescription['supported']))
     evidence=[]
     if request:evidence.append('Título explícito de pedido médico.')
     if guide or long_title:evidence.append('Título de guia SP/SADT/autorização.')
@@ -42,6 +45,7 @@ def classify_page(page,catalog=()):
             if pad['supported']:kind='pedido';evidence.append(pad['reason'])
     if re.search(r'\bCONTINUA(?:CAO)?\b',text) and kind in ['pedido','guia']:kind='continuação de '+kind
     return {'kind':kind,'uncertain':kind=='incerto','evidence':evidence,
+            'features':{'request_title':request,'guide_title':guide or long_title,'tiss_fields':sorted(numbers),'ans':ans,'beneficiary':beneficiary,'requester':requester,'procedure_columns_aligned':procedures,'authorization_fields':authorization},
             'reason':' '.join(evidence) if evidence else 'Classificação incerta: confira o tipo desta página no original.'}
 
 

@@ -119,9 +119,13 @@ def document_diagnostics(document):
              'languages': p.get('languages', '')} for p in document['pages']]
 
 
-def read_document(path, language='por+eng', settings_path=None, progress=None):
+def read_document(path, language='por+eng', settings_path=None, progress=None, workers=1, cancel_event=None):
     import pymupdf
     from PIL import Image, ImageOps
+    from time import perf_counter
+    from reading_control import check_cancelled, reading_context, ReadCancelled
+    from concurrent.futures import ThreadPoolExecutor
+    started=perf_counter();check_cancelled(cancel_event)
     path=Path(path)
     if path.stat().st_size>MAX_BYTES: raise LocalReadError('Limite: 30 MB por documento.')
     raw=path.read_bytes(); pages=[]; ext=path.suffix.lower()
@@ -144,23 +148,17 @@ def read_document(path, language='por+eng', settings_path=None, progress=None):
     if ext=='.pdf':
         with pymupdf.open(stream=raw,filetype='pdf') as pdf:
             if pdf.is_encrypted or len(pdf)>30: raise LocalReadError('PDF protegido ou com mais de 30 páginas.')
-            for i,p in enumerate(pdf):
-                if progress:progress(i+1,len(pdf))
-                if p.rect.width*p.rect.height>2_000_000: raise LocalReadError('Página muito grande.')
-                words=[{'text':w[4],'box':list(w[:4]),'confidence':100.0} for w in p.get_text('words')]
-                # Página com grande área raster e texto parcial também exige OCR.
-                raster_boxes = [info['bbox'] for info in p.get_image_info()]
-                # Só fazer OCR se uma área raster substancial não tiver texto digital
-                # utilizável. Um fundo raster com camada de texto completa não exige OCR.
-                hybrid=any(abs((b[2]-b[0])*(b[3]-b[1])) > p.rect.width*p.rect.height*.30
-                           and not usable([w for w in words if b[0] <= (w['box'][0]+w['box'][2])/2 <= b[2]
-                                           and b[1] <= (w['box'][1]+w['box'][3])/2 <= b[3]])
-                           for b in raster_boxes)
+            pending=[]
+            def finish(words,hybrid,image,number,size,tick):
+                with reading_context(cancel_event):
+                    result=perform(words,hybrid,image,number,size)
+                result['elapsed_seconds']=perf_counter()-tick
+                return result
+            def perform(words,hybrid,image,number,size):
                 warnings=[]
                 if not usable(words) or hybrid:
-                    pix=p.get_pixmap(matrix=pymupdf.Matrix(2.5,2.5))
                     try:
-                        ws=ocr_words(Image.open(io.BytesIO(pix.tobytes('png'))),language,settings_path=settings_path)
+                        ws=ocr_words(image,language,settings_path=settings_path)
                         # Coordenadas sempre normalizadas para pontos PDF.
                         for w in ws:
                             w['box']=[v/2.5 for v in w['box']]
@@ -173,18 +171,38 @@ def read_document(path, language='por+eng', settings_path=None, progress=None):
                                 if not any(o['box'][0]-3<=cx<=o['box'][2]+3 and o['box'][1]-3<=cy<=o['box'][3]+3 for o in ws): ws.append(w)
                         digital_present=usable(words)
                         words=ws;method='OCR local / página mista' if hybrid and digital_present else 'OCR local'
+                    except ReadCancelled:raise
                     except (ValueError, OSError, subprocess.TimeoutExpired) as exc:
                         warnings.append(safe_failure(exc));method='OCR falhou / revisão manual'
                 else: method='Texto digital'
-                pages.append(page_data(words,method,i+1,(p.rect.width,p.rect.height),warnings))
+                return page_data(words,method,number,size,warnings)
+            with ThreadPoolExecutor(max_workers=max(1,min(2,int(workers)))) as pool:
+                for i,p in enumerate(pdf):
+                    page_started=perf_counter()
+                    check_cancelled(cancel_event)
+                    if progress:progress(i+1,len(pdf))
+                    if p.rect.width*p.rect.height>2_000_000:raise LocalReadError('Página muito grande.')
+                    words=[{'text':w[4],'box':list(w[:4]),'confidence':100.0} for w in p.get_text('words')]
+                    raster_boxes=[info['bbox'] for info in p.get_image_info()]
+                    hybrid=any(abs((b[2]-b[0])*(b[3]-b[1]))>p.rect.width*p.rect.height*.30 and not usable([w for w in words if b[0]<=(w['box'][0]+w['box'][2])/2<=b[2] and b[1]<=(w['box'][1]+w['box'][3])/2<=b[3]]) for b in raster_boxes)
+                    image=None
+                    if not usable(words) or hybrid:
+                        pix=p.get_pixmap(matrix=pymupdf.Matrix(2.5,2.5));image=Image.open(io.BytesIO(pix.tobytes('png')));image.load()
+                    future=pool.submit(finish,words,hybrid,image,i+1,(p.rect.width,p.rect.height),page_started)
+                    pending.append(future)
+                    if len(pending)>=max(1,min(2,int(workers))):pages.append(pending.pop(0).result())
+                for future in pending:pages.append(future.result())
     elif ext in ('.png','.jpg','.jpeg'):
         if progress:progress(1,1)
         with Image.open(io.BytesIO(raw)) as im:
             if im.width*im.height>25_000_000: raise LocalReadError('Imagem excede 25 megapixels.')
             im=ImageOps.exif_transpose(im).convert('RGB'); warnings=[]
-            try: words=ocr_words(im,language,settings_path=settings_path)
+            tick=perf_counter()
+            try:
+                with reading_context(cancel_event):words=ocr_words(im,language,settings_path=settings_path)
+            except ReadCancelled:raise
             except (ValueError, OSError, subprocess.TimeoutExpired) as exc: words=[];warnings=[safe_failure(exc)]
-            pages.append(page_data(words,'OCR falhou / revisão manual' if warnings else 'OCR local',1,im.size,warnings))
+            pages.append(page_data(words,'OCR falhou / revisão manual' if warnings else 'OCR local',1,im.size,warnings));pages[-1]['elapsed_seconds']=perf_counter()-tick
     elif ext=='.txt':
         lines=[]
         for i,line in enumerate(raw.decode('utf-8-sig').splitlines()):
@@ -192,7 +210,9 @@ def read_document(path, language='por+eng', settings_path=None, progress=None):
         pages=[{'number':1,'method':'Texto UTF-8','size':[600,900],'lines':lines,'text':'\n'.join(l['text'] for l in lines),'warnings':[]}]
     else: raise LocalReadError('Use PDF, JPG, PNG ou TXT.')
     document={'file':path.name,'sha256':hashlib.sha256(raw).hexdigest(),'pages':pages}
+    check_cancelled(cancel_event)
     document['document_type']=detect_document_type(document)
+    document['elapsed_seconds']=perf_counter()-started
     return document
 
 

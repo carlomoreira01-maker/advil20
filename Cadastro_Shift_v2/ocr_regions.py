@@ -22,7 +22,11 @@ def collect_regions(image,words,recognize):
            ('doctor',(0,doctor-h*1.1,image.width,table-h*.5),[13,15,16,17,18,19,22],[(6,2),(11,2),(4,1.5),(11,1.5)]),
            ('table',(0,table-h,image.width,end-h*.5),[],[(6,2),(4,1.5),(6,1.5)])]
     result=[]
+    from tiss import extract,SCHEMA
+    primary=extract({'file':'leitura local','pages':[page]})
     for family,box,targets,settings in bands:
+        if targets and all(n not in SCHEMA or (primary['fields'][SCHEMA[n][0]]['value'] and (primary['fields'][SCHEMA[n][0]].get('confidence') or 0)>=85) or primary['fields'][SCHEMA[n][0]].get('extraction_state')=='empty' for n in targets):continue
+        if family=='table' and primary['exams'] and all(e.get('quantidade_solicitada','').isdigit() and e.get('quantidade_autorizada','').isdigit() and (e.get('confidence') or 0)>=85 for e in primary['exams']):continue
         box=(max(0,round(box[0])),max(0,round(box[1])),min(image.width,round(box[2])),min(image.height,round(box[3])))
         if box[3]-box[1]<8:continue
         crop=image.crop(box)

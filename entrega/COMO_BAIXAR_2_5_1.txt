@@ -1,0 +1,15 @@
+CADASTRO ASSISTIDO SHIFT 2.5.1
+
+ZIP DO PROGRAMA
+https://github.com/carlomoreira01-maker/advil20/raw/refs/heads/entrega/shift-v2.5.1/entrega/Cadastro_Shift_v2_5_1_corrigido.zip
+
+Faça backup da instalação antiga, extraia o ZIP em pasta nova e copie dados_v2 com os programas fechados. Não copie .venv. Abra INSTALAR_WINDOWS.bat e INICIAR_WINDOWS.bat. Leia ATUALIZAR_PARA_2_5_1.txt.
+
+Padrão: cada PDF gera seu atendimento provisório. A aba de vários pacientes permite selecionar vários PDFs; modo avançado separado para várias pessoas dentro de um PDF. Para fichas antigas divididas, use Reunir páginas deste PDF.
+
+RPA opcional: INSTALAR_SIMULACAO_RPA.bat > Mais opções > Treinamento RPA. Apenas dados gerados fictícios, confirmações humanas e etiquetas de demonstração. Sem Shift real.
+
+Alternativa: abra https://github.com/carlomoreira01-maker/advil20/tree/entrega/shift-v2.5.1 e entre na pasta entrega; baixe o arquivo ZIP pelo botão de arquivo bruto.
+Backup anterior preservado: https://github.com/carlomoreira01-maker/advil20/tree/entrega/shift-v2.5.0
+
+Windows nativo e velocidade no computador da recepção ainda precisam de validação local.

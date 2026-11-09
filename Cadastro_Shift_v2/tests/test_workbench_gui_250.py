@@ -25,6 +25,7 @@ class WorkbenchGUI250(unittest.TestCase):
   self.assertFalse(self.app.busy);self.root.update()
  def import_file(self,file='01_um_paciente.pdf',scope='single'):
   self.ui.scope_tabs.select(0 if scope=='single' else 1)
+  self.ui.advanced_grouping.set(scope=='multiple')
   with patch('app.filedialog.askopenfilenames',return_value=[str(self.files/file)]),patch('app.messagebox.showwarning') as warning:
    self.ui.import_buttons[scope].invoke();self.wait();warning.assert_not_called()
  def see(self):
@@ -47,8 +48,8 @@ class WorkbenchGUI250(unittest.TestCase):
    self.ui.choose_case(cid);names.add(self.ui.inputs['Paciente'].get());self.assertEqual(self.app.models['pedido']['fields']['Paciente']['value'],self.app.models['guia']['fields']['Paciente']['value'])
   self.assertEqual(names,set(PATIENTS));self.ui.batch_drafts_button.invoke();self.root.update();self.assertIn('2 rascunhos',self.ui.notice.get())
   for cid in self.app.cases.get_children():self.assertIsNotNone(load_draft(self.app.store,cid));self.assertEqual(self.app.store.get(cid)[2],'CONFERIR');self.assertIsNone(self.app.store.get(cid)[3])
- def test_aba_individual_nao_mistura_pdf_com_duas_pessoas(self):
-  self.import_file('02_dois_pacientes_quatro_paginas.pdf','single');self.assertEqual(len(self.app.cases.get_children()),2);self.assertFalse(any(self.app.store.get(cid)[0]['models']['pedido']['identity_conflict'] for cid in self.app.cases.get_children()))
+ def test_aba_individual_mantem_pdf_junto_e_bloqueia_conflito(self):
+  self.import_file('02_dois_pacientes_quatro_paginas.pdf','single');self.assertEqual(len(self.app.cases.get_children()),1);self.assertTrue(self.app.models['pedido']['identity_conflict']);self.assertTrue(self.app.models['pedido']['association_pending'])
  def test_campos_vazios_nao_bloqueiam_navegacao_ou_rascunho(self):
   self.import_file('03_campos_vazios.pdf')
   for button in self.ui.nav_buttons:button.invoke();self.root.update()

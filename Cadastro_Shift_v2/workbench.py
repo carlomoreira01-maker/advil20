@@ -89,7 +89,7 @@ class Workspace:
         self.app=app;self.root=app.root;self.phase=0;self.advanced=False;self.bound_cid=None;self.bound_revision=None;self.binding=False
         self.legacy_pack=[(w,w.pack_info()) for w in self.root.winfo_children() if w.winfo_manager()=='pack']
         for w,_ in self.legacy_pack:w.pack_forget()
-        self.root.title('Cadastro Assistido Shift 2.5.0 | Processamento local')
+        self.root.title('Cadastro Assistido Shift 2.5.1 | Processamento local')
         self.root.geometry(f'{min(1280,self.root.winfo_screenwidth()-50)}x{min(840,self.root.winfo_screenheight()-80)}');self.root.minsize(1000,640)
         families={f.casefold():f for f in tkfont.families(self.root)}
         self.font=next((families[f.casefold()] for f in ['Segoe UI','DejaVu Sans','Liberation Sans','Noto Sans','Nimbus Sans L'] if f.casefold() in families),tkfont.nametofont('TkDefaultFont').actual('family'))
@@ -110,9 +110,9 @@ class Workspace:
         self.frame=ttk.Frame(self.root,style='Clean.TFrame',padding=18);self.frame.pack(fill='both',expand=True)
         header=ttk.Frame(self.frame,style='Clean.TFrame');header.pack(fill='x')
         ttk.Label(header,text='Cadastro Assistido Shift',style='Title.TLabel').pack(side='left')
-        ttk.Label(header,text='2.5.0  |  Local e assistido',style='Muted.TLabel').pack(side='left',padx=14)
+        ttk.Label(header,text='2.5.1  |  Local e assistido',style='Muted.TLabel').pack(side='left',padx=14)
         more=ttk.Menubutton(header,text='Mais opções');more.pack(side='right');menu=tk.Menu(more,tearoff=False);more.configure(menu=menu)
-        for title,fn in [('Configurar leitor OCR',app.ocr_settings_window),('Catálogo do laboratório',app.catalog_window),('Perfis de fontes pagadoras',app.payer_window),('Diagnóstico e conferência detalhada',self.show_advanced),('Histórico local',app.audit_window),('Exemplos fictícios',self.examples),('Simulador local',app.simulation_window)]:menu.add_command(label=title,command=lambda f=fn:app.guard(f))
+        for title,fn in [('Configurar leitor OCR',app.ocr_settings_window),('Catálogo do laboratório',app.catalog_window),('Perfis de fontes pagadoras',app.payer_window),('Diagnóstico e conferência detalhada',self.show_advanced),('Histórico local',app.audit_window),('Tempos de leitura',lambda:__import__('reading_diagnostics').show_times(app)),('Exemplos fictícios',self.examples),('Simulador local',app.simulation_window),('Treinamento RPA — LIS fictício',lambda:__import__('rpa_training_ui').open_training(app))]:menu.add_command(label=title,command=lambda f=fn:app.guard(f))
         reviewer=ttk.Frame(self.frame,style='Clean.TFrame');reviewer.pack(fill='x',pady=(10,12))
         ttk.Label(reviewer,text='Seu nome / revisor',style='Clean.TLabel').pack(side='left');self.actor_entry=ttk.Entry(reviewer,textvariable=app.actor,width=28);self.actor_entry.pack(side='left',padx=8)
         self.case_title=tk.StringVar(value='Importe documentos para começar.');ttk.Label(reviewer,textvariable=self.case_title,style='Muted.TLabel').pack(side='right')
@@ -135,8 +135,10 @@ class Workspace:
     def read_status(self):
         status=self.app.status.get()
         if self.app.busy:self.notice.set(status)
+        elif status.startswith('Análise cancelada'):self.notice.set(status)
         elif status.startswith('Leitura encerrada'):
-            self.notice.set('Leitura concluída. Confira as páginas e os dados identificados. Você já pode abrir e salvar o rascunho de pré-cadastro.')
+            conflict=self.app.models and any(m.get('identity_conflict') for m in self.app.models.values())
+            self.notice.set('Leitura concluída com conflito de identificação. As páginas permanecem juntas provisoriamente; confira os identificadores e separe as páginas antes de confirmar.' if conflict else 'Leitura concluída. Confira as páginas e os dados identificados. Você já pode abrir e salvar o rascunho de pré-cadastro.')
     def card(self,parent,title):
         box=ttk.Frame(parent,style='Card.TFrame',padding=14);ttk.Label(box,text=title,style='Card.TLabel',font=(self.font,12,'bold')).pack(anchor='w',pady=(0,8));return box
     def table(self,parent,columns,height=8):
@@ -150,12 +152,14 @@ class Workspace:
         for title in ['Documentos analisados','Atendimentos para conferência','Com pendências']:
             c=self.card(metrics,title);c.pack(side='left',fill='both',expand=True,padx=(0,10));v=tk.StringVar(value='0');ttk.Label(c,textvariable=v,style='Card.TLabel',font=(self.font,24,'bold')).pack(anchor='w');self.metrics.append(v)
         self.scope_tabs=ttk.Notebook(panel,style='Clean.TNotebook');self.scope_tabs.pack(fill='both',expand=True);self.scope=tk.StringVar(value='single');self.import_buttons={};self.queues={}
-        for scope,title,description in [('single','Cadastro de um paciente','Importe os documentos do atendimento. Se o PDF tiver pessoas diferentes, elas serão separadas por identificação.'),('multiple','Cadastro de vários pacientes','Importe vários PDFs ou um PDF com vários pacientes. A conferência e a preparação são controladas por atendimento.')]:
+        self.advanced_grouping=tk.BooleanVar(value=False)
+        for scope,title,description in [('single','Cadastro de um paciente','Cada PDF mantém todas as suas páginas em um atendimento provisório. Conflitos exigem revisão.'),('multiple','Cadastro de vários pacientes','Selecione vários PDFs: cada arquivo gera seu próprio atendimento provisório. PDFs diferentes não são reunidos.')]:
             frame=ttk.Frame(self.scope_tabs,padding=14);self.scope_tabs.add(frame,text=title)
             ttk.Label(frame,text=description,wraplength=1050).pack(anchor='w',pady=(0,10));b=ttk.Button(frame,text='Importar documentos',style='Primary.TButton',command=lambda s=scope:self.run(lambda:self.import_documents(s)));b.pack(anchor='w',pady=(0,12));self.import_buttons[scope]=b
             tree=self.table(frame,[('patient','Atendimento / paciente',330),('stage','Situação',250),('exams','Exames',90),('pending','Pendências',110)])
             tree.bind('<<TreeviewSelect>>',lambda e,t=tree:self.choose_from(t));tree.bind('<Double-1>',lambda e:self.run(lambda:self.go(1)));self.queues[scope]=tree
             if scope=='multiple':
+                ttk.Checkbutton(frame,text='Avançado: este PDF contém vários pacientes — propor separação por identificadores',variable=self.advanced_grouping).pack(anchor='w',pady=4)
                 self.batch_drafts_button=ttk.Button(frame,text='Salvar rascunhos dos atendimentos',command=lambda:self.run(self.save_batch_drafts));self.batch_drafts_button.pack(anchor='w',pady=(8,0))
         self.scope_tabs.bind('<<NotebookTabChanged>>',lambda e:self.scope.set('single' if self.scope_tabs.index(self.scope_tabs.select())==0 else 'multiple'))
     def make_documents(self):
@@ -177,6 +181,7 @@ class Workspace:
         self.move_button=ttk.Button(actions,text='Mover página',command=lambda:self.run(self.move_page));self.move_button.pack(side='left',padx=8)
         review_actions=ttk.Frame(panel,style='Clean.TFrame');review_actions.pack(fill='x')
         ttk.Button(review_actions,text='Identificação por página',command=lambda:self.run(self.page_identity)).pack(side='left')
+        self.regroup_pdf_button=ttk.Button(review_actions,text='Reunir páginas deste PDF',command=lambda:self.run(self.regroup_pdf));self.regroup_pdf_button.pack(side='left',padx=8)
         self.confirm_pages_button=ttk.Button(review_actions,text='Confirmar páginas e identidade',command=lambda:self.run(self.app.confirm_case_pages));self.confirm_pages_button.pack(side='right')
     def make_data(self):
         panel=self.panels[2];ttk.Label(panel,text='Corrija somente o que precisar. Os números são mantidos como texto, incluindo zeros à esquerda.',style='Clean.TLabel').pack(anchor='w',pady=(0,8))
@@ -261,7 +266,7 @@ class Workspace:
     def import_documents(self,scope):
         self.scope.set(scope)
         if self.app.cid and self.app.dirty():self.save_current_draft(quiet=True)
-        self.app.import_scans(mode='multiple')
+        self.app.import_scans(mode='multiple' if scope=='multiple' and self.advanced_grouping.get() else 'single')
         if self.app.busy:self.notice.set('Lendo documentos localmente. Cada página será analisada e associada por identificação.')
     def choose_from(self,tree):
         selection=tree.selection()
@@ -301,7 +306,7 @@ class Workspace:
                 self.data_review.set(all(m['pages_reviewed'] and all(f['reviewed'] for f in m['fields'].values()) for m in app.models.values()))
                 self.exams_review.set(all(all(e['reviewed'] for e in m['exams']) and all(i['reviewed'] for i in m['issues']) for m in app.models.values()));self.final_confirm.set(False)
         finally:self.binding=False
-        name=app.models[role]['fields']['Paciente']['value'] or 'Identificação pendente';self.case_title.set(name)
+        name=app.models[self.field_roles['Paciente']]['fields']['Paciente']['value'] or 'Identificação pendente';self.case_title.set(name)
         self.refresh_detail()
         if new_patient:self.go(1)
     def clinical_changed(self,event=None):
@@ -462,6 +467,16 @@ class Workspace:
             if self.app.dirty() and not self.app.save():return
             item['group']=target.get().strip();self.app._save_pages(batch,set(self.page_panel.seen_ids));self.notice.set('Página movida. Confirme novamente os tipos e a identidade; conflitos continuam bloqueados.');w.destroy()
         button=ttk.Button(w,text='Mover página',style='Primary.TButton',command=lambda:self.run(commit));button.pack(pady=12);self.move_editor={'window':w,'target':target,'button':button}
+    def regroup_pdf(self):
+        if not self.app.cid or not self.page_panel.selected_id:raise ValueError('Selecione uma página do PDF nas miniaturas.')
+        if not self.app.metadata_ready():return
+        if self.app.dirty() and not self.app.save():return
+        from scan_import import load_batch
+        obj=self.app.store.get(self.app.cid)[0];batch=load_batch(self.app.store,obj['docs']['pedido']['scan_batch']);selected=next(i for i in batch['pages'] if i['id']==self.page_panel.selected_id)
+        if not messagebox.askyesno('Reunir provisoriamente','Manter todas as páginas deste PDF no mesmo atendimento provisório? Conflitos continuarão impedindo a confirmação.'):return
+        for item in batch['pages']:
+            if item['source']==selected['source']:item['group']=selected['group']
+        batch['group_reviews']={};self.app._save_pages(batch,set(self.page_panel.seen_ids));self.notice.set('Páginas do PDF reunidas provisoriamente. Confira identidade e classificação; conflitos não são aprovados.')
     def examples(self):self.show_advanced();self.app.examples()
     def show_advanced(self):
         self.frame.pack_forget();self.advanced=True

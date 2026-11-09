@@ -94,9 +94,9 @@ class App:
         self.ocr_request=0;self.ocr_dialog=None;self.ocr_health=None
         self.import_sequence=0
         root.report_callback_exception=self.callback_failure
-        root.title('Cadastro Assistido Shift · versão 2.5.0 · Conferência detalhada');root.geometry('1450x950');root.minsize(1100,760)
+        root.title('Cadastro Assistido Shift · versão 2.5.1 · Conferência detalhada');root.geometry('1450x950');root.minsize(1100,760)
         st=ttk.Style();st.theme_use('clam');st.configure('TButton',padding=6);st.configure('Treeview',rowheight=28)
-        tk.Label(root,text='CADASTRO ASSISTIDO SHIFT  |  2.5.0',font=('Segoe UI',19,'bold'),bg='#173d52',fg='white',anchor='w',padx=18,pady=12).pack(fill='x')
+        tk.Label(root,text='CADASTRO ASSISTIDO SHIFT  |  2.5.1',font=('Segoe UI',19,'bold'),bg='#173d52',fg='white',anchor='w',padx=18,pady=12).pack(fill='x')
         ttk.Label(root,text='Importar escaneamento → Identificar documentos → Extrair dados → Comparar exames → Conferir → Preparar cadastro',font=('Segoe UI',11,'bold'),padding=8).pack(fill='x')
         ttk.Label(root,text='Processamento local | Revisão humana obrigatória | Pré-cadastro não enviado ao Shift',padding=(10,0)).pack(anchor='w')
         bar=ttk.Frame(root,padding=8);bar.pack(fill='x')
@@ -773,26 +773,33 @@ class App:
             paths=filedialog.askopenfilenames(title='IMPORTAR ESCANEAMENTO · pedido e guia juntos ou em qualquer ordem',filetypes=[('Escaneamentos','*.pdf *.png *.jpg *.jpeg')])
         if not paths:return
         if self.busy:raise ValueError('Aguarde a leitura terminar.')
-        self.busy=True;self.pending_imports={'escaneamento-em-leitura':'Aguardando leitura'};self.refresh()
+        self.busy=True;self.scan_cancelled=False;self.scan_cancel_event=threading.Event();self.pending_imports={'escaneamento-em-leitura':'Aguardando leitura'};self.refresh()
         self.progress=tk.Toplevel(self.root);self.progress.title('Leitura local do escaneamento');self.progress.transient(self.root);self.progress.grab_set()
         self.progress.protocol('WM_DELETE_WINDOW',lambda:None)
         self.scan_progress=tk.StringVar(value='Classificando cada página localmente…')
         ttk.Label(self.progress,textvariable=self.scan_progress,padding=20,wraplength=470).pack()
         self.progress_indicator=ttk.Progressbar(self.progress,mode='indeterminate',length=350);self.progress_indicator.pack(padx=20,pady=15);self.progress_indicator.start()
+        self.cancel_read_button=ttk.Button(self.progress,text='Cancelar análise',command=self.cancel_analysis);self.cancel_read_button.pack(pady=(0,14))
         cat=copy.deepcopy(self.catalog)
         mode=(reprocess.get('mode','multiple') if reprocess else mode or next(k for k,v in IMPORT_MODES.items() if v==self.import_mode.get()))
         def worker():
             try:
                 batch=read_scan(paths,self.data,cat,settings_path=self.ocr_settings_path,mode=mode,
+                    cancel_event=self.scan_cancel_event,
                     progress=lambda i,total,text:self.events.put(('scan_progress',text)))
                 if reprocess:
                     from scan_import import merge_reprocessed
                     merge_reprocessed(batch,reprocess)
-
+                from reading_control import check_cancelled
+                check_cancelled(self.scan_cancel_event)
                 self.events.put(('scan_batch',batch,bool(reprocess)))
-            except Exception as exc:self.events.put(('error',safe_failure(exc)))
+            except Exception as exc:
+                from reading_control import ReadCancelled
+                self.events.put(('cancelled',) if isinstance(exc,ReadCancelled) else ('error',safe_failure(exc)))
             finally:self.events.put(('done',))
         threading.Thread(target=worker,daemon=True).start()
+    def cancel_analysis(self):
+        self.scan_cancel_event.set();self.scan_progress.set('Cancelando análise. Aguarde a liberação dos documentos…');self.cancel_read_button.configure(state='disabled')
     def preserve_navigation(self):
         return False  # A interface em etapas pode conservar um rascunho local.
     def classification_window(self):
@@ -998,6 +1005,7 @@ class App:
                 if item[0]=='scan_progress':
                     self.scan_progress.set(item[1]);self.status.set(item[1]);self.pending_imports['escaneamento-em-leitura']='Lendo e identificando páginas';self.refresh()
                 elif item[0]=='scan_batch':
+                    if getattr(self,'scan_cancel_event',None) is not None and self.scan_cancel_event.is_set():self.scan_cancelled=True;continue
                     from scan_import import save_batch
                     batch,replace=item[1:];cids=save_batch(self.store,batch,self.catalog,self.actor.get(),replace=replace)
                     self.pending_imports.clear();self.refresh()
@@ -1024,9 +1032,10 @@ class App:
                 elif item[0]=='progress':self.pending_imports[item[1]]=item[2];self.refresh()
                 elif item[0]=='ocr_health':self.finish_ocr_check(*item[1:])
                 elif item[0]=='error':messagebox.showwarning('Documento não importado',item[1])
+                elif item[0]=='cancelled':self.scan_cancelled=True
                 else:
                     self.busy=False;self.pending_imports.clear();self.progress_indicator.stop();self.progress.grab_release();self.progress.destroy()
-                    self.status.set('Leitura encerrada. Clique em CONFERIR ATENDIMENTO. Revisor e motivo ficam visíveis antes de salvar.');self.refresh()
+                    self.status.set('Análise cancelada. Nenhum atendimento parcial foi salvo.' if getattr(self,'scan_cancelled',False) else 'Leitura encerrada. Clique em CONFERIR ATENDIMENTO. Revisor e motivo ficam visíveis antes de salvar.');self.refresh()
         except queue.Empty:pass
         except Exception as exc:
             # Uma falha de atualização não deve interromper para sempre o consumo

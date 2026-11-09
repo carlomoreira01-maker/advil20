@@ -1,0 +1,58 @@
+CADASTRO ASSISTIDO SHIFT 2.5.1 — AGRUPAMENTO, VELOCIDADE E TREINAMENTO RPA
+
+ATUALIZAR
+1. Feche o programa e faça uma cópia da pasta antiga inteira, incluindo dados_v2.
+2. Extraia TODO o ZIP em uma pasta NOVA. Não execute dentro do ZIP.
+3. Com os dois programas fechados, copie dados_v2 da versão anterior para a pasta Cadastro_Shift_v2 da nova versão. Não copie .venv nem substitua uma pasta que já tenha novos atendimentos.
+4. Abra INSTALAR_WINDOWS.bat. Depois abra INICIAR_WINDOWS.bat. O título deve mostrar 2.5.1.
+
+IMPORTAÇÃO PADRÃO: UM PDF = UM ATENDIMENTO PROVISÓRIO
+Nas duas abas, Importar documentos agora mantém todas as páginas de cada PDF na mesma ficha provisória.
+Na aba Cadastro de vários pacientes, selecione vários PDFs: serão criadas fichas separadas por arquivo, mesmo que os nomes sejam semelhantes ou iguais.
+Nomes parciais, páginas sem nome ou diferenças de OCR não dividem o PDF automaticamente.
+Se houver identificadores incompatíveis, a tela avisa e bloqueia a confirmação. Confira as páginas e use Mover página para separar as pessoas. Cada valor mantém sua origem; nada é aprovado por proximidade de páginas.
+Se souber que UM PDF contém VÁRIAS pessoas, marque a opção Avançado na aba Cadastro de vários pacientes antes de importar. O programa propõe agrupamentos por identificadores; casos incertos exigem revisão.
+
+RECUPERAR PDF QUE A VERSÃO ANTERIOR DIVIDIU
+1. Abra uma das fichas e preencha Seu nome / revisor no topo.
+2. Vá a Documentos e selecione uma página nas miniaturas.
+3. Clique em Reunir páginas deste PDF e confirme o agrupamento PROVISÓRIO.
+4. Confira os tipos e identificadores. Se forem pessoas diferentes, separe com Mover página; conflitos continuam impedindo a confirmação.
+Esse botão funciona para páginas do mesmo lote de importação, sem novo OCR. Não reúne PDFs distintos.
+
+LEITURA E CONFERÊNCIA
+O programa continua lendo automaticamente após importar. PDFs digitais usam o texto existente. Escaneamentos passam pelo Tesseract local, preservando a resolução de leitura anterior.
+O cache local reaproveita a leitura quando o arquivo, o leitor e suas configurações continuam iguais. Alterar o arquivo, o Tesseract, os idiomas/modelos ou o leitor invalida a reutilização. Trocar de tela e corrigir campos não executa OCR novamente.
+Cancelar análise interrompe a leitura e libera a interface sem criar fichas parciais. O cancelamento pode precisar de um breve intervalo para encerrar o processo de leitura.
+Mais opções > Tempos de leitura mostra tempos por arquivo/página e de interpretação, sem conteúdo dos documentos.
+Para forçar uma leitura nova com as mesmas configurações, feche o programa e apague SOMENTE dados_v2\cache_leitura. Nunca apague documentos ou o banco cadastro_local.sqlite3.
+
+Continue usando Documentos > Dados identificados > Exames > Pré-cadastro.
+Corrija os valores nos campos e salve. Origem mostra a região do documento.
+Rascunho pode ser aberto, salvo e exportado com pendências. A preparação validada exige conferência humana e regras homologadas do laboratório.
+Se faltar revisor ou motivo, o programa mostra e foca onde preencher. As opções detalhadas anteriores continuam em Mais opções.
+
+PRATICAR A AUTOMAÇÃO RPA — SOMENTE DADOS FICTÍCIOS
+1. Se quiser usar esse recurso opcional, feche o programa e abra INSTALAR_SIMULACAO_RPA.bat. É necessária internet para instalar Playwright e o navegador de treinamento.
+2. Abra o programa, preencha Seu nome / revisor e vá a Mais opções > Treinamento RPA — LIS fictício.
+3. Leia os dados fictícios apresentados e marque as cinco conferências. Clique em Iniciar RPA com dados fictícios conferidos.
+4. O navegador abre um LIS de treinamento neste computador. Confira o cadastro encontrado, marque a confirmação de identidade e clique em Confirmar cadastro existente.
+5. A RPA preenche fonte pagadora, guias, autorização, médico, cinco procedimentos e anexa dois PDFs fictícios gerados pelo próprio programa.
+6. Confira os valores, marque a conferência final e clique em Autorizar a RPA a criar O.S. fictícia.
+7. O resultado começa com OS-SIM-. As etiquetas são uma PRÉVIA com DEMONSTRAÇÃO SEM VALIDADE; não há impressão oficial.
+8. Use Encerrar treinamento para fechar a sessão.
+A mesma guia fictícia não pode ser processada duas vezes no banco de treinamento, mesmo com outro identificador de atendimento. Se repetir o exemplo e receber bloqueio, isso pode ser a proteção de duplicidade funcionando. O simulador anterior também foi preservado.
+O treino não usa os arquivos da ficha selecionada na rotina e não possui configuração para acessar o Shift real. A futura ligação do pré-cadastro de produção ao LIS exige adaptador autorizado e homologação do laboratório.
+
+TESTES QUE VOCÊ PODE FAZER SEM DADOS REAIS
+- Importe exemplos_2_4_2\01_um_atendimento_quatro_paginas.pdf: deve criar UMA ficha provisória com quatro páginas, incluindo nome parcial e anexo sem identificação.
+- Selecione juntos exemplos_250\pedido_a.pdf e exemplos_250\guia_completa.pdf: deve criar DUAS fichas, pois são dois PDFs distintos. Para testar pedido e guia juntos em uma ficha, importe exemplos_250\01_um_paciente.pdf.
+- Importe exemplos_250\02_dois_pacientes_quatro_paginas.pdf no modo padrão: deve manter uma ficha PROVISÓRIA e avisar conflito. No modo Avançado de vários pacientes, deve propor duas fichas.
+- Importe exemplos_250\03_campos_vazios.pdf: deve permitir abrir e salvar o rascunho mesmo com campos vazios.
+
+LIMITES
+Execução nativa, instalação, permissões, DPI e desempenho no Windows ainda precisam de validação no seu computador. Os testes automáticos usam Linux, interface real, Tesseract e navegador local, exclusivamente com dados sintéticos.
+A velocidade depende do computador e da qualidade do documento. O relatório distingue primeira leitura e cache; não há promessa de tempo fixo para qualquer PDF.
+Páginas ilegíveis, escrita manual e layouts não cobertos podem exigir correção humana. GO não é presumido. Catálogo, códigos internos, perfis e autorizações reais dependem de homologação.
+Nenhum Shift real é acessado, nenhuma O.S. real é gravada e nenhuma etiqueta oficial é impressa. Não desative o antivírus para instalar.
+Resultados e limitações: docs\CORRECAO_2_5_1.md, docs\RESULTADO_TESTES_2_5_1.txt e docs\DESEMPENHO_2_5_1.json.

@@ -1,0 +1,116 @@
+{
+  "somente_sinteticos": true,
+  "confirmacoes_humanas_simuladas_no_teste": true,
+  "verificacoes": [
+    {
+      "verificacao": "Paciente existente localizado",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "verificacao": "Identidade não confirmada automaticamente",
+      "esperado": false,
+      "encontrado": false,
+      "passou": true
+    },
+    {
+      "verificacao": "guide",
+      "esperado": "00000111",
+      "encontrado": "00000111",
+      "passou": true
+    },
+    {
+      "verificacao": "main_guide",
+      "esperado": "00000222",
+      "encontrado": "00000222",
+      "passou": true
+    },
+    {
+      "verificacao": "operator_guide",
+      "esperado": "00000777",
+      "encontrado": "00000777",
+      "passou": true
+    },
+    {
+      "verificacao": "password",
+      "esperado": "00000555",
+      "encontrado": "00000555",
+      "passou": true
+    },
+    {
+      "verificacao": "crm",
+      "esperado": "0012345",
+      "encontrado": "0012345",
+      "passou": true
+    },
+    {
+      "verificacao": "uf",
+      "esperado": "GO",
+      "encontrado": "GO",
+      "passou": true
+    },
+    {
+      "verificacao": "payer",
+      "esperado": "FONTE-FICTICIA",
+      "encontrado": "FONTE-FICTICIA",
+      "passou": true
+    },
+    {
+      "verificacao": "Dois anexos sintéticos",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true
+    },
+    {
+      "verificacao": "Cinco procedimentos",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true
+    },
+    {
+      "verificacao": "Confirmação final não automática",
+      "esperado": false,
+      "encontrado": false,
+      "passou": true
+    },
+    {
+      "verificacao": "Paciente reutilizado",
+      "esperado": "SIM-P1",
+      "encontrado": "SIM-P1",
+      "passou": true
+    },
+    {
+      "verificacao": "Médico existente",
+      "esperado": "SIM-M1",
+      "encontrado": "SIM-M1",
+      "passou": true
+    },
+    {
+      "verificacao": "Nenhuma O.S. real",
+      "esperado": null,
+      "encontrado": null,
+      "passou": true
+    },
+    {
+      "verificacao": "Cinco etiquetas demonstrativas",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true
+    },
+    {
+      "verificacao": "Repetição bloqueada",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "verificacao": "Uma única O.S. fictícia",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true
+    }
+  ],
+  "passaram": 18,
+  "falharam": 0
+}

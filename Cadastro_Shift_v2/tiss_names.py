@@ -24,6 +24,13 @@ def name_words(region,company=False):
         # a smaller font. A horizontal gap alone must never delete a first name.
         selected=[]
         for c in plausible:
+            # Resposta da célula vizinha (ex.: atendimento a RN). Nunca faz parte
+            # de um nome; corta também quando o OCR perdeu o rótulo da coluna.
+            if not company:
+                stop=next((i for i,w in enumerate(c) if norm(w['text']).strip('[]()') in ['NAO','SIM']),None)
+                if stop is not None:
+                    if not selected and stop:c=c[:stop]
+                    else:continue
             if abs(median(x['box'][3]-x['box'][1] for x in c)-height)>max(1,height*.18):continue
             if selected and len(c)==1 and len(c[0]['text'])==1 and c[0]['box'][0]-selected[-1]['box'][2]>max(18,height*6):continue
             selected.extend(c)

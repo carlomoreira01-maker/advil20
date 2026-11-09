@@ -115,6 +115,21 @@ def tesseract_exe(settings_path=None, include_saved=True):
 
 
 def run_local(args, timeout=120):
+    from reading_control import current_event,check_cancelled
+    import time
+    event=current_event()
+    if event is not None:
+        check_cancelled();started=time.monotonic()
+        with subprocess.Popen(args,stdout=subprocess.PIPE,stderr=subprocess.PIPE,encoding='utf-8',errors='replace',env={**os.environ,'OMP_THREAD_LIMIT':'1'},creationflags=0x08000000 if os.name=='nt' else 0) as process:
+            try:
+                while True:
+                    check_cancelled()
+                    if time.monotonic()-started>timeout:raise subprocess.TimeoutExpired(args,timeout)
+                    try:
+                        out,err=process.communicate(timeout=.1);return subprocess.CompletedProcess(args,process.returncode,out,err)
+                    except subprocess.TimeoutExpired:pass
+            except BaseException:
+                process.kill();process.communicate();raise
     return subprocess.run(args, capture_output=True, encoding='utf-8', errors='replace',
                           timeout=timeout, env={**os.environ,'OMP_THREAD_LIMIT':os.environ.get('OMP_THREAD_LIMIT','2')}, creationflags=0x08000000 if os.name == 'nt' else 0)
 
