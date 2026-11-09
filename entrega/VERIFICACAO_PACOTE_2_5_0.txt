@@ -1,0 +1,38 @@
+CADASTRO ASSISTIDO SHIFT 2.5.0 — PACOTE CONFERIDO
+
+294 arquivos; todos os 257 caminhos da versão 2.4.5 preservados. CRC do ZIP aprovado; SHA-256 de cada membro conferido com o manifesto e os arquivos-fonte.
+SHA-256 do ZIP: bd945fd785cccf138450015083f517debfac447c28d29cc7610c13db935ce2af
+
+O ZIP foi extraído em pasta nova e 26 testes (14 gráficos da interface principal + 12 de campos, OCR e rascunho) foram executados A PARTIR DOS ARQUIVOS EXTRAÍDOS. Incluem duas abas, cinco telas, campos, origens, campos vazios, correção manual, lote, reprocessamento, duplicidade, conflitos e preparo fictício validado. Nenhum Shift real acessado. Windows nativo permanece pendente.
+
+test_11_campos_mais_conselho_com_valores_origem_zeros (tests.test_modern_core_250.ModernCore250.test_11_campos_mais_conselho_com_valores_origem_zeros) ... ok
+test_campo23_multilinha_nao_inclui_cabecalho_e_nao_vira_exame (tests.test_modern_core_250.ModernCore250.test_campo23_multilinha_nao_inclui_cabecalho_e_nao_vira_exame) ... ok
+test_contratado_executante_nao_e_medico_e_fica_apos_tabela (tests.test_modern_core_250.ModernCore250.test_contratado_executante_nao_e_medico_e_fica_apos_tabela) ... ok
+test_nome_empresarial_nao_usa_restricoes_de_nome_de_pessoa (tests.test_modern_core_250.ModernCore250.test_nome_empresarial_nao_usa_restricoes_de_nome_de_pessoa) ... ok
+test_numero_conselho_separado_nao_e_cbo (tests.test_modern_core_250.ModernCore250.test_numero_conselho_separado_nao_e_cbo) ... ok
+test_ocr_real_guia_girada_dos_campos_prioritarios (tests.test_modern_core_250.ModernCore250.test_ocr_real_guia_girada_dos_campos_prioritarios) ... ok
+test_pdf_quatro_paginas_dois_pacientes_gera_dois_atendimentos (tests.test_modern_core_250.ModernCore250.test_pdf_quatro_paginas_dois_pacientes_gera_dois_atendimentos) ... ok
+test_quatro_estados_vazio_incerto_nao_encontrado_identificado (tests.test_modern_core_250.ModernCore250.test_quatro_estados_vazio_incerto_nao_encontrado_identificado) ... ok
+test_rascunho_com_campos_vazios_nao_prepara_ou_autoriza (tests.test_modern_core_250.ModernCore250.test_rascunho_com_campos_vazios_nao_prepara_ou_autoriza) ... ok
+test_rascunho_restaura_correcao_e_nao_sobrepoe_revisao_nova (tests.test_modern_core_250.ModernCore250.test_rascunho_restaura_correcao_e_nao_sobrepoe_revisao_nova) ... ok
+test_rotulos_fundidos_sem_numero_sao_localizados (tests.test_modern_core_250.ModernCore250.test_rotulos_fundidos_sem_numero_sao_localizados) ... ok
+test_so_guia_nao_cria_pedido_ou_exames_solicitados (tests.test_modern_core_250.ModernCore250.test_so_guia_nao_cria_pedido_ou_exames_solicitados) ... ok
+test_aba_individual_nao_mistura_pdf_com_duas_pessoas (tests.test_workbench_gui_250.WorkbenchGUI250.test_aba_individual_nao_mistura_pdf_com_duas_pessoas) ... ok
+test_campos_prioritarios_preenchidos_nos_widgets_com_origem (tests.test_workbench_gui_250.WorkbenchGUI250.test_campos_prioritarios_preenchidos_nos_widgets_com_origem) ... ok
+test_campos_vazios_nao_bloqueiam_navegacao_ou_rascunho (tests.test_workbench_gui_250.WorkbenchGUI250.test_campos_vazios_nao_bloqueiam_navegacao_ou_rascunho) ... ok
+test_conferencia_detalhada_preservada_e_volta_sem_perder_campos (tests.test_workbench_gui_250.WorkbenchGUI250.test_conferencia_detalhada_preservada_e_volta_sem_perder_campos) ... ok
+test_correcao_manual_salva_atualiza_pendencia_e_persiste_navegacao (tests.test_workbench_gui_250.WorkbenchGUI250.test_correcao_manual_salva_atualiza_pendencia_e_persiste_navegacao) ... ok
+test_fluxo_principal_real_ate_pre_cadastro_validado_ficticio (tests.test_workbench_gui_250.WorkbenchGUI250.test_fluxo_principal_real_ate_pre_cadastro_validado_ficticio) ... ok
+test_interface_em_cinco_telas_e_duas_abas_reais (tests.test_workbench_gui_250.WorkbenchGUI250.test_interface_em_cinco_telas_e_duas_abas_reais) ... ok
+test_janela_menor_mantem_navegacao_e_conferencia_com_rolagem (tests.test_workbench_gui_250.WorkbenchGUI250.test_janela_menor_mantem_navegacao_e_conferencia_com_rolagem) ... ok
+test_lote_quatro_paginas_cria_dois_atendimentos_e_dois_rascunhos (tests.test_workbench_gui_250.WorkbenchGUI250.test_lote_quatro_paginas_cria_dois_atendimentos_e_dois_rascunhos) ... ok
+test_mover_pagina_sem_reimportar_preserva_paginas_e_bloqueia_conflito (tests.test_workbench_gui_250.WorkbenchGUI250.test_mover_pagina_sem_reimportar_preserva_paginas_e_bloqueia_conflito) ... ok
+test_pre_cadastro_so_de_guia_nao_inventa_pedido (tests.test_workbench_gui_250.WorkbenchGUI250.test_pre_cadastro_so_de_guia_nao_inventa_pedido) ... ok
+test_reprocessar_pelo_painel_e_reimportar_nao_duplica_atendimento (tests.test_workbench_gui_250.WorkbenchGUI250.test_reprocessar_pelo_painel_e_reimportar_nao_duplica_atendimento) ... ok
+test_revisor_e_motivo_ficam_visiveis_quando_faltam (tests.test_workbench_gui_250.WorkbenchGUI250.test_revisor_e_motivo_ficam_visiveis_quando_faltam) ... ok
+test_troca_de_atendimento_preserva_edicao_em_rascunho (tests.test_workbench_gui_250.WorkbenchGUI250.test_troca_de_atendimento_preserva_edicao_em_rascunho) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 35.729s
+
+OK

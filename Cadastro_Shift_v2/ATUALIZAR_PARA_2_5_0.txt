@@ -1,0 +1,59 @@
+CADASTRO ASSISTIDO SHIFT 2.5.0 — GUIA SIMPLES
+
+ATUALIZAR SEM PERDER OS ATENDIMENTOS
+1. Feche o programa. Faça uma cópia da pasta antiga inteira, incluindo dados_v2.
+2. Extraia TODO o ZIP novo em uma pasta NOVA. Não abra o programa dentro do ZIP.
+3. Entre na pasta Cadastro_Shift_v2. Para continuar seus atendimentos, copie dados_v2 da versão antiga para esta pasta, com os dois programas fechados. Não copie .venv. Não substitua uma pasta dados_v2 que já tenha novos atendimentos.
+4. Dê dois cliques em INSTALAR_WINDOWS.bat. Aguarde a instalação das bibliotecas.
+5. Dê dois cliques em INICIAR_WINDOWS.bat. O título deve mostrar 2.5.0.
+Python 3.12 a 3.14 e Tesseract precisam estar instalados. A instalação das bibliotecas precisa de internet; a leitura dos documentos é local.
+Se precisar ajustar o Tesseract, use Mais opções > Configurar leitor OCR. Selecione tesseract.exe, teste por/eng e salve.
+
+UM PACIENTE OU VÁRIOS PACIENTES
+Na tela Início, escolha a aba Cadastro de um paciente ou Cadastro de vários pacientes.
+Clique em Importar documentos e selecione PDF, JPG ou PNG. Pode selecionar vários arquivos.
+Um PDF pode conter pedido e guia juntos, em qualquer ordem. A leitura começa automaticamente.
+Nas DUAS abas, identificadores incompatíveis não são reunidos automaticamente. Um PDF com duas pessoas pode gerar duas fichas mesmo na aba individual.
+A aba de vários pacientes também permite salvar os rascunhos do lote. Cada ficha continua exigindo conferência individual.
+Páginas sem identificação suficiente podem ficar separadas para revisão. Não associe por ordem de importação.
+
+COMO USAR AS CINCO TELAS
+1. INÍCIO: selecione a ficha na fila. O programa mostra documentos, exames e pendências.
+2. DOCUMENTOS: clique nas miniaturas e confira cada página. Corrigir tipo altera a classificação. Mover página transfere a página para outra ficha do mesmo lote sem reimportar. Identificação por página abre as opções detalhadas. Depois de verificar os identificadores, use Confirmar páginas e identidade. Conflitos comprovados continuam bloqueados.
+3. DADOS IDENTIFICADOS: clique diretamente no campo e edite. Corrigir informação leva a uma leitura incerta, quando houver. Origem mostra a página e a região do documento. Indicação clínica tem várias linhas e não vira exame. Dados complementares ficam recolhidos abaixo.
+4. EXAMES: veja código, descrição, quantidades e comparação. Se precisar, selecione o documento correto e use Corrigir exame ou Adicionar exame. Comparar exames atualiza a comparação.
+5. PRÉ-CADASTRO: veja o resumo e as pendências. Salvar rascunho ou Salvar rascunho de pré-cadastro funciona mesmo com campos incompletos. Exportar rascunho JSON salva uma cópia local. O rascunho não cria O.S. nem envia dados ao Shift.
+Voltar e Continuar permitem navegar sem apagar os campos. Ao trocar de ficha ou fechar o programa, edições pendentes são guardadas em rascunho local. Uma revisão nova invalida rascunhos de revisões anteriores.
+
+CAMPO VAZIO NÃO TRAVA O RASCUNHO
+O programa distingue Identificado, Campo vazio, Leitura incerta e Campo não localizado.
+Campos como guia principal, senha, guia operadora e contratado executante podem estar vazios no documento. Isso não impede abrir ou salvar o rascunho. Não preencha números inventados para avançar.
+Se houver somente guia, o programa mantém somente guia. Ele não cria um pedido médico inexistente.
+
+SALVAR CONFERÊNCIA E PREPARAR A DEMONSTRAÇÃO VALIDADA
+Seu nome / revisor, no topo, é o nome de QUEM CONFERE, não o do paciente.
+O Motivo da conferência fica na tela Pré-cadastro, com sugestão editável. Se faltar revisor ou motivo ao salvar correções/conferência, o programa mostra o campo e coloca o cursor nele.
+Depois de comparar os documentos, marque as duas conferências de dados e exames e clique em Salvar conferência.
+Para preparar o pré-cadastro validado, resolva as pendências obrigatórias, salve a conferência e marque a confirmação final de identidade/autorização.
+Se houver bloqueio, ele aparece com o próximo passo. Resolver pendência selecionada abre os dados, exames, documentos, catálogo ou perfil correspondente.
+Catálogo, códigos internos e regras de fontes pagadoras precisam ser homologados pelo responsável do laboratório. Não invente códigos do Shift. Campos não aplicáveis dependem de regras aprovadas, disponíveis na conferência detalhada.
+O rascunho pode continuar sendo usado enquanto essas configurações estiverem pendentes.
+
+ATENDIMENTOS ANTIGOS
+Para aplicar a nova interpretação aos arquivos já importados, preencha seu nome e use Reprocessar leitura. Confira novamente os dados e as páginas. Tipos que você corrigiu manualmente são preservados; se estavam errados, corrija o tipo na tela Documentos.
+Mais opções > Diagnóstico e conferência detalhada mantém a interface detalhada, importações anteriores, configurações e recursos legados. Voltar ao painel simples retorna às cinco telas.
+
+TESTE SEM DADOS DE PACIENTES
+Faça o teste em uma cópia separada, sem dados_v2 da rotina:
+1. Importe exemplos_250\01_um_paciente.pdf. Espere uma ficha com pedido e guia, campos preenchidos e cinco exames.
+2. Abra Dados identificados e confira o campo 30 separado do médico e o texto completo do campo 23.
+3. Abra Pré-cadastro e salve o rascunho. Mesmo sem catálogo interno do laboratório, ele deve ser salvo com pendências explícitas.
+4. Importe exemplos_250\02_dois_pacientes_quatro_paginas.pdf na aba de vários pacientes. Espere DUAS fichas, com duas páginas cada, nunca quatro pacientes ou uma mistura.
+5. Importe exemplos_250\03_campos_vazios.pdf. Campos 3, 5, 7 e 30 devem ficar vazios. Ainda deve ser possível salvar o rascunho.
+6. Para praticar a preparação totalmente validada com catálogo e perfil fictícios, em uma instalação vazia use Mais opções > Exemplos fictícios. A conferência detalhada é aberta; selecione a primeira ficha. Use Voltar ao painel simples se desejar continuar nas novas telas. Não importe esse catálogo na rotina do laboratório.
+
+LIMITES E RESULTADOS
+Os testes usam exclusivamente documentos fictícios e processamento local. A execução nativa do instalador e da interface no Windows ainda precisa ser validada no seu computador. Não há integração de produção com o Shift nesta entrega.
+Documento ilegível, assinatura manuscrita, tabela sem boa resolução ou layout desconhecido podem exigir correção humana. GO nunca é preenchido por suposição. Guia com carimbo continua sendo guia se o conjunto de evidências for de guia.
+Não é necessário desativar antivírus. Se houver detecção, mantenha o bloqueio e informe o arquivo e o nome da ameaça ao responsável técnico.
+Veja docs\CORRECAO_2_5_0.md e docs\RESULTADO_TESTES_2_5_0.txt para causas, testes e limitações.

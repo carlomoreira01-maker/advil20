@@ -1,0 +1,26 @@
+{
+  "somente_ficticios": true,
+  "prioritarios": {
+    "2": "00000111",
+    "3": "00000222",
+    "7": "00000777",
+    "5": "00000555",
+    "10": "PESSOA FICTICIA DE OLIVEIRA",
+    "8": "0000087654",
+    "15": "DRA EXEMPLO SINTETICA",
+    "17": "0012345",
+    "18": "GO",
+    "23": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+    "30": "LABORATORIO FICTICIO DOS SANTOS"
+  },
+  "conselho": "CRM",
+  "pacientes": [
+    "PESSOA FICTICIA DE OLIVEIRA",
+    "PESSOA FICTICIA DOS SANTOS"
+  ],
+  "carteiras": [
+    "0000087654",
+    "0000099999"
+  ],
+  "campo23_nao_e_exame": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO."
+}

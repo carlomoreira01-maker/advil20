@@ -22,7 +22,7 @@ LABELS={
 23:r'INDICACAO\s+CLINICA',24:r'TIPO\s+(?:DE\s+)?ATENDIMENTO',
 25:r'CODIGO(?:\s+(?:DO\s+)?PROCEDIMENTO)?',26:r'DESCRICAO(?:\s+(?:DO\s+)?PROCEDIMENTO)?',
 27:r'(?:QUANTIDADE|QTD\.?|QTDE\.?|QT\.?)(?:\s+SOL\S*)?',28:r'(?:QUANTIDADE|QTD\.?|QTDE\.?|QT\.?)(?:\s+AUT\S*)?',
-29:r'CODIGO\s+(?:(?:DO|DA)\s+)?CONTRATADO',30:r'NOME\s+(?:(?:DO|DA)\s+)?CONTRATADO',
+29:r'CODIGO\s+(?:(?:DO|DA)\s+)?CONTRATADO',30:r'NOME\s+(?:(?:DO|DA)\s+)?CONTRATADO(?:\s+EXECUTANTE)?',
 31:r'CODIGO\s+CNES',32:r'TIPO\s+(?:DE\s+)?ATENDIMENTO',33:r'INDICACAO\s+(?:DE\s+)?ACIDENTE',
 34:r'TIPO\s+(?:DE\s+)?CONSULTA',35:r'MOTIVO\s+(?:DE\s+)?ENCERRAMENTO',
 36:r'DATA',37:r'HORA',38:r'HORA',39:r'TABELA',40:r'CODIGO',41:r'DESCRICAO',42:r'QUANTIDADE|QTD\.?|QTDE\.?|QT\.?',
@@ -59,7 +59,9 @@ def header_token(text):
  fused={'NOMEDOBENEFICIARIO':'NOME DO BENEFICIARIO','NOMEBENEFICIARIO':'NOME BENEFICIARIO',
         'NUMERODACARTEIRA':'NUMERO DA CARTEIRA','NDACARTEIRA':'NUMERO DA CARTEIRA',
         'NUMERODOCONSELHO':'NUMERO DO CONSELHO','NUMERONOCONSELHO':'NUMERO NO CONSELHO',
-        'CONSELHOPROFISSIONAL':'CONSELHO PROFISSIONAL','NOMEDOPROFISSIONALSOLICITANTE':'NOME DO PROFISSIONAL SOLICITANTE'}
+        'CONSELHOPROFISSIONAL':'CONSELHO PROFISSIONAL','NOMEDOPROFISSIONALSOLICITANTE':'NOME DO PROFISSIONAL SOLICITANTE',
+        'INDICACAOCLINICA':'INDICACAO CLINICA','NOMEDOCONTRATADOEXECUTANTE':'NOME DO CONTRATADO EXECUTANTE',
+        'NOMECONTRATADOEXECUTANTE':'NOME CONTRATADO EXECUTANTE','NOMEDOCONTRATADO':'NOME DO CONTRATADO'}
  if compact in fused:return fused[compact]
  if re.fullmatch(r'(?:QT|QTD|QTDE|QUANTIDADE)SOL(?:IC|ICITADA|ICITADO)?',compact):return 'QT SOLICITADA'
  if re.fullmatch(r'(?:QT|QTD|QTDE|QUANTIDADE)AUT(?:OR|ORIZADA|ORIZADO)?',compact):return 'QT AUTORIZADA'
@@ -117,10 +119,12 @@ def anchors(page):
  for row in rows(words):
   ws=row['words']
   for i,w in enumerate(ws):
-   if not re.match(r'^(?:N\S*|VALIDADE|DATA|SENHA|CONSELHO|UF|INDICACAO|CODIGO|QT\s+SOLICITADA|QT\s+AUTORIZADA)$',header_token(w['text'])):continue
+   token=header_token(w['text']);prefix=token if token.startswith('QT ') else token.split()[0] if token else ''
+   if not re.match(r'^(?:N\S*|VALIDADE|DATA|SENHA|CONSELHO|UF|INDICACAO|CODIGO|QT\s+SOLICITADA|QT\s+AUTORIZADA)$',prefix):continue
    if any(w in a['header'] for a in found):continue
    text=' '.join(header_token(x['text']) for x in ws[i:i+10])
-   for num in [2,3,4,5,6,7,8,9,10,14,15,16,17,18,19,22,23,25,27,28]:
+   for num in [2,3,4,5,6,7,8,9,10,30,14,15,16,17,18,19,22,23,25,27,28]:
+    if num==30 and 'EXECUTANTE' not in text and not any(a['num'] in [25,26] and a['y']<w['box'][1] for a in found):continue
     if num in [27,28] and not re.match(r'QT\s+'+('SOL' if num==27 else 'AUT'),text):continue
     m=re.match(LABELS[num]+r'(?=\s|:|$)',text)
     if not m and num==10 and header_token(w['text'])=='NOME' and not re.match(r'NOME\s+SOCIAL',text) and any(a['num'] in [8,9] and abs(a['y']-w['box'][1])<7 for a in found):m=re.match('NOME',text)

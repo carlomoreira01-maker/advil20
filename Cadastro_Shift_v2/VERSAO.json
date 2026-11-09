@@ -1,8 +1,8 @@
 {
-  "versao": "2.4.5",
+  "versao": "2.5.0",
   "data": "2026-11-08",
-  "testes_aprovados": 242,
-  "testes_interface": 60,
+  "testes_aprovados": 268,
+  "testes_interface": 74,
   "falhas": 0,
   "ignorados": 0,
   "ambiente_testes": "Linux / Python 3.12.14 / PyMuPDF 1.26.6 / Pillow 13.0.0 / tesseract 5.5.0 / Tkinter Xorg / Playwright Chromium",
@@ -12,27 +12,29 @@
     "eng.traineddata": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2"
   },
   "testes_navegador": 3,
-  "verificacoes_campos": 102,
+  "verificacoes_campos": 60,
   "layouts_reais": "Não usados nesta rodada. Pedidos, guias e carimbos dos testes são inteiramente fictícios. Processamento permanece local.",
   "base_estavel": "2.4",
   "versao_comparada": "2.4.1",
   "verificacoes_campos_detalhe": {
-    "regressao_2_4": 175,
-    "novos_casos_2_4_2": 95
+    "prioritarios_mais_conselho_em_5_cenarios": 60,
+    "fluxo_interface_com_eventos_mouse": 20,
+    "regressao_campos_anteriores": 539
   },
   "verificacoes_interface_documentos_reais": 0,
   "paginas_reais": 0,
-  "base_atualizacao": "2.4.4",
-  "testes_antes": 225,
-  "verificacoes_auditoria": 102,
-  "verificacoes_widgets": 22,
+  "base_atualizacao": "2.4.5",
+  "testes_antes": 242,
+  "verificacoes_auditoria": 167,
+  "verificacoes_widgets": 80,
   "historico_validacao_2_4_3": {
     "relatorio": "docs/TESTES_REAIS_2_4_3.json",
     "paginas": 7,
     "verificacoes_interface": 118
   },
-  "relatorio_auditoria": "docs/CORRECAO_2_4_5.md",
+  "relatorio_auditoria": "docs/CORRECAO_2_5_0.md",
   "verificacoes_carimbo": 102,
-  "relatorio_correcao": "docs/CORRECAO_2_4_5.md",
-  "regressao_matrizes_anteriores": 437
+  "relatorio_correcao": "docs/CORRECAO_2_5_0.md",
+  "regressao_matrizes_anteriores": 539,
+  "testes_interface_nova": 14
 }

@@ -94,9 +94,9 @@ class App:
         self.ocr_request=0;self.ocr_dialog=None;self.ocr_health=None
         self.import_sequence=0
         root.report_callback_exception=self.callback_failure
-        root.title('Cadastro Assistido Shift · versão 2.4.5 · Local');root.geometry('1450x950');root.minsize(1100,760)
+        root.title('Cadastro Assistido Shift · versão 2.5.0 · Conferência detalhada');root.geometry('1450x950');root.minsize(1100,760)
         st=ttk.Style();st.theme_use('clam');st.configure('TButton',padding=6);st.configure('Treeview',rowheight=28)
-        tk.Label(root,text='CADASTRO ASSISTIDO SHIFT  |  2.4.5',font=('Segoe UI',19,'bold'),bg='#173d52',fg='white',anchor='w',padx=18,pady=12).pack(fill='x')
+        tk.Label(root,text='CADASTRO ASSISTIDO SHIFT  |  2.5.0',font=('Segoe UI',19,'bold'),bg='#173d52',fg='white',anchor='w',padx=18,pady=12).pack(fill='x')
         ttk.Label(root,text='Importar escaneamento → Identificar documentos → Extrair dados → Comparar exames → Conferir → Preparar cadastro',font=('Segoe UI',11,'bold'),padding=8).pack(fill='x')
         ttk.Label(root,text='Processamento local | Revisão humana obrigatória | Pré-cadastro não enviado ao Shift',padding=(10,0)).pack(anchor='w')
         bar=ttk.Frame(root,padding=8);bar.pack(fill='x')
@@ -768,7 +768,7 @@ class App:
         if p:Path(p).write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8');self.status.set('JSON salvo. Nenhum cadastro ou impressão enviado.')
     def import_scans(self,paths=None,reprocess=None,mode=None):
         from scan_import import read_scan
-        if self.cid and self.dirty():raise ValueError('Salve as correções antes de importar ou reprocessar.')
+        if self.cid and self.dirty() and not self.preserve_navigation():raise ValueError('Salve as correções antes de importar ou reprocessar.')
         if paths is None:
             paths=filedialog.askopenfilenames(title='IMPORTAR ESCANEAMENTO · pedido e guia juntos ou em qualquer ordem',filetypes=[('Escaneamentos','*.pdf *.png *.jpg *.jpeg')])
         if not paths:return
@@ -793,6 +793,8 @@ class App:
             except Exception as exc:self.events.put(('error',safe_failure(exc)))
             finally:self.events.put(('done',))
         threading.Thread(target=worker,daemon=True).start()
+    def preserve_navigation(self):
+        return False  # A interface em etapas pode conservar um rascunho local.
     def classification_window(self):
         from scan_import import load_batch,save_batch,KINDS,confirm_group,assess_group,apply_identity_edits
         from identity_evidence import IDENTIFIERS
@@ -1116,4 +1118,5 @@ def load_manifest(file):
 
 
 if __name__=='__main__':
-    root=tk.Tk();App(root);root.mainloop()
+    from workbench import create_workbench
+    root=tk.Tk();create_workbench(root,base_class=App);root.mainloop()

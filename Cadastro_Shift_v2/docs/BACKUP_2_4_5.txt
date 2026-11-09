@@ -1,0 +1,9 @@
+BACKUP PRESERVADO — VERSÃO 2.4.5
+
+257 arquivos. ZIP conferido por CRC e SHA-256 antes da alteração. Todos os 257 caminhos estão preservados na atualização.
+SHA-256: fe194d41decf5cc8fc240a863e7bad1bd2dab833d59abfa1a26a8dce35a96a9d
+
+Download da versão anterior:
+https://github.com/carlomoreira01-maker/advil20/raw/refs/heads/entrega/shift-v2.4.5/entrega/Cadastro_Shift_v2_4_5_corrigido.zip
+
+A branch de entrega anterior não é substituída. Faça também backup de sua própria pasta dados_v2 com o programa fechado.

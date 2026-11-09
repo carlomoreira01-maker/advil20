@@ -1,0 +1,2115 @@
+{
+  "somente_sinteticos": true,
+  "base": "2.4.5",
+  "arquivos_anteriores_preservados": 257,
+  "arquivos_anteriores_modificados": [
+    {
+      "arquivo": "Cadastro_Shift_v2/LEIA-ME.md",
+      "sha256_antes": "fe795050eb80415b90486a693695e8f669a5423a71f334ba7a7c7fd8cc4e32c4",
+      "sha256_depois": "48af32eb0ea6d9349b3c941279f4604d8b880116c92620b9edb30b2d9e2a3ebb"
+    },
+    {
+      "arquivo": "Cadastro_Shift_v2/VERSAO.json",
+      "sha256_antes": "473f7ecf9d76d4e693d01907ae500ba421cf505effc7c0a8fc06ca97d08acf13",
+      "sha256_depois": "74b9147fcc646ac59d388a38b6dc9c9ec4f616df1e025d0d74520e8e71c3bc41"
+    },
+    {
+      "arquivo": "Cadastro_Shift_v2/app.py",
+      "sha256_antes": "2543e070804c8a915c29dbae6d63ed70de6a4bcfe1aef83c65b615e9a7a122c5",
+      "sha256_depois": "a717c0d29b0e3e7687dcb3b850667c51dd1afa8915bb7f23550c66fdddd28d64",
+      "funcoes_alteradas_ou_adicionadas": [
+        "App",
+        "App.__init__",
+        "App.import_scans",
+        "App.preserve_navigation"
+      ]
+    },
+    {
+      "arquivo": "Cadastro_Shift_v2/engine_v2.py",
+      "sha256_antes": "457682e1040a76c5d8b7ad6f3b943c31e778bf544996739f06015f0de85d9206",
+      "sha256_depois": "c5853eebe1117073b5258579b48905cef167963495de6cec67b65bd70c63fd38",
+      "funcoes_alteradas_ou_adicionadas": [
+        "parse_document"
+      ]
+    },
+    {
+      "arquivo": "Cadastro_Shift_v2/tiss.py",
+      "sha256_antes": "b4410fc253250dbd2656add0b51e9e768eae73e31eb5e7cb258b20875bff34e1",
+      "sha256_depois": "879b3ec65b37d4ea660c7da9d39543e9c0e551bd539295ae2c911c8826d82385",
+      "funcoes_alteradas_ou_adicionadas": [
+        "empty_field",
+        "valid",
+        "extract"
+      ]
+    },
+    {
+      "arquivo": "Cadastro_Shift_v2/tiss_geometry.py",
+      "sha256_antes": "850f39ca5f96c2629892cb073e49955f03422188b9786098e817f6ca89bf0f30",
+      "sha256_depois": "81b6ff663a098242a29132b2e2c4b9f3880c4ae0e06b88caae91b1276d5b2af5",
+      "funcoes_alteradas_ou_adicionadas": [
+        "header_token",
+        "anchors"
+      ]
+    },
+    {
+      "arquivo": "Cadastro_Shift_v2/tiss_names.py",
+      "sha256_antes": "6fe64c1433a58ad30499992d64aad6fd3d4bc08868862d72026689aa693b65ca",
+      "sha256_depois": "adab760c684faba3ff92e852a863d16ca6a5a34379f8a770da6625732511edf6",
+      "funcoes_alteradas_ou_adicionadas": [
+        "name_words"
+      ]
+    }
+  ],
+  "modulos_python": 73,
+  "inventario": [
+    {
+      "arquivo": "app.py",
+      "linhas": 1122,
+      "sintaxe_valida": true,
+      "imports": [
+        "PIL",
+        "app_v1",
+        "assisted_review",
+        "copy",
+        "csv",
+        "datetime",
+        "document_geometry",
+        "engine_v2",
+        "hashlib",
+        "identity_evidence",
+        "internal_workflow",
+        "json",
+        "ocr_runtime",
+        "page_panel",
+        "pathlib",
+        "payer_mapping",
+        "queue",
+        "reader",
+        "review_workflow",
+        "scan_import",
+        "shutil",
+        "simulador",
+        "threading",
+        "tkinter",
+        "webbrowser",
+        "workbench"
+      ],
+      "definicoes": [
+        "DocumentView",
+        "DocumentView.__init__",
+        "DocumentView.load",
+        "DocumentView.move",
+        "DocumentView.rotate",
+        "DocumentView.scale",
+        "DocumentView.locate",
+        "DocumentView.render",
+        "App",
+        "App.__init__",
+        "App.__init__.page_selected",
+        "App.__init__.blocked_prepare_click",
+        "App.check_ocr",
+        "App.check_ocr.run",
+        "App.finish_ocr_check",
+        "App.ocr_settings_window",
+        "App.ocr_settings_window.choose",
+        "App.ocr_settings_window.auto",
+        "App.ocr_settings_window.test",
+        "App.case_stage",
+        "App.payer_window",
+        "App.payer_window.refresh",
+        "App.payer_window.persist",
+        "App.payer_window.load",
+        "App.payer_window.choose",
+        "App.payer_window.edit",
+        "App.payer_window.edit.save_profile",
+        "App.import_internal",
+        "App.simulation_window",
+        "App.resize_review",
+        "App.guard",
+        "App.callback_failure",
+        "App.cancel_poll",
+        "App.set_text",
+        "App.changed_field",
+        "App.review_changed",
+        "App.live_comparison",
+        "App.update_prepare_state",
+        "App.manual_correction",
+        "App.metadata_ready",
+        "App.explain_prepare",
+        "App.assisted_review",
+        "App._save_pages",
+        "App.restore_seen_pages",
+        "App.correct_page_type",
+        "App.confirm_case_pages",
+        "App.review_fields",
+        "App.collect",
+        "App.dirty",
+        "App.refresh",
+        "App.select",
+        "App.open_case",
+        "App.render_rows",
+        "App.show_comparison",
+        "App.navigate_pending",
+        "App.apply_not_applicable",
+        "App.locate_field",
+        "App.candidate_window",
+        "App.candidate_window.selected",
+        "App.candidate_window.show",
+        "App.candidate_window.choose",
+        "App.locate_source",
+        "App.locate_exam",
+        "App.edit_exam",
+        "App.edit_exam.commit",
+        "App.delete_exam",
+        "App.resolve_issue",
+        "App.check_pages",
+        "App.save",
+        "App.prepare",
+        "App.export",
+        "App.import_scans",
+        "App.import_scans.worker",
+        "App.preserve_navigation",
+        "App.classification_window",
+        "App.classification_window.refresh",
+        "App.classification_window.current",
+        "App.classification_window.select",
+        "App.classification_window.apply",
+        "App.classification_window.approve",
+        "App.classification_window.regroup",
+        "App.classification_window.save",
+        "App.import_pair",
+        "App.import_csv",
+        "App.examples",
+        "App.reanalyze_case",
+        "App.import_pairs",
+        "App.import_pairs.run",
+        "App.update_diagnostic",
+        "App.record_interpretation",
+        "App.record_ui_stage",
+        "App.poll",
+        "App.catalog_window",
+        "App.catalog_window.refresh",
+        "App.catalog_window.install",
+        "App.catalog_window.edit",
+        "App.catalog_window.edit.done",
+        "App.catalog_window.load",
+        "App.catalog_window.equiv",
+        "App.audit_window",
+        "App.legacy",
+        "App.close",
+        "load_manifest"
+      ]
+    },
+    {
+      "arquivo": "app_v1.py",
+      "linhas": 328,
+      "sintaxe_valida": true,
+      "imports": [
+        "PIL",
+        "core",
+        "csv",
+        "datetime",
+        "exporter",
+        "hashlib",
+        "html",
+        "json",
+        "pathlib",
+        "queue",
+        "reader",
+        "threading",
+        "tkinter"
+      ],
+      "definicoes": [
+        "App",
+        "App.__init__",
+        "App.guard",
+        "App.text_set",
+        "App.refresh",
+        "App.select",
+        "App.analyze",
+        "App.save_compare",
+        "App.examples",
+        "App.import_pair",
+        "App.import_csv",
+        "App.import_pairs",
+        "App.import_pairs.work",
+        "App.poll",
+        "App.load_catalog",
+        "App.original",
+        "App.original.render",
+        "App.simulate",
+        "App.export",
+        "App.audit_window"
+      ]
+    },
+    {
+      "arquivo": "assisted_review.py",
+      "linhas": 139,
+      "sintaxe_valida": true,
+      "imports": [
+        "copy",
+        "engine_v2",
+        "tkinter"
+      ],
+      "definicoes": [
+        "ReviewAssistant",
+        "ReviewAssistant.__init__",
+        "ReviewAssistant.__init__.blocked_prepare_click",
+        "ReviewAssistant.__init__.closed",
+        "ReviewAssistant.run",
+        "ReviewAssistant.invalidate",
+        "ReviewAssistant.show",
+        "ReviewAssistant.hide",
+        "ReviewAssistant.pages",
+        "ReviewAssistant.fields",
+        "ReviewAssistant.confirm_pages",
+        "ReviewAssistant.refresh",
+        "ReviewAssistant.edit_exam",
+        "ReviewAssistant.edit_exam.closed",
+        "ReviewAssistant.save",
+        "ReviewAssistant.update_prepare",
+        "ReviewAssistant.configuration",
+        "ReviewAssistant.prepare"
+      ]
+    },
+    {
+      "arquivo": "core.py",
+      "linhas": 212,
+      "sintaxe_valida": true,
+      "imports": [
+        "datetime",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "sqlite3",
+        "unicodedata",
+        "uuid"
+      ],
+      "definicoes": [
+        "norm",
+        "digest",
+        "catalog_load",
+        "parse",
+        "resolve",
+        "compare",
+        "Store",
+        "Store.__init__",
+        "Store.audit",
+        "Store.add",
+        "Store.list",
+        "Store.get",
+        "Store.edit",
+        "Store.simulate",
+        "Store.order"
+      ]
+    },
+    {
+      "arquivo": "diagnostico.py",
+      "linhas": 44,
+      "sintaxe_valida": true,
+      "imports": [
+        "PIL",
+        "engine_v2",
+        "hashlib",
+        "json",
+        "ocr_runtime",
+        "pathlib",
+        "pymupdf",
+        "sys",
+        "tempfile"
+      ],
+      "definicoes": [
+        "main"
+      ]
+    },
+    {
+      "arquivo": "document_classification.py",
+      "linhas": 50,
+      "sintaxe_valida": true,
+      "imports": [
+        "core",
+        "prescription_layout",
+        "re",
+        "tiss_geometry"
+      ],
+      "definicoes": [
+        "classify_page",
+        "document_type"
+      ]
+    },
+    {
+      "arquivo": "document_geometry.py",
+      "linhas": 12,
+      "sintaxe_valida": true,
+      "imports": [],
+      "definicoes": [
+        "rotated_box",
+        "rotated_box.point"
+      ]
+    },
+    {
+      "arquivo": "draft_workflow.py",
+      "linhas": 42,
+      "sintaxe_valida": true,
+      "imports": [
+        "copy",
+        "datetime",
+        "engine_v2",
+        "json",
+        "priority_fields"
+      ],
+      "definicoes": [
+        "build_draft",
+        "save_draft",
+        "load_draft"
+      ]
+    },
+    {
+      "arquivo": "engine_v2.py",
+      "linhas": 606,
+      "sintaxe_valida": true,
+      "imports": [
+        "PIL",
+        "copy",
+        "core",
+        "csv",
+        "datetime",
+        "document_classification",
+        "hashlib",
+        "io",
+        "json",
+        "ocr_processing",
+        "ocr_runtime",
+        "os",
+        "pathlib",
+        "prescription_layout",
+        "professional",
+        "pymupdf",
+        "re",
+        "shutil",
+        "sqlite3",
+        "subprocess",
+        "tempfile",
+        "tiss",
+        "tiss_comparison",
+        "uuid"
+      ],
+      "definicoes": [
+        "ocr_words",
+        "_ocr_once",
+        "group_lines",
+        "usable",
+        "detect_document_type",
+        "document_diagnostics",
+        "read_document",
+        "read_document.page_data",
+        "catalog_load",
+        "resolve_exam",
+        "layout_lines",
+        "labeled_lines",
+        "parse_document",
+        "compare_models",
+        "review_errors",
+        "CaseStore",
+        "CaseStore.__init__",
+        "CaseStore.audit",
+        "CaseStore.add",
+        "CaseStore.get",
+        "CaseStore.save",
+        "CaseStore.prepare"
+      ]
+    },
+    {
+      "arquivo": "exporter.py",
+      "linhas": 20,
+      "sintaxe_valida": true,
+      "imports": [
+        "html",
+        "json"
+      ],
+      "definicoes": [
+        "export_order"
+      ]
+    },
+    {
+      "arquivo": "gerar_exemplos_250.py",
+      "linhas": 58,
+      "sintaxe_valida": true,
+      "imports": [
+        "gerar_exemplos_2_4",
+        "gerar_exemplos_tiss",
+        "hashlib",
+        "json",
+        "pathlib",
+        "pymupdf"
+      ],
+      "definicoes": [
+        "order",
+        "guide",
+        "main"
+      ]
+    },
+    {
+      "arquivo": "gerar_exemplos_2_4.py",
+      "linhas": 69,
+      "sintaxe_valida": true,
+      "imports": [
+        "PIL",
+        "gerar_exemplos_tiss",
+        "io",
+        "pathlib",
+        "pymupdf"
+      ],
+      "definicoes": [
+        "dense_guide",
+        "dense_guide.field",
+        "combine",
+        "raster",
+        "main"
+      ]
+    },
+    {
+      "arquivo": "gerar_exemplos_2_4_2.py",
+      "linhas": 36,
+      "sintaxe_valida": true,
+      "imports": [
+        "gerar_exemplos_2_4",
+        "gerar_exemplos_tiss",
+        "pathlib",
+        "pymupdf"
+      ],
+      "definicoes": [
+        "main"
+      ]
+    },
+    {
+      "arquivo": "gerar_exemplos_auditoria.py",
+      "linhas": 62,
+      "sintaxe_valida": true,
+      "imports": [
+        "gerar_exemplos_2_4",
+        "gerar_exemplos_tiss",
+        "json",
+        "pathlib",
+        "pymupdf"
+      ],
+      "definicoes": [
+        "order",
+        "guide",
+        "main"
+      ]
+    },
+    {
+      "arquivo": "gerar_exemplos_carimbo.py",
+      "linhas": 33,
+      "sintaxe_valida": true,
+      "imports": [
+        "gerar_exemplos_2_4",
+        "gerar_exemplos_tiss",
+        "json",
+        "pathlib",
+        "pymupdf"
+      ],
+      "definicoes": [
+        "order",
+        "main"
+      ]
+    },
+    {
+      "arquivo": "gerar_exemplos_correcao.py",
+      "linhas": 21,
+      "sintaxe_valida": true,
+      "imports": [
+        "gerar_exemplos_v2",
+        "io",
+        "pathlib",
+        "pymupdf"
+      ],
+      "definicoes": [
+        "main"
+      ]
+    },
+    {
+      "arquivo": "gerar_exemplos_tiss.py",
+      "linhas": 70,
+      "sintaxe_valida": true,
+      "imports": [
+        "PIL",
+        "io",
+        "json",
+        "pathlib",
+        "pymupdf"
+      ],
+      "definicoes": [
+        "make_guide",
+        "make_guide.table",
+        "make_order",
+        "catalog",
+        "main"
+      ]
+    },
+    {
+      "arquivo": "gerar_exemplos_v2.py",
+      "linhas": 46,
+      "sintaxe_valida": true,
+      "imports": [
+        "PIL",
+        "io",
+        "pathlib",
+        "pymupdf"
+      ],
+      "definicoes": [
+        "text_pdf",
+        "scan",
+        "main"
+      ]
+    },
+    {
+      "arquivo": "identity_evidence.py",
+      "linhas": 58,
+      "sintaxe_valida": true,
+      "imports": [
+        "core",
+        "datetime",
+        "re"
+      ],
+      "definicoes": [
+        "value",
+        "identifier",
+        "names_compatible",
+        "conflicts",
+        "compatible",
+        "full_name"
+      ]
+    },
+    {
+      "arquivo": "instalacao_aux.py",
+      "linhas": 49,
+      "sintaxe_valida": true,
+      "imports": [
+        "ocr_runtime",
+        "pathlib",
+        "sys",
+        "tkinter"
+      ],
+      "definicoes": [
+        "main"
+      ]
+    },
+    {
+      "arquivo": "instalar_local.py",
+      "linhas": 21,
+      "sintaxe_valida": true,
+      "imports": [
+        "pathlib",
+        "subprocess",
+        "sys"
+      ],
+      "definicoes": [
+        "main"
+      ]
+    },
+    {
+      "arquivo": "internal_workflow.py",
+      "linhas": 25,
+      "sintaxe_valida": true,
+      "imports": [
+        "copy",
+        "core",
+        "payer_mapping"
+      ],
+      "definicoes": [
+        "build_internal"
+      ]
+    },
+    {
+      "arquivo": "ocr_processing.py",
+      "linhas": 90,
+      "sintaxe_valida": true,
+      "imports": [
+        "PIL",
+        "core",
+        "math",
+        "ocr_regions"
+      ],
+      "definicoes": [
+        "union_box",
+        "source_box",
+        "projection_score",
+        "deskew_angle",
+        "recognize_page",
+        "recognize_page.inverse"
+      ]
+    },
+    {
+      "arquivo": "ocr_regions.py",
+      "linhas": 40,
+      "sintaxe_valida": true,
+      "imports": [
+        "PIL",
+        "engine_v2",
+        "statistics",
+        "subprocess",
+        "tiss_geometry"
+      ],
+      "definicoes": [
+        "collect_regions"
+      ]
+    },
+    {
+      "arquivo": "ocr_runtime.py",
+      "linhas": 193,
+      "sintaxe_valida": true,
+      "imports": [
+        "PIL",
+        "json",
+        "os",
+        "pathlib",
+        "shutil",
+        "subprocess",
+        "tempfile",
+        "winreg"
+      ],
+      "definicoes": [
+        "LocalReadError",
+        "settings_file",
+        "load_settings",
+        "save_settings",
+        "registry_candidates",
+        "candidate_executables",
+        "tesseract_exe",
+        "run_local",
+        "ocr_configuration",
+        "check_ocr_health",
+        "safe_failure"
+      ]
+    },
+    {
+      "arquivo": "page_panel.py",
+      "linhas": 58,
+      "sintaxe_valida": true,
+      "imports": [
+        "PIL",
+        "copy",
+        "pathlib",
+        "reader",
+        "tkinter"
+      ],
+      "definicoes": [
+        "PagePanel",
+        "PagePanel.__init__",
+        "PagePanel.clear",
+        "PagePanel.load",
+        "PagePanel.select",
+        "PagePanel.opened"
+      ]
+    },
+    {
+      "arquivo": "payer_mapping.py",
+      "linhas": 78,
+      "sintaxe_valida": true,
+      "imports": [
+        "copy",
+        "core",
+        "datetime",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "definicoes": [
+        "validate_profile",
+        "mark_not_applicable",
+        "load_profiles",
+        "map_payer"
+      ]
+    },
+    {
+      "arquivo": "prescription_layout.py",
+      "linhas": 55,
+      "sintaxe_valida": true,
+      "imports": [
+        "core",
+        "re",
+        "tiss_geometry"
+      ],
+      "definicoes": [
+        "evidence",
+        "doctor_name",
+        "stamped_names"
+      ]
+    },
+    {
+      "arquivo": "priority_fields.py",
+      "linhas": 28,
+      "sintaxe_valida": true,
+      "imports": [
+        "identity_evidence"
+      ],
+      "definicoes": [
+        "field_state",
+        "state_label",
+        "source_role"
+      ]
+    },
+    {
+      "arquivo": "professional.py",
+      "linhas": 52,
+      "sintaxe_valida": true,
+      "imports": [
+        "copy",
+        "core",
+        "ocr_processing",
+        "prescription_layout",
+        "re",
+        "tiss",
+        "tiss_geometry"
+      ],
+      "definicoes": [
+        "free_identification",
+        "reconcile"
+      ]
+    },
+    {
+      "arquivo": "reader.py",
+      "linhas": 85,
+      "sintaxe_valida": true,
+      "imports": [
+        "PIL",
+        "hashlib",
+        "io",
+        "ocr_runtime",
+        "os",
+        "pathlib",
+        "pymupdf",
+        "shutil",
+        "subprocess",
+        "tempfile"
+      ],
+      "definicoes": [
+        "ocr",
+        "read",
+        "preview"
+      ]
+    },
+    {
+      "arquivo": "review_workflow.py",
+      "linhas": 35,
+      "sintaxe_valida": true,
+      "imports": [],
+      "definicoes": [
+        "review_plan",
+        "review_plan.add"
+      ]
+    },
+    {
+      "arquivo": "rpa_bloqueado.py",
+      "linhas": 6,
+      "sintaxe_valida": true,
+      "imports": [],
+      "definicoes": [
+        "ShiftRPA",
+        "ShiftRPA.enviar"
+      ]
+    },
+    {
+      "arquivo": "scan_import.py",
+      "linhas": 290,
+      "sintaxe_valida": true,
+      "imports": [
+        "copy",
+        "core",
+        "datetime",
+        "document_classification",
+        "engine_v2",
+        "hashlib",
+        "identity_evidence",
+        "json",
+        "ocr_runtime",
+        "pathlib",
+        "re",
+        "tiss",
+        "uuid"
+      ],
+      "definicoes": [
+        "classify",
+        "read_scan",
+        "merge_reprocessed",
+        "group_fingerprint",
+        "assess_group",
+        "confirm_group",
+        "apply_identity_edits",
+        "_merged_fields",
+        "build_cases",
+        "preserve_manual",
+        "save_batch",
+        "load_batch"
+      ]
+    },
+    {
+      "arquivo": "simulador.py",
+      "linhas": 77,
+      "sintaxe_valida": true,
+      "imports": [
+        "core",
+        "http.server",
+        "json",
+        "pathlib",
+        "threading",
+        "time",
+        "uuid",
+        "webbrowser"
+      ],
+      "definicoes": [
+        "SimulatedShift",
+        "SimulatedShift.__init__",
+        "SimulatedShift.search",
+        "SimulatedShift.confirm",
+        "SimulatedShift.doctor",
+        "SimulatedShift.create_patient",
+        "SimulatedShift.prepare",
+        "start_simulator",
+        "start_simulator.Handler",
+        "start_simulator.Handler.log_message",
+        "start_simulator.Handler.send_json",
+        "start_simulator.Handler.do_GET",
+        "start_simulator.Handler.do_POST",
+        "start_simulator.Running",
+        "start_simulator.Running.close"
+      ]
+    },
+    {
+      "arquivo": "tests/test_auditoria_244.py",
+      "linhas": 103,
+      "sintaxe_valida": true,
+      "imports": [
+        "copy",
+        "engine_v2",
+        "gerar_exemplos_auditoria",
+        "gerar_exemplos_tiss",
+        "pathlib",
+        "payer_mapping",
+        "pymupdf",
+        "scan_import",
+        "tempfile",
+        "tests.test_mapping_sim",
+        "tiss",
+        "tiss_refinement",
+        "unittest"
+      ],
+      "definicoes": [
+        "Auditoria244",
+        "Auditoria244.setUpClass",
+        "Auditoria244.tearDownClass",
+        "Auditoria244.setUp",
+        "Auditoria244.tearDown",
+        "Auditoria244.model",
+        "Auditoria244.batch",
+        "Auditoria244.test_01_quatro_paginas_tipos_e_uma_ficha",
+        "Auditoria244.test_02_ordem_invertida",
+        "Auditoria244.test_03_nome_completo_particulas_e_origem",
+        "Auditoria244.test_04_campos_16_17_18_cbo_e_tamanhos",
+        "Auditoria244.test_05_guia_incompleta_nao_inventa",
+        "Auditoria244.test_06_cinco_exames_quantidades_separadas",
+        "Auditoria244.test_07_ajustes_e_perfil_persistem_apos_classificacao",
+        "Auditoria244.test_08_conflito_bloqueado",
+        "Auditoria244.test_09_incerto_nao_vira_pedido",
+        "Auditoria244.test_apenas_dois_rotulos_de_nome_nao_confirmam_guia",
+        "Auditoria244.test_10_pedido_com_campos_tiss_preserva_tipo_campos_lista",
+        "Auditoria244.test_campos_tiss_gabarito_completo",
+        "Auditoria244.test_carimbo_divergente_nao_vira_sexto_exame",
+        "Auditoria244.test_uf_ausente_nao_inventa_go",
+        "Auditoria244.test_catalogo_sem_interno_nao_aceita_tuss_de_outro_exame",
+        "Auditoria244.test_sobrenome_e_nascimento_sozinhos_nao_associam",
+        "Auditoria244.test_correcao_manual_de_crm_ou_uf_invalida_bloqueia",
+        "Auditoria244.test_nao_aplicavel_exige_regra_e_nao_dispensa_autorizacao",
+        "Auditoria244.test_dois_consensos_divergentes_exigem_conferencia"
+      ]
+    },
+    {
+      "arquivo": "tests/test_auditoria_gui_244.py",
+      "linhas": 78,
+      "sintaxe_valida": true,
+      "imports": [
+        "app",
+        "gerar_exemplos_auditoria",
+        "gerar_exemplos_tiss",
+        "json",
+        "os",
+        "pathlib",
+        "tempfile",
+        "tests.test_grouping_gui_242",
+        "tests.test_mapping_sim",
+        "time",
+        "tkinter",
+        "unittest",
+        "unittest.mock"
+      ],
+      "definicoes": [
+        "AuditoriaGUI244",
+        "AuditoriaGUI244.setUpClass",
+        "AuditoriaGUI244.tearDownClass",
+        "AuditoriaGUI244.assertEqual",
+        "AuditoriaGUI244.setUp",
+        "AuditoriaGUI244.tearDown",
+        "AuditoriaGUI244.import_pdf",
+        "AuditoriaGUI244.pending",
+        "AuditoriaGUI244.finish",
+        "AuditoriaGUI244.test_quatro_paginas_campos17_cbo_visiveis_ate_pre_cadastro",
+        "AuditoriaGUI244.test_corrigir_crm_salvar_resolve_e_avanca",
+        "AuditoriaGUI244.test_resolver_quantidade_por_botao_atualiza_e_avanca",
+        "AuditoriaGUI244.test_nao_aplicavel_homologado_persiste_sem_dispensar_senha",
+        "AuditoriaGUI244.test_botao_confirmar_nao_aprova_identificadores_incompativeis",
+        "AuditoriaGUI244.test_botao_confirmar_nao_aprova_identificadores_incompativeis.buttons",
+        "AuditoriaGUI244.test_pdf_girado_ocr_preenche_crm_go_e_cbo"
+      ]
+    },
+    {
+      "arquivo": "tests/test_carimbo_245.py",
+      "linhas": 52,
+      "sintaxe_valida": true,
+      "imports": [
+        "copy",
+        "engine_v2",
+        "gerar_exemplos_carimbo",
+        "gerar_exemplos_tiss",
+        "pathlib",
+        "scan_import",
+        "tempfile",
+        "tests.test_mapping_sim",
+        "unittest"
+      ],
+      "definicoes": [
+        "Carimbo245",
+        "Carimbo245.setUpClass",
+        "Carimbo245.tearDownClass",
+        "Carimbo245.setUp",
+        "Carimbo245.tearDown",
+        "Carimbo245.batch",
+        "Carimbo245.test_pedido_sem_titulo_com_carimbo_e_exames_sem_catalogo",
+        "Carimbo245.test_guia_com_carimbo_continua_guia_e_ordem_invertida",
+        "Carimbo245.test_carimbo_em_consentimento_receita_e_sem_lista_nao_basta",
+        "Carimbo245.test_quantidade_ausente_nao_e_inventada",
+        "Carimbo245.test_prefixo_dra_nao_cria_divergencia_mas_nome_diferente_bloqueia",
+        "Carimbo245.test_reprocessamento_corrige_classificacao_antiga_automatica",
+        "Carimbo245.test_reprocessamento_preserva_correcao_humana_explicita",
+        "Carimbo245.test_quatro_paginas_uma_ficha_sem_confundir_continuacao",
+        "Carimbo245.test_ocr_real_pedido_girado_carimbo_e_lista"
+      ]
+    },
+    {
+      "arquivo": "tests/test_conferencia_gui_245.py",
+      "linhas": 75,
+      "sintaxe_valida": true,
+      "imports": [
+        "app",
+        "gerar_exemplos_carimbo",
+        "gerar_exemplos_tiss",
+        "os",
+        "pathlib",
+        "tempfile",
+        "tests.test_mapping_sim",
+        "time",
+        "tkinter",
+        "unittest",
+        "unittest.mock"
+      ],
+      "definicoes": [
+        "Conferencia245",
+        "Conferencia245.setUpClass",
+        "Conferencia245.tearDownClass",
+        "Conferencia245.setUp",
+        "Conferencia245.tearDown",
+        "Conferencia245.import_pdf",
+        "Conferencia245.see_and_confirm",
+        "Conferencia245.assistant",
+        "Conferencia245.checked",
+        "Conferencia245.test_falta_revisor_ou_motivo_destaca_e_foca_o_campo_sem_salvar",
+        "Conferencia245.test_fluxo_carimbo_ate_pre_cadastro_sem_mutar_validadores",
+        "Conferencia245.test_erro_metadado_no_assistente_mostra_o_campo_dentro_da_janela",
+        "Conferencia245.test_conferencia_salva_mas_autorizacao_zero_continua_bloqueada",
+        "Conferencia245.test_sem_catalogo_nao_inventa_codigo_e_explicita_configuracao",
+        "Conferencia245.test_quatro_paginas_confirmacao_simplificada_preserva_vistas",
+        "Conferencia245.test_motivo_editado_apos_salvar_exige_novo_salvamento",
+        "Conferencia245.test_exemplo_ficticio_completo_sem_configurar_shift"
+      ]
+    },
+    {
+      "arquivo": "tests/test_core.py",
+      "linhas": 134,
+      "sintaxe_valida": true,
+      "imports": [
+        "copy",
+        "core",
+        "datetime",
+        "exporter",
+        "json",
+        "pathlib",
+        "reader",
+        "sqlite3",
+        "tempfile",
+        "unittest",
+        "unittest.mock"
+      ],
+      "definicoes": [
+        "Workflow",
+        "Workflow.setUp",
+        "Workflow.tearDown",
+        "Workflow.add",
+        "Workflow.run_order",
+        "Workflow.test_happy_path_and_labels",
+        "Workflow.test_review_required",
+        "Workflow.test_import_duplicate",
+        "Workflow.test_business_duplicate_different_document_bytes",
+        "Workflow.test_identity_and_optional_birth",
+        "Workflow.test_authorization_checks",
+        "Workflow.test_unknown_code_negation_and_duplicate",
+        "Workflow.test_ambiguous_catalog",
+        "Workflow.test_missing_marker_and_prose",
+        "Workflow.test_stale_revision_and_audit",
+        "Workflow.test_catalog_changed",
+        "Workflow.test_repeat_simulate",
+        "Workflow.test_catalog_real_code_rejected",
+        "Workflow.test_pdf_and_text",
+        "Workflow.test_mixed_pdf_ocr_per_page",
+        "Workflow.test_html_escaped",
+        "Workflow.test_data_survives_restart",
+        "Workflow.test_import_and_simulation_offline"
+      ]
+    },
+    {
+      "arquivo": "tests/test_fluxo_interface.py",
+      "linhas": 106,
+      "sintaxe_valida": true,
+      "imports": [
+        "app",
+        "engine_v2",
+        "os",
+        "pathlib",
+        "tempfile",
+        "test_v2",
+        "time",
+        "tkinter",
+        "unittest",
+        "unittest.mock"
+      ],
+      "definicoes": [
+        "FluxoCompleto",
+        "FluxoCompleto.setUp",
+        "FluxoCompleto.tearDown",
+        "FluxoCompleto.import_and_wait",
+        "FluxoCompleto.pair",
+        "FluxoCompleto.test_importacao_dialogos_ocr_preenche_campos_visiveis",
+        "FluxoCompleto.test_inversao_identificada_e_corrigida_pelos_titulos",
+        "FluxoCompleto.test_reabrir_caso_restaura_campos_e_diagnostico",
+        "FluxoCompleto.test_ocr_ausente_erro_no_painel_e_sem_aprovacao",
+        "FluxoCompleto.test_erro_inesperado_worker_libera_estado_sem_dados_nos_logs",
+        "FluxoCompleto.test_quantidade_codigo_divergentes_visiveis_bloqueiam"
+      ]
+    },
+    {
+      "arquivo": "tests/test_grouping_242.py",
+      "linhas": 112,
+      "sintaxe_valida": true,
+      "imports": [
+        "copy",
+        "engine_v2",
+        "gerar_exemplos_2_4_2",
+        "gerar_exemplos_tiss",
+        "json",
+        "pathlib",
+        "pymupdf",
+        "scan_import",
+        "tempfile",
+        "tiss",
+        "unittest"
+      ],
+      "definicoes": [
+        "Grouping242",
+        "Grouping242.setUpClass",
+        "Grouping242.tearDownClass",
+        "Grouping242.setUp",
+        "Grouping242.tearDown",
+        "Grouping242.read",
+        "Grouping242.acknowledge",
+        "Grouping242.test_quatro_paginas_uma_ficha_provisoria_sem_perder_pagina",
+        "Grouping242.test_conferencia_explicita_resolve_agrupamento_sem_resolver_outros_bloqueios",
+        "Grouping242.test_confirmacao_sem_ver_paginas_ou_sem_identificadores_bloqueada",
+        "Grouping242.test_conflito_nao_e_liberado_por_checkbox_motivo_ou_edicao_na_ficha",
+        "Grouping242.test_modo_varios_pacientes_nao_junta_pacientes_por_arquivo",
+        "Grouping242.test_nome_parcial_com_identificador_confere_sem_nome_isolado_associar",
+        "Grouping242.test_campos_tiss_todos_com_origem_sem_troca_de_numero",
+        "Grouping242.test_movimentar_paginas_sem_reimportar_preserva_original_e_historico",
+        "Grouping242.test_movimentacao_ou_correcao_revoga_confirmacao_anterior",
+        "Grouping242.test_correcao_ocr_por_pagina_com_origem_e_historico",
+        "Grouping242.test_duplicidade_e_remocao_de_paginas_bloqueadas",
+        "Grouping242.test_reunir_lote_antigo_sem_ocr_novo",
+        "Grouping242.test_nome_inteiro_com_espacos_sem_absorver_controle_vizinho",
+        "Grouping242.test_nome_completo_impresso_na_continuacao_prevalece_sem_montar_nomes",
+        "Grouping242.test_corrige_identificacao_de_lote_24_sem_campos_novos"
+      ]
+    },
+    {
+      "arquivo": "tests/test_grouping_gui_242.py",
+      "linhas": 115,
+      "sintaxe_valida": true,
+      "imports": [
+        "app",
+        "copy",
+        "gerar_exemplos_2_4_2",
+        "gerar_exemplos_tiss",
+        "os",
+        "pathlib",
+        "scan_import",
+        "tempfile",
+        "tests.test_mapping_sim",
+        "time",
+        "tkinter",
+        "unittest",
+        "unittest.mock"
+      ],
+      "definicoes": [
+        "GroupingGUI242",
+        "GroupingGUI242.setUpClass",
+        "GroupingGUI242.tearDownClass",
+        "GroupingGUI242.setUp",
+        "GroupingGUI242.tearDown",
+        "GroupingGUI242.wait",
+        "GroupingGUI242.import_pdf",
+        "GroupingGUI242.see_pages",
+        "GroupingGUI242.grouping_review",
+        "GroupingGUI242.clinical_review",
+        "GroupingGUI242.test_quatro_paginas_mesma_ficha_campos_visiveis_ate_preparo",
+        "GroupingGUI242.test_conflito_impede_confirmacao_e_mover_pagina_resolve_separacao",
+        "GroupingGUI242.test_reprocessamento_preserva_paginas_e_modo_revoga_aprovacao",
+        "GroupingGUI242.test_regroup_lote_anterior_sem_reimportar_e_sem_perda",
+        "GroupingGUI242.test_modo_varios_pacientes_e_duplicidade",
+        "GroupingGUI242.test_ocr_real_quatro_paginas_preenche_campos_e_tabela",
+        "GroupingGUI242.test_corrigir_identificacao_pela_interface_e_reprocessar_preserva_historico",
+        "GroupingGUI242.test_setas_do_visualizador_mantem_pagina_tipo_e_revisao_sincronizados"
+      ]
+    },
+    {
+      "arquivo": "tests/test_gui_v2.py",
+      "linhas": 53,
+      "sintaxe_valida": true,
+      "imports": [
+        "PIL",
+        "app",
+        "copy",
+        "engine_v2",
+        "json",
+        "os",
+        "pathlib",
+        "tempfile",
+        "time",
+        "tkinter",
+        "unittest",
+        "unittest.mock"
+      ],
+      "definicoes": [
+        "Interface",
+        "Interface.setUp",
+        "Interface.tearDown",
+        "Interface.test_import_review_prepare_and_export",
+        "Interface.test_paging_zoom_source_and_field_invalidation"
+      ]
+    },
+    {
+      "arquivo": "tests/test_layout_v2.py",
+      "linhas": 27,
+      "sintaxe_valida": true,
+      "imports": [
+        "engine_v2",
+        "pathlib",
+        "pymupdf",
+        "tempfile",
+        "unittest"
+      ],
+      "definicoes": [
+        "Layout",
+        "Layout.test_parallel_tables",
+        "Layout.test_label_above_value",
+        "Layout.test_wrapped_description"
+      ]
+    },
+    {
+      "arquivo": "tests/test_mapping_sim.py",
+      "linhas": 78,
+      "sintaxe_valida": true,
+      "imports": [
+        "copy",
+        "engine_v2",
+        "gerar_exemplos_tiss",
+        "internal_workflow",
+        "pathlib",
+        "payer_mapping",
+        "simulador",
+        "tempfile",
+        "unittest"
+      ],
+      "definicoes": [
+        "profile",
+        "Mapping",
+        "Mapping.setUp",
+        "Mapping.tearDown",
+        "Mapping.test_mapeamento_explicito_nao_confunde_campos",
+        "Mapping.test_perfil_nao_homologado_ou_fonte_divergente_bloqueiam",
+        "Mapping.test_valor_tecnico_exige_aprovacao",
+        "Mapping.test_interno_sem_guia_somente_no_escopo_aprovado",
+        "Mapping.test_interno_nao_dispensa_outro_procedimento",
+        "Simulation",
+        "Simulation.setUp",
+        "Simulation.test_nome_isolado_e_identificadores_divergentes",
+        "Simulation.test_confirmacao_medico_anexos_e_duplicidade",
+        "Simulation.test_paciente_novo_somente_confirmado_sem_duplicar",
+        "ExplicitStatus",
+        "ExplicitStatus.test_status_negado_bloqueia_mesmo_com_quantidade_positiva",
+        "ExplicitStatus.test_operadora_nao_substitui_fonte_pagadora"
+      ]
+    },
+    {
+      "arquivo": "tests/test_modern_core_250.py",
+      "linhas": 79,
+      "sintaxe_valida": true,
+      "imports": [
+        "copy",
+        "core",
+        "draft_workflow",
+        "engine_v2",
+        "gerar_exemplos_250",
+        "gerar_exemplos_tiss",
+        "pathlib",
+        "pymupdf",
+        "scan_import",
+        "tempfile",
+        "tiss",
+        "unittest"
+      ],
+      "definicoes": [
+        "ModernCore250",
+        "ModernCore250.setUpClass",
+        "ModernCore250.tearDownClass",
+        "ModernCore250.setUp",
+        "ModernCore250.tearDown",
+        "ModernCore250.model",
+        "ModernCore250.batch",
+        "ModernCore250.test_11_campos_mais_conselho_com_valores_origem_zeros",
+        "ModernCore250.test_contratado_executante_nao_e_medico_e_fica_apos_tabela",
+        "ModernCore250.test_campo23_multilinha_nao_inclui_cabecalho_e_nao_vira_exame",
+        "ModernCore250.test_quatro_estados_vazio_incerto_nao_encontrado_identificado",
+        "ModernCore250.test_numero_conselho_separado_nao_e_cbo",
+        "ModernCore250.test_nome_empresarial_nao_usa_restricoes_de_nome_de_pessoa",
+        "ModernCore250.test_rotulos_fundidos_sem_numero_sao_localizados",
+        "ModernCore250.test_pdf_quatro_paginas_dois_pacientes_gera_dois_atendimentos",
+        "ModernCore250.test_so_guia_nao_cria_pedido_ou_exames_solicitados",
+        "ModernCore250.test_rascunho_com_campos_vazios_nao_prepara_ou_autoriza",
+        "ModernCore250.test_rascunho_restaura_correcao_e_nao_sobrepoe_revisao_nova",
+        "ModernCore250.test_ocr_real_guia_girada_dos_campos_prioritarios"
+      ]
+    },
+    {
+      "arquivo": "tests/test_ocr_config.py",
+      "linhas": 141,
+      "sintaxe_valida": true,
+      "imports": [
+        "engine_v2",
+        "instalacao_aux",
+        "io",
+        "json",
+        "ocr_runtime",
+        "os",
+        "pathlib",
+        "pymupdf",
+        "shutil",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "test_v2",
+        "unittest",
+        "unittest.mock"
+      ],
+      "definicoes": [
+        "OCRConfiguravel",
+        "OCRConfiguravel.setUp",
+        "OCRConfiguravel.tearDown",
+        "OCRConfiguravel.portable",
+        "OCRConfiguravel.test_autodetecta_downloads_sem_path_nem_nome_de_usuario_fixo",
+        "OCRConfiguravel.test_caminhos_comuns_e_registro",
+        "OCRConfiguravel.test_configuracao_salva_reabre_em_outro_processo",
+        "OCRConfiguravel.test_caminho_invalido_nao_sobrescreve_configuracao",
+        "OCRConfiguravel.test_configuracao_corrompida_tem_erro_visivel_sem_conteudo",
+        "OCRConfiguravel.test_appdata_independe_da_pasta_da_versao",
+        "OCRConfiguravel.test_executavel_movido_faz_fallback_para_instalacao_disponivel",
+        "OCRConfiguravel.test_idioma_ingles_ausente_nao_fica_verde",
+        "OCRConfiguravel.test_arquivo_que_nao_e_executavel_nao_fica_verde",
+        "OCRConfiguravel.test_mecanismo_precisa_ler_imagem_para_ficar_verde",
+        "OCRConfiguravel.test_saude_real_sem_rede_nos_tres_modos",
+        "OCRConfiguravel.test_executavel_escolhido_le_imagem_e_pdf_escaneado",
+        "OCRConfiguravel.test_argumentos_windows_sem_janela_sem_shell",
+        "OCRConfiguravel.test_auxiliar_instalador_sem_python_embutido"
+      ]
+    },
+    {
+      "arquivo": "tests/test_ocr_config_gui.py",
+      "linhas": 142,
+      "sintaxe_valida": true,
+      "imports": [
+        "PIL",
+        "app",
+        "json",
+        "ocr_runtime",
+        "os",
+        "pathlib",
+        "shutil",
+        "tempfile",
+        "test_v2",
+        "time",
+        "tkinter",
+        "unittest",
+        "unittest.mock"
+      ],
+      "definicoes": [
+        "ConfiguracaoNaInterface",
+        "ConfiguracaoNaInterface.setUp",
+        "ConfiguracaoNaInterface.tearDown",
+        "ConfiguracaoNaInterface.wait",
+        "ConfiguracaoNaInterface.select_and_test",
+        "ConfiguracaoNaInterface.test_seleciona_salva_reabre_e_importa_scan",
+        "ConfiguracaoNaInterface.test_falha_nao_salva_nem_fica_verde",
+        "ConfiguracaoNaInterface.test_reiniciar_programa_reutiliza_caminho_salvo",
+        "ConfiguracaoNaInterface.test_ausente_mostra_estado_visivel_e_nao_impede_abrir_configuracoes",
+        "ConfiguracaoNaInterface.test_selecao_cancelada_preserva_caminho",
+        "ConfiguracaoNaInterface.test_localizar_automaticamente_preenche_downloads",
+        "ConfiguracaoNaInterface.test_reanalisa_atendimento_com_ocr_antes_ausente_sem_duplicar",
+        "ConfiguracaoNaInterface.test_reanalise_cancelada_preserva_atendimento"
+      ]
+    },
+    {
+      "arquivo": "tests/test_regions_243.py",
+      "linhas": 82,
+      "sintaxe_valida": true,
+      "imports": [
+        "copy",
+        "document_geometry",
+        "engine_v2",
+        "gerar_exemplos_tiss",
+        "pathlib",
+        "pymupdf",
+        "tempfile",
+        "tiss",
+        "tiss_geometry",
+        "tiss_names",
+        "unittest"
+      ],
+      "definicoes": [
+        "Regions243",
+        "Regions243.setUp",
+        "Regions243.tearDown",
+        "Regions243.guide",
+        "Regions243.regional",
+        "Regions243.test_guia_ausente_recuperada_por_duas_leituras_com_origem",
+        "Regions243.test_leituras_divergentes_nao_escolhem_identificador",
+        "Regions243.test_uma_leitura_nao_preenche_campo_ausente",
+        "Regions243.test_autorizacao_zero_lida_na_regiao_nao_vira_um",
+        "Regions243.test_execucao_nao_supre_autorizacao_ausente",
+        "Regions243.test_sobrenome_nascimento_nao_e_data_e_rodape_limita_data",
+        "Regions243.test_cabecalho_abaixo_do_nome_nao_e_sobrenome",
+        "Regions243.test_letra_isolada_em_outra_coluna_nao_e_nome",
+        "Regions243.test_palavra_que_cruza_borda_pertence_a_coluna_do_centro",
+        "Regions243.test_rotulos_fundidos_sao_expandidos_sem_mudar_valores",
+        "Regions243.test_caixas_ao_girar_visualizacao_referenciam_original",
+        "Regions243.test_data_validade_nao_pode_virar_senha",
+        "Regions243.test_identificador_nao_aceita_data_de_campo_vizinho"
+      ]
+    },
+    {
+      "arquivo": "tests/test_regions_gui_243.py",
+      "linhas": 37,
+      "sintaxe_valida": true,
+      "imports": [
+        "app",
+        "copy",
+        "engine_v2",
+        "gerar_exemplos_tiss",
+        "os",
+        "pathlib",
+        "tempfile",
+        "time",
+        "tiss",
+        "tkinter",
+        "unittest",
+        "unittest.mock"
+      ],
+      "definicoes": [
+        "RegionGUI243",
+        "RegionGUI243.setUp",
+        "RegionGUI243.tearDown",
+        "RegionGUI243.test_candidatos_exigem_escolha_humana_e_nao_aprovam_cadastro",
+        "RegionGUI243.test_visualizacao_gira_sem_mudar_arquivo_e_preserva_origem",
+        "RegionGUI243.test_codigo_numerico_nao_mapeado_nao_pode_ser_usado_como_conselho"
+      ]
+    },
+    {
+      "arquivo": "tests/test_regressao_2_4_1.py",
+      "linhas": 50,
+      "sintaxe_valida": true,
+      "imports": [
+        "engine_v2",
+        "pathlib",
+        "pymupdf",
+        "scan_import",
+        "tempfile",
+        "unittest"
+      ],
+      "definicoes": [
+        "Regressao241",
+        "Regressao241.test_nome_composto_na_mesma_linha_com_espaco_grande",
+        "Regressao241.test_pagina_incerta_nao_se_torna_pedido_automaticamente"
+      ]
+    },
+    {
+      "arquivo": "tests/test_regressao_leitura.py",
+      "linhas": 169,
+      "sintaxe_valida": true,
+      "imports": [
+        "PIL",
+        "core",
+        "engine_v2",
+        "io",
+        "json",
+        "ocr_runtime",
+        "os",
+        "pathlib",
+        "pymupdf",
+        "reader",
+        "subprocess",
+        "tempfile",
+        "test_v2",
+        "unittest",
+        "unittest.mock"
+      ],
+      "definicoes": [
+        "LeituraCorrigida",
+        "LeituraCorrigida.setUp",
+        "LeituraCorrigida.tearDown",
+        "LeituraCorrigida.read_model",
+        "LeituraCorrigida.test_pdf_sem_dois_pontos_preenche_campos",
+        "LeituraCorrigida.test_curto_digital_nao_exige_ocr",
+        "LeituraCorrigida.test_rotulos_acima_em_colunas",
+        "LeituraCorrigida.test_campo_conflitante_nao_escolhe_um_paciente",
+        "LeituraCorrigida.test_status_ausente_bloqueia",
+        "LeituraCorrigida.test_ocr_real_bilingue_caminho_unicode",
+        "LeituraCorrigida.test_portugues_ingles_disponiveis_prefixo_externo_ignorado",
+        "LeituraCorrigida.test_executavel_windows_configurado_entre_aspas",
+        "LeituraCorrigida.test_idiomas_incompletos_diagnosticados",
+        "LeituraCorrigida.test_saida_tsv_invalida_nao_passa_em_silencio",
+        "LeituraCorrigida.test_timeout_e_erro_com_dados_nao_vazam",
+        "LeituraCorrigida.test_sem_ocr_digital_funciona_imagem_falha_visivel",
+        "LeituraCorrigida.test_logs_sem_dados_revisoes_locais_preservadas",
+        "LeituraCorrigida.test_ocr_v1_preservado_sem_prefixo_global",
+        "LeituraCorrigida.test_auditoria_demo_v1_tambem_sem_dados_identificaveis"
+      ]
+    },
+    {
+      "arquivo": "tests/test_scan_gui.py",
+      "linhas": 119,
+      "sintaxe_valida": true,
+      "imports": [
+        "app",
+        "copy",
+        "gerar_exemplos_2_4",
+        "gerar_exemplos_tiss",
+        "json",
+        "ocr_runtime",
+        "os",
+        "pathlib",
+        "tempfile",
+        "tests.test_mapping_sim",
+        "time",
+        "tiss",
+        "tkinter",
+        "unittest",
+        "unittest.mock"
+      ],
+      "definicoes": [
+        "ScanInterface",
+        "ScanInterface.setUpClass",
+        "ScanInterface.tearDownClass",
+        "ScanInterface.setUp",
+        "ScanInterface.tearDown",
+        "ScanInterface.wait",
+        "ScanInterface.import_file",
+        "ScanInterface.review_save",
+        "ScanInterface.test_botao_unico_preenche_campos_tabela_e_avanca_apos_conferencia",
+        "ScanInterface.test_guia_antes_pedido_e_origem_fisica",
+        "ScanInterface.test_dois_pacientes_em_pdf_misturado_ficam_separados",
+        "ScanInterface.test_guia_escaneada_girada_preenche_interface",
+        "ScanInterface.test_ocr_ausente_conferencia_acessivel_e_preparo_bloqueado",
+        "ScanInterface.test_exames_sem_catalogo_sao_exibidos_com_pendencia",
+        "ScanInterface.test_classificacao_manual_historico_e_reprocessamento",
+        "ScanInterface.test_editar_campo_invalida_conferencia_e_salvar_atualiza_comparacao",
+        "ScanInterface.test_correcao_manual_de_quantidade_atualiza_comparacao_e_libera_apos_revisao",
+        "ScanInterface.test_exame_ausente_e_campo_vazio_nao_impedem_acesso_a_conferencia"
+      ]
+    },
+    {
+      "arquivo": "tests/test_scan_import.py",
+      "linhas": 128,
+      "sintaxe_valida": true,
+      "imports": [
+        "PIL",
+        "copy",
+        "engine_v2",
+        "gerar_exemplos_2_4",
+        "gerar_exemplos_tiss",
+        "hashlib",
+        "io",
+        "json",
+        "ocr_processing",
+        "ocr_runtime",
+        "pathlib",
+        "pymupdf",
+        "scan_import",
+        "tempfile",
+        "tiss",
+        "unittest",
+        "unittest.mock"
+      ],
+      "definicoes": [
+        "Scan",
+        "Scan.setUpClass",
+        "Scan.tearDownClass",
+        "Scan.setUp",
+        "Scan.tearDown",
+        "Scan.read",
+        "Scan.test_pedido_e_guia_ou_ordem_invertida",
+        "Scan.test_pdf_original_integral_preservado",
+        "Scan.test_quatro_paginas_dois_pacientes_nao_misturam",
+        "Scan.test_nome_isolado_nao_associa",
+        "Scan.test_grupo_manual_pacientes_incompativeis_continua_bloqueado",
+        "Scan.test_tabela_densa_cinco_sem_duplicar_execucao",
+        "Scan.test_quantidade_zero_ausente_e_procedimento_ausente",
+        "Scan.test_sem_catalogo_exames_continuam_visiveis_sem_codigos_inventados",
+        "Scan.test_reimportacao_e_sobreposicao_bloqueadas",
+        "Scan.test_reclassificacao_preserva_historico_e_todas_as_paginas",
+        "Scan.test_incompleto_ocr_ausente_ainda_cria_atendimento_para_correcao",
+        "Scan.test_orientacao_nao_premia_token_gigante",
+        "Scan.test_orientacao_nao_premia_token_gigante.recognize",
+        "Scan.test_guia_densa_escaneada_girada_valores_e_origens",
+        "Scan.test_continuacao_sem_identidade_fica_separada_para_revisao",
+        "Scan.test_png_e_jpg_na_importacao_unica",
+        "Scan.test_codigo_ilegivel_nao_oculta_descricao_e_codigo_local_nao_e_inventado"
+      ]
+    },
+    {
+      "arquivo": "tests/test_sim_browser.py",
+      "linhas": 30,
+      "sintaxe_valida": true,
+      "imports": [
+        "os",
+        "pathlib",
+        "playwright.sync_api",
+        "simulador",
+        "unittest"
+      ],
+      "definicoes": [
+        "BrowserSimulation",
+        "BrowserSimulation.setUp",
+        "BrowserSimulation.tearDown",
+        "BrowserSimulation.test_fluxo_ficticio_com_revisao_e_bloqueio_duplicidade",
+        "BrowserSimulation.test_nome_isolado_e_sem_confirmacao_nao_processam",
+        "BrowserSimulation.test_alterar_identidade_revoga_confirmacao"
+      ]
+    },
+    {
+      "arquivo": "tests/test_tiss.py",
+      "linhas": 136,
+      "sintaxe_valida": true,
+      "imports": [
+        "copy",
+        "engine_v2",
+        "gerar_exemplos_tiss",
+        "json",
+        "pathlib",
+        "pymupdf",
+        "tempfile",
+        "tiss",
+        "unittest",
+        "unittest.mock"
+      ],
+      "definicoes": [
+        "TISS",
+        "TISS.setUp",
+        "TISS.tearDown",
+        "TISS.model",
+        "TISS.test_campos_individuais_com_origem_e_zeros",
+        "TISS.test_tabela_cinco_sem_duplicar_execucao",
+        "TISS.test_autorizacao_ausente_nao_e_inferida",
+        "TISS.test_solicitada_um_autorizada_zero",
+        "TISS.test_multiplas_paginas",
+        "TISS.test_numero_extra_nao_e_autorizacao",
+        "TISS.test_crm_ilegivel_nao_vira_cbo",
+        "TISS.test_operadoras_variam_sem_homologacao_automatica",
+        "TISS.test_pacientes_diferentes_bloqueiam",
+        "TISS.test_tuss_sem_codigo_shift_nao_inventa",
+        "TISS.test_catalogo_desconhecido_bloqueia",
+        "TISS.test_imagem_e_pdf_escaneado_reais",
+        "TISS.test_pedido_quatro_orientacoes_e_inclinacao",
+        "TISS.test_nome_dividido_em_duas_linhas",
+        "TISS.test_quantidade_ilegivel_nao_vira_um",
+        "TISS.test_crm_ilegivel_bloqueia_preparo",
+        "TISS.test_material_lido_da_coluna_sem_alterar_quantidade",
+        "TISS.test_exame_desconhecido_permanece_com_codigo_lido",
+        "TISS.test_descricao_em_duas_linhas_preserva_ambas_as_origens",
+        "TISS.test_quantidade_com_baixa_confianca_permanece_nao_identificada",
+        "TISS.test_lista_numerada_de_pedido_nao_vira_guia_tiss"
+      ]
+    },
+    {
+      "arquivo": "tests/test_tiss_gui.py",
+      "linhas": 101,
+      "sintaxe_valida": true,
+      "imports": [
+        "app",
+        "engine_v2",
+        "gerar_exemplos_tiss",
+        "json",
+        "os",
+        "pathlib",
+        "tempfile",
+        "test_mapping_sim",
+        "time",
+        "tiss",
+        "tkinter",
+        "unittest",
+        "unittest.mock"
+      ],
+      "definicoes": [
+        "TissInterface",
+        "TissInterface.setUp",
+        "TissInterface.tearDown",
+        "TissInterface.wait",
+        "TissInterface.test_campos_tiss_e_quantidades_aparecem_na_interface",
+        "TissInterface.test_scan_real_preenche_paciente_senha_crm",
+        "TissInterface.test_autorizacao_zero_fica_visivel_e_bloqueia",
+        "TissInterface.test_catalogo_producao_nao_carrega_codigos_demo",
+        "TissInterface.test_falha_de_interface_diferenciada_do_ocr",
+        "TissInterface.test_lote_dois_pacientes_mantem_atendimentos_independentes",
+        "TissInterface.test_configura_perfil_pela_interface_sem_editar_codigo",
+        "TissInterface.test_interno_sem_guia_externa_na_interface",
+        "TissInterface.test_tiss_conferencia_ate_pre_cadastro_local_com_codigos_fornecidos"
+      ]
+    },
+    {
+      "arquivo": "tests/test_v2.py",
+      "linhas": 152,
+      "sintaxe_valida": true,
+      "imports": [
+        "PIL",
+        "app",
+        "copy",
+        "engine_v2",
+        "io",
+        "json",
+        "pathlib",
+        "pymupdf",
+        "tempfile",
+        "unittest",
+        "unittest.mock"
+      ],
+      "definicoes": [
+        "pdf_text",
+        "scan_image",
+        "V2",
+        "V2.setUp",
+        "V2.tearDown",
+        "V2.model",
+        "V2.reviewed",
+        "V2.store_case",
+        "V2.test_digital_pdf_avoids_ocr",
+        "V2.table",
+        "V2.test_pdf_table_columns_association",
+        "V2.test_table_reordered_columns",
+        "V2.test_lists_and_no_invented_quantity",
+        "V2.test_real_portuguese_image_ocr_png_and_jpg",
+        "V2.test_scanned_pdf_real_ocr",
+        "V2.test_multipage_mixed_only_needed_ocr",
+        "V2.test_hybrid_page_not_silently_skipped",
+        "V2.test_illegible_blank_and_missing_ocr",
+        "V2.test_real_illegible_blurred_document_blocks",
+        "V2.test_low_confidence_requires_row_review",
+        "V2.test_fields_aliases_multiple_on_line",
+        "V2.test_patient_mismatch_and_absence",
+        "V2.test_missing_exam_quantity_and_codes",
+        "V2.test_catalog_real_codes_and_equivalence",
+        "V2.test_catalog_conflict_ambiguous_material",
+        "V2.test_review_gate_and_success_offline",
+        "V2.test_restart_stale_catalog_duplicate",
+        "V2.test_batch_pair_safety",
+        "V2.test_same_file_cannot_be_pedido_and_guia",
+        "V2.test_encrypted_unsupported",
+        "V2.test_alerts_block_even_with_reviewed_fields",
+        "V2.test_repeated_fields_duplicate_exams",
+        "V2.test_duplicate_with_legacy_identity_hash"
+      ]
+    },
+    {
+      "arquivo": "tests/test_workbench_gui_250.py",
+      "linhas": 103,
+      "sintaxe_valida": true,
+      "imports": [
+        "copy",
+        "draft_workflow",
+        "gerar_exemplos_250",
+        "gerar_exemplos_tiss",
+        "os",
+        "pathlib",
+        "scan_import",
+        "tempfile",
+        "tests.test_mapping_sim",
+        "time",
+        "tiss",
+        "tkinter",
+        "unittest",
+        "unittest.mock",
+        "workbench"
+      ],
+      "definicoes": [
+        "WorkbenchGUI250",
+        "WorkbenchGUI250.setUpClass",
+        "WorkbenchGUI250.tearDownClass",
+        "WorkbenchGUI250.setUp",
+        "WorkbenchGUI250.tearDown",
+        "WorkbenchGUI250.wait",
+        "WorkbenchGUI250.import_file",
+        "WorkbenchGUI250.see",
+        "WorkbenchGUI250.test_interface_em_cinco_telas_e_duas_abas_reais",
+        "WorkbenchGUI250.test_campos_prioritarios_preenchidos_nos_widgets_com_origem",
+        "WorkbenchGUI250.test_lote_quatro_paginas_cria_dois_atendimentos_e_dois_rascunhos",
+        "WorkbenchGUI250.test_aba_individual_nao_mistura_pdf_com_duas_pessoas",
+        "WorkbenchGUI250.test_campos_vazios_nao_bloqueiam_navegacao_ou_rascunho",
+        "WorkbenchGUI250.test_correcao_manual_salva_atualiza_pendencia_e_persiste_navegacao",
+        "WorkbenchGUI250.test_troca_de_atendimento_preserva_edicao_em_rascunho",
+        "WorkbenchGUI250.test_fluxo_principal_real_ate_pre_cadastro_validado_ficticio",
+        "WorkbenchGUI250.test_pre_cadastro_so_de_guia_nao_inventa_pedido",
+        "WorkbenchGUI250.test_mover_pagina_sem_reimportar_preserva_paginas_e_bloqueia_conflito",
+        "WorkbenchGUI250.test_revisor_e_motivo_ficam_visiveis_quando_faltam",
+        "WorkbenchGUI250.test_conferencia_detalhada_preservada_e_volta_sem_perder_campos",
+        "WorkbenchGUI250.test_reprocessar_pelo_painel_e_reimportar_nao_duplica_atendimento",
+        "WorkbenchGUI250.test_janela_menor_mantem_navegacao_e_conferencia_com_rolagem"
+      ]
+    },
+    {
+      "arquivo": "tiss.py",
+      "linhas": 124,
+      "sintaxe_valida": true,
+      "imports": [
+        "core",
+        "datetime",
+        "ocr_processing",
+        "re",
+        "tiss_geometry",
+        "tiss_names",
+        "tiss_refinement"
+      ],
+      "definicoes": [
+        "empty_field",
+        "valid",
+        "extract"
+      ]
+    },
+    {
+      "arquivo": "tiss_comparison.py",
+      "linhas": 89,
+      "sintaxe_valida": true,
+      "imports": [
+        "core",
+        "datetime",
+        "engine_v2",
+        "identity_evidence",
+        "payer_mapping",
+        "prescription_layout",
+        "tiss"
+      ],
+      "definicoes": [
+        "compare_tiss"
+      ]
+    },
+    {
+      "arquivo": "tiss_geometry.py",
+      "linhas": 245,
+      "sintaxe_valida": true,
+      "imports": [
+        "core",
+        "difflib",
+        "functools",
+        "ocr_processing",
+        "re",
+        "statistics"
+      ],
+      "definicoes": [
+        "words_of",
+        "rows",
+        "header_token",
+        "anchors",
+        "cell_words",
+        "table_rows"
+      ]
+    },
+    {
+      "arquivo": "tiss_names.py",
+      "linhas": 39,
+      "sintaxe_valida": true,
+      "imports": [
+        "core",
+        "re",
+        "statistics",
+        "tiss_geometry"
+      ],
+      "definicoes": [
+        "name_words"
+      ]
+    },
+    {
+      "arquivo": "tiss_refinement.py",
+      "linhas": 113,
+      "sintaxe_valida": true,
+      "imports": [
+        "collections",
+        "copy",
+        "core",
+        "engine_v2",
+        "identity_evidence",
+        "tiss",
+        "tiss_geometry"
+      ],
+      "definicoes": [
+        "merge_anchor_fallbacks",
+        "alternatives",
+        "reconcile_fields",
+        "reconcile_exams"
+      ]
+    },
+    {
+      "arquivo": "validar_auditoria_244.py",
+      "linhas": 62,
+      "sintaxe_valida": true,
+      "imports": [
+        "engine_v2",
+        "gerar_exemplos_auditoria",
+        "gerar_exemplos_tiss",
+        "json",
+        "pathlib",
+        "scan_import",
+        "tempfile",
+        "tiss"
+      ],
+      "definicoes": [
+        "main",
+        "main.check"
+      ]
+    },
+    {
+      "arquivo": "validar_campos_2_4.py",
+      "linhas": 40,
+      "sintaxe_valida": true,
+      "imports": [
+        "gerar_exemplos_tiss",
+        "hashlib",
+        "json",
+        "pathlib",
+        "scan_import",
+        "tempfile",
+        "tiss"
+      ],
+      "definicoes": [
+        "main"
+      ]
+    },
+    {
+      "arquivo": "validar_campos_2_4_2.py",
+      "linhas": 55,
+      "sintaxe_valida": true,
+      "imports": [
+        "engine_v2",
+        "gerar_exemplos_tiss",
+        "hashlib",
+        "json",
+        "pathlib",
+        "scan_import",
+        "tempfile",
+        "tiss"
+      ],
+      "definicoes": [
+        "main",
+        "main.verify",
+        "main.check"
+      ]
+    },
+    {
+      "arquivo": "validar_campos_tiss.py",
+      "linhas": 38,
+      "sintaxe_valida": true,
+      "imports": [
+        "engine_v2",
+        "gerar_exemplos_tiss",
+        "hashlib",
+        "json",
+        "pathlib",
+        "tiss"
+      ],
+      "definicoes": [
+        "main"
+      ]
+    },
+    {
+      "arquivo": "validar_carimbo_245.py",
+      "linhas": 35,
+      "sintaxe_valida": true,
+      "imports": [
+        "copy",
+        "engine_v2",
+        "gerar_exemplos_carimbo",
+        "gerar_exemplos_tiss",
+        "json",
+        "pathlib",
+        "scan_import",
+        "tempfile"
+      ],
+      "definicoes": [
+        "main",
+        "main.check"
+      ]
+    },
+    {
+      "arquivo": "validar_interface_245.py",
+      "linhas": 52,
+      "sintaxe_valida": true,
+      "imports": [
+        "PIL",
+        "app",
+        "gerar_exemplos_carimbo",
+        "gerar_exemplos_tiss",
+        "json",
+        "pathlib",
+        "tempfile",
+        "tests.test_mapping_sim",
+        "time",
+        "tkinter",
+        "unittest.mock"
+      ],
+      "definicoes": [
+        "main",
+        "main.check"
+      ]
+    },
+    {
+      "arquivo": "validar_interface_250.py",
+      "linhas": 100,
+      "sintaxe_valida": true,
+      "imports": [
+        "PIL",
+        "argparse",
+        "core",
+        "draft_workflow",
+        "gerar_exemplos_250",
+        "gerar_exemplos_tiss",
+        "json",
+        "pathlib",
+        "tempfile",
+        "tests.test_mapping_sim",
+        "time",
+        "tiss",
+        "tkinter",
+        "unittest.mock",
+        "workbench"
+      ],
+      "definicoes": [
+        "main",
+        "main.check",
+        "main.wait",
+        "main.click",
+        "main.screenshot"
+      ]
+    },
+    {
+      "arquivo": "workbench.py",
+      "linhas": 473,
+      "sintaxe_valida": true,
+      "imports": [
+        "app",
+        "copy",
+        "core",
+        "draft_workflow",
+        "engine_v2",
+        "json",
+        "page_panel",
+        "pathlib",
+        "priority_fields",
+        "scan_import",
+        "tkinter"
+      ],
+      "definicoes": [
+        "create_workbench",
+        "create_workbench.Workbench",
+        "create_workbench.Workbench.__init__",
+        "create_workbench.Workbench.refresh",
+        "create_workbench.Workbench.open_case",
+        "create_workbench.Workbench.show_comparison",
+        "create_workbench.Workbench.changed_field",
+        "create_workbench.Workbench.metadata_ready",
+        "create_workbench.Workbench.locate_source",
+        "create_workbench.Workbench.guard",
+        "create_workbench.Workbench.close",
+        "create_workbench.Workbench.preserve_navigation",
+        "Workspace",
+        "Workspace.__init__",
+        "Workspace.run",
+        "Workspace.read_status",
+        "Workspace.card",
+        "Workspace.table",
+        "Workspace.make_home",
+        "Workspace.make_documents",
+        "Workspace.make_documents.selected",
+        "Workspace.make_data",
+        "Workspace.make_exams",
+        "Workspace.toggle_extra",
+        "Workspace.make_preview",
+        "Workspace.go",
+        "Workspace.continue_flow",
+        "Workspace.focus_information",
+        "Workspace.import_documents",
+        "Workspace.choose_from",
+        "Workspace.choose_case",
+        "Workspace.refresh_home",
+        "Workspace.bind_case",
+        "Workspace.clinical_changed",
+        "Workspace.invalidate_review",
+        "Workspace.refresh_detail",
+        "Workspace.origin",
+        "Workspace.source_dialog",
+        "Workspace.edit_exam",
+        "Workspace.add_exam",
+        "Workspace.after_exam_edit",
+        "Workspace.after_exam_edit.closed",
+        "Workspace.compare",
+        "Workspace.correct_type",
+        "Workspace.save_corrections",
+        "Workspace.save_current_draft",
+        "Workspace.save_review",
+        "Workspace.save_batch_drafts",
+        "Workspace.prepare",
+        "Workspace.export_draft",
+        "Workspace.resolve_pending",
+        "Workspace.reprocess",
+        "Workspace.page_identity",
+        "Workspace.move_page",
+        "Workspace.move_page.commit",
+        "Workspace.examples",
+        "Workspace.show_advanced",
+        "Workspace.hide_advanced"
+      ]
+    }
+  ]
+}

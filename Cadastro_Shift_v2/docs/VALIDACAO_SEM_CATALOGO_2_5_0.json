@@ -1,0 +1,68 @@
+{
+  "somente_sinteticos": true,
+  "sem_configuracao_de_catalogo": true,
+  "verificacoes": [
+    {
+      "verificacao": "Instalação nova sem catálogo",
+      "esperado": [],
+      "encontrado": [],
+      "passou": true
+    },
+    {
+      "verificacao": "Leitura concluída",
+      "esperado": false,
+      "encontrado": false,
+      "passou": true
+    },
+    {
+      "verificacao": "Uma ficha",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true
+    },
+    {
+      "verificacao": "Cinco exames lidos no pedido",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true
+    },
+    {
+      "verificacao": "Cinco exames lidos na guia",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true
+    },
+    {
+      "verificacao": "Paciente na tela",
+      "esperado": "PESSOA FICTICIA DE OLIVEIRA",
+      "encontrado": "PESSOA FICTICIA DE OLIVEIRA",
+      "passou": true
+    },
+    {
+      "verificacao": "Executor na tela",
+      "esperado": "LABORATORIO FICTICIO DOS SANTOS",
+      "encontrado": "LABORATORIO FICTICIO DOS SANTOS",
+      "passou": true
+    },
+    {
+      "verificacao": "Sem catálogo, candidatos separados para conferência",
+      "esperado": 10,
+      "encontrado": 10,
+      "passou": true
+    },
+    {
+      "verificacao": "Rascunho disponível sem catálogo/revisor",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "verificacao": "Nada preparado automaticamente",
+      "esperado": null,
+      "encontrado": null,
+      "passou": true
+    }
+  ],
+  "passaram": 10,
+  "falharam": 0
+}

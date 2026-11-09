@@ -425,6 +425,15 @@ def parse_document(document, catalog):
         fields['Guia']=empty_field(document.get('file'))
         fields['Validade']=empty_field(document.get('file'))
         if structured['exams']:exams=structured['exams']
+        else:
+            # Indicação clínica é contexto, mesmo quando menciona HEMOGRAMA.
+            # Não pode reaparecer como exame pela detecção genérica de nomes.
+            def in_clinical_region(exam):
+                b=exam.get('box')
+                if not b:return False
+                cx,cy=(b[0]+b[2])/2,(b[1]+b[3])/2
+                return any(r['page']==exam['page'] and r['box'] and r['box'][0]-2<=cx<=r['box'][2]+2 and r['box'][1]-2<=cy<=r['box'][3]+2 for r in structured.get('field_regions',[]))
+            exams=[e for e in exams if not in_clinical_region(e)]
         issues=[i for i in issues if not i['message'].startswith('Nenhum exame')]
         for msg in structured['issues']+professional_issues:issues.append({'message':msg,'reviewed':False,'reason':''})
         if not exams:issues.append({'message':'Interpretação TISS: nenhum procedimento identificado. Conferir tabela.','reviewed':False,'reason':''})
@@ -447,6 +456,10 @@ def parse_document(document, catalog):
                     'box':source_box(line),'confidence':line['confidence'],'reviewed':False,'document':document.get('file'),
                     'snippet':line['text'],'raw':line['text'],'notes':notes,'origin_type':'lista_em_pedido_carimbado'})
         if exams:issues=[i for i in issues if not i['message'].startswith('Nenhum exame identificado')]
+    for field in fields.values():
+        if field['value']:field['extraction_state']='identified'
+        elif field.get('candidates'):field['extraction_state']='uncertain'
+        else:field.setdefault('extraction_state','not_found')
     return {'fields':fields,'exams':exams,'issues':issues,'pages_reviewed':False,
             'document_type':document.get('document_type', detect_document_type(document)),
             'tiss':structured['detected'],'tiss_detail':structured if structured['detected'] else None,

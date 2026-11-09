@@ -1,0 +1,18 @@
+CADASTRO ASSISTIDO SHIFT 2.5.0
+
+BAIXAR O PROGRAMA
+https://github.com/carlomoreira01-maker/advil20/raw/refs/heads/entrega/shift-v2.5.0/entrega/Cadastro_Shift_v2_5_0_corrigido.zip
+
+Extraia TODO o ZIP em pasta NOVA. Feche o programa antigo, faça backup e copie dados_v2 somente com os dois programas fechados. Não copie .venv. Entre em Cadastro_Shift_v2 e abra INSTALAR_WINDOWS.bat; depois INICIAR_WINDOWS.bat. Leia ATUALIZAR_PARA_2_5_0.txt.
+
+NOVO USO
+Escolha Cadastro de um paciente ou Cadastro de vários pacientes. Importe documentos. Confira Documentos, Dados identificados e Exames; abra Pré-cadastro. Rascunho pode ser salvo com pendências, sem enviar nada ao Shift. Preparação validada exige conferência humana e regras do laboratório.
+
+ALTERNATIVA
+https://github.com/carlomoreira01-maker/advil20/tree/entrega/shift-v2.5.0
+Abra entrega/Cadastro_Shift_v2_5_0_corrigido.zip e clique no botão de baixar o arquivo bruto. Também pode usar Code > Download ZIP e procurar a pasta Cadastro_Shift_v2.
+
+BACKUP ANTERIOR
+https://github.com/carlomoreira01-maker/advil20/tree/entrega/shift-v2.4.5
+
+O programa foi testado com interface/OCR reais em Linux e documentos inteiramente fictícios. Instalação e execução nativas no Windows ainda precisam de validação local.

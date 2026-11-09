@@ -9,10 +9,10 @@ SCHEMA={
  5:('Senha autorização','id'),6:('Validade senha','date'),7:('Guia operadora','id'),
  8:('Carteira','id'),9:('Validade carteira','date'),10:('Paciente','name'),
  13:('Código solicitante','id'),15:('Medico','name'),16:('Conselho','council'),
- 17:('Número conselho','number'),18:('UF conselho','uf'),19:('CBO','cbo'),22:('Data solicitação','date'),23:('Indicação clínica','text')}
+ 17:('Número conselho','number'),18:('UF conselho','uf'),19:('CBO','cbo'),22:('Data solicitação','date'),23:('Indicação clínica','text'),30:('Contratado executante','company')}
 EXTRA_FIELDS=['Guia prestador','Guia principal','Data autorização','Senha autorização','Validade senha',
  'Guia operadora','Carteira','Validade carteira','Código solicitante','Conselho','Número conselho','UF conselho',
- 'Data solicitação','Indicação clínica','Regime atendimento','Data execução','CBO']
+ 'Data solicitação','Indicação clínica','Regime atendimento','Data execução','CBO','Contratado executante']
 STARTS={2:'NUMERO GUIA',3:'NUMERO GUIA',4:'DATA',5:'SENHA',6:'VALIDADE',7:'NUMERO GUIA',8:'NUMERO CARTEIRA',
 9:'VALIDADE',10:'NOME',13:'CODIGO',15:'NOME',16:'CONSELHO',17:'NUMERO',18:'UF',22:'DATA',
 25:'CODIGO',26:'DESCRICAO',27:'QUANTIDADE QTD QTDE QTD.',28:'QUANTIDADE QTD QTDE QTD.'}
@@ -20,7 +20,7 @@ UFS=set('AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC
 
 
 def empty_field(document=None):
- return {'value':'','page':None,'box':None,'confidence':None,'reviewed':False,'document':document,'snippet':'','candidates':[]}
+ return {'value':'','page':None,'box':None,'confidence':None,'reviewed':False,'document':document,'snippet':'','candidates':[],'extraction_state':'not_found','located':False}
 
 
 def valid(value,kind):
@@ -31,6 +31,7 @@ def valid(value,kind):
   return bool(re.fullmatch(r'[A-Z0-9][A-Z0-9./-]*',value)) and bool(re.search(r'\d',value))
  if kind=='number':return bool(re.fullmatch(r'\d+',value))
  if kind=='cbo':return bool(re.fullmatch(r'\d{6}',value))
+ if kind=='company':return bool(re.search(r'[A-Z]',value)) and len(value)<=250
  if kind=='date':
   try:datetime.strptime(value,'%d/%m/%Y');return True
   except ValueError:return False
@@ -44,7 +45,7 @@ from tiss_geometry import anchors, cell_words, table_rows, rows
 
 def extract(document):
  fields={key:empty_field(document.get('file')) for key,_ in SCHEMA.values()}
- found_any=False;exams=[];executed=[];extra=[];issues=[]
+ found_any=False;exams=[];executed=[];extra=[];issues=[];regions=[]
  for page in document['pages']:
   from tiss_refinement import merge_anchor_fallbacks
   aa=merge_anchor_fallbacks(page,anchors(page))
@@ -54,19 +55,31 @@ def extract(document):
   procedure_top=min((a['y'] for a in aa if a['num'] in [25,26]),default=float('inf'))
   for a in aa:
    if a['num'] not in SCHEMA:continue
-   if a['y']>procedure_top:continue  # Solicitante não é o profissional executante/assinatura.
+   if a['num']!=30 and a['y']>procedure_top:continue  # Campos do solicitante não vêm da seção executante.
    key,kind=SCHEMA[a['num']];region=cell_words(page,a,aa);candidate=None
+   value_rows=rows(region)
+   if a['num']==23:
+    kept=[]
+    for row in value_rows:
+     if re.fullmatch(r'(?:PROCEDIMENTOS|EXAMES)\s+(?:SOLICITADOS|AUTORIZADOS|EXECUTADOS)|DADOS\s+DO\s+EXECUTANTE',norm(' '.join(w['text'] for w in row['words']))):break
+     kept.append(row)
+    value_rows=kept;region=[w for row in kept for w in row['words']]
    if not fields[key]['value']:
-    fields[key].update(page=page['number'],box=union_box(region or a['header']),
+    fields[key].update(page=page['number'],box=union_box(region or a['header']),located=True,
+        extraction_state='uncertain' if region else 'empty',tiss_number=a['num'],
         snippet=' '.join(w['text'] for w in a['header'])+' / '+' '.join(w['text'] for w in region),
         diagnostic='Região localizada, sem valor legível/validável; conferir original.')
-   value_rows=rows(region)
-   if kind=='name':
+   if a['num']==23 and region:regions.append({'field':23,'page':page['number'],'box':union_box(region)})
+   if kind in ['name','company']:
     from tiss_names import name_words
-    ws=name_words(region)
+    ws=name_words(region,company=kind=='company')
     value=norm(' '.join(w['text'] for w in ws)).strip(' :|')
     if valid(value,kind):candidate=(value,ws)
 
+   elif kind=='text':
+    ws=[w for row in value_rows for w in row['words']]
+    value='\n'.join(' '.join(w['text'] for w in row['words']) for row in value_rows).strip()
+    if valid(norm(value),kind):candidate=(value,ws)
    else:
     for r in value_rows:
      ws=r['words'];value=norm(' '.join(w['text'] for w in ws)).strip(' :|')
@@ -83,11 +96,11 @@ def extract(document):
    value,ws=candidate;confidence=min(w['confidence'] for w in ws)
    src={'value':value,'document':document.get('file'),'page':page['number'],'box':union_box(ws),
         'confidence':confidence,'snippet':' '.join(w['text'] for w in a['header'])+' / '+' '.join(w['text'] for w in ws),
-        'reviewed':False,'candidates':[],'tiss_number':a['num'],'origin_type':'campo_estruturado','diagnostic':'Valor localizado na célula do rótulo.'}
+        'reviewed':False,'candidates':[],'tiss_number':a['num'],'located':True,'extraction_state':'identified','origin_type':'campo_estruturado','diagnostic':'Valor localizado na célula do rótulo.'}
    previous=fields[key]
    if previous['candidates'] or (previous['value'] and norm(previous['value'])!=value) or confidence<65:
     src['candidates']=previous['candidates']+([previous] if previous['value'] else [])+[dict(src)]
-    src['value']='';issues.append('Campo '+key+' incerto ou conflitante; conferir origem.')
+    src['value']='';src['extraction_state']='uncertain';issues.append('Campo '+key+' incerto ou conflitante; conferir origem.')
     src['diagnostic']='Confiança insuficiente ou valores conflitantes; conferir origem.'
    fields[key]=src
   requested,done=table_rows(page,aa,document)
@@ -107,4 +120,5 @@ def extract(document):
   if not any(e['codigo']==row['codigo'] and norm(e['descricao'])==norm(row['descricao']) for e in exams):issues.append('Procedimento executado sem correspondente na solicitação; conferir original.')
  for field in fields.values():field.setdefault('diagnostic','Rótulo ou valor não localizado; conferir original.')
  return {'detected':found_any,'fields':fields,'exams':exams,'executed_exams':executed,'extra_numbers':extra,'issues':list(dict.fromkeys(issues)),
+         'field_regions':regions,
          'layout_profile':'rótulos e células SP/SADT por coordenadas; homologação local pendente'}

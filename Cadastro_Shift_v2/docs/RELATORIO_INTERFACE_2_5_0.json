@@ -1,0 +1,1525 @@
+{
+  "somente_sinteticos": true,
+  "plataforma": "Linux / Tkinter real / Tesseract local",
+  "eventos_mouse": true,
+  "campos": [
+    {
+      "documento_ficticio": "01_um_paciente.pdf",
+      "numero_tiss": 2,
+      "campo": "Guia prestador",
+      "esperado": "00000111",
+      "extraido": "00000111",
+      "esperado_interface": "00000111",
+      "preenchido_na_interface": "00000111",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_paciente.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          112.94999694824219,
+          97.27201843261719,
+          132.18600463867188
+        ],
+        "trecho": "2 Numero da guia no prestador / 00000111"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_paciente.pdf",
+      "numero_tiss": 3,
+      "campo": "Guia principal",
+      "esperado": "00000222",
+      "extraido": "00000222",
+      "esperado_interface": "00000222",
+      "preenchido_na_interface": "00000222",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_paciente.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          390.0,
+          112.94999694824219,
+          452.27197265625,
+          132.18600463867188
+        ],
+        "trecho": "3 Numero da guia principal / 00000222"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_paciente.pdf",
+      "numero_tiss": 7,
+      "campo": "Guia operadora",
+      "esperado": "00000777",
+      "extraido": "00000777",
+      "esperado_interface": "00000777",
+      "preenchido_na_interface": "00000777",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_paciente.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          745.0,
+          170.9499969482422,
+          807.27197265625,
+          190.18600463867188
+        ],
+        "trecho": "7 Numero da guia atribuido pela operadora / 00000777"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_paciente.pdf",
+      "numero_tiss": 5,
+      "campo": "Senha autorização",
+      "esperado": "00000555",
+      "extraido": "00000555",
+      "esperado_interface": "00000555",
+      "preenchido_na_interface": "00000555",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_paciente.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          170.9499969482422,
+          97.27201843261719,
+          190.18600463867188
+        ],
+        "trecho": "5 Senha de autorizacao / 00000555"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_paciente.pdf",
+      "numero_tiss": 10,
+      "campo": "Paciente",
+      "esperado": "PESSOA FICTICIA DE OLIVEIRA",
+      "extraido": "PESSOA FICTICIA DE OLIVEIRA",
+      "esperado_interface": "PESSOA FICTICIA DE OLIVEIRA",
+      "preenchido_na_interface": "PESSOA FICTICIA DE OLIVEIRA",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_paciente.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          745.0,
+          232.1750030517578,
+          911.2756958007812,
+          247.28900146484375
+        ],
+        "trecho": "10 Nome do beneficiario / PESSOA FICTICIA DE OLIVEIRA"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_paciente.pdf",
+      "numero_tiss": 8,
+      "campo": "Carteira",
+      "esperado": "0000087654",
+      "extraido": "0000087654",
+      "esperado_interface": "0000087654",
+      "preenchido_na_interface": "0000087654",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_paciente.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          228.9499969482422,
+          112.84002685546875,
+          248.18600463867188
+        ],
+        "trecho": "8 Numero da carteira / 0000087654"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_paciente.pdf",
+      "numero_tiss": 15,
+      "campo": "Medico",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "extraido": "DRA EXEMPLO SINTETICA",
+      "esperado_interface": "DRA EXEMPLO SINTETICA",
+      "preenchido_na_interface": "DRA EXEMPLO SINTETICA",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_paciente.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          390.0,
+          286.95001220703125,
+          568.1500854492188,
+          306.1860046386719
+        ],
+        "trecho": "15 Nome do profissional solicitante / DRA EXEMPLO SINTETICA"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_paciente.pdf",
+      "numero_tiss": 17,
+      "campo": "Número conselho",
+      "esperado": "0012345",
+      "extraido": "0012345",
+      "esperado_interface": "0012345",
+      "preenchido_na_interface": "0012345",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_paciente.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          344.95001220703125,
+          112.84001922607422,
+          364.1860046386719
+        ],
+        "trecho": "17 Numero do conselho / 0 0 1 2 3 4 5"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_paciente.pdf",
+      "numero_tiss": 18,
+      "campo": "UF conselho",
+      "esperado": "GO",
+      "extraido": "GO",
+      "esperado_interface": "GO",
+      "preenchido_na_interface": "GO",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_paciente.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          390.0,
+          344.95001220703125,
+          411.78399658203125,
+          364.1860046386719
+        ],
+        "trecho": "18 UF / GO"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_paciente.pdf",
+      "numero_tiss": 23,
+      "campo": "Indicação clínica",
+      "esperado": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "extraido": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "esperado_interface": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "preenchido_na_interface": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_paciente.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          406.17498779296875,
+          330.8561096191406,
+          434.489013671875
+        ],
+        "trecho": "23 Indicacao clinica / INVESTIGACAO FICTICIA DE ANEMIA. HEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO."
+      }
+    },
+    {
+      "documento_ficticio": "01_um_paciente.pdf",
+      "numero_tiss": 30,
+      "campo": "Contratado executante",
+      "esperado": "LABORATORIO FICTICIO DOS SANTOS",
+      "extraido": "LABORATORIO FICTICIO DOS SANTOS",
+      "esperado_interface": "LABORATORIO FICTICIO DOS SANTOS",
+      "preenchido_na_interface": "LABORATORIO FICTICIO DOS SANTOS",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_paciente.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          230.0,
+          729.9500122070312,
+          490.6099853515625,
+          749.1859741210938
+        ],
+        "trecho": "30 Nome do contratado executante / LABORATORIO FICTICIO DOS SANTOS"
+      }
+    },
+    {
+      "documento_ficticio": "01_um_paciente.pdf",
+      "numero_tiss": 16,
+      "campo": "Conselho",
+      "esperado": "CRM",
+      "extraido": "CRM",
+      "esperado_interface": "CRM",
+      "preenchido_na_interface": "CRM",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "01_um_paciente.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          745.0,
+          286.95001220703125,
+          776.8779296875,
+          306.1860046386719
+        ],
+        "trecho": "16 Conselho profissional / CRM"
+      }
+    },
+    {
+      "documento_ficticio": "03_campos_vazios.pdf",
+      "numero_tiss": 2,
+      "campo": "Guia prestador",
+      "esperado": "00000111",
+      "extraido": "00000111",
+      "esperado_interface": "00000111",
+      "preenchido_na_interface": "00000111",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_campos_vazios.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          112.94999694824219,
+          97.27201843261719,
+          132.18600463867188
+        ],
+        "trecho": "2 Numero da guia no prestador / 00000111"
+      }
+    },
+    {
+      "documento_ficticio": "03_campos_vazios.pdf",
+      "numero_tiss": 3,
+      "campo": "Guia principal",
+      "esperado": "",
+      "extraido": "",
+      "esperado_interface": "Não identificado",
+      "preenchido_na_interface": "Não identificado",
+      "estado_esperado": "empty",
+      "estado_encontrado": "empty",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_campos_vazios.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          390.0,
+          94.25,
+          515.5999145507812,
+          107.98999786376953
+        ],
+        "trecho": "3 Numero da guia principal / "
+      }
+    },
+    {
+      "documento_ficticio": "03_campos_vazios.pdf",
+      "numero_tiss": 7,
+      "campo": "Guia operadora",
+      "esperado": "",
+      "extraido": "",
+      "esperado_interface": "Não identificado",
+      "preenchido_na_interface": "Não identificado",
+      "estado_esperado": "empty",
+      "estado_encontrado": "empty",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_campos_vazios.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          745.0,
+          152.25,
+          941.7601318359375,
+          165.99000549316406
+        ],
+        "trecho": "7 Numero da guia atribuido pela operadora / "
+      }
+    },
+    {
+      "documento_ficticio": "03_campos_vazios.pdf",
+      "numero_tiss": 5,
+      "campo": "Senha autorização",
+      "esperado": "",
+      "extraido": "",
+      "esperado_interface": "Não identificado",
+      "preenchido_na_interface": "Não identificado",
+      "estado_esperado": "empty",
+      "estado_encontrado": "empty",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_campos_vazios.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          152.25,
+          146.72998046875,
+          165.99000549316406
+        ],
+        "trecho": "5 Senha de autorizacao / "
+      }
+    },
+    {
+      "documento_ficticio": "03_campos_vazios.pdf",
+      "numero_tiss": 10,
+      "campo": "Paciente",
+      "esperado": "PESSOA FICTICIA DE OLIVEIRA",
+      "extraido": "PESSOA FICTICIA DE OLIVEIRA",
+      "esperado_interface": "PESSOA FICTICIA DE OLIVEIRA",
+      "preenchido_na_interface": "PESSOA FICTICIA DE OLIVEIRA",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_campos_vazios.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          745.0,
+          232.1750030517578,
+          911.2756958007812,
+          247.28900146484375
+        ],
+        "trecho": "10 Nome do beneficiario / PESSOA FICTICIA DE OLIVEIRA"
+      }
+    },
+    {
+      "documento_ficticio": "03_campos_vazios.pdf",
+      "numero_tiss": 8,
+      "campo": "Carteira",
+      "esperado": "0000087654",
+      "extraido": "0000087654",
+      "esperado_interface": "0000087654",
+      "preenchido_na_interface": "0000087654",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_campos_vazios.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          228.9499969482422,
+          112.84002685546875,
+          248.18600463867188
+        ],
+        "trecho": "8 Numero da carteira / 0000087654"
+      }
+    },
+    {
+      "documento_ficticio": "03_campos_vazios.pdf",
+      "numero_tiss": 15,
+      "campo": "Medico",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "extraido": "DRA EXEMPLO SINTETICA",
+      "esperado_interface": "DRA EXEMPLO SINTETICA",
+      "preenchido_na_interface": "DRA EXEMPLO SINTETICA",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_campos_vazios.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          390.0,
+          286.95001220703125,
+          568.1500854492188,
+          306.1860046386719
+        ],
+        "trecho": "15 Nome do profissional solicitante / DRA EXEMPLO SINTETICA"
+      }
+    },
+    {
+      "documento_ficticio": "03_campos_vazios.pdf",
+      "numero_tiss": 17,
+      "campo": "Número conselho",
+      "esperado": "0012345",
+      "extraido": "0012345",
+      "esperado_interface": "0012345",
+      "preenchido_na_interface": "0012345",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_campos_vazios.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          344.95001220703125,
+          112.84001922607422,
+          364.1860046386719
+        ],
+        "trecho": "17 Numero do conselho / 0 0 1 2 3 4 5"
+      }
+    },
+    {
+      "documento_ficticio": "03_campos_vazios.pdf",
+      "numero_tiss": 18,
+      "campo": "UF conselho",
+      "esperado": "GO",
+      "extraido": "GO",
+      "esperado_interface": "GO",
+      "preenchido_na_interface": "GO",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_campos_vazios.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          390.0,
+          344.95001220703125,
+          411.78399658203125,
+          364.1860046386719
+        ],
+        "trecho": "18 UF / GO"
+      }
+    },
+    {
+      "documento_ficticio": "03_campos_vazios.pdf",
+      "numero_tiss": 23,
+      "campo": "Indicação clínica",
+      "esperado": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "extraido": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "esperado_interface": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "preenchido_na_interface": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_campos_vazios.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          406.17498779296875,
+          330.8561096191406,
+          434.489013671875
+        ],
+        "trecho": "23 Indicacao clinica / INVESTIGACAO FICTICIA DE ANEMIA. HEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO."
+      }
+    },
+    {
+      "documento_ficticio": "03_campos_vazios.pdf",
+      "numero_tiss": 30,
+      "campo": "Contratado executante",
+      "esperado": "",
+      "extraido": "",
+      "esperado_interface": "Não identificado",
+      "preenchido_na_interface": "Não identificado",
+      "estado_esperado": "empty",
+      "estado_encontrado": "empty",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_campos_vazios.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          230.0,
+          709.25,
+          392.3099060058594,
+          722.989990234375
+        ],
+        "trecho": "30 Nome do contratado executante / "
+      }
+    },
+    {
+      "documento_ficticio": "03_campos_vazios.pdf",
+      "numero_tiss": 16,
+      "campo": "Conselho",
+      "esperado": "CRM",
+      "extraido": "CRM",
+      "esperado_interface": "CRM",
+      "preenchido_na_interface": "CRM",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "03_campos_vazios.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          745.0,
+          286.95001220703125,
+          776.8779296875,
+          306.1860046386719
+        ],
+        "trecho": "16 Conselho profissional / CRM"
+      }
+    },
+    {
+      "documento_ficticio": "05_leitura_incerta.pdf",
+      "numero_tiss": 2,
+      "campo": "Guia prestador",
+      "esperado": "00000111",
+      "extraido": "00000111",
+      "esperado_interface": "00000111",
+      "preenchido_na_interface": "00000111",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "05_leitura_incerta.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          112.94999694824219,
+          97.27201843261719,
+          132.18600463867188
+        ],
+        "trecho": "2 Numero da guia no prestador / 00000111"
+      }
+    },
+    {
+      "documento_ficticio": "05_leitura_incerta.pdf",
+      "numero_tiss": 3,
+      "campo": "Guia principal",
+      "esperado": "00000222",
+      "extraido": "00000222",
+      "esperado_interface": "00000222",
+      "preenchido_na_interface": "00000222",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "05_leitura_incerta.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          390.0,
+          112.94999694824219,
+          452.27197265625,
+          132.18600463867188
+        ],
+        "trecho": "3 Numero da guia principal / 00000222"
+      }
+    },
+    {
+      "documento_ficticio": "05_leitura_incerta.pdf",
+      "numero_tiss": 7,
+      "campo": "Guia operadora",
+      "esperado": "00000777",
+      "extraido": "00000777",
+      "esperado_interface": "00000777",
+      "preenchido_na_interface": "00000777",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "05_leitura_incerta.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          745.0,
+          170.9499969482422,
+          807.27197265625,
+          190.18600463867188
+        ],
+        "trecho": "7 Numero da guia atribuido pela operadora / 00000777"
+      }
+    },
+    {
+      "documento_ficticio": "05_leitura_incerta.pdf",
+      "numero_tiss": 5,
+      "campo": "Senha autorização",
+      "esperado": "00000555",
+      "extraido": "00000555",
+      "esperado_interface": "00000555",
+      "preenchido_na_interface": "00000555",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "05_leitura_incerta.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          170.9499969482422,
+          97.27201843261719,
+          190.18600463867188
+        ],
+        "trecho": "5 Senha de autorizacao / 00000555"
+      }
+    },
+    {
+      "documento_ficticio": "05_leitura_incerta.pdf",
+      "numero_tiss": 10,
+      "campo": "Paciente",
+      "esperado": "PESSOA FICTICIA DE OLIVEIRA",
+      "extraido": "PESSOA FICTICIA DE OLIVEIRA",
+      "esperado_interface": "PESSOA FICTICIA DE OLIVEIRA",
+      "preenchido_na_interface": "PESSOA FICTICIA DE OLIVEIRA",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "05_leitura_incerta.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          745.0,
+          232.1750030517578,
+          911.2756958007812,
+          247.28900146484375
+        ],
+        "trecho": "10 Nome do beneficiario / PESSOA FICTICIA DE OLIVEIRA"
+      }
+    },
+    {
+      "documento_ficticio": "05_leitura_incerta.pdf",
+      "numero_tiss": 8,
+      "campo": "Carteira",
+      "esperado": "0000087654",
+      "extraido": "0000087654",
+      "esperado_interface": "0000087654",
+      "preenchido_na_interface": "0000087654",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "05_leitura_incerta.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          228.9499969482422,
+          112.84002685546875,
+          248.18600463867188
+        ],
+        "trecho": "8 Numero da carteira / 0000087654"
+      }
+    },
+    {
+      "documento_ficticio": "05_leitura_incerta.pdf",
+      "numero_tiss": 15,
+      "campo": "Medico",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "extraido": "DRA EXEMPLO SINTETICA",
+      "esperado_interface": "DRA EXEMPLO SINTETICA",
+      "preenchido_na_interface": "DRA EXEMPLO SINTETICA",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "05_leitura_incerta.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          390.0,
+          286.95001220703125,
+          568.1500854492188,
+          306.1860046386719
+        ],
+        "trecho": "15 Nome do profissional solicitante / DRA EXEMPLO SINTETICA"
+      }
+    },
+    {
+      "documento_ficticio": "05_leitura_incerta.pdf",
+      "numero_tiss": 17,
+      "campo": "Número conselho",
+      "esperado": "",
+      "extraido": "",
+      "esperado_interface": "Não identificado",
+      "preenchido_na_interface": "Não identificado",
+      "estado_esperado": "uncertain",
+      "estado_encontrado": "uncertain",
+      "passou": true,
+      "origem": {
+        "arquivo": "05_leitura_incerta.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          344.95001220703125,
+          89.4880142211914,
+          364.1860046386719
+        ],
+        "trecho": "17 Numero do conselho / 01?2345"
+      }
+    },
+    {
+      "documento_ficticio": "05_leitura_incerta.pdf",
+      "numero_tiss": 18,
+      "campo": "UF conselho",
+      "esperado": "GO",
+      "extraido": "GO",
+      "esperado_interface": "GO",
+      "preenchido_na_interface": "GO",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "05_leitura_incerta.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          390.0,
+          344.95001220703125,
+          411.78399658203125,
+          364.1860046386719
+        ],
+        "trecho": "18 UF / GO"
+      }
+    },
+    {
+      "documento_ficticio": "05_leitura_incerta.pdf",
+      "numero_tiss": 23,
+      "campo": "Indicação clínica",
+      "esperado": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "extraido": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "esperado_interface": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "preenchido_na_interface": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "05_leitura_incerta.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          35.0,
+          406.17498779296875,
+          330.8561096191406,
+          434.489013671875
+        ],
+        "trecho": "23 Indicacao clinica / INVESTIGACAO FICTICIA DE ANEMIA. HEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO."
+      }
+    },
+    {
+      "documento_ficticio": "05_leitura_incerta.pdf",
+      "numero_tiss": 30,
+      "campo": "Contratado executante",
+      "esperado": "LABORATORIO FICTICIO DOS SANTOS",
+      "extraido": "LABORATORIO FICTICIO DOS SANTOS",
+      "esperado_interface": "LABORATORIO FICTICIO DOS SANTOS",
+      "preenchido_na_interface": "LABORATORIO FICTICIO DOS SANTOS",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "05_leitura_incerta.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          230.0,
+          729.9500122070312,
+          490.6099853515625,
+          749.1859741210938
+        ],
+        "trecho": "30 Nome do contratado executante / LABORATORIO FICTICIO DOS SANTOS"
+      }
+    },
+    {
+      "documento_ficticio": "05_leitura_incerta.pdf",
+      "numero_tiss": 16,
+      "campo": "Conselho",
+      "esperado": "CRM",
+      "extraido": "CRM",
+      "esperado_interface": "CRM",
+      "preenchido_na_interface": "CRM",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "05_leitura_incerta.pdf",
+        "pagina_original": 2,
+        "regiao": [
+          745.0,
+          286.95001220703125,
+          776.8779296875,
+          306.1860046386719
+        ],
+        "trecho": "16 Conselho profissional / CRM"
+      }
+    },
+    {
+      "documento_ficticio": "04_guia_girada.pdf",
+      "numero_tiss": 2,
+      "campo": "Guia prestador",
+      "esperado": "00000111",
+      "extraido": "00000111",
+      "esperado_interface": "00000111",
+      "preenchido_na_interface": "00000111",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          117.6,
+          1005.6,
+          128.4,
+          1064.4
+        ],
+        "trecho": "2 Numero da guia no prestador / 00000111"
+      }
+    },
+    {
+      "documento_ficticio": "04_guia_girada.pdf",
+      "numero_tiss": 3,
+      "campo": "Guia principal",
+      "esperado": "00000222",
+      "extraido": "00000222",
+      "esperado_interface": "00000222",
+      "preenchido_na_interface": "00000222",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          118.0,
+          648.4,
+          128.4,
+          709.6
+        ],
+        "trecho": "3 Numero da guia principal / 00000222"
+      }
+    },
+    {
+      "documento_ficticio": "04_guia_girada.pdf",
+      "numero_tiss": 7,
+      "campo": "Guia operadora",
+      "esperado": "00000777",
+      "extraido": "00000777",
+      "esperado_interface": "00000777",
+      "preenchido_na_interface": "00000777",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          176.0,
+          293.2,
+          186.4,
+          354.4
+        ],
+        "trecho": "7 Numero da guia atribuido pela operadora / 00000777"
+      }
+    },
+    {
+      "documento_ficticio": "04_guia_girada.pdf",
+      "numero_tiss": 5,
+      "campo": "Senha autorização",
+      "esperado": "00000555",
+      "extraido": "00000555",
+      "esperado_interface": "00000555",
+      "preenchido_na_interface": "00000555",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          176.0,
+          1003.2,
+          186.4,
+          1064.4
+        ],
+        "trecho": "5 Senha de autorizacao / 00000555"
+      }
+    },
+    {
+      "documento_ficticio": "04_guia_girada.pdf",
+      "numero_tiss": 10,
+      "campo": "Paciente",
+      "esperado": "PESSOA FICTICIA DE OLIVEIRA",
+      "extraido": "PESSOA FICTICIA DE OLIVEIRA",
+      "esperado_interface": "PESSOA FICTICIA DE OLIVEIRA",
+      "preenchido_na_interface": "PESSOA FICTICIA DE OLIVEIRA",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          235.6,
+          188.8,
+          244.4,
+          354.0
+        ],
+        "trecho": "10 Nome do beneficiario / PESSOA FICTICIA DE OLIVEIRA"
+      }
+    },
+    {
+      "documento_ficticio": "04_guia_girada.pdf",
+      "numero_tiss": 8,
+      "campo": "Carteira",
+      "esperado": "0000087654",
+      "extraido": "0000087654",
+      "esperado_interface": "0000087654",
+      "preenchido_na_interface": "0000087654",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          233.6,
+          987.6,
+          244.4,
+          1064.4
+        ],
+        "trecho": "8 Numero da carteira / 0000087654"
+      }
+    },
+    {
+      "documento_ficticio": "04_guia_girada.pdf",
+      "numero_tiss": 15,
+      "campo": "Medico",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "extraido": "DRA EXEMPLO SINTETICA",
+      "esperado_interface": "DRA EXEMPLO SINTETICA",
+      "preenchido_na_interface": "DRA EXEMPLO SINTETICA",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          291.6,
+          532.0,
+          302.4,
+          708.8
+        ],
+        "trecho": "15 Nome do profissional solicitante / DRA EXEMPLO SINTETICA"
+      }
+    },
+    {
+      "documento_ficticio": "04_guia_girada.pdf",
+      "numero_tiss": 17,
+      "campo": "Número conselho",
+      "esperado": "0012345",
+      "extraido": "0012345",
+      "esperado_interface": "0012345",
+      "preenchido_na_interface": "0012345",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          349.6,
+          987.6,
+          360.4,
+          1064.4
+        ],
+        "trecho": "17 Numero do conselho / 0012345"
+      }
+    },
+    {
+      "documento_ficticio": "04_guia_girada.pdf",
+      "numero_tiss": 18,
+      "campo": "UF conselho",
+      "esperado": "GO",
+      "extraido": "GO",
+      "esperado_interface": "GO",
+      "preenchido_na_interface": "GO",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          349.6,
+          688.8,
+          360.4,
+          709.6
+        ],
+        "trecho": "18 UF / GO"
+      }
+    },
+    {
+      "documento_ficticio": "04_guia_girada.pdf",
+      "numero_tiss": 23,
+      "campo": "Indicação clínica",
+      "esperado": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "extraido": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "esperado_interface": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "preenchido_na_interface": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          409.6,
+          770.0,
+          433.2,
+          1064.0
+        ],
+        "trecho": "23 Indicacao clinica / INVESTIGACAO FICTICIA DE ANEMIA. HEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO."
+      }
+    },
+    {
+      "documento_ficticio": "04_guia_girada.pdf",
+      "numero_tiss": 30,
+      "campo": "Contratado executante",
+      "esperado": "LABORATORIO FICTICIO DOS SANTOS",
+      "extraido": "LABORATORIO FICTICIO DOS SANTOS",
+      "esperado_interface": "LABORATORIO FICTICIO DOS SANTOS",
+      "preenchido_na_interface": "LABORATORIO FICTICIO DOS SANTOS",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          734.4,
+          610.0,
+          745.2,
+          868.8
+        ],
+        "trecho": "30 Nome do contratado executante / LABORATORIO FICTICIO DOS SANTOS"
+      }
+    },
+    {
+      "documento_ficticio": "04_guia_girada.pdf",
+      "numero_tiss": 16,
+      "campo": "Conselho",
+      "esperado": "CRM",
+      "extraido": "CRM",
+      "esperado_interface": "CRM",
+      "preenchido_na_interface": "CRM",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "04_guia_girada.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          291.6,
+          324.0,
+          302.4,
+          354.4
+        ],
+        "trecho": "16 Conselho profissional / CRM"
+      }
+    },
+    {
+      "documento_ficticio": "guia_sem_campo30.pdf",
+      "numero_tiss": 2,
+      "campo": "Guia prestador",
+      "esperado": "00000111",
+      "extraido": "00000111",
+      "esperado_interface": "00000111",
+      "preenchido_na_interface": "00000111",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "guia_sem_campo30.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          35.0,
+          112.94999694824219,
+          97.27201843261719,
+          132.18600463867188
+        ],
+        "trecho": "2 Numero da guia no prestador / 00000111"
+      }
+    },
+    {
+      "documento_ficticio": "guia_sem_campo30.pdf",
+      "numero_tiss": 3,
+      "campo": "Guia principal",
+      "esperado": "00000222",
+      "extraido": "00000222",
+      "esperado_interface": "00000222",
+      "preenchido_na_interface": "00000222",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "guia_sem_campo30.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          390.0,
+          112.94999694824219,
+          452.27197265625,
+          132.18600463867188
+        ],
+        "trecho": "3 Numero da guia principal / 00000222"
+      }
+    },
+    {
+      "documento_ficticio": "guia_sem_campo30.pdf",
+      "numero_tiss": 7,
+      "campo": "Guia operadora",
+      "esperado": "00000777",
+      "extraido": "00000777",
+      "esperado_interface": "00000777",
+      "preenchido_na_interface": "00000777",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "guia_sem_campo30.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          745.0,
+          170.9499969482422,
+          807.27197265625,
+          190.18600463867188
+        ],
+        "trecho": "7 Numero da guia atribuido pela operadora / 00000777"
+      }
+    },
+    {
+      "documento_ficticio": "guia_sem_campo30.pdf",
+      "numero_tiss": 5,
+      "campo": "Senha autorização",
+      "esperado": "00000555",
+      "extraido": "00000555",
+      "esperado_interface": "00000555",
+      "preenchido_na_interface": "00000555",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "guia_sem_campo30.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          35.0,
+          170.9499969482422,
+          97.27201843261719,
+          190.18600463867188
+        ],
+        "trecho": "5 Senha de autorizacao / 00000555"
+      }
+    },
+    {
+      "documento_ficticio": "guia_sem_campo30.pdf",
+      "numero_tiss": 10,
+      "campo": "Paciente",
+      "esperado": "PESSOA FICTICIA DE OLIVEIRA",
+      "extraido": "PESSOA FICTICIA DE OLIVEIRA",
+      "esperado_interface": "PESSOA FICTICIA DE OLIVEIRA",
+      "preenchido_na_interface": "PESSOA FICTICIA DE OLIVEIRA",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "guia_sem_campo30.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          745.0,
+          232.1750030517578,
+          911.2756958007812,
+          247.28900146484375
+        ],
+        "trecho": "10 Nome do beneficiario / PESSOA FICTICIA DE OLIVEIRA"
+      }
+    },
+    {
+      "documento_ficticio": "guia_sem_campo30.pdf",
+      "numero_tiss": 8,
+      "campo": "Carteira",
+      "esperado": "0000087654",
+      "extraido": "0000087654",
+      "esperado_interface": "0000087654",
+      "preenchido_na_interface": "0000087654",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "guia_sem_campo30.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          35.0,
+          228.9499969482422,
+          112.84002685546875,
+          248.18600463867188
+        ],
+        "trecho": "8 Numero da carteira / 0000087654"
+      }
+    },
+    {
+      "documento_ficticio": "guia_sem_campo30.pdf",
+      "numero_tiss": 15,
+      "campo": "Medico",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "extraido": "DRA EXEMPLO SINTETICA",
+      "esperado_interface": "DRA EXEMPLO SINTETICA",
+      "preenchido_na_interface": "DRA EXEMPLO SINTETICA",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "guia_sem_campo30.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          390.0,
+          286.95001220703125,
+          568.1500854492188,
+          306.1860046386719
+        ],
+        "trecho": "15 Nome do profissional solicitante / DRA EXEMPLO SINTETICA"
+      }
+    },
+    {
+      "documento_ficticio": "guia_sem_campo30.pdf",
+      "numero_tiss": 17,
+      "campo": "Número conselho",
+      "esperado": "0012345",
+      "extraido": "0012345",
+      "esperado_interface": "0012345",
+      "preenchido_na_interface": "0012345",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "guia_sem_campo30.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          35.0,
+          344.95001220703125,
+          112.84001922607422,
+          364.1860046386719
+        ],
+        "trecho": "17 Numero do conselho / 0 0 1 2 3 4 5"
+      }
+    },
+    {
+      "documento_ficticio": "guia_sem_campo30.pdf",
+      "numero_tiss": 18,
+      "campo": "UF conselho",
+      "esperado": "GO",
+      "extraido": "GO",
+      "esperado_interface": "GO",
+      "preenchido_na_interface": "GO",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "guia_sem_campo30.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          390.0,
+          344.95001220703125,
+          411.78399658203125,
+          364.1860046386719
+        ],
+        "trecho": "18 UF / GO"
+      }
+    },
+    {
+      "documento_ficticio": "guia_sem_campo30.pdf",
+      "numero_tiss": 23,
+      "campo": "Indicação clínica",
+      "esperado": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "extraido": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "esperado_interface": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "preenchido_na_interface": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "guia_sem_campo30.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          35.0,
+          406.17498779296875,
+          330.8561096191406,
+          434.489013671875
+        ],
+        "trecho": "23 Indicacao clinica / INVESTIGACAO FICTICIA DE ANEMIA. HEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO."
+      }
+    },
+    {
+      "documento_ficticio": "guia_sem_campo30.pdf",
+      "numero_tiss": 30,
+      "campo": "Contratado executante",
+      "esperado": "",
+      "extraido": "",
+      "esperado_interface": "Não identificado",
+      "preenchido_na_interface": "Não identificado",
+      "estado_esperado": "not_found",
+      "estado_encontrado": "not_found",
+      "passou": true,
+      "origem": {
+        "arquivo": null,
+        "pagina_original": null,
+        "regiao": null,
+        "trecho": ""
+      }
+    },
+    {
+      "documento_ficticio": "guia_sem_campo30.pdf",
+      "numero_tiss": 16,
+      "campo": "Conselho",
+      "esperado": "CRM",
+      "extraido": "CRM",
+      "esperado_interface": "CRM",
+      "preenchido_na_interface": "CRM",
+      "estado_esperado": "identified",
+      "estado_encontrado": "identified",
+      "passou": true,
+      "origem": {
+        "arquivo": "guia_sem_campo30.pdf",
+        "pagina_original": 1,
+        "regiao": [
+          745.0,
+          286.95001220703125,
+          776.8779296875,
+          306.1860046386719
+        ],
+        "trecho": "16 Conselho profissional / CRM"
+      }
+    }
+  ],
+  "fluxo": [
+    {
+      "verificacao": "01_um_paciente.pdf rascunho salvo com eventos de mouse",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "verificacao": "01_um_paciente.pdf navegação não prepara automaticamente",
+      "esperado": null,
+      "encontrado": null,
+      "passou": true
+    },
+    {
+      "verificacao": "03_campos_vazios.pdf rascunho salvo com eventos de mouse",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "verificacao": "03_campos_vazios.pdf navegação não prepara automaticamente",
+      "esperado": null,
+      "encontrado": null,
+      "passou": true
+    },
+    {
+      "verificacao": "05_leitura_incerta.pdf rascunho salvo com eventos de mouse",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "verificacao": "05_leitura_incerta.pdf navegação não prepara automaticamente",
+      "esperado": null,
+      "encontrado": null,
+      "passou": true
+    },
+    {
+      "verificacao": "Correção leva ao campo incerto",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "verificacao": "Correção manual persiste no banco",
+      "esperado": "0012345",
+      "encontrado": "0012345",
+      "passou": true
+    },
+    {
+      "verificacao": "Correção atualiza pendência do número",
+      "esperado": false,
+      "encontrado": false,
+      "passou": true
+    },
+    {
+      "verificacao": "04_guia_girada.pdf rascunho salvo com eventos de mouse",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "verificacao": "04_guia_girada.pdf navegação não prepara automaticamente",
+      "esperado": null,
+      "encontrado": null,
+      "passou": true
+    },
+    {
+      "verificacao": "guia_sem_campo30.pdf rascunho salvo com eventos de mouse",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "verificacao": "guia_sem_campo30.pdf navegação não prepara automaticamente",
+      "esperado": null,
+      "encontrado": null,
+      "passou": true
+    },
+    {
+      "verificacao": "Quatro páginas de duas pessoas",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true
+    },
+    {
+      "verificacao": "Duas fichas, duas páginas por pessoa",
+      "esperado": [
+        [
+          "PESSOA FICTICIA DE OLIVEIRA",
+          2
+        ],
+        [
+          "PESSOA FICTICIA DOS SANTOS",
+          2
+        ]
+      ],
+      "encontrado": [
+        [
+          "PESSOA FICTICIA DE OLIVEIRA",
+          2
+        ],
+        [
+          "PESSOA FICTICIA DOS SANTOS",
+          2
+        ]
+      ],
+      "passou": true
+    },
+    {
+      "verificacao": "Rascunhos do lote",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true
+    },
+    {
+      "verificacao": "Sem pendências após revisão fictícia",
+      "esperado": [],
+      "encontrado": [],
+      "passou": true
+    },
+    {
+      "verificacao": "Preparo local pelo fluxo principal",
+      "esperado": "PREPARADO",
+      "encontrado": "PREPARADO",
+      "passou": true
+    },
+    {
+      "verificacao": "Cinco exames na demonstração",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true
+    },
+    {
+      "verificacao": "Nenhuma O.S. real",
+      "esperado": null,
+      "encontrado": null,
+      "passou": true
+    }
+  ],
+  "verificacoes": 80,
+  "passaram": 80,
+  "falharam": 0
+}

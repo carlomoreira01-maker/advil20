@@ -1,4 +1,19 @@
-# Cadastro Assistido Shift — versão 2.4.5
+# Cadastro Assistido Shift — versão 2.5.0
+
+Comece por [ATUALIZAR_PARA_2_5_0.txt](ATUALIZAR_PARA_2_5_0.txt). A atualização modifica o aplicativo existente, mantém os arquivos anteriores e abre um painel simples em cinco telas.
+
+- **Cadastro de um paciente** e **Cadastro de vários pacientes**: use **Importar documentos** para PDF multipágina, JPG/PNG ou vários arquivos. O agrupamento verifica identificadores nas duas abas.
+- **Documentos → Dados identificados → Exames → Pré-cadastro**: navegue sem perder dados, veja a origem de cada informação e corrija os campos diretamente.
+- **11 campos essenciais + conselho 16**: campo 30 separado do médico, indicação clínica completa e quatro estados de leitura. Indicação clínica não vira solicitação de exame.
+- **Rascunho de pré-cadastro**: abra, salve e exporte mesmo com pendências. A preparação validada continua exigindo conferência humana e regras homologadas. Nada é enviado ao Shift real.
+- **Mais opções** reúne configurações e a conferência detalhada anterior. Nas fichas antigas, use **Reprocessar leitura** para aplicar a nova interpretação.
+
+Teste `exemplos_250/01_um_paciente.pdf`, `02_dois_pacientes_quatro_paginas.pdf` e `03_campos_vazios.pdf` em uma instalação separada. O segundo arquivo deve gerar duas fichas de duas páginas. Exemplos e gabarito são totalmente fictícios.
+
+Causas, alterações e limites: [CORRECAO_2_5_0.md](docs/CORRECAO_2_5_0.md). Resultados: [RESULTADO_TESTES_2_5_0.txt](docs/RESULTADO_TESTES_2_5_0.txt) e [RELATORIO_INTERFACE_2_5_0.json](docs/RELATORIO_INTERFACE_2_5_0.json). A execução nativa no Windows e a homologação do laboratório permanecem pendentes. Esta entrega inclui os scripts de instalação e inicialização, sem novo executável instalador.
+
+## Histórico preservado da versão 2.4.5 e anteriores
+
 
 Comece por [ATUALIZAR_PARA_2_4_5.txt](ATUALIZAR_PARA_2_4_5.txt). Esta versão modifica o aplicativo Python/Tkinter existente e preserva dados, importação antiga, perfis, catálogo e simulação local. Não acessa o Shift real.
 
