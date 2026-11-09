@@ -1,0 +1,10 @@
+{
+  "download_e_integridade_confirmados": true,
+  "http_status": 200,
+  "bytes": 7176563,
+  "arquivos": 333,
+  "sha256": "31b9d41c7339a1f3f1f7c26f5793ef532115b6a6358cabfdb56ba2fbec225893",
+  "anteriores_preservados": 316,
+  "crc_aprovado": true,
+  "todos_membros_conferidos": true
+}
