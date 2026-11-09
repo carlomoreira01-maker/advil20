@@ -1,0 +1,10 @@
+{
+  "download_e_integridade_confirmados": true,
+  "http_status": 200,
+  "bytes": 6570279,
+  "arquivos": 294,
+  "sha256": "bd945fd785cccf138450015083f517debfac447c28d29cc7610c13db935ce2af",
+  "origem": "GitHub / entrega/shift-v2.5.0",
+  "crc_aprovado": true,
+  "todos_membros_conferidos": true
+}
