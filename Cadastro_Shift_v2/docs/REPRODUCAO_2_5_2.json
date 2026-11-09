@@ -1,0 +1,36 @@
+{
+  "somente_sinteticos": true,
+  "resultados": [
+    {
+      "caso": "Seleção inválida revoga identidade anterior",
+      "esperado": false,
+      "encontrado": true,
+      "passou": false
+    },
+    {
+      "caso": "Não cria O.S. após seleção divergente",
+      "esperado": true,
+      "encontrado": false,
+      "passou": false
+    },
+    {
+      "caso": "Quantidade diferente do conjunto fictício exige bloqueio",
+      "esperado": true,
+      "encontrado": false,
+      "passou": false
+    },
+    {
+      "caso": "Rascunho antigo não pode assumir a revisão nova",
+      "esperado": true,
+      "encontrado": false,
+      "passou": false
+    },
+    {
+      "caso": "Cópia local alterada é recusada",
+      "esperado": true,
+      "encontrado": false,
+      "passou": false
+    }
+  ],
+  "falhas_reproduzidas": 5
+}

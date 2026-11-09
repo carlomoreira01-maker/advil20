@@ -22,11 +22,11 @@ class RpaContract251(unittest.TestCase):
   with tempfile.TemporaryDirectory() as tmp:
    path=Path(tmp)/'demo.sqlite3';d=demo_data();s=Simulation(d,self.approval(d),ATTACHMENTS,path)
    s.select({'query':d['patient'],'id':'SIM-P1','reviewed':True})
-   with self.assertRaises(ValueError):s.create({'data':d,'attachments':ATTACHMENTS,'final':False})
-   out=s.create({'data':d,'attachments':ATTACHMENTS,'final':True});self.assertIsNone(out['os_real']);s.db.close();d['case_id']='DEMO-OUTRO-ID';s=Simulation(d,self.approval(d),ATTACHMENTS,path)
+   with self.assertRaises(ValueError):s.create({'data':d,'attachments':ATTACHMENTS,'identity_token':s.selection_token,'final':False})
+   out=s.create({'data':d,'attachments':ATTACHMENTS,'identity_token':s.selection_token,'final':True});self.assertIsNone(out['os_real']);s.db.close();d['case_id']='DEMO-OUTRO-ID';s=Simulation(d,self.approval(d),ATTACHMENTS,path)
    try:
     s.select({'query':d['patient'],'id':'SIM-P1','reviewed':True})
-    with self.assertRaisesRegex(ValueError,'duplicidade'):s.create({'data':d,'attachments':ATTACHMENTS,'final':True})
+    with self.assertRaisesRegex(ValueError,'duplicidade'):s.create({'data':d,'attachments':ATTACHMENTS,'identity_token':s.selection_token,'final':True})
    finally:s.db.close()
 
 @unittest.skipUnless(os.getenv('SHIFT_BROWSER_TESTS')=='1','Requer navegador local')

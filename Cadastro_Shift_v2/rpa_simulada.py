@@ -22,9 +22,11 @@ class SimulatedRPA:
         except Exception:self.close();raise
     def search_patient(self):
         for key,val in self.data['patient'].items():self.page.locator('#'+key).fill(val)
-        self.page.locator('#search').click();self.page.wait_for_function("document.querySelector('#patient').textContent.includes('SIM-P')")
+        self.page.evaluate("window.searchReady=false;document.querySelector('#patient').textContent=''")
+        self.page.locator('#search').click();self.page.wait_for_function('window.searchReady===true')
+        if 'SIM-P' not in self.page.locator('#patient').inner_text():raise ValueError('Paciente sem correspondência única. Confira os identificadores antes de continuar.')
     def fill_order(self):
-        if not self.server.state.selected:raise ValueError('Confirme manualmente a identidade no navegador antes de preencher a O.S.')
+        if not self.server.state.selected or not self.page.evaluate('window.identityConfirmed===true') or not self.page.locator('#identity').is_checked() or self.page.evaluate('window.identityToken')!=self.server.state.selection_token:raise ValueError('Confirme novamente a identidade no navegador antes de preencher a O.S.')
         p=self.page
         for key in ['case_id','guide','main_guide','operator_guide','password','crm','uf']:p.locator('#'+key).fill(self.data[key])
         p.locator('#payer').select_option(self.data['payer']);p.locator('#doctor').click()

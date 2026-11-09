@@ -1,0 +1,15 @@
+CADASTRO ASSISTIDO SHIFT 2.5.2
+
+ZIP TESTADO
+https://github.com/carlomoreira01-maker/advil20/raw/refs/heads/entrega/shift-v2.5.2/entrega/Cadastro_Shift_v2_5_2_corrigido.zip
+
+Faça backup da pasta antiga, extraia o ZIP em pasta nova e copie dados_v2 com os programas fechados. Não copie .venv. Abra INSTALAR_WINDOWS.bat e INICIAR_WINDOWS.bat. Leia ATUALIZAR_PARA_2_5_2.txt.
+
+A atualização corrige confirmações antigas de identidade, quantidades inconsistentes no treinamento, rascunhos desatualizados e cópias locais alteradas. O padrão por PDF e a interface permanecem.
+
+Para a inspeção LOCAL em Windows: instale o componente opcional com INSTALAR_SIMULACAO_RPA.bat. Abra Inspecionar Shift — somente leitura no menu ou INSPECIONAR_SHIFT.bat. Digite o login somente no navegador e exporte apenas a estrutura técnica, sem valores dos campos. Essa ferramenta não cadastra no sistema real.
+
+A gravação em produção ainda não está homologada. O acesso da nuvem foi bloqueado antes do login; nenhuma credencial foi usada ou publicada. Os testes completos foram locais com documentos sintéticos. Windows nativo não foi executado neste ambiente.
+
+Alternativa: https://github.com/carlomoreira01-maker/advil20/tree/entrega/shift-v2.5.2 > entrega > baixar ZIP bruto.
+Backup anterior: https://github.com/carlomoreira01-maker/advil20/tree/entrega/shift-v2.5.1

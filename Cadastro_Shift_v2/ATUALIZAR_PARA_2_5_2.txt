@@ -1,0 +1,44 @@
+CADASTRO ASSISTIDO SHIFT 2.5.2 — AUDITORIA E INSPEÇÃO DO SHIFT
+
+ATUALIZAR
+1. Feche o programa e faça uma cópia da pasta antiga, incluindo dados_v2.
+2. Extraia TODO o ZIP novo em uma pasta NOVA.
+3. Copie dados_v2 da instalação antiga para Cadastro_Shift_v2, com os programas fechados. Não copie .venv nem substitua atendimentos novos.
+4. Abra INSTALAR_WINDOWS.bat e depois INICIAR_WINDOWS.bat. O título deve mostrar 2.5.2.
+
+O QUE FOI CORRIGIDO
+- Uma confirmação de identidade antiga não pode continuar sendo usada depois de nova pesquisa, alteração dos identificadores ou seleção divergente.
+- A RPA exige a confirmação atual do paciente antes de preencher o atendimento fictício.
+- Os exames e quantidades precisam corresponder ao conjunto de PDFs fictícios do treinamento. Não é possível aprovar quantidade diferente da impressa apenas mudando os dados enviados.
+- Um rascunho de uma revisão antiga não pode sobrescrever o estado de uma revisão mais nova. Se a ficha mudou em outra janela, reabra a ficha antes de continuar.
+- Cópias locais alteradas de documentos são recusadas na reimportação e antes da preparação. Se isso acontecer, restaure dados_v2\documentos pelo backup. Não substitua originais por documentos de outro paciente.
+As abas de um paciente/vários pacientes, o padrão um PDF por atendimento provisório, o cache, o cancelamento, a conferência e o rascunho foram preservados.
+
+SOBRE A AUTOMAÇÃO NO SHIFT REAL
+A RPA completa continua operando no simulador local. A gravação no Shift de produção ainda não está homologada.
+Nesta rodada, a conexão da nuvem ao endereço de produção foi bloqueada pela rede antes do login. Nenhuma credencial foi enviada, nenhuma tela autenticada foi inspecionada e nenhuma O.S. real foi criada.
+Informar um endereço de login não fornece os seletores das telas internas, os códigos do laboratório ou a validação do fluxo real. Esses itens ainda precisam ser verificados antes de permitir gravação.
+Não há promessa de funcionamento 100% no ambiente real. Os resultados dos testes distinguem o simulador, a interface e a integração de produção ainda pendente.
+
+INSPECIONAR AS TELAS NO SEU WINDOWS, SOMENTE EM LEITURA
+Este recurso prepara a conferência técnica das telas reais. Ele NÃO realiza o cadastro automaticamente.
+1. Se o componente de navegador ainda não estiver instalado, execute INSTALAR_SIMULACAO_RPA.bat.
+2. Abra Mais opções > Inspecionar Shift — somente leitura. Também é possível abrir INSPECIONAR_SHIFT.bat.
+3. Clique em Abrir navegador para login manual.
+4. Digite suas credenciais SOMENTE no navegador do Shift. O programa não recebe, salva ou preenche a senha.
+5. Abra uma tela autorizada para inspeção. Evite realizar cadastros ou impressões durante essa inspeção.
+6. Volte à janela do programa e clique em Inspecionar estrutura da tela atual.
+7. Salvar relatório estrutural local grava um JSON apenas com tipos de controles, sugestões de campos e alguns identificadores técnicos permitidos.
+O relatório não contém valores dos campos, HTML, captura de tela, cookies, senha ou sessão. Identificadores técnicos desconhecidos são omitidos. Se o login ainda estiver visível, os controles da conta não são exportados.
+Os seletores encontrados são candidatos NÃO HOMOLOGADOS e podem mudar. O relatório, sozinho, não libera automação de gravação nem comprova autenticação.
+Se o navegador não conseguir abrir o site, verifique o acesso da rede do laboratório. Não ignore certificados, CAPTCHA ou bloqueios de segurança. Não envie credenciais novamente pelo chat.
+
+TREINAMENTO RPA
+Mais opções > Treinamento RPA — LIS fictício mantém o fluxo completo de demonstração, com seus próprios PDFs e pacientes fictícios.
+Após mudar a identidade, pesquise novamente e confirme o paciente. Depois confira fonte pagadora, médico, exames, quantidades e autorização antes da confirmação final.
+As etiquetas são uma prévia DEMONSTRAÇÃO SEM VALIDADE; nenhuma impressão oficial é solicitada. A proteção de duplicidade permanece ativa.
+
+RESULTADOS E LIMITES
+Veja docs\AUDITORIA_2_5_2.md e docs\RESULTADO_TESTES_2_5_2.txt.
+Os testes usam exclusivamente dados sintéticos e processamento local em Linux, incluindo interface real e Playwright. Windows nativo, acesso autenticado e mapeamento do Shift real ainda dependem de validação.
+Catálogo, códigos internos, perfis de fonte pagadora, autorização e campos obrigatórios reais precisam ser homologados pela equipe do laboratório. Documentos ilegíveis ou layouts não cobertos podem exigir correção humana.

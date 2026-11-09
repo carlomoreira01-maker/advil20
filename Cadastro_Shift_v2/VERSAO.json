@@ -1,8 +1,8 @@
 {
-  "versao": "2.5.1",
-  "data": "2026-11-08",
-  "testes_aprovados": 296,
-  "testes_interface": 81,
+  "versao": "2.5.2",
+  "data": "2026-11-09",
+  "testes_aprovados": 312,
+  "testes_interface": 83,
   "falhas": 0,
   "ignorados": 0,
   "ambiente_testes": "Linux / Python 3.12.14 / PyMuPDF 1.26.6 / Pillow 13.0.0 / tesseract 5.5.0 / Tkinter Xorg / Playwright Chromium",
@@ -11,7 +11,7 @@
     "por.traineddata": "c4932b937207a9514b7514d518b931a99938c02a28a5a5a553f8599ed58b7deb",
     "eng.traineddata": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2"
   },
-  "testes_navegador": 7,
+  "testes_navegador": 13,
   "verificacoes_campos": 60,
   "layouts_reais": "Não usados nesta rodada. Pedidos, guias e carimbos dos testes são inteiramente fictícios. Processamento permanece local.",
   "base_estavel": "2.4",
@@ -23,8 +23,8 @@
   },
   "verificacoes_interface_documentos_reais": 0,
   "paginas_reais": 0,
-  "base_atualizacao": "2.5.0",
-  "testes_antes": 268,
+  "base_atualizacao": "2.5.1",
+  "testes_antes": 296,
   "verificacoes_auditoria": 167,
   "verificacoes_widgets": 80,
   "historico_validacao_2_4_3": {
@@ -32,11 +32,11 @@
     "paginas": 7,
     "verificacoes_interface": 118
   },
-  "relatorio_auditoria": "docs/CORRECAO_2_5_1.md",
+  "relatorio_auditoria": "docs/AUDITORIA_2_5_2.md",
   "verificacoes_carimbo": 102,
-  "relatorio_correcao": "docs/CORRECAO_2_5_1.md",
+  "relatorio_correcao": "docs/AUDITORIA_2_5_2.md",
   "regressao_matrizes_anteriores": 539,
-  "testes_interface_nova": 21,
+  "testes_interface_nova": 23,
   "otimizacao": {
     "agrupamento_padrao": "um arquivo por atendimento provisório",
     "cache_local": true,
@@ -44,5 +44,14 @@
     "cancelamento": true,
     "relatorio": "docs/DESEMPENHO_2_5_1.json"
   },
-  "rpa": "Somente simulador próprio em loopback; dados reais bloqueados; confirmação humana obrigatória."
+  "rpa": "Simulador com confirmação atual e token de identidade. Inspeção local opcional em produção; automação de gravação real não homologada.",
+  "integracao_producao": {
+    "status": "NAO_HOMOLOGADA_ACESSO_NUVEM_BLOQUEADO",
+    "dominio": "sh.labsaudeonline.com.br",
+    "inspecao_local_somente_leitura": true,
+    "login_realizado": false,
+    "gravacao_habilitada": false,
+    "site_autenticado_validado": false,
+    "credenciais_salvas": false
+  }
 }

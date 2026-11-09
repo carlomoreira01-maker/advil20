@@ -19,17 +19,20 @@ def build_draft(obj,catalog,cid,revision):
   'validacao_concluida':not pending,'aviso':'Rascunho com informações para conferência. Não cria cadastro, autorização ou ordem de serviço.'}
 
 
-def save_draft(store,cid,models,catalog):
+def save_draft(store,cid,models,catalog,*,expected_revision,metadata=None):
  from engine_v2 import FIELDS
- obj,rev,status,_=store.get(cid)
- if status=='PREPARADO':raise ValueError('Pré-cadastro já preparado; o resultado validado permanece preservado.')
- if set(models)!=set(obj['models']):raise ValueError('Rascunho deve manter as funções dos documentos do atendimento.')
- for model in models.values():
-  if any(not isinstance(model.get('fields',{}).get(k,{}).get('value'),str) for k in FIELDS):raise ValueError('Campo inválido no rascunho.')
- snapshot={**obj,'models':copy.deepcopy(models)};result=build_draft(snapshot,catalog,cid,rev)
+ from ocr_runtime import LocalReadError
  store.db.execute('CREATE TABLE IF NOT EXISTS rascunhos_locais(caso TEXT PRIMARY KEY,revision INTEGER,conteudo TEXT)')
  with store.db:
-  store.db.execute('INSERT OR REPLACE INTO rascunhos_locais VALUES(?,?,?)',(cid,rev,json.dumps({'models':models,'preview':result},ensure_ascii=False)))
+  store.db.execute('BEGIN IMMEDIATE');obj,rev,status,_=store.get(cid)
+  if type(expected_revision) is not int or rev!=expected_revision:raise LocalReadError('O atendimento mudou em outra revisão. Reabra a ficha antes de salvar o rascunho; a revisão atual foi preservada.')
+  if status=='PREPARADO':raise ValueError('Pré-cadastro já preparado; o resultado validado permanece preservado.')
+  if set(models)!=set(obj['models']):raise ValueError('Rascunho deve manter as funções dos documentos do atendimento.')
+  for model in models.values():
+   if any(not isinstance(model.get('fields',{}).get(k,{}).get('value'),str) for k in FIELDS):raise ValueError('Campo inválido no rascunho.')
+  snapshot={**obj,'models':copy.deepcopy(models)};result=build_draft(snapshot,catalog,cid,rev)
+  payload={'models':models,'preview':result,'metadata':{'motivo':(metadata or {}).get('motivo','')}}
+  store.db.execute('INSERT OR REPLACE INTO rascunhos_locais VALUES(?,?,?)',(cid,rev,json.dumps(payload,ensure_ascii=False)))
   store.audit(cid,'SALVAR_RASCUNHO',{'revisao':rev})
  return result
 

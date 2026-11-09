@@ -60,6 +60,7 @@ def read_scan(paths,data,catalog,settings_path=None,progress=None,mode='multiple
   seen.add(sha);raw=path.read_bytes()
   if hashlib.sha256(raw).hexdigest()!=sha:raise LocalReadError('Arquivo mudou durante a leitura. Importe novamente.')
   dest=target/(sha+path.suffix.lower())
+  if dest.exists() and hashlib.sha256(dest.read_bytes()).hexdigest()!=sha:raise LocalReadError('A cópia local do documento original foi alterada. Restaure o arquivo pelo backup antes de continuar.')
   if not dest.exists():dest.write_bytes(raw)
   document['local_path']=str(dest.resolve());batch['sources'][sha]=document
   for page in document['pages']:

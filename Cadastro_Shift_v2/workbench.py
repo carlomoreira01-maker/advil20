@@ -89,7 +89,7 @@ class Workspace:
         self.app=app;self.root=app.root;self.phase=0;self.advanced=False;self.bound_cid=None;self.bound_revision=None;self.binding=False
         self.legacy_pack=[(w,w.pack_info()) for w in self.root.winfo_children() if w.winfo_manager()=='pack']
         for w,_ in self.legacy_pack:w.pack_forget()
-        self.root.title('Cadastro Assistido Shift 2.5.1 | Processamento local')
+        self.root.title('Cadastro Assistido Shift 2.5.2 | Processamento local')
         self.root.geometry(f'{min(1280,self.root.winfo_screenwidth()-50)}x{min(840,self.root.winfo_screenheight()-80)}');self.root.minsize(1000,640)
         families={f.casefold():f for f in tkfont.families(self.root)}
         self.font=next((families[f.casefold()] for f in ['Segoe UI','DejaVu Sans','Liberation Sans','Noto Sans','Nimbus Sans L'] if f.casefold() in families),tkfont.nametofont('TkDefaultFont').actual('family'))
@@ -110,9 +110,9 @@ class Workspace:
         self.frame=ttk.Frame(self.root,style='Clean.TFrame',padding=18);self.frame.pack(fill='both',expand=True)
         header=ttk.Frame(self.frame,style='Clean.TFrame');header.pack(fill='x')
         ttk.Label(header,text='Cadastro Assistido Shift',style='Title.TLabel').pack(side='left')
-        ttk.Label(header,text='2.5.1  |  Local e assistido',style='Muted.TLabel').pack(side='left',padx=14)
+        ttk.Label(header,text='2.5.2  |  Local e assistido',style='Muted.TLabel').pack(side='left',padx=14)
         more=ttk.Menubutton(header,text='Mais opções');more.pack(side='right');menu=tk.Menu(more,tearoff=False);more.configure(menu=menu)
-        for title,fn in [('Configurar leitor OCR',app.ocr_settings_window),('Catálogo do laboratório',app.catalog_window),('Perfis de fontes pagadoras',app.payer_window),('Diagnóstico e conferência detalhada',self.show_advanced),('Histórico local',app.audit_window),('Tempos de leitura',lambda:__import__('reading_diagnostics').show_times(app)),('Exemplos fictícios',self.examples),('Simulador local',app.simulation_window),('Treinamento RPA — LIS fictício',lambda:__import__('rpa_training_ui').open_training(app))]:menu.add_command(label=title,command=lambda f=fn:app.guard(f))
+        for title,fn in [('Configurar leitor OCR',app.ocr_settings_window),('Catálogo do laboratório',app.catalog_window),('Perfis de fontes pagadoras',app.payer_window),('Diagnóstico e conferência detalhada',self.show_advanced),('Histórico local',app.audit_window),('Tempos de leitura',lambda:__import__('reading_diagnostics').show_times(app)),('Exemplos fictícios',self.examples),('Simulador local',app.simulation_window),('Treinamento RPA — LIS fictício',lambda:__import__('rpa_training_ui').open_training(app)),('Inspecionar Shift — somente leitura',lambda:__import__('shift_inspection_ui').open_inspection(app))]:menu.add_command(label=title,command=lambda f=fn:app.guard(f))
         reviewer=ttk.Frame(self.frame,style='Clean.TFrame');reviewer.pack(fill='x',pady=(10,12))
         ttk.Label(reviewer,text='Seu nome / revisor',style='Clean.TLabel').pack(side='left');self.actor_entry=ttk.Entry(reviewer,textvariable=app.actor,width=28);self.actor_entry.pack(side='left',padx=8)
         self.case_title=tk.StringVar(value='Importe documentos para começar.');ttk.Label(reviewer,textvariable=self.case_title,style='Muted.TLabel').pack(side='right')
@@ -397,10 +397,7 @@ class Workspace:
         if not self.app.cid:
             if quiet:return
             raise ValueError('Selecione um atendimento.')
-        self.clinical_changed();result=save_draft(self.app.store,self.app.cid,self.app.collect(),self.app.catalog)
-        # A nota de conferência é local ao rascunho; confirmação final nunca é restaurada.
-        row=self.app.store.db.execute('SELECT conteudo FROM rascunhos_locais WHERE caso=?',(self.app.cid,)).fetchone();payload=json.loads(row[0]);payload['metadata']={'motivo':self.app.review_reason.get()}
-        with self.app.store.db:self.app.store.db.execute('UPDATE rascunhos_locais SET conteudo=? WHERE caso=?',(json.dumps(payload,ensure_ascii=False),self.app.cid))
+        self.clinical_changed();result=save_draft(self.app.store,self.app.cid,self.app.collect(),self.app.catalog,expected_revision=self.app.rev,metadata={'motivo':self.app.review_reason.get()})
         if not quiet:self.notice.set('Rascunho salvo localmente com '+str(len(result['pendencias']))+' pendências. Nada foi enviado ao Shift.')
         return result
     def save_review(self):
@@ -418,11 +415,11 @@ class Workspace:
     def save_batch_drafts(self):
         saved=0
         for cid in self.queues['multiple'].get_children():
-            obj,_,status,_=self.app.store.get(cid)
+            obj,revision,status,_=self.app.store.get(cid)
             if status=='PREPARADO':continue
             if cid==self.app.cid:self.save_current_draft(quiet=True)
             else:
-                draft=load_draft(self.app.store,cid);save_draft(self.app.store,cid,draft['models'] if draft else obj['models'],self.app.catalog)
+                draft=load_draft(self.app.store,cid);save_draft(self.app.store,cid,draft['models'] if draft else obj['models'],self.app.catalog,expected_revision=revision,metadata=(draft or {}).get('metadata'))
             saved+=1
         self.notice.set(str(saved)+' rascunhos salvos. Cada atendimento exige conferência individual; nenhum cadastro foi enviado ao Shift.')
     def prepare(self):

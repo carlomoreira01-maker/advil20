@@ -15,11 +15,12 @@ def demo_data():
         'crm':'0012345','uf':'GO','exams':[{'code':c,'quantity':1} for c in CODES]}
 
 def approve(data,reviewer,checks):
-    if not reviewer.strip() or not all(checks.get(k) is True for k in APPROVALS):raise ValueError('Confira identidade, fonte pagadora, médico, exames e autorização e informe o revisor.')
+    if not isinstance(data,dict) or not isinstance(checks,dict) or not isinstance(reviewer,str) or not reviewer.strip() or not all(checks.get(k) is True for k in APPROVALS):raise ValueError('Confira identidade, fonte pagadora, médico, exames e autorização e informe o revisor.')
     return {'reviewer':reviewer.strip(),'checks':dict(checks),'data_hash':digest(data)}
 
 class Simulation:
     def __init__(self,data,approval,attachments,db_path=':memory:'):
+        if not isinstance(data,dict) or not isinstance(approval,dict) or not isinstance(approval.get('checks'),dict) or not isinstance(data.get('patient'),dict):raise ValueError('Dados estruturados ou aprovação inválidos.')
         if approval.get('data_hash')!=digest(data) or not approval.get('reviewer') or not all(approval.get('checks',{}).get(k) is True for k in APPROVALS):raise ValueError('Dados alterados ou aprovação humana incompleta.')
         query={k:v for k,v in data.get('patient',{}).items() if v}
         if len(query)<2:raise ValueError('Dados faltantes: informe pelo menos dois identificadores do paciente; dados restantes podem ser reutilizados do cadastro confirmado.')
@@ -28,22 +29,28 @@ class Simulation:
         if len(matches)!=1 or data.get('payer')!='FONTE-FICTICIA' or data.get('crm')!='0012345' or data.get('uf')!='GO':raise ValueError('Simulador aceita somente o cadastro fictício conhecido. Dados reais são bloqueados.')
         if any(data.get(k)!=demo_data()[k] for k in ['guide','main_guide','operator_guide','password']):raise ValueError('Use apenas as guias e autorizações fictícias do treinamento.')
         exams=data.get('exams',[])
+        if not isinstance(data.get('case_id'),str) or not isinstance(exams,list) or any(not isinstance(e,dict) or not isinstance(e.get('code'),str) for e in exams):raise ValueError('Atendimento e procedimentos estruturados inválidos.')
         if not data.get('case_id') or not exams or len({e['code'] for e in exams})!=len(exams) or any(e.get('code') not in CODES or type(e.get('quantity')) is not int or not 1<=e['quantity']<=99 for e in exams):raise ValueError('Procedimentos/quantidades fictícios inválidos.')
+        if sorted(exams,key=lambda e:e['code'])!=sorted(demo_data()['exams'],key=lambda e:e['code']):raise ValueError('Exames ou quantidades divergem dos documentos fictícios. Refaça a conferência.')
         self.data=json.loads(json.dumps(data));self.approval=approval;self.patient=matches[0];self.nonce=uuid.uuid4().hex;self.selected=False;self.order=None
-        if len(attachments)!=2 or len({a.get('name') for a in attachments})!=2 or any(len(a.get('sha256',''))!=64 for a in attachments):raise ValueError('Dois anexos fictícios identificados por SHA-256 são obrigatórios.')
+        self.selection_token=None
+        if not isinstance(attachments,list) or len(attachments)!=2 or any(not isinstance(a,dict) or not isinstance(a.get('name'),str) or not isinstance(a.get('sha256'),str) for a in attachments) or len({a['name'] for a in attachments})!=2 or any(len(a['sha256'])!=64 or any(c not in '0123456789abcdef' for c in a['sha256']) for a in attachments):raise ValueError('Dois anexos fictícios identificados por SHA-256 são obrigatórios.')
         self.attachments=attachments;self.lock=threading.Lock();self.db=sqlite3.connect(db_path,check_same_thread=False)
         self.db.execute('CREATE TABLE IF NOT EXISTS os_demo(caso TEXT UNIQUE,chave TEXT UNIQUE,resultado TEXT)');self.db.commit()
     def search(self,query):
+        self.selected=False;self.selection_token=None
+        if not isinstance(query,dict) or not set(query)<={'nome','nascimento','carteira'}:raise ValueError('Identificador desconhecido.')
         if sum(bool(query.get(k)) for k in ['nome','nascimento','carteira'])<2:raise ValueError('Informe pelo menos dois identificadores.')
         return [p for p in PATIENTS if all(p[k]==v for k,v in query.items() if v)]
     def select(self,request):
         matches=self.search(request.get('query',{}))
         if not request.get('reviewed') or len(matches)!=1 or matches[0]!=self.patient or request.get('id')!=self.patient['id']:raise ValueError('Confira a correspondência única do cadastro existente.')
-        self.selected=True;return {'selected':True,'id':self.patient['id']}
+        self.selected=True;self.selection_token=uuid.uuid4().hex;return {'selected':True,'id':self.patient['id'],'identity_token':self.selection_token}
     def create(self,request):
         actual=json.loads(json.dumps(request.get('data',{})));expected=json.loads(json.dumps(self.data))
+        if not isinstance(actual,dict) or not isinstance(actual.get('patient',{}),dict):raise ValueError('Dados estruturados inválidos.')
         for value in [actual,expected]:value['patient']={k:v for k,v in value.get('patient',{}).items() if v}
-        if not self.selected or request.get('final') is not True or actual!=expected:raise ValueError('Confirmação humana final e dados aprovados sem alterações são obrigatórios.')
+        if not self.selected or not self.selection_token or request.get('identity_token')!=self.selection_token or request.get('final') is not True or digest(actual)!=digest(expected):raise ValueError('Confirmação humana final e identidade atual confirmada são obrigatórias; confira os dados aprovados.')
         if request.get('attachments')!=self.attachments:raise ValueError('Anexe os dois documentos sintéticos íntegros.')
         key=digest([self.patient['id'],self.data['payer'],self.data['guide']])
         with self.lock:
@@ -69,6 +76,7 @@ def start_lis(data,approval,attachments,db_path=':memory:'):
                 length=int(self.headers.get('Content-Length',0))
                 if not 0<length<100000:raise ValueError('Tamanho inválido.')
                 q=json.loads(self.rfile.read(length))
+                if not isinstance(q,dict):raise ValueError('Requisição inválida.')
                 if self.path=='/search':result=state.search(q)
                 elif self.path=='/select':result=state.select(q)
                 elif self.path=='/order':result=state.create(q)

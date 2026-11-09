@@ -1,3 +1,17 @@
+# Cadastro Assistido Shift — versão 2.5.2
+
+Comece por [ATUALIZAR_PARA_2_5_2.txt](ATUALIZAR_PARA_2_5_2.txt).
+
+Esta atualização corrige confirmações antigas de identidade, divergências entre dados e PDFs do treinamento, rascunhos desatualizados e cópias locais alteradas de documentos. Preserva o agrupamento por PDF, o cache, a interface e o pré-cadastro.
+
+**A automação no Shift de produção ainda não está homologada.** O acesso da nuvem ao domínio informado foi bloqueado antes do login. Foi salva uma proposta de liberação do domínio, pendente de revisão/publicação nas configurações do ambiente. Nenhuma credencial foi usada ou gravada e nenhuma O.S. real foi criada.
+
+A opção **Mais opções > Inspecionar Shift — somente leitura** permite abrir o site no Windows para login manual e exportar somente estrutura técnica dos controles, sem valores, senha, cookies, HTML ou screenshots. É uma ferramenta preparatória; não cadastra no sistema real. O treinamento RPA local continua separado.
+
+Causas e limites: [AUDITORIA_2_5_2.md](docs/AUDITORIA_2_5_2.md). Resultados: [RESULTADO_TESTES_2_5_2.txt](docs/RESULTADO_TESTES_2_5_2.txt). Windows nativo e telas autenticadas reais permanecem pendentes. Testes conhecidos não comprovam funcionamento 100% nem ausência de qualquer erro possível.
+
+## Histórico preservado da versão 2.5.1
+
 # Cadastro Assistido Shift — versão 2.5.1
 
 Comece por [ATUALIZAR_PARA_2_5_1.txt](ATUALIZAR_PARA_2_5_1.txt).

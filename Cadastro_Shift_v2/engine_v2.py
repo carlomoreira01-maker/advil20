@@ -561,6 +561,7 @@ def review_errors(models):
 
 class CaseStore:
     def __init__(self,path):
+        self.data_dir=Path(path).resolve().parent
         self.db=sqlite3.connect(path)
         self.db.executescript('CREATE TABLE IF NOT EXISTS casos_v2(id TEXT PRIMARY KEY, hash TEXT UNIQUE, original TEXT, current TEXT, revision INTEGER, status TEXT, output TEXT); CREATE TABLE IF NOT EXISTS audit_v2(at TEXT,caso TEXT,acao TEXT,detalhe TEXT);')
         self.db.execute('CREATE TABLE IF NOT EXISTS revisoes_v2(caso TEXT, revision INTEGER, conteudo TEXT, PRIMARY KEY(caso,revision))')
@@ -612,6 +613,8 @@ class CaseStore:
             self.db.execute('BEGIN IMMEDIATE');obj,rev,status,_=self.get(cid)
             if not confirmed or not actor.strip():raise ValueError('Confirmação humana e revisor obrigatórios.')
             if rev!=revision or digest(catalog)!=cat_hash or status=='PREPARADO':raise ValueError('Revisão/catálogo mudou ou pré-cadastro já preparado.')
+            from document_integrity import verified_sources
+            verified_sources(obj['docs'],self.data_dir)
             models=obj['models'];result=compare_models(models['pedido'],models['guia'],catalog)
             errors=result['pendencias']+review_errors(models)
             if errors:raise ValueError('\n'.join(errors))

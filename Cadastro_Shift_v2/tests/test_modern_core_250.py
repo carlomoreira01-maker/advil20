@@ -60,14 +60,14 @@ class ModernCore250(unittest.TestCase):
   store=CaseStore(self.data/'base.sqlite3')
   try:
    cid=save_batch(store,self.batch('03_campos_vazios.pdf'),self.cat,'')[0];obj,rev,_,_=store.get(cid);before=copy.deepcopy(obj)
-   result=save_draft(store,cid,obj['models'],self.cat);self.assertEqual(result['tipo'],'RASCUNHO_LOCAL_NAO_ENVIAR');self.assertTrue(result['pendencias']);self.assertIsNone(result['os_real']);self.assertEqual(store.get(cid)[0],before);self.assertEqual(store.get(cid)[1],rev);self.assertEqual(store.get(cid)[2],'CONFERIR');self.assertIsNone(store.get(cid)[3])
+   result=save_draft(store,cid,obj['models'],self.cat,expected_revision=rev);self.assertEqual(result['tipo'],'RASCUNHO_LOCAL_NAO_ENVIAR');self.assertTrue(result['pendencias']);self.assertIsNone(result['os_real']);self.assertEqual(store.get(cid)[0],before);self.assertEqual(store.get(cid)[1],rev);self.assertEqual(store.get(cid)[2],'CONFERIR');self.assertIsNone(store.get(cid)[3])
    with self.assertRaises(ValueError):store.prepare(cid,self.cat,'REVISOR',rev,result.get('catalogo_hash',''),True)
   finally:store.db.close()
  def test_rascunho_restaura_correcao_e_nao_sobrepoe_revisao_nova(self):
   store=CaseStore(self.data/'base.sqlite3')
   try:
    cid=save_batch(store,self.batch('01_um_paciente.pdf'),self.cat,'REVISOR')[0];obj,rev,_,_=store.get(cid);m=copy.deepcopy(obj['models']);m['guia']['fields']['Contratado executante']['value']='LABORATORIO CORRIGIDO FICTICIO'
-   save_draft(store,cid,m,self.cat);self.assertEqual(load_draft(store,cid)['models']['guia']['fields']['Contratado executante']['value'],'LABORATORIO CORRIGIDO FICTICIO')
+   save_draft(store,cid,m,self.cat,expected_revision=rev);self.assertEqual(load_draft(store,cid)['models']['guia']['fields']['Contratado executante']['value'],'LABORATORIO CORRIGIDO FICTICIO')
    store.save(cid,obj['models'],'REVISOR','Nova revisão fictícia',rev);self.assertIsNone(load_draft(store,cid))
   finally:store.db.close()
  def test_ocr_real_guia_girada_dos_campos_prioritarios(self):
