@@ -89,7 +89,7 @@ class Workspace:
         self.app=app;self.root=app.root;self.phase=0;self.advanced=False;self.bound_cid=None;self.bound_revision=None;self.binding=False
         self.legacy_pack=[(w,w.pack_info()) for w in self.root.winfo_children() if w.winfo_manager()=='pack']
         for w,_ in self.legacy_pack:w.pack_forget()
-        self.root.title('Cadastro Assistido Shift 2.5.2 | Processamento local')
+        self.root.title('Cadastro Assistido Shift 2.5.3 | Processamento local')
         self.root.geometry(f'{min(1280,self.root.winfo_screenwidth()-50)}x{min(840,self.root.winfo_screenheight()-80)}');self.root.minsize(1000,640)
         families={f.casefold():f for f in tkfont.families(self.root)}
         self.font=next((families[f.casefold()] for f in ['Segoe UI','DejaVu Sans','Liberation Sans','Noto Sans','Nimbus Sans L'] if f.casefold() in families),tkfont.nametofont('TkDefaultFont').actual('family'))
@@ -110,7 +110,7 @@ class Workspace:
         self.frame=ttk.Frame(self.root,style='Clean.TFrame',padding=18);self.frame.pack(fill='both',expand=True)
         header=ttk.Frame(self.frame,style='Clean.TFrame');header.pack(fill='x')
         ttk.Label(header,text='Cadastro Assistido Shift',style='Title.TLabel').pack(side='left')
-        ttk.Label(header,text='2.5.2  |  Local e assistido',style='Muted.TLabel').pack(side='left',padx=14)
+        ttk.Label(header,text='2.5.3  |  Local e assistido',style='Muted.TLabel').pack(side='left',padx=14)
         more=ttk.Menubutton(header,text='Mais opções');more.pack(side='right');menu=tk.Menu(more,tearoff=False);more.configure(menu=menu)
         for title,fn in [('Configurar leitor OCR',app.ocr_settings_window),('Catálogo do laboratório',app.catalog_window),('Perfis de fontes pagadoras',app.payer_window),('Diagnóstico e conferência detalhada',self.show_advanced),('Histórico local',app.audit_window),('Tempos de leitura',lambda:__import__('reading_diagnostics').show_times(app)),('Exemplos fictícios',self.examples),('Simulador local',app.simulation_window),('Treinamento RPA — LIS fictício',lambda:__import__('rpa_training_ui').open_training(app)),('Inspecionar Shift — somente leitura',lambda:__import__('shift_inspection_ui').open_inspection(app))]:menu.add_command(label=title,command=lambda f=fn:app.guard(f))
         reviewer=ttk.Frame(self.frame,style='Clean.TFrame');reviewer.pack(fill='x',pady=(10,12))
@@ -240,6 +240,7 @@ class Workspace:
         self.validate_button=ttk.Button(bar,text='Salvar conferência',command=lambda:self.run(self.save_review));self.validate_button.pack(side='left')
         self.prepare_button=ttk.Button(bar,text='Preparar pré-cadastro validado',style='Primary.TButton',command=lambda:self.run(self.prepare));self.prepare_button.pack(side='right')
         self.prepared_actions=ttk.Frame(panel,style='Clean.TFrame');ttk.Button(self.prepared_actions,text='Exportar pré-cadastro validado',style='Primary.TButton',command=lambda:self.run(self.app.export)).pack(side='right')
+        self.simulate_case_button=ttk.Button(self.prepared_actions,text='Simular este pré-cadastro fictício',command=lambda:self.run(lambda:__import__('rpa_case_ui').open_case_simulation(self.app)));self.simulate_case_button.pack(side='left')
     def go(self,n):
         if n and not self.app.cid:self.notice.set('Importe documentos ou selecione um atendimento na fila.');n=0
         if self.app.cid and self.clinical_var:self.clinical_changed()

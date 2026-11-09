@@ -1,3 +1,17 @@
+# Cadastro Assistido Shift — versão 2.5.3
+
+Comece por [ATUALIZAR_PARA_2_5_3.txt](ATUALIZAR_PARA_2_5_3.txt).
+
+O pré-cadastro fictício conferido na interface agora pode alimentar a RPA no navegador local, usando seus valores e o PDF original integral. A entrega verifica revisão, catálogo, confirmações e integridade; mantém a proteção contra duplicidade.
+
+Para testar sem configurar códigos nem alterar a base da rotina: execute `INSTALAR_WINDOWS.bat`, `INSTALAR_SIMULACAO_RPA.bat` e `INICIAR_TREINAMENTO_INTEGRADO.bat`. É o mesmo aplicativo, com dados separados e exemplos fictícios. Após conferir e preparar, use **Simular este pré-cadastro fictício**. O treinamento não aprova conferências por você.
+
+**A gravação no Shift real continua indisponível e não homologada.** A liberação de rede está preparada, mas ainda não foi aplicada ao ambiente. Não houve login nem criação de O.S. real. Windows nativo e as telas autenticadas do laboratório permanecem pendentes.
+
+Causas e limites: [AUDITORIA_2_5_3.md](docs/AUDITORIA_2_5_3.md). Resultados: [RESULTADO_TESTES_2_5_3.txt](docs/RESULTADO_TESTES_2_5_3.txt). Gabarito de widgets, origens e navegador: [INTEGRACAO_COMPLETA_2_5_3.json](docs/INTEGRACAO_COMPLETA_2_5_3.json).
+
+## Histórico preservado da versão 2.5.2
+
 # Cadastro Assistido Shift — versão 2.5.2
 
 Comece por [ATUALIZAR_PARA_2_5_2.txt](ATUALIZAR_PARA_2_5_2.txt).

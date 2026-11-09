@@ -1,0 +1,14 @@
+CADASTRO ASSISTIDO SHIFT 2.5.3
+
+ZIP TESTADO
+https://github.com/carlomoreira01-maker/advil20/raw/refs/heads/entrega/shift-v2.5.3/entrega/Cadastro_Shift_v2_5_3_corrigido.zip
+
+Faça backup da pasta antiga. Extraia tudo em pasta nova. Copie dados_v2 com os programas fechados; não copie .venv. Abra INSTALAR_WINDOWS.bat e INICIAR_WINDOWS.bat.
+
+TREINAMENTO COMPLETO, SEM CONFIGURAR CÓDIGOS
+Instale o navegador com INSTALAR_SIMULACAO_RPA.bat. Abra INICIAR_TREINAMENTO_INTEGRADO.bat. É o mesmo aplicativo, com base fictícia separada. Importe 01_um_paciente.pdf, confira, prepare e clique em Simular este pré-cadastro fictício. O navegador receberá os valores e o documento original do atendimento conferido. Siga ATUALIZAR_PARA_2_5_3.txt.
+
+Os exemplos, perfil FICTICIO e catálogo SIM-LAB não têm validade no laboratório. A integração real de gravação no Shift ainda não está homologada. Não houve login nem gravação em produção.
+
+Alternativa: https://github.com/carlomoreira01-maker/advil20/tree/entrega/shift-v2.5.3 > entrega > Cadastro_Shift_v2_5_3_corrigido.zip > baixar arquivo bruto.
+Backup anterior: https://github.com/carlomoreira01-maker/advil20/tree/entrega/shift-v2.5.2

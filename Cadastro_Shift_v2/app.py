@@ -94,9 +94,9 @@ class App:
         self.ocr_request=0;self.ocr_dialog=None;self.ocr_health=None
         self.import_sequence=0
         root.report_callback_exception=self.callback_failure
-        root.title('Cadastro Assistido Shift · versão 2.5.2 · Conferência detalhada');root.geometry('1450x950');root.minsize(1100,760)
+        root.title('Cadastro Assistido Shift · versão 2.5.3 · Conferência detalhada');root.geometry('1450x950');root.minsize(1100,760)
         st=ttk.Style();st.theme_use('clam');st.configure('TButton',padding=6);st.configure('Treeview',rowheight=28)
-        tk.Label(root,text='CADASTRO ASSISTIDO SHIFT  |  2.5.2',font=('Segoe UI',19,'bold'),bg='#173d52',fg='white',anchor='w',padx=18,pady=12).pack(fill='x')
+        tk.Label(root,text='CADASTRO ASSISTIDO SHIFT  |  2.5.3',font=('Segoe UI',19,'bold'),bg='#173d52',fg='white',anchor='w',padx=18,pady=12).pack(fill='x')
         ttk.Label(root,text='Importar escaneamento → Identificar documentos → Extrair dados → Comparar exames → Conferir → Preparar cadastro',font=('Segoe UI',11,'bold'),padding=8).pack(fill='x')
         ttk.Label(root,text='Processamento local | Revisão humana obrigatória | Pré-cadastro não enviado ao Shift',padding=(10,0)).pack(anchor='w')
         bar=ttk.Frame(root,padding=8);bar.pack(fill='x')

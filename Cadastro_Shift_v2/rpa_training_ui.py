@@ -31,11 +31,18 @@ def open_training(app):
         threading.Thread(target=work,daemon=True).start()
     start_button=ttk.Button(window,text='Iniciar RPA com dados fictícios conferidos',command=start);start_button.pack(pady=8)
     ttk.Button(window,text='Encerrar treinamento',command=lambda:(stop.set(),window.destroy())).pack(pady=5)
+    state={'window':window,'checks':checks,'start':start_button,'notice':notice}
     def poll():
         if not window.winfo_exists():return
         try:
             while True:notice.set(events.get_nowait())
         except queue.Empty:pass
-        window.after(200,poll)
-    window.bind('<Destroy>',lambda e:stop.set() if e.widget==window else None);poll()
-    app.rpa_training={'window':window,'checks':checks,'start':start_button,'notice':notice}
+        state['poll_id']=window.after(200,poll)
+    def destroyed(event):
+        if event.widget!=window:return
+        stop.set()
+        if state.get('poll_id'):
+            try:window.after_cancel(state['poll_id'])
+            except tk.TclError:pass
+    window.bind('<Destroy>',destroyed);poll()
+    app.rpa_training=state

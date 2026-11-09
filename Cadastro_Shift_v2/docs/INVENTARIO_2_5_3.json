@@ -1,0 +1,1516 @@
+{
+  "base": "2.5.2",
+  "arquivos_anteriores_preservados": 333,
+  "arquivos_anteriores_modificados": [
+    "Cadastro_Shift_v2/.gitignore",
+    "Cadastro_Shift_v2/LEIA-ME.md",
+    "Cadastro_Shift_v2/VERSAO.json",
+    "Cadastro_Shift_v2/app.py",
+    "Cadastro_Shift_v2/lis_simulado.py",
+    "Cadastro_Shift_v2/rpa_simulada.py",
+    "Cadastro_Shift_v2/rpa_training_ui.py",
+    "Cadastro_Shift_v2/shift_inspection_ui.py",
+    "Cadastro_Shift_v2/workbench.py"
+  ],
+  "modulos_python": 94,
+  "inventario": [
+    {
+      "arquivo": "app.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "load_manifest",
+        "__init__",
+        "load",
+        "move",
+        "rotate",
+        "scale",
+        "locate",
+        "render",
+        "__init__",
+        "check_ocr",
+        "finish_ocr_check",
+        "ocr_settings_window",
+        "case_stage",
+        "payer_window",
+        "import_internal",
+        "simulation_window",
+        "resize_review",
+        "guard",
+        "callback_failure",
+        "cancel_poll",
+        "set_text",
+        "changed_field",
+        "review_changed",
+        "live_comparison",
+        "update_prepare_state",
+        "manual_correction",
+        "metadata_ready",
+        "explain_prepare",
+        "assisted_review",
+        "_save_pages",
+        "restore_seen_pages",
+        "correct_page_type",
+        "confirm_case_pages",
+        "review_fields",
+        "collect",
+        "dirty",
+        "refresh",
+        "select",
+        "open_case",
+        "render_rows",
+        "show_comparison",
+        "navigate_pending",
+        "apply_not_applicable",
+        "locate_field",
+        "candidate_window",
+        "locate_source",
+        "locate_exam",
+        "edit_exam",
+        "delete_exam",
+        "resolve_issue",
+        "check_pages",
+        "save",
+        "prepare",
+        "export",
+        "import_scans",
+        "cancel_analysis",
+        "preserve_navigation",
+        "classification_window",
+        "import_pair",
+        "import_csv",
+        "examples",
+        "reanalyze_case",
+        "import_pairs",
+        "update_diagnostic",
+        "record_interpretation",
+        "record_ui_stage",
+        "poll",
+        "catalog_window",
+        "audit_window",
+        "legacy",
+        "close",
+        "page_selected",
+        "blocked_prepare_click",
+        "run",
+        "choose",
+        "auto",
+        "test",
+        "refresh",
+        "persist",
+        "load",
+        "choose",
+        "edit",
+        "selected",
+        "show",
+        "choose",
+        "commit",
+        "worker",
+        "refresh",
+        "current",
+        "select",
+        "apply",
+        "approve",
+        "regroup",
+        "save",
+        "run",
+        "refresh",
+        "install",
+        "edit",
+        "load",
+        "equiv",
+        "save_profile",
+        "done"
+      ]
+    },
+    {
+      "arquivo": "app_v1.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "__init__",
+        "guard",
+        "text_set",
+        "refresh",
+        "select",
+        "analyze",
+        "save_compare",
+        "examples",
+        "import_pair",
+        "import_csv",
+        "import_pairs",
+        "poll",
+        "load_catalog",
+        "original",
+        "simulate",
+        "export",
+        "audit_window",
+        "work",
+        "render"
+      ]
+    },
+    {
+      "arquivo": "assisted_review.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "__init__",
+        "run",
+        "invalidate",
+        "show",
+        "hide",
+        "pages",
+        "fields",
+        "confirm_pages",
+        "refresh",
+        "edit_exam",
+        "save",
+        "update_prepare",
+        "configuration",
+        "prepare",
+        "blocked_prepare_click",
+        "closed",
+        "closed"
+      ]
+    },
+    {
+      "arquivo": "core.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "norm",
+        "digest",
+        "catalog_load",
+        "parse",
+        "resolve",
+        "compare",
+        "__init__",
+        "audit",
+        "add",
+        "list",
+        "get",
+        "edit",
+        "simulate",
+        "order"
+      ]
+    },
+    {
+      "arquivo": "diagnostico.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "main"
+      ]
+    },
+    {
+      "arquivo": "document_classification.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "classify_page",
+        "document_type"
+      ]
+    },
+    {
+      "arquivo": "document_geometry.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "rotated_box",
+        "point"
+      ]
+    },
+    {
+      "arquivo": "document_integrity.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "verified_sources"
+      ]
+    },
+    {
+      "arquivo": "draft_workflow.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "build_draft",
+        "save_draft",
+        "load_draft"
+      ]
+    },
+    {
+      "arquivo": "engine_v2.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "ocr_words",
+        "_ocr_once",
+        "group_lines",
+        "usable",
+        "detect_document_type",
+        "document_diagnostics",
+        "read_document",
+        "catalog_load",
+        "resolve_exam",
+        "layout_lines",
+        "labeled_lines",
+        "parse_document",
+        "compare_models",
+        "review_errors",
+        "page_data",
+        "__init__",
+        "audit",
+        "add",
+        "get",
+        "save",
+        "prepare",
+        "finish",
+        "perform",
+        "in_clinical_region"
+      ]
+    },
+    {
+      "arquivo": "exporter.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "export_order"
+      ]
+    },
+    {
+      "arquivo": "gerar_exemplos_250.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "order",
+        "guide",
+        "main"
+      ]
+    },
+    {
+      "arquivo": "gerar_exemplos_2_4.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "dense_guide",
+        "combine",
+        "raster",
+        "main",
+        "field"
+      ]
+    },
+    {
+      "arquivo": "gerar_exemplos_2_4_2.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "main"
+      ]
+    },
+    {
+      "arquivo": "gerar_exemplos_auditoria.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "order",
+        "guide",
+        "main"
+      ]
+    },
+    {
+      "arquivo": "gerar_exemplos_carimbo.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "order",
+        "main"
+      ]
+    },
+    {
+      "arquivo": "gerar_exemplos_correcao.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "main"
+      ]
+    },
+    {
+      "arquivo": "gerar_exemplos_tiss.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "make_guide",
+        "make_order",
+        "catalog",
+        "main",
+        "table"
+      ]
+    },
+    {
+      "arquivo": "gerar_exemplos_v2.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "text_pdf",
+        "scan",
+        "main"
+      ]
+    },
+    {
+      "arquivo": "identity_evidence.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "value",
+        "identifier",
+        "names_compatible",
+        "conflicts",
+        "compatible",
+        "full_name"
+      ]
+    },
+    {
+      "arquivo": "instalacao_aux.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "main"
+      ]
+    },
+    {
+      "arquivo": "instalar_local.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "main"
+      ]
+    },
+    {
+      "arquivo": "internal_workflow.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "build_internal"
+      ]
+    },
+    {
+      "arquivo": "lis_simulado.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "demo_data",
+        "approve",
+        "start_lis",
+        "__init__",
+        "search",
+        "select",
+        "create",
+        "log_message",
+        "reply",
+        "do_GET",
+        "do_POST",
+        "close"
+      ]
+    },
+    {
+      "arquivo": "ocr_processing.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "union_box",
+        "source_box",
+        "projection_score",
+        "deskew_angle",
+        "recognize_page",
+        "inverse"
+      ]
+    },
+    {
+      "arquivo": "ocr_regions.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "collect_regions"
+      ]
+    },
+    {
+      "arquivo": "ocr_runtime.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "settings_file",
+        "load_settings",
+        "save_settings",
+        "registry_candidates",
+        "candidate_executables",
+        "tesseract_exe",
+        "run_local",
+        "ocr_configuration",
+        "check_ocr_health",
+        "safe_failure"
+      ]
+    },
+    {
+      "arquivo": "page_panel.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "__init__",
+        "clear",
+        "load",
+        "select",
+        "opened"
+      ]
+    },
+    {
+      "arquivo": "payer_mapping.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "validate_profile",
+        "mark_not_applicable",
+        "load_profiles",
+        "map_payer"
+      ]
+    },
+    {
+      "arquivo": "prescription_layout.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "evidence",
+        "doctor_name",
+        "stamped_names"
+      ]
+    },
+    {
+      "arquivo": "priority_fields.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "field_state",
+        "state_label",
+        "source_role"
+      ]
+    },
+    {
+      "arquivo": "professional.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "free_identification",
+        "reconcile"
+      ]
+    },
+    {
+      "arquivo": "reader.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "ocr",
+        "read",
+        "preview"
+      ]
+    },
+    {
+      "arquivo": "reading_cache.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "file_hash",
+        "signature",
+        "__init__",
+        "key",
+        "get",
+        "put"
+      ]
+    },
+    {
+      "arquivo": "reading_control.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "check_cancelled",
+        "current_event",
+        "page_workers",
+        "reading_context"
+      ]
+    },
+    {
+      "arquivo": "reading_diagnostics.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "show_times"
+      ]
+    },
+    {
+      "arquivo": "review_workflow.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "review_plan",
+        "add"
+      ]
+    },
+    {
+      "arquivo": "rpa_bloqueado.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "enviar"
+      ]
+    },
+    {
+      "arquivo": "rpa_case_ui.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "open_case_simulation",
+        "start",
+        "poll",
+        "destroyed",
+        "worker"
+      ]
+    },
+    {
+      "arquivo": "rpa_handoff.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "_snapshot_hash",
+        "validate_handoff",
+        "build_handoff",
+        "record_result"
+      ]
+    },
+    {
+      "arquivo": "rpa_simulada.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "__init__",
+        "from_handoff",
+        "search_patient",
+        "fill_order",
+        "submit_after_human",
+        "interactive",
+        "close",
+        "check_cancel",
+        "wait",
+        "route"
+      ]
+    },
+    {
+      "arquivo": "rpa_training_ui.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "open_training",
+        "start",
+        "poll",
+        "destroyed",
+        "work"
+      ]
+    },
+    {
+      "arquivo": "scan_import.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "classify",
+        "read_scan",
+        "merge_reprocessed",
+        "group_fingerprint",
+        "assess_group",
+        "confirm_group",
+        "apply_identity_edits",
+        "_merged_fields",
+        "build_cases",
+        "preserve_manual",
+        "save_batch",
+        "load_batch",
+        "provenance"
+      ]
+    },
+    {
+      "arquivo": "shift_inspection.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "compact",
+        "semantic",
+        "safe_attribute",
+        "inspect_structure"
+      ]
+    },
+    {
+      "arquivo": "shift_inspection_ui.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "open_inspection",
+        "launch",
+        "save",
+        "poll",
+        "destroyed",
+        "worker"
+      ]
+    },
+    {
+      "arquivo": "simulador.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "start_simulator",
+        "__init__",
+        "search",
+        "confirm",
+        "doctor",
+        "create_patient",
+        "prepare",
+        "log_message",
+        "send_json",
+        "do_GET",
+        "do_POST",
+        "close"
+      ]
+    },
+    {
+      "arquivo": "tests/test_auditoria_244.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUpClass",
+        "tearDownClass",
+        "setUp",
+        "tearDown",
+        "model",
+        "batch",
+        "test_01_quatro_paginas_tipos_e_uma_ficha",
+        "test_02_ordem_invertida",
+        "test_03_nome_completo_particulas_e_origem",
+        "test_04_campos_16_17_18_cbo_e_tamanhos",
+        "test_05_guia_incompleta_nao_inventa",
+        "test_06_cinco_exames_quantidades_separadas",
+        "test_07_ajustes_e_perfil_persistem_apos_classificacao",
+        "test_08_conflito_bloqueado",
+        "test_09_incerto_nao_vira_pedido",
+        "test_apenas_dois_rotulos_de_nome_nao_confirmam_guia",
+        "test_10_pedido_com_campos_tiss_preserva_tipo_campos_lista",
+        "test_campos_tiss_gabarito_completo",
+        "test_carimbo_divergente_nao_vira_sexto_exame",
+        "test_uf_ausente_nao_inventa_go",
+        "test_catalogo_sem_interno_nao_aceita_tuss_de_outro_exame",
+        "test_sobrenome_e_nascimento_sozinhos_nao_associam",
+        "test_correcao_manual_de_crm_ou_uf_invalida_bloqueia",
+        "test_nao_aplicavel_exige_regra_e_nao_dispensa_autorizacao",
+        "test_dois_consensos_divergentes_exigem_conferencia"
+      ]
+    },
+    {
+      "arquivo": "tests/test_auditoria_gui_244.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUpClass",
+        "tearDownClass",
+        "assertEqual",
+        "setUp",
+        "tearDown",
+        "import_pdf",
+        "pending",
+        "finish",
+        "test_quatro_paginas_campos17_cbo_visiveis_ate_pre_cadastro",
+        "test_corrigir_crm_salvar_resolve_e_avanca",
+        "test_resolver_quantidade_por_botao_atualiza_e_avanca",
+        "test_nao_aplicavel_homologado_persiste_sem_dispensar_senha",
+        "test_botao_confirmar_nao_aprova_identificadores_incompativeis",
+        "test_pdf_girado_ocr_preenche_crm_go_e_cbo",
+        "buttons"
+      ]
+    },
+    {
+      "arquivo": "tests/test_carimbo_245.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUpClass",
+        "tearDownClass",
+        "setUp",
+        "tearDown",
+        "batch",
+        "test_pedido_sem_titulo_com_carimbo_e_exames_sem_catalogo",
+        "test_guia_com_carimbo_continua_guia_e_ordem_invertida",
+        "test_carimbo_em_consentimento_receita_e_sem_lista_nao_basta",
+        "test_quantidade_ausente_nao_e_inventada",
+        "test_prefixo_dra_nao_cria_divergencia_mas_nome_diferente_bloqueia",
+        "test_reprocessamento_corrige_classificacao_antiga_automatica",
+        "test_reprocessamento_preserva_correcao_humana_explicita",
+        "test_quatro_paginas_uma_ficha_sem_confundir_continuacao",
+        "test_ocr_real_pedido_girado_carimbo_e_lista"
+      ]
+    },
+    {
+      "arquivo": "tests/test_conferencia_gui_245.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUpClass",
+        "tearDownClass",
+        "setUp",
+        "tearDown",
+        "import_pdf",
+        "see_and_confirm",
+        "assistant",
+        "checked",
+        "test_falta_revisor_ou_motivo_destaca_e_foca_o_campo_sem_salvar",
+        "test_fluxo_carimbo_ate_pre_cadastro_sem_mutar_validadores",
+        "test_erro_metadado_no_assistente_mostra_o_campo_dentro_da_janela",
+        "test_conferencia_salva_mas_autorizacao_zero_continua_bloqueada",
+        "test_sem_catalogo_nao_inventa_codigo_e_explicita_configuracao",
+        "test_quatro_paginas_confirmacao_simplificada_preserva_vistas",
+        "test_motivo_editado_apos_salvar_exige_novo_salvamento",
+        "test_exemplo_ficticio_completo_sem_configurar_shift"
+      ]
+    },
+    {
+      "arquivo": "tests/test_core.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUp",
+        "tearDown",
+        "add",
+        "run_order",
+        "test_happy_path_and_labels",
+        "test_review_required",
+        "test_import_duplicate",
+        "test_business_duplicate_different_document_bytes",
+        "test_identity_and_optional_birth",
+        "test_authorization_checks",
+        "test_unknown_code_negation_and_duplicate",
+        "test_ambiguous_catalog",
+        "test_missing_marker_and_prose",
+        "test_stale_revision_and_audit",
+        "test_catalog_changed",
+        "test_repeat_simulate",
+        "test_catalog_real_code_rejected",
+        "test_pdf_and_text",
+        "test_mixed_pdf_ocr_per_page",
+        "test_html_escaped",
+        "test_data_survives_restart",
+        "test_import_and_simulation_offline"
+      ]
+    },
+    {
+      "arquivo": "tests/test_fluxo_interface.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUp",
+        "tearDown",
+        "import_and_wait",
+        "pair",
+        "test_importacao_dialogos_ocr_preenche_campos_visiveis",
+        "test_inversao_identificada_e_corrigida_pelos_titulos",
+        "test_reabrir_caso_restaura_campos_e_diagnostico",
+        "test_ocr_ausente_erro_no_painel_e_sem_aprovacao",
+        "test_erro_inesperado_worker_libera_estado_sem_dados_nos_logs",
+        "test_quantidade_codigo_divergentes_visiveis_bloqueiam"
+      ]
+    },
+    {
+      "arquivo": "tests/test_grouping_242.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUpClass",
+        "tearDownClass",
+        "setUp",
+        "tearDown",
+        "read",
+        "acknowledge",
+        "test_quatro_paginas_uma_ficha_provisoria_sem_perder_pagina",
+        "test_conferencia_explicita_resolve_agrupamento_sem_resolver_outros_bloqueios",
+        "test_confirmacao_sem_ver_paginas_ou_sem_identificadores_bloqueada",
+        "test_conflito_nao_e_liberado_por_checkbox_motivo_ou_edicao_na_ficha",
+        "test_modo_varios_pacientes_nao_junta_pacientes_por_arquivo",
+        "test_nome_parcial_com_identificador_confere_sem_nome_isolado_associar",
+        "test_campos_tiss_todos_com_origem_sem_troca_de_numero",
+        "test_movimentar_paginas_sem_reimportar_preserva_original_e_historico",
+        "test_movimentacao_ou_correcao_revoga_confirmacao_anterior",
+        "test_correcao_ocr_por_pagina_com_origem_e_historico",
+        "test_duplicidade_e_remocao_de_paginas_bloqueadas",
+        "test_reunir_lote_antigo_sem_ocr_novo",
+        "test_nome_inteiro_com_espacos_sem_absorver_controle_vizinho",
+        "test_nome_completo_impresso_na_continuacao_prevalece_sem_montar_nomes",
+        "test_corrige_identificacao_de_lote_24_sem_campos_novos"
+      ]
+    },
+    {
+      "arquivo": "tests/test_grouping_gui_242.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUpClass",
+        "tearDownClass",
+        "setUp",
+        "tearDown",
+        "wait",
+        "import_pdf",
+        "see_pages",
+        "grouping_review",
+        "clinical_review",
+        "test_quatro_paginas_mesma_ficha_campos_visiveis_ate_preparo",
+        "test_conflito_impede_confirmacao_e_mover_pagina_resolve_separacao",
+        "test_reprocessamento_preserva_paginas_e_modo_revoga_aprovacao",
+        "test_regroup_lote_anterior_sem_reimportar_e_sem_perda",
+        "test_modo_varios_pacientes_e_duplicidade",
+        "test_ocr_real_quatro_paginas_preenche_campos_e_tabela",
+        "test_corrigir_identificacao_pela_interface_e_reprocessar_preserva_historico",
+        "test_setas_do_visualizador_mantem_pagina_tipo_e_revisao_sincronizados"
+      ]
+    },
+    {
+      "arquivo": "tests/test_gui_v2.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUp",
+        "tearDown",
+        "test_import_review_prepare_and_export",
+        "test_paging_zoom_source_and_field_invalidation"
+      ]
+    },
+    {
+      "arquivo": "tests/test_handoff_253.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "prepared",
+        "setUpClass",
+        "tearDownClass",
+        "setUp",
+        "tearDown",
+        "build",
+        "test_entrega_valores_aprovados_e_um_pdf_integral_para_duas_funcoes",
+        "test_rascunho_nao_substitui_pre_cadastro_validado",
+        "test_revisao_antiga_nao_e_aprovada",
+        "test_catalogo_alterado_nao_reutiliza_aprovacao",
+        "test_cinco_confirmacoes_e_revisor_sao_obrigatorios",
+        "test_confirmacao_explicita_de_dados_ficticios",
+        "test_original_alterado_depois_da_preparacao_bloqueia",
+        "test_dados_mutados_no_transporte_bloqueiam",
+        "test_paciente_fora_do_treinamento_nao_cai_em_demonstracao_generica",
+        "test_anexo_unico_precisa_comprovar_as_duas_funcoes",
+        "test_registro_da_simulacao_preserva_pre_cadastro_e_log_sem_dados_pessoais",
+        "test_resultado_real_nao_pode_ser_marcado_como_simulacao",
+        "test_nome_do_medico_divergente_nao_seleciona_so_pelo_crm",
+        "setUpClass",
+        "tearDownClass",
+        "setUp",
+        "tearDown",
+        "open",
+        "confirm",
+        "test_segundo_paciente_nao_recebe_anexos_ou_identidade_do_primeiro",
+        "test_reabrir_pre_cadastro_nao_gera_segunda_os_ficticia",
+        "test_cancelamento_antes_e_depois_da_confirmacao_impede_gravacao",
+        "setUpClass",
+        "tearDownClass",
+        "setUp",
+        "tearDown",
+        "check",
+        "wait",
+        "prepare_ui",
+        "run_browser_as_human",
+        "finish",
+        "test_importar_conferir_preparar_e_automatizar_no_navegador",
+        "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+        "test_fechar_janelas_cancela_atualizacoes_agendadas",
+        "fill_and_cancel",
+        "headless",
+        "human"
+      ]
+    },
+    {
+      "arquivo": "tests/test_hardening_252.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "simulation",
+        "test_payloads_malformados_nao_abrem_sessao_ou_geram_erros_ocultos",
+        "test_selecao_divergente_revoga_confirmacao_anterior",
+        "test_nova_pesquisa_e_token_antigo_nao_autorizam_os",
+        "test_quantidade_ou_exames_diferentes_dos_anexos_sao_rejeitados",
+        "test_booleano_nao_substitui_quantidade_numerica_aprovada",
+        "test_reimportacao_detecta_copia_local_corrompida_mesmo_com_cache",
+        "test_rascunho_nao_pode_assumir_revisao_nova",
+        "test_preparo_reconfere_integridade_e_nao_grava_se_original_mudou",
+        "setUp",
+        "tearDown",
+        "confirm",
+        "test_alterar_e_reverter_identidade_exige_nova_confirmacao",
+        "test_nova_pesquisa_revoga_confirmacao_no_navegador",
+        "test_requisicao_malformada_retorna_bloqueio_sem_os",
+        "test_inspecao_descarta_valores_html_senhas_tokens_e_ids_pessoais",
+        "test_inspecao_de_login_nao_exporta_controles_da_conta",
+        "test_inspecao_recusa_outro_dominio",
+        "setUp",
+        "tearDown",
+        "test_inspecao_so_inicia_navegador_apos_acao_explicita",
+        "test_interface_recusa_rascunho_de_revisao_antiga_e_preserva_nova"
+      ]
+    },
+    {
+      "arquivo": "tests/test_layout_v2.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "test_parallel_tables",
+        "test_label_above_value",
+        "test_wrapped_description"
+      ]
+    },
+    {
+      "arquivo": "tests/test_mapping_sim.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "profile",
+        "setUp",
+        "tearDown",
+        "test_mapeamento_explicito_nao_confunde_campos",
+        "test_perfil_nao_homologado_ou_fonte_divergente_bloqueiam",
+        "test_valor_tecnico_exige_aprovacao",
+        "test_interno_sem_guia_somente_no_escopo_aprovado",
+        "test_interno_nao_dispensa_outro_procedimento",
+        "setUp",
+        "test_nome_isolado_e_identificadores_divergentes",
+        "test_confirmacao_medico_anexos_e_duplicidade",
+        "test_paciente_novo_somente_confirmado_sem_duplicar",
+        "test_status_negado_bloqueia_mesmo_com_quantidade_positiva",
+        "test_operadora_nao_substitui_fonte_pagadora"
+      ]
+    },
+    {
+      "arquivo": "tests/test_modern_core_250.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUpClass",
+        "tearDownClass",
+        "setUp",
+        "tearDown",
+        "model",
+        "batch",
+        "test_11_campos_mais_conselho_com_valores_origem_zeros",
+        "test_contratado_executante_nao_e_medico_e_fica_apos_tabela",
+        "test_campo23_multilinha_nao_inclui_cabecalho_e_nao_vira_exame",
+        "test_quatro_estados_vazio_incerto_nao_encontrado_identificado",
+        "test_numero_conselho_separado_nao_e_cbo",
+        "test_nome_empresarial_nao_usa_restricoes_de_nome_de_pessoa",
+        "test_rotulos_fundidos_sem_numero_sao_localizados",
+        "test_pdf_quatro_paginas_dois_pacientes_gera_dois_atendimentos",
+        "test_so_guia_nao_cria_pedido_ou_exames_solicitados",
+        "test_rascunho_com_campos_vazios_nao_prepara_ou_autoriza",
+        "test_rascunho_restaura_correcao_e_nao_sobrepoe_revisao_nova",
+        "test_ocr_real_guia_girada_dos_campos_prioritarios"
+      ]
+    },
+    {
+      "arquivo": "tests/test_ocr_config.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUp",
+        "tearDown",
+        "portable",
+        "test_autodetecta_downloads_sem_path_nem_nome_de_usuario_fixo",
+        "test_caminhos_comuns_e_registro",
+        "test_configuracao_salva_reabre_em_outro_processo",
+        "test_caminho_invalido_nao_sobrescreve_configuracao",
+        "test_configuracao_corrompida_tem_erro_visivel_sem_conteudo",
+        "test_appdata_independe_da_pasta_da_versao",
+        "test_executavel_movido_faz_fallback_para_instalacao_disponivel",
+        "test_idioma_ingles_ausente_nao_fica_verde",
+        "test_arquivo_que_nao_e_executavel_nao_fica_verde",
+        "test_mecanismo_precisa_ler_imagem_para_ficar_verde",
+        "test_saude_real_sem_rede_nos_tres_modos",
+        "test_executavel_escolhido_le_imagem_e_pdf_escaneado",
+        "test_argumentos_windows_sem_janela_sem_shell",
+        "test_auxiliar_instalador_sem_python_embutido"
+      ]
+    },
+    {
+      "arquivo": "tests/test_ocr_config_gui.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUp",
+        "tearDown",
+        "wait",
+        "select_and_test",
+        "test_seleciona_salva_reabre_e_importa_scan",
+        "test_falha_nao_salva_nem_fica_verde",
+        "test_reiniciar_programa_reutiliza_caminho_salvo",
+        "test_ausente_mostra_estado_visivel_e_nao_impede_abrir_configuracoes",
+        "test_selecao_cancelada_preserva_caminho",
+        "test_localizar_automaticamente_preenche_downloads",
+        "test_reanalisa_atendimento_com_ocr_antes_ausente_sem_duplicar",
+        "test_reanalise_cancelada_preserva_atendimento"
+      ]
+    },
+    {
+      "arquivo": "tests/test_optimization_251.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "test_numero_workers_limitado_por_configuracao",
+        "setUp",
+        "tearDown",
+        "test_quatro_paginas_um_atendimento_nomes_parciais_sem_nome",
+        "test_pdfs_distintos_nao_se_unem_mesmo_nome",
+        "test_conflito_preserva_paginas_e_bloqueia_confirmacao",
+        "test_cache_reutiliza_leitura_mas_reinterpreta_sem_revisor",
+        "test_chave_cache_invalida_arquivo_config_idioma_modelo",
+        "test_cache_corrompido_e_falha_ocr_nao_reutilizados",
+        "test_cancelamento_nao_devolve_lote_parcial",
+        "test_cancelamento_interrompe_processo_local",
+        "test_paralelismo_ocr_limitado_preserva_ordem_e_coordenadas",
+        "test_nao_da_coluna_vizinha_nao_entra_no_nome",
+        "test_pedido_titulo_alternativo_e_guia_nao_duplicados",
+        "test_guias_sem_pedido_mantem_origem_e_doze_campos",
+        "ocr"
+      ]
+    },
+    {
+      "arquivo": "tests/test_optimization_gui_251.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUp",
+        "tearDown",
+        "wait",
+        "read",
+        "test_padrao_quatro_paginas_uma_ficha_e_rascunho",
+        "test_lote_padrao_mantem_pdfs_distintos_mesmo_paciente",
+        "test_reunir_pdf_dividido_antes_sem_reimportar_mantem_bloqueio",
+        "test_conflito_sinalizado_e_separacao_manual_sem_ocr",
+        "test_cancelar_analise_nao_grava_caso_e_libera_interface",
+        "test_navegacao_e_correcao_nao_disparam_ocr",
+        "test_treinamento_exige_cinco_conferencias_e_revisor",
+        "slow"
+      ]
+    },
+    {
+      "arquivo": "tests/test_regions_243.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUp",
+        "tearDown",
+        "guide",
+        "regional",
+        "test_guia_ausente_recuperada_por_duas_leituras_com_origem",
+        "test_leituras_divergentes_nao_escolhem_identificador",
+        "test_uma_leitura_nao_preenche_campo_ausente",
+        "test_autorizacao_zero_lida_na_regiao_nao_vira_um",
+        "test_execucao_nao_supre_autorizacao_ausente",
+        "test_sobrenome_nascimento_nao_e_data_e_rodape_limita_data",
+        "test_cabecalho_abaixo_do_nome_nao_e_sobrenome",
+        "test_letra_isolada_em_outra_coluna_nao_e_nome",
+        "test_palavra_que_cruza_borda_pertence_a_coluna_do_centro",
+        "test_rotulos_fundidos_sao_expandidos_sem_mudar_valores",
+        "test_caixas_ao_girar_visualizacao_referenciam_original",
+        "test_data_validade_nao_pode_virar_senha",
+        "test_identificador_nao_aceita_data_de_campo_vizinho"
+      ]
+    },
+    {
+      "arquivo": "tests/test_regions_gui_243.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUp",
+        "tearDown",
+        "test_candidatos_exigem_escolha_humana_e_nao_aprovam_cadastro",
+        "test_visualizacao_gira_sem_mudar_arquivo_e_preserva_origem",
+        "test_codigo_numerico_nao_mapeado_nao_pode_ser_usado_como_conselho"
+      ]
+    },
+    {
+      "arquivo": "tests/test_regressao_2_4_1.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "test_nome_composto_na_mesma_linha_com_espaco_grande",
+        "test_pagina_incerta_nao_se_torna_pedido_automaticamente"
+      ]
+    },
+    {
+      "arquivo": "tests/test_regressao_leitura.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUp",
+        "tearDown",
+        "read_model",
+        "test_pdf_sem_dois_pontos_preenche_campos",
+        "test_curto_digital_nao_exige_ocr",
+        "test_rotulos_acima_em_colunas",
+        "test_campo_conflitante_nao_escolhe_um_paciente",
+        "test_status_ausente_bloqueia",
+        "test_ocr_real_bilingue_caminho_unicode",
+        "test_portugues_ingles_disponiveis_prefixo_externo_ignorado",
+        "test_executavel_windows_configurado_entre_aspas",
+        "test_idiomas_incompletos_diagnosticados",
+        "test_saida_tsv_invalida_nao_passa_em_silencio",
+        "test_timeout_e_erro_com_dados_nao_vazam",
+        "test_sem_ocr_digital_funciona_imagem_falha_visivel",
+        "test_logs_sem_dados_revisoes_locais_preservadas",
+        "test_ocr_v1_preservado_sem_prefixo_global",
+        "test_auditoria_demo_v1_tambem_sem_dados_identificaveis"
+      ]
+    },
+    {
+      "arquivo": "tests/test_rpa_251.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "approval",
+        "test_sem_revisao_ou_payload_alterado_bloqueia",
+        "test_dados_fora_do_treinamento_bloqueados",
+        "test_homonimo_ou_nome_isolado_nao_confirma",
+        "test_duplicidade_persistente_inclui_guia_com_outro_id",
+        "setUp",
+        "tearDown",
+        "confirm",
+        "test_fluxo_playwright_completo_anexos_medico_os_e_etiquetas",
+        "test_mutacao_apos_aprovacao_e_sem_anexos_nao_gravam",
+        "test_externo_e_interceptado_e_paciente_exige_confirmacao",
+        "test_dois_identificadores_reutilizam_cadastro_sem_pedir_o_terceiro"
+      ]
+    },
+    {
+      "arquivo": "tests/test_scan_gui.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUpClass",
+        "tearDownClass",
+        "setUp",
+        "tearDown",
+        "wait",
+        "import_file",
+        "review_save",
+        "test_botao_unico_preenche_campos_tabela_e_avanca_apos_conferencia",
+        "test_guia_antes_pedido_e_origem_fisica",
+        "test_dois_pacientes_em_pdf_misturado_ficam_separados",
+        "test_guia_escaneada_girada_preenche_interface",
+        "test_ocr_ausente_conferencia_acessivel_e_preparo_bloqueado",
+        "test_exames_sem_catalogo_sao_exibidos_com_pendencia",
+        "test_classificacao_manual_historico_e_reprocessamento",
+        "test_editar_campo_invalida_conferencia_e_salvar_atualiza_comparacao",
+        "test_correcao_manual_de_quantidade_atualiza_comparacao_e_libera_apos_revisao",
+        "test_exame_ausente_e_campo_vazio_nao_impedem_acesso_a_conferencia"
+      ]
+    },
+    {
+      "arquivo": "tests/test_scan_import.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUpClass",
+        "tearDownClass",
+        "setUp",
+        "tearDown",
+        "read",
+        "test_pedido_e_guia_ou_ordem_invertida",
+        "test_pdf_original_integral_preservado",
+        "test_quatro_paginas_dois_pacientes_nao_misturam",
+        "test_nome_isolado_nao_associa",
+        "test_grupo_manual_pacientes_incompativeis_continua_bloqueado",
+        "test_tabela_densa_cinco_sem_duplicar_execucao",
+        "test_quantidade_zero_ausente_e_procedimento_ausente",
+        "test_sem_catalogo_exames_continuam_visiveis_sem_codigos_inventados",
+        "test_reimportacao_e_sobreposicao_bloqueadas",
+        "test_reclassificacao_preserva_historico_e_todas_as_paginas",
+        "test_incompleto_ocr_ausente_ainda_cria_atendimento_para_correcao",
+        "test_orientacao_nao_premia_token_gigante",
+        "test_guia_densa_escaneada_girada_valores_e_origens",
+        "test_continuacao_sem_identidade_fica_separada_para_revisao",
+        "test_png_e_jpg_na_importacao_unica",
+        "test_codigo_ilegivel_nao_oculta_descricao_e_codigo_local_nao_e_inventado",
+        "recognize"
+      ]
+    },
+    {
+      "arquivo": "tests/test_sim_browser.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUp",
+        "tearDown",
+        "test_fluxo_ficticio_com_revisao_e_bloqueio_duplicidade",
+        "test_nome_isolado_e_sem_confirmacao_nao_processam",
+        "test_alterar_identidade_revoga_confirmacao"
+      ]
+    },
+    {
+      "arquivo": "tests/test_tiss.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUp",
+        "tearDown",
+        "model",
+        "test_campos_individuais_com_origem_e_zeros",
+        "test_tabela_cinco_sem_duplicar_execucao",
+        "test_autorizacao_ausente_nao_e_inferida",
+        "test_solicitada_um_autorizada_zero",
+        "test_multiplas_paginas",
+        "test_numero_extra_nao_e_autorizacao",
+        "test_crm_ilegivel_nao_vira_cbo",
+        "test_operadoras_variam_sem_homologacao_automatica",
+        "test_pacientes_diferentes_bloqueiam",
+        "test_tuss_sem_codigo_shift_nao_inventa",
+        "test_catalogo_desconhecido_bloqueia",
+        "test_imagem_e_pdf_escaneado_reais",
+        "test_pedido_quatro_orientacoes_e_inclinacao",
+        "test_nome_dividido_em_duas_linhas",
+        "test_quantidade_ilegivel_nao_vira_um",
+        "test_crm_ilegivel_bloqueia_preparo",
+        "test_material_lido_da_coluna_sem_alterar_quantidade",
+        "test_exame_desconhecido_permanece_com_codigo_lido",
+        "test_descricao_em_duas_linhas_preserva_ambas_as_origens",
+        "test_quantidade_com_baixa_confianca_permanece_nao_identificada",
+        "test_lista_numerada_de_pedido_nao_vira_guia_tiss"
+      ]
+    },
+    {
+      "arquivo": "tests/test_tiss_gui.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUp",
+        "tearDown",
+        "wait",
+        "test_campos_tiss_e_quantidades_aparecem_na_interface",
+        "test_scan_real_preenche_paciente_senha_crm",
+        "test_autorizacao_zero_fica_visivel_e_bloqueia",
+        "test_catalogo_producao_nao_carrega_codigos_demo",
+        "test_falha_de_interface_diferenciada_do_ocr",
+        "test_lote_dois_pacientes_mantem_atendimentos_independentes",
+        "test_configura_perfil_pela_interface_sem_editar_codigo",
+        "test_interno_sem_guia_externa_na_interface",
+        "test_tiss_conferencia_ate_pre_cadastro_local_com_codigos_fornecidos"
+      ]
+    },
+    {
+      "arquivo": "tests/test_training_253.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "test_reabrir_treinamento_preserva_exemplos_e_base_existente",
+        "test_recusa_pasta_com_dados_sem_marcador_de_treinamento",
+        "test_iniciador_usa_interface_real_base_separada_e_perfil_ficticio_sem_aprovar"
+      ]
+    },
+    {
+      "arquivo": "tests/test_v2.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "pdf_text",
+        "scan_image",
+        "setUp",
+        "tearDown",
+        "model",
+        "reviewed",
+        "store_case",
+        "test_digital_pdf_avoids_ocr",
+        "table",
+        "test_pdf_table_columns_association",
+        "test_table_reordered_columns",
+        "test_lists_and_no_invented_quantity",
+        "test_real_portuguese_image_ocr_png_and_jpg",
+        "test_scanned_pdf_real_ocr",
+        "test_multipage_mixed_only_needed_ocr",
+        "test_hybrid_page_not_silently_skipped",
+        "test_illegible_blank_and_missing_ocr",
+        "test_real_illegible_blurred_document_blocks",
+        "test_low_confidence_requires_row_review",
+        "test_fields_aliases_multiple_on_line",
+        "test_patient_mismatch_and_absence",
+        "test_missing_exam_quantity_and_codes",
+        "test_catalog_real_codes_and_equivalence",
+        "test_catalog_conflict_ambiguous_material",
+        "test_review_gate_and_success_offline",
+        "test_restart_stale_catalog_duplicate",
+        "test_batch_pair_safety",
+        "test_same_file_cannot_be_pedido_and_guia",
+        "test_encrypted_unsupported",
+        "test_alerts_block_even_with_reviewed_fields",
+        "test_repeated_fields_duplicate_exams",
+        "test_duplicate_with_legacy_identity_hash"
+      ]
+    },
+    {
+      "arquivo": "tests/test_workbench_gui_250.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "setUpClass",
+        "tearDownClass",
+        "setUp",
+        "tearDown",
+        "wait",
+        "import_file",
+        "see",
+        "test_interface_em_cinco_telas_e_duas_abas_reais",
+        "test_campos_prioritarios_preenchidos_nos_widgets_com_origem",
+        "test_lote_quatro_paginas_cria_dois_atendimentos_e_dois_rascunhos",
+        "test_aba_individual_mantem_pdf_junto_e_bloqueia_conflito",
+        "test_campos_vazios_nao_bloqueiam_navegacao_ou_rascunho",
+        "test_correcao_manual_salva_atualiza_pendencia_e_persiste_navegacao",
+        "test_troca_de_atendimento_preserva_edicao_em_rascunho",
+        "test_fluxo_principal_real_ate_pre_cadastro_validado_ficticio",
+        "test_pre_cadastro_so_de_guia_nao_inventa_pedido",
+        "test_mover_pagina_sem_reimportar_preserva_paginas_e_bloqueia_conflito",
+        "test_revisor_e_motivo_ficam_visiveis_quando_faltam",
+        "test_conferencia_detalhada_preservada_e_volta_sem_perder_campos",
+        "test_reprocessar_pelo_painel_e_reimportar_nao_duplica_atendimento",
+        "test_janela_menor_mantem_navegacao_e_conferencia_com_rolagem"
+      ]
+    },
+    {
+      "arquivo": "tiss.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "empty_field",
+        "valid",
+        "extract"
+      ]
+    },
+    {
+      "arquivo": "tiss_comparison.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "compare_tiss"
+      ]
+    },
+    {
+      "arquivo": "tiss_geometry.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "words_of",
+        "rows",
+        "header_token",
+        "anchors",
+        "cell_words",
+        "table_rows"
+      ]
+    },
+    {
+      "arquivo": "tiss_names.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "name_words"
+      ]
+    },
+    {
+      "arquivo": "tiss_refinement.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "merge_anchor_fallbacks",
+        "alternatives",
+        "reconcile_fields",
+        "reconcile_exams"
+      ]
+    },
+    {
+      "arquivo": "treinamento_integrado.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "training_profile",
+        "initialize_training",
+        "create_training",
+        "import_scans",
+        "open_case"
+      ]
+    },
+    {
+      "arquivo": "validar_251.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "main",
+        "check"
+      ]
+    },
+    {
+      "arquivo": "validar_252.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "main",
+        "check"
+      ]
+    },
+    {
+      "arquivo": "validar_auditoria_244.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "main",
+        "check",
+        "batch"
+      ]
+    },
+    {
+      "arquivo": "validar_campos_2_4.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "main",
+        "check"
+      ]
+    },
+    {
+      "arquivo": "validar_campos_2_4_2.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "main",
+        "verify",
+        "check"
+      ]
+    },
+    {
+      "arquivo": "validar_campos_tiss.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "main"
+      ]
+    },
+    {
+      "arquivo": "validar_carimbo_245.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "main",
+        "check",
+        "batch"
+      ]
+    },
+    {
+      "arquivo": "validar_integracao_253.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "main"
+      ]
+    },
+    {
+      "arquivo": "validar_interface_245.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "main",
+        "check"
+      ]
+    },
+    {
+      "arquivo": "validar_interface_250.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "main",
+        "check",
+        "wait",
+        "click",
+        "screenshot",
+        "open_ui",
+        "import_file"
+      ]
+    },
+    {
+      "arquivo": "workbench.py",
+      "sintaxe_valida": true,
+      "funcoes": [
+        "create_workbench",
+        "__init__",
+        "run",
+        "read_status",
+        "card",
+        "table",
+        "make_home",
+        "make_documents",
+        "make_data",
+        "make_exams",
+        "toggle_extra",
+        "make_preview",
+        "go",
+        "continue_flow",
+        "focus_information",
+        "import_documents",
+        "choose_from",
+        "choose_case",
+        "refresh_home",
+        "bind_case",
+        "clinical_changed",
+        "invalidate_review",
+        "refresh_detail",
+        "origin",
+        "source_dialog",
+        "edit_exam",
+        "add_exam",
+        "after_exam_edit",
+        "compare",
+        "correct_type",
+        "save_corrections",
+        "save_current_draft",
+        "save_review",
+        "save_batch_drafts",
+        "prepare",
+        "export_draft",
+        "resolve_pending",
+        "reprocess",
+        "page_identity",
+        "move_page",
+        "regroup_pdf",
+        "examples",
+        "show_advanced",
+        "hide_advanced",
+        "__init__",
+        "refresh",
+        "open_case",
+        "show_comparison",
+        "changed_field",
+        "metadata_ready",
+        "locate_source",
+        "guard",
+        "close",
+        "preserve_navigation",
+        "selected",
+        "closed",
+        "commit"
+      ]
+    }
+  ]
+}

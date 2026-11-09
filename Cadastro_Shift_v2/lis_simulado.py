@@ -19,7 +19,7 @@ def approve(data,reviewer,checks):
     return {'reviewer':reviewer.strip(),'checks':dict(checks),'data_hash':digest(data)}
 
 class Simulation:
-    def __init__(self,data,approval,attachments,db_path=':memory:'):
+    def __init__(self,data,approval,attachments,db_path=':memory:',document_roles=None):
         if not isinstance(data,dict) or not isinstance(approval,dict) or not isinstance(approval.get('checks'),dict) or not isinstance(data.get('patient'),dict):raise ValueError('Dados estruturados ou aprovação inválidos.')
         if approval.get('data_hash')!=digest(data) or not approval.get('reviewer') or not all(approval.get('checks',{}).get(k) is True for k in APPROVALS):raise ValueError('Dados alterados ou aprovação humana incompleta.')
         query={k:v for k,v in data.get('patient',{}).items() if v}
@@ -32,10 +32,15 @@ class Simulation:
         if not isinstance(data.get('case_id'),str) or not isinstance(exams,list) or any(not isinstance(e,dict) or not isinstance(e.get('code'),str) for e in exams):raise ValueError('Atendimento e procedimentos estruturados inválidos.')
         if not data.get('case_id') or not exams or len({e['code'] for e in exams})!=len(exams) or any(e.get('code') not in CODES or type(e.get('quantity')) is not int or not 1<=e['quantity']<=99 for e in exams):raise ValueError('Procedimentos/quantidades fictícios inválidos.')
         if sorted(exams,key=lambda e:e['code'])!=sorted(demo_data()['exams'],key=lambda e:e['code']):raise ValueError('Exames ou quantidades divergem dos documentos fictícios. Refaça a conferência.')
-        self.data=json.loads(json.dumps(data));self.approval=approval;self.patient=matches[0];self.nonce=uuid.uuid4().hex;self.selected=False;self.order=None
+        self.data=json.loads(json.dumps(data));self.approval=json.loads(json.dumps(approval));self.patient=matches[0];self.nonce=uuid.uuid4().hex;self.selected=False;self.order=None
         self.selection_token=None
-        if not isinstance(attachments,list) or len(attachments)!=2 or any(not isinstance(a,dict) or not isinstance(a.get('name'),str) or not isinstance(a.get('sha256'),str) for a in attachments) or len({a['name'] for a in attachments})!=2 or any(len(a['sha256'])!=64 or any(c not in '0123456789abcdef' for c in a['sha256']) for a in attachments):raise ValueError('Dois anexos fictícios identificados por SHA-256 são obrigatórios.')
-        self.attachments=attachments;self.lock=threading.Lock();self.db=sqlite3.connect(db_path,check_same_thread=False)
+        if not isinstance(attachments,list) or not 1<=len(attachments)<=20 or any(not isinstance(a,dict) or not isinstance(a.get('name'),str) or not a['name'] or not isinstance(a.get('sha256'),str) for a in attachments) or len({a['name'] for a in attachments})!=len(attachments) or any(len(a['sha256'])!=64 or any(c not in '0123456789abcdef' for c in a['sha256']) for a in attachments):raise ValueError('Anexos fictícios íntegros, identificados por SHA-256, são obrigatórios.')
+        if document_roles is None:
+            if len(attachments)!=2:raise ValueError('Pedido e guia devem estar associados aos documentos. Um PDF integral precisa comprovar as duas funções.')
+        else:
+            hashes={a['sha256'] for a in attachments}
+            if not isinstance(document_roles,dict) or set(document_roles)!={'pedido','guia'} or any(not isinstance(v,list) or not v or any(not isinstance(h,str) or h not in hashes for h in v) for v in document_roles.values()) or set(h for v in document_roles.values() for h in v)!=hashes:raise ValueError('Associe os documentos originais ao pedido e à guia conferidos.')
+        self.document_roles=document_roles;self.attachments=json.loads(json.dumps(attachments));self.lock=threading.Lock();self.db=sqlite3.connect(db_path,check_same_thread=False)
         self.db.execute('CREATE TABLE IF NOT EXISTS os_demo(caso TEXT UNIQUE,chave TEXT UNIQUE,resultado TEXT)');self.db.commit()
     def search(self,query):
         self.selected=False;self.selection_token=None
@@ -51,7 +56,7 @@ class Simulation:
         if not isinstance(actual,dict) or not isinstance(actual.get('patient',{}),dict):raise ValueError('Dados estruturados inválidos.')
         for value in [actual,expected]:value['patient']={k:v for k,v in value.get('patient',{}).items() if v}
         if not self.selected or not self.selection_token or request.get('identity_token')!=self.selection_token or request.get('final') is not True or digest(actual)!=digest(expected):raise ValueError('Confirmação humana final e identidade atual confirmada são obrigatórias; confira os dados aprovados.')
-        if request.get('attachments')!=self.attachments:raise ValueError('Anexe os dois documentos sintéticos íntegros.')
+        if request.get('attachments')!=self.attachments:raise ValueError('Anexe os documentos sintéticos originais e íntegros deste atendimento.')
         key=digest([self.patient['id'],self.data['payer'],self.data['guide']])
         with self.lock:
             if self.db.execute('SELECT 1 FROM os_demo WHERE caso=? OR chave=?',(self.data['case_id'],key)).fetchone():raise ValueError('Possível duplicidade: atendimento ou guia já processados na simulação.')
@@ -59,8 +64,8 @@ class Simulation:
             with self.db:self.db.execute('INSERT INTO os_demo VALUES(?,?,?)',(self.data['case_id'],key,json.dumps(result)))
             self.order=result;return result
 
-def start_lis(data,approval,attachments,db_path=':memory:'):
-    state=Simulation(data,approval,attachments,db_path)
+def start_lis(data,approval,attachments,db_path=':memory:',document_roles=None):
+    state=Simulation(data,approval,attachments,db_path,document_roles=document_roles)
     class Handler(BaseHTTPRequestHandler):
         def log_message(self,*args):pass
         def reply(self,value,status=200):

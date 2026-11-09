@@ -60,8 +60,14 @@ def open_inspection(app):
                 elif kind=='report':state['report']=value;notice.set(value['aviso']+' Controles visíveis: '+str(value['controles_visiveis'])+'.')
                 else:notice.set(value)
         except queue.Empty:pass
-        window.after(200,poll)
-    window.bind('<Destroy>',lambda e:stop.set() if e.widget==window else None);state['capture']=capture;state['open']=open_button;state['notice']=notice;app.shift_inspection=state;poll()
+        state['poll_id']=window.after(200,poll)
+    def destroyed(event):
+        if event.widget!=window:return
+        stop.set()
+        if state.get('poll_id'):
+            try:window.after_cancel(state['poll_id'])
+            except tk.TclError:pass
+    window.bind('<Destroy>',destroyed);state['capture']=capture;state['open']=open_button;state['notice']=notice;app.shift_inspection=state;poll()
 
 if __name__=='__main__':
     from types import SimpleNamespace

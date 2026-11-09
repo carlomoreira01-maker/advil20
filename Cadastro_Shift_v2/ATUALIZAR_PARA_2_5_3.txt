@@ -1,0 +1,46 @@
+CADASTRO ASSISTIDO SHIFT 2.5.3 — ATUALIZAÇÃO E TESTE INTEGRADO
+
+ATUALIZAR SEM PERDER SUA INSTALAÇÃO
+1. Feche o programa. Faça uma cópia da pasta antiga inteira, incluindo dados_v2.
+2. Extraia TODO o ZIP novo em uma pasta NOVA, por exemplo Documentos\Cadastro_Shift_2_5_3.
+3. Com os programas fechados, copie dados_v2 da instalação antiga para a pasta Cadastro_Shift_v2 da versão nova. Não copie .venv e não substitua dados novos por dados antigos.
+4. Abra INSTALAR_WINDOWS.bat. Depois abra INICIAR_WINDOWS.bat para a rotina local.
+5. Para o navegador opcional de treinamento/inspeção, execute INSTALAR_SIMULACAO_RPA.bat.
+
+O QUE ESTA ATUALIZAÇÃO REALMENTE FAZ
+Preserva a leitura, o agrupamento padrão de um PDF por atendimento, a conferência e o rascunho.
+Liga um pré-cadastro fictício conferido na interface ao LIS fictício no navegador. Transfere identidade, guias, autorização, CRM/UF, procedimentos e quantidades a partir da revisão aprovada; usa os documentos originais do atendimento, sem substituí-los pelos PDFs de outra demonstração.
+Um PDF integral pode cumprir as funções de pedido e guia, sem ser duplicado nem dividido para anexar.
+Inclui verificação de revisão, catálogo, confirmação humana e integridade dos documentos; a O.S. e as etiquetas continuam sendo exclusivamente fictícias.
+Corrige atualizações agendadas que permaneciam após fechar janelas de treinamento/inspeção e reforça o cancelamento entre etapas da RPA simulada.
+
+TESTAR O CAMINHO COMPLETO SEM PROGRAMAR
+1. Abra INICIAR_TREINAMENTO_INTEGRADO.bat. É o mesmo aplicativo, com uma base SEPARADA chamada dados_treinamento_integrado. Não copie seus dados reais para essa pasta.
+2. Preencha Seu nome / revisor.
+3. Clique em Importar documentos. A pasta de exemplos será aberta. Selecione 01_um_paciente.pdf.
+4. Em Documentos, abra as duas miniaturas, confira pedido e guia e confirme a associação das páginas.
+5. Em Dados identificados e Exames, confira os campos e os cinco procedimentos fictícios. O perfil FICTICIO e o catálogo SIM-LAB já estão preparados somente nesta base de treinamento.
+6. Abra Pré-cadastro. Informe um motivo simples da conferência se estiver vazio, por exemplo: Conferência dos documentos fictícios.
+7. Marque a conferência dos dados/ausências e dos exames/alertas. Clique em Salvar conferência.
+8. Marque a confirmação da identidade e autorização. Clique em Preparar pré-cadastro validado.
+9. Clique em Simular este pré-cadastro fictício. Confirme os cinco grupos e que os dados e documentos são inteiramente fictícios. Clique em Simular este pré-cadastro conferido.
+10. No navegador do LIS fictício, confira o cadastro encontrado, marque Conferi os identificadores e clique em Confirmar cadastro existente.
+11. O programa preencherá os dados e anexará o PDF integral automaticamente. Confira os valores; marque a conferência final e clique em Autorizar a RPA a criar O.S. fictícia.
+12. Veja a O.S. OS-SIM e as etiquetas DEMONSTRAÇÃO SEM VALIDADE. Nenhuma impressão oficial é solicitada. Encerre a simulação ao terminar.
+
+As confirmações humanas não são preenchidas automaticamente.
+Se tentar criar de novo a mesma O.S. fictícia, o bloqueio de duplicidade é esperado. O registro do primeiro teste permanece na base de treinamento. Não apague sua base da rotina para reiniciar uma demonstração.
+O iniciador de treinamento aceita somente os arquivos sintéticos gerados para essa base. Para os seus documentos na rotina local, use INICIAR_WINDOWS.bat.
+
+O SHIFT REAL
+O cadastro automático no Shift de produção AINDA NÃO está homologado nem habilitado.
+A nuvem continua sem permissão de rede para o domínio informado, impedindo a inspeção das telas reais. A proposta de liberação foi salva, mas precisa ser aplicada nas configurações do ambiente.
+No Windows, INSPECIONAR_SHIFT.bat permite login manual e inspeção estrutural local sem valores dos campos. Não é um cadastro automático. Nunca exporta senha, cookies, sessão ou HTML.
+Depois do acesso, ainda será necessário conferir os seletores das telas internas, as regras de fonte pagadora, os códigos reais, a identificação dos profissionais e a confirmação da gravação. Não foram usadas as credenciais fornecidas no chat.
+Esta atualização não promete funcionamento 100% em produção. Não conecta a RPA simulada ao site real e não cria O.S. reais.
+
+LIMITES DO TREINAMENTO INTEGRADO
+O botão de integração aceita somente os pacientes, médico, guias e cinco códigos fictícios dos exemplos, todos com quantidade 1. Um atendimento real ou outro conjunto de procedimentos é recusado; não é convertido em demonstração genérica.
+Campos vazios continuam podendo ser salvos em rascunho na rotina. O treinamento validado exige os dados completos dos exemplos; não dispensa autorizações reais.
+Catálogo SIM-LAB, perfil FICTICIO e identificação FONTE-FICTICIA não são códigos ou regras aprovados para o laboratório.
+Windows nativo, antivírus e o Shift autenticado não foram validados nesta nuvem Linux. Consulte docs\AUDITORIA_2_5_3.md e os relatórios de testes para os resultados efetivamente obtidos.

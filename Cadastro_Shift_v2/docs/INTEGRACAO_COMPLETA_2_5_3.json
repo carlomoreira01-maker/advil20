@@ -1,0 +1,740 @@
+{
+  "ambiente": "LOCAL_SOMENTE_SINTETICOS",
+  "producao_validada": false,
+  "testes": 22,
+  "erros": 0,
+  "falhas_testes": 0,
+  "ignorados": 0,
+  "verificacoes": 95,
+  "passaram": 95,
+  "falharam": 0,
+  "valores_esperados_e_encontrados": [
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Um atendimento por PDF",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Correção manual persistida",
+      "esperado": "0012345",
+      "encontrado": "0012345",
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Classificação por página",
+      "esperado": [
+        "pedido",
+        "guia"
+      ],
+      "encontrado": [
+        "pedido",
+        "guia"
+      ],
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Pendências após conferência",
+      "esperado": [],
+      "encontrado": [],
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Pré-cadastro preparado",
+      "esperado": "PREPARADO",
+      "encontrado": "PREPARADO",
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Documentos fictícios precisam ser confirmados",
+      "esperado": null,
+      "encontrado": null,
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Cadastro encontrado",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Confirmação e autorização pelos botões reais",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Navegador: case_id",
+      "esperado": "0be766212685430cb433b344525a3a6f",
+      "encontrado": "0be766212685430cb433b344525a3a6f",
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Navegador: payer",
+      "esperado": "FONTE-FICTICIA",
+      "encontrado": "FONTE-FICTICIA",
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Navegador: guide",
+      "esperado": "00000111",
+      "encontrado": "00000111",
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Navegador: main_guide",
+      "esperado": "00000222",
+      "encontrado": "00000222",
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Navegador: operator_guide",
+      "esperado": "00000777",
+      "encontrado": "00000777",
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Navegador: password",
+      "esperado": "00000555",
+      "encontrado": "00000555",
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Navegador: crm",
+      "esperado": "0012345",
+      "encontrado": "0012345",
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Navegador: uf",
+      "esperado": "GO",
+      "encontrado": "GO",
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Navegador: paciente/nome",
+      "esperado": "PESSOA FICTICIA DE OLIVEIRA",
+      "encontrado": "PESSOA FICTICIA DE OLIVEIRA",
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Navegador: paciente/nascimento",
+      "esperado": "01/02/1995",
+      "encontrado": "01/02/1995",
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Navegador: paciente/carteira",
+      "esperado": "0000087654",
+      "encontrado": "0000087654",
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Procedimentos no navegador",
+      "esperado": [
+        "90000001;1",
+        "90000002;1",
+        "90000003;1",
+        "90000004;1",
+        "90000005;1"
+      ],
+      "encontrado": [
+        "90000001;1",
+        "90000002;1",
+        "90000003;1",
+        "90000004;1",
+        "90000005;1"
+      ],
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Anexo original integral e íntegro",
+      "esperado": [
+        {
+          "name": "d89f6338ff73795bf05ae6866db2fa90d1aa2aa77728f5fb70e1685cebdd20ac.pdf",
+          "sha256": "d89f6338ff73795bf05ae6866db2fa90d1aa2aa77728f5fb70e1685cebdd20ac"
+        }
+      ],
+      "encontrado": [
+        {
+          "name": "d89f6338ff73795bf05ae6866db2fa90d1aa2aa77728f5fb70e1685cebdd20ac.pdf",
+          "sha256": "d89f6338ff73795bf05ae6866db2fa90d1aa2aa77728f5fb70e1685cebdd20ac"
+        }
+      ],
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Um PDF, duas funções",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "O.S. real",
+      "esperado": null,
+      "encontrado": null,
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Etiquetas fictícias no navegador",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Resultado da integração vinculado ao caso",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Pré-cadastro continua local",
+      "esperado": null,
+      "encontrado": null,
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "Uma simulação registrada",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true
+    },
+    {
+      "teste": "test_corrigir_crm_manualmente_antes_de_entregar_ao_navegador",
+      "verificacao": "PDF preservado, sem criar segunda ficha",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true
+    },
+    {
+      "teste": "test_fechar_janelas_cancela_atualizacoes_agendadas",
+      "verificacao": "Um atendimento por PDF",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true
+    },
+    {
+      "teste": "test_fechar_janelas_cancela_atualizacoes_agendadas",
+      "verificacao": "Classificação por página",
+      "esperado": [
+        "pedido",
+        "guia"
+      ],
+      "encontrado": [
+        "pedido",
+        "guia"
+      ],
+      "passou": true
+    },
+    {
+      "teste": "test_fechar_janelas_cancela_atualizacoes_agendadas",
+      "verificacao": "Pendências após conferência",
+      "esperado": [],
+      "encontrado": [],
+      "passou": true
+    },
+    {
+      "teste": "test_fechar_janelas_cancela_atualizacoes_agendadas",
+      "verificacao": "Pré-cadastro preparado",
+      "esperado": "PREPARADO",
+      "encontrado": "PREPARADO",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Um atendimento por PDF",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Classificação por página",
+      "esperado": [
+        "pedido",
+        "guia"
+      ],
+      "encontrado": [
+        "pedido",
+        "guia"
+      ],
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Pendências após conferência",
+      "esperado": [],
+      "encontrado": [],
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Pré-cadastro preparado",
+      "esperado": "PREPARADO",
+      "encontrado": "PREPARADO",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 2 preenchido na interface",
+      "esperado": "00000111",
+      "encontrado": "00000111",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 2 página original",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 2 região original",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 3 preenchido na interface",
+      "esperado": "00000222",
+      "encontrado": "00000222",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 3 página original",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 3 região original",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 7 preenchido na interface",
+      "esperado": "00000777",
+      "encontrado": "00000777",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 7 página original",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 7 região original",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 5 preenchido na interface",
+      "esperado": "00000555",
+      "encontrado": "00000555",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 5 página original",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 5 região original",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 10 preenchido na interface",
+      "esperado": "PESSOA FICTICIA DE OLIVEIRA",
+      "encontrado": "PESSOA FICTICIA DE OLIVEIRA",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 10 página original",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 10 região original",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 8 preenchido na interface",
+      "esperado": "0000087654",
+      "encontrado": "0000087654",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 8 página original",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 8 região original",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 15 preenchido na interface",
+      "esperado": "DRA EXEMPLO SINTETICA",
+      "encontrado": "DRA EXEMPLO SINTETICA",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 15 página original",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 15 região original",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 17 preenchido na interface",
+      "esperado": "0012345",
+      "encontrado": "0012345",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 17 página original",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 17 região original",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 18 preenchido na interface",
+      "esperado": "GO",
+      "encontrado": "GO",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 18 página original",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 18 região original",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 23 preenchido na interface",
+      "esperado": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "encontrado": "INVESTIGACAO FICTICIA DE ANEMIA.\nHEMOGRAMA PARA AVALIACAO; NAO E NOVO PEDIDO.",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 23 página original",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 23 região original",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 30 preenchido na interface",
+      "esperado": "LABORATORIO FICTICIO DOS SANTOS",
+      "encontrado": "LABORATORIO FICTICIO DOS SANTOS",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 30 página original",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 30 região original",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 16 preenchido na interface",
+      "esperado": "CRM",
+      "encontrado": "CRM",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 16 página original",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Campo 16 região original",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Documentos fictícios precisam ser confirmados",
+      "esperado": null,
+      "encontrado": null,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Cadastro encontrado",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Confirmação e autorização pelos botões reais",
+      "esperado": 2,
+      "encontrado": 2,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Navegador: case_id",
+      "esperado": "4448b8ca18134d66b2fc26fdd096ba97",
+      "encontrado": "4448b8ca18134d66b2fc26fdd096ba97",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Navegador: payer",
+      "esperado": "FONTE-FICTICIA",
+      "encontrado": "FONTE-FICTICIA",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Navegador: guide",
+      "esperado": "00000111",
+      "encontrado": "00000111",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Navegador: main_guide",
+      "esperado": "00000222",
+      "encontrado": "00000222",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Navegador: operator_guide",
+      "esperado": "00000777",
+      "encontrado": "00000777",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Navegador: password",
+      "esperado": "00000555",
+      "encontrado": "00000555",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Navegador: crm",
+      "esperado": "0012345",
+      "encontrado": "0012345",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Navegador: uf",
+      "esperado": "GO",
+      "encontrado": "GO",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Navegador: paciente/nome",
+      "esperado": "PESSOA FICTICIA DE OLIVEIRA",
+      "encontrado": "PESSOA FICTICIA DE OLIVEIRA",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Navegador: paciente/nascimento",
+      "esperado": "01/02/1995",
+      "encontrado": "01/02/1995",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Navegador: paciente/carteira",
+      "esperado": "0000087654",
+      "encontrado": "0000087654",
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Procedimentos no navegador",
+      "esperado": [
+        "90000001;1",
+        "90000002;1",
+        "90000003;1",
+        "90000004;1",
+        "90000005;1"
+      ],
+      "encontrado": [
+        "90000001;1",
+        "90000002;1",
+        "90000003;1",
+        "90000004;1",
+        "90000005;1"
+      ],
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Anexo original integral e íntegro",
+      "esperado": [
+        {
+          "name": "2b2d63363246051e18ecfe1c09d22a3c7c84ed0aa9b1b0b14d06973c6c0f03e6.pdf",
+          "sha256": "2b2d63363246051e18ecfe1c09d22a3c7c84ed0aa9b1b0b14d06973c6c0f03e6"
+        }
+      ],
+      "encontrado": [
+        {
+          "name": "2b2d63363246051e18ecfe1c09d22a3c7c84ed0aa9b1b0b14d06973c6c0f03e6.pdf",
+          "sha256": "2b2d63363246051e18ecfe1c09d22a3c7c84ed0aa9b1b0b14d06973c6c0f03e6"
+        }
+      ],
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Um PDF, duas funções",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "O.S. real",
+      "esperado": null,
+      "encontrado": null,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Etiquetas fictícias no navegador",
+      "esperado": 5,
+      "encontrado": 5,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Resultado da integração vinculado ao caso",
+      "esperado": true,
+      "encontrado": true,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Pré-cadastro continua local",
+      "esperado": null,
+      "encontrado": null,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "Uma simulação registrada",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true
+    },
+    {
+      "teste": "test_importar_conferir_preparar_e_automatizar_no_navegador",
+      "verificacao": "PDF preservado, sem criar segunda ficha",
+      "esperado": 1,
+      "encontrado": 1,
+      "passou": true
+    }
+  ]
+}
